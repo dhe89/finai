@@ -288,16 +288,21 @@ button{font:inherit;cursor:pointer}
     font-weight:800 !important;
     white-space:nowrap !important;
   }
-  #finai-root > .left .sidebar-mobile-brand .brand-mark{
+  #finai-root > .left .sidebar-mobile-brand .sidebar-logo-mark{
     width:30px !important;
     height:30px !important;
+    min-width:30px !important;
+    min-height:30px !important;
     border-radius:9px !important;
-    background:var(--lime) !important;
-    color:var(--green) !important;
+    background:#b7f51d !important;
+    color:#005642 !important;
     display:grid !important;
     place-items:center !important;
     font-weight:900 !important;
+    line-height:1 !important;
     flex:none !important;
+    opacity:1 !important;
+    visibility:visible !important;
   }
   #finai-root > .left .nav{
     display:flex !important;
