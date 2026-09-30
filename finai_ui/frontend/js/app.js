@@ -52,8 +52,25 @@ export default function(component) {
 
   function applyResponsiveMode() {
     const target = shell || app;
+    const mobile = isMobile();
     if (target && target.classList) {
-      target.classList.toggle('finai-mobile', isMobile());
+      target.classList.toggle('finai-mobile', mobile);
+    }
+    syncMobileDrawerLayer(mobile);
+  }
+
+  // On mobile the drawer must be a direct child of #finai-root. Keeping it
+  // inside the desktop grid (#app) allows ancestor stacking contexts to put
+  // it behind the mobile header/backdrop even when its own z-index is higher.
+  // Re-parent it only in mobile mode; restore the original grid position on
+  // desktop so the desktop layout remains unchanged.
+  function syncMobileDrawerLayer(mobile) {
+    if (!shell || !app || !left) return;
+
+    if (mobile) {
+      if (left.parentElement !== shell) shell.appendChild(left);
+    } else {
+      if (left.parentElement !== app) app.insertBefore(left, app.firstElementChild);
     }
   }
 
