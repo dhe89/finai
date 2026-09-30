@@ -12,6 +12,7 @@ export default function(component) {
   const chatBody = root.querySelector('#chatBody');
   const chatInput = root.querySelector('#chatInput');
   const sendChat = root.querySelector('#sendChat');
+  const mobileOverlay = root.querySelector('#mobileOverlay');
 
   if (!app || !left || !ai) return;
 
@@ -20,9 +21,18 @@ export default function(component) {
   // the AI overlay can visually cover the Streamlit header.
   function updateViewportOffset() {
     const rect = app.getBoundingClientRect();
-    const offset = Math.max(0, rect.top);
+    const nativeHeader = document.querySelector('header[data-testid="stHeader"]');
+    const headerBottom = nativeHeader
+      ? Math.max(0, nativeHeader.getBoundingClientRect().bottom)
+      : 0;
+
+    // Components V2 lives in the main Streamlit DOM. Fixed elements therefore
+    // need to start below both the component position and Streamlit's header.
+    const offset = Math.max(0, rect.top, headerBottom);
+    const viewportHeight = Math.max(320, window.innerHeight - offset);
+
     app.style.setProperty('--finai-top-offset', `${offset}px`);
-    app.style.setProperty('--finai-vh', `${Math.max(320, window.innerHeight - offset)}px`);
+    app.style.setProperty('--finai-vh', `${viewportHeight}px`);
   }
 
   function isMobile() { return window.innerWidth <= 800; }
@@ -37,13 +47,30 @@ export default function(component) {
 
   function closeDrawer() {
     left.classList.remove('mobile-open');
+    if (mobileOverlay) {
+      mobileOverlay.classList.remove('show');
+      mobileOverlay.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  function openDrawer() {
+    left.classList.add('mobile-open');
+    if (mobileOverlay) {
+      mobileOverlay.classList.add('show');
+      mobileOverlay.setAttribute('aria-hidden', 'false');
+    }
+  }
+
+  function toggleDrawer() {
+    if (left.classList.contains('mobile-open')) closeDrawer();
+    else openDrawer();
   }
 
   function bindNavigation() {
     root.querySelectorAll('.nav-item[data-page]').forEach(item => {
       if (item.dataset.finaiBound === '1') return;
       item.dataset.finaiBound = '1';
-      const go = () => setTriggerValue('navigate', item.dataset.page);
+      const go = () => { closeDrawer(); setTriggerValue('navigate', item.dataset.page); };
       item.addEventListener('click', go);
       item.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
@@ -55,14 +82,20 @@ export default function(component) {
     if (leftToggle && leftToggle.dataset.finaiBound !== '1') {
       leftToggle.dataset.finaiBound = '1';
       leftToggle.addEventListener('click', () => {
-        if (isMobile()) left.classList.toggle('mobile-open');
+        if (isMobile()) toggleDrawer();
         else app.classList.toggle('left-collapsed');
       });
     }
 
     if (mobileMenu && mobileMenu.dataset.finaiBound !== '1') {
       mobileMenu.dataset.finaiBound = '1';
-      mobileMenu.addEventListener('click', () => left.classList.toggle('mobile-open'));
+      mobileMenu.addEventListener('click', toggleDrawer);
+    }
+
+
+    if (mobileOverlay && mobileOverlay.dataset.finaiBound !== '1') {
+      mobileOverlay.dataset.finaiBound = '1';
+      mobileOverlay.addEventListener('click', closeDrawer);
     }
 
     if (desktopAI && desktopAI.dataset.finaiBound !== '1') {
