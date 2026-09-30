@@ -17,21 +17,15 @@ export default function(component) {
     const headerBottom = nativeHeader
       ? Math.max(0, nativeHeader.getBoundingClientRect().bottom)
       : 0;
-    // The component itself is rendered below Streamlit's native toolbar.
-    // Use the component's real viewport position as the single source of truth
-    // so fixed UI (AI overlay/mobile header) and the in-flow sidebar share
-    // exactly the same top boundary. Fall back to the native header only when
-    // the component rect is not measurable yet.
-    const rootTop = root && typeof root.getBoundingClientRect === 'function'
-      ? Math.max(0, root.getBoundingClientRect().top)
-      : 0;
-    const topOffset = rootTop > 0 ? rootTop : headerBottom;
+    // The component is rendered below Streamlit's native toolbar.
+    // Use only the native header bottom as the fixed-UI offset. Using the
+    // component/root position here would change when the page scrolls and
+    // can also be a non-HTMLElement in Components V2, which has no .style.
+    const topOffset = headerBottom;
     const viewportHeight = Math.max(320, window.innerHeight - topOffset);
 
     app.style.setProperty('--finai-top-offset', `${topOffset}px`);
     app.style.setProperty('--finai-vh', `${viewportHeight}px`);
-    root.style.setProperty('--finai-top-offset', `${topOffset}px`);
-    root.style.setProperty('--finai-vh', `${viewportHeight}px`);
   }
 
   function isMobile() {
