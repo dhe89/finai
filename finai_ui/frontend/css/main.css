@@ -20,7 +20,7 @@ button{font:inherit;cursor:pointer}
 .nav-item{height:46px;border-radius:13px;display:flex;align-items:center;gap:12px;padding:0 12px;color:#d9ece6;font-size:14px;font-weight:650;white-space:nowrap}
 .nav-item{cursor:pointer;transition:background .18s ease,transform .18s ease,color .18s ease}
 .nav-item:hover{background:#0b6a56;color:#fff}
-.nav-item.active{background:#14765f;color:#fff;box-shadow:inset 0 0 0 1px #ffffff08}
+.nav-item.active{background:#14765f;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.10),0 4px 12px rgba(0,86,66,.16);font-weight:750}
 .nav-icon{width:22px;text-align:center;flex:none;font-size:14px}
 .app.left-collapsed .brand-text,.app.left-collapsed .nav-text,.app.left-collapsed .config-text,.app.left-collapsed .config-pill,.app.left-collapsed .status{display:none}
 .app.left-collapsed .sidebar-head{justify-content:center;margin-left:0;margin-right:0}
@@ -75,7 +75,7 @@ button{font:inherit;cursor:pointer}
 @media(max-width:800px){
  body{background:#f4f7f5}
  .app,.app.left-collapsed{display:block;min-height:100vh;overflow:visible}
- .left{position:fixed;z-index:300;inset:0 auto 0 0;width:min(82vw,320px);height:100dvh;transform:translateX(-105%);transition:transform .25s ease;box-shadow:12px 0 40px #0003;padding:18px 16px}
+ .left{position:fixed;z-index:300;left:0;top:var(--finai-top-offset,0px);bottom:0;width:min(82vw,320px);height:var(--finai-vh,100dvh);transform:translateX(-105%);transition:transform .25s ease;box-shadow:12px 0 40px #0003;padding:18px 16px}
  .left.mobile-open{transform:translateX(0)}
  .app.left-collapsed .left{padding:18px 16px}
  .app.left-collapsed .brand-text,.app.left-collapsed .nav-text,.app.left-collapsed .config-text,.app.left-collapsed .config-pill,.app.left-collapsed .status{display:inline}
@@ -83,10 +83,10 @@ button{font:inherit;cursor:pointer}
  .app.left-collapsed .brand{justify-content:flex-start}
  .app.left-collapsed .sidebar-toggle{position:static;width:34px;height:34px;border-radius:10px;font-size:19px;background:#ffffff12}
  .app.left-collapsed .nav-item{justify-content:flex-start;padding:0 12px}
- .main{padding:96px 18px 38px;overflow:visible}
+ .main{padding:22px 18px 38px;overflow:visible}
  .desktop-header{display:none}
  .topbar{margin-bottom:20px}.title{font-size:29px}.metrics{gap:12px}.metric{padding:17px}.metric-value{font-size:20px}.bottom{grid-template-columns:1fr}
- .mobile-head{display:flex;position:fixed;top:0;left:0;right:0;height:74px;z-index:250;background:#fff;border-bottom:1px solid #edf0ef;align-items:center;justify-content:center;box-shadow:0 3px 12px #00000006}
+ .mobile-head{display:flex;position:sticky;top:0;left:auto;right:auto;height:74px;z-index:250;background:#fff;border-bottom:1px solid #edf0ef;align-items:center;justify-content:center;box-shadow:0 3px 12px #00000006}
  .mobile-menu{position:absolute;left:18px;top:16px;width:42px;height:42px;border-radius:50%;border:1px solid #e7ebe9;background:#fff;font-size:21px;color:#66716d}
  .mobile-brand{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:800}
  .mobile-ai{position:absolute;right:18px;top:16px;width:42px;height:42px;border-radius:50%;border:1px solid #e7ebe9;background:#fff;color:var(--green);font-size:17px}
@@ -117,149 +117,4 @@ button{font:inherit;cursor:pointer}
 @media(max-width:800px){
   #finai-root .left{top:var(--finai-top-offset,0px);height:var(--finai-vh,100dvh)}
   #finai-root .ai{inset:var(--finai-top-offset,0px) 0 0 0;width:100vw;height:var(--finai-vh,100dvh)}
-}
-
-/* =========================================================
-   FINAI SIDEBAR PATCH
-   Keep sidebar styling independent from Streamlit host CSS.
-   AI/chat and navigation logic are intentionally untouched.
-   ========================================================= */
-
-#finai-root .left,
-#finai-root .left.mobile-open {
-  background-color: #005642 !important;
-  background-image: none !important;
-  color: #ffffff !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  isolation: isolate;
-  -webkit-backdrop-filter: none !important;
-  backdrop-filter: none !important;
-}
-
-#finai-root .left::before,
-#finai-root .left::after {
-  content: none !important;
-  display: none !important;
-}
-
-#finai-root .sidebar-head,
-#finai-root .nav,
-#finai-root .config {
-  position: relative;
-  z-index: 2;
-}
-
-#finai-root .sidebar-toggle {
-  background-color: rgba(255,255,255,.10) !important;
-  border-color: rgba(255,255,255,.28) !important;
-  color: #ffffff !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-#finai-root .sidebar-toggle:hover,
-#finai-root .sidebar-toggle:focus-visible {
-  background-color: rgba(255,255,255,.18) !important;
-  color: #ffffff !important;
-}
-
-#finai-root .nav-item {
-  color: #d9ece6 !important;
-  opacity: 1 !important;
-}
-
-#finai-root .nav-item:hover {
-  background-color: #08735d !important;
-  color: #ffffff !important;
-}
-
-#finai-root .nav-item.active {
-  background-color: #14765f !important;
-  color: #ffffff !important;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.08) !important;
-}
-
-#finai-root .brand,
-#finai-root .brand-text,
-#finai-root .nav-text,
-#finai-root .nav-icon {
-  opacity: 1 !important;
-}
-
-#finai-root .brand-mark {
-  background-color: #b7f51d !important;
-  color: #005642 !important;
-}
-
-#finai-root .config {
-  color: #9ac3b8 !important;
-  border-top-color: rgba(255,255,255,.14) !important;
-}
-
-#finai-root .config-pill {
-  background-color: #ffffff !important;
-  color: #60736e !important;
-}
-
-#finai-root .status {
-  color: #d2e7e1 !important;
-}
-
-#finai-root .dot {
-  background-color: #b7f51d !important;
-}
-
-/* Desktop: make the collapse button unmissable against the green sidebar. */
-@media (min-width: 801px) {
-  #finai-root .left {
-    background-color: #005642 !important;
-    z-index: 300 !important;
-  }
-
-  #finai-root .sidebar-toggle {
-    display: grid !important;
-    place-items: center !important;
-    width: 34px !important;
-    height: 34px !important;
-    flex: 0 0 34px !important;
-    font-size: 19px !important;
-    line-height: 1 !important;
-  }
-
-  #finai-root .app.left-collapsed .sidebar-toggle {
-    display: grid !important;
-    width: 30px !important;
-    height: 30px !important;
-    color: #ffffff !important;
-    background-color: rgba(255,255,255,.14) !important;
-    border-color: rgba(255,255,255,.28) !important;
-  }
-}
-
-/* Mobile drawer: opaque green layer above the page and below the overlay. */
-@media (max-width: 800px) {
-  #finai-root .left {
-    background-color: #005642 !important;
-    background-image: none !important;
-    z-index: 300 !important;
-    box-shadow: 12px 0 40px rgba(0,0,0,.20) !important;
-  }
-
-  #finai-root .left.mobile-open {
-    transform: translateX(0) !important;
-    background-color: #005642 !important;
-  }
-
-  #finai-root .mobile-overlay.show {
-    background-color: rgba(0,48,38,.34) !important;
-  }
-
-  #finai-root .mobile-menu,
-  #finai-root .mobile-ai {
-    background-color: #ffffff !important;
-    color: #005642 !important;
-    border-color: #e7ebe9 !important;
-    opacity: 1 !important;
-  }
 }
