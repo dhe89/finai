@@ -16,23 +16,32 @@ export default function(component) {
 
   if (!app || !left || !ai) return;
 
-  // Streamlit's native toolbar/header sits above the component. Fixed elements
-  // inside the component must start below the actual component top, otherwise
-  // the AI overlay can visually cover the Streamlit header.
+  // The component is already rendered below Streamlit's native toolbar.
+  // Do NOT use app.getBoundingClientRect().top as the fixed-element offset:
+  // that value changes with the page position and was causing the mobile
+  // header to appear in the middle of the dashboard after scrolling.
   function updateViewportOffset() {
-    const rect = app.getBoundingClientRect();
-    const nativeHeader = document.querySelector('header[data-testid="stHeader"]');
+    const nativeHeader = document.querySelector(
+      'header[data-testid="stHeader"], [data-testid="stHeader"]'
+    );
     const headerBottom = nativeHeader
       ? Math.max(0, nativeHeader.getBoundingClientRect().bottom)
       : 0;
 
-    // Components V2 lives in the main Streamlit DOM. Fixed elements therefore
-    // need to start below both the component position and Streamlit's header.
-    const offset = Math.max(0, rect.top, headerBottom);
+    const offset = headerBottom;
     const viewportHeight = Math.max(320, window.innerHeight - offset);
 
     app.style.setProperty('--finai-top-offset', `${offset}px`);
     app.style.setProperty('--finai-vh', `${viewportHeight}px`);
+  }
+
+  function applyActivePage() {
+    const currentPage = data && data.page ? String(data.page) : '';
+    root.querySelectorAll('.nav-item[data-page]').forEach(item => {
+      const active = item.dataset.page === currentPage;
+      item.classList.toggle('active', active);
+      item.setAttribute('aria-current', active ? 'page' : 'false');
+    });
   }
 
   function isMobile() { return window.innerWidth <= 800; }
@@ -135,6 +144,7 @@ export default function(component) {
     });
   }
 
+  applyActivePage();
   bindNavigation();
   bindButtons();
   bindChat();
