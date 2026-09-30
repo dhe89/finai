@@ -366,3 +366,73 @@ button{font:inherit;cursor:pointer}
     z-index:1 !important;
   }
 }
+
+
+/* FINAL MOBILE DRAWER LAYER FIX
+   Keep the mobile top bar visually independent from the drawer. The drawer
+   starts immediately below the FinAI mobile header, so the header is never
+   painted through the drawer/overlay. The sidebar's own desktop brand row is
+   hidden on mobile to avoid a second header inside the drawer. */
+@media(max-width:800px){
+  #finai-root.finai-mobile{
+    position:relative !important;
+    min-height:var(--finai-vh,100dvh) !important;
+  }
+  #finai-root.finai-mobile .mobile-head{
+    z-index:3000 !important;
+  }
+  #finai-root.finai-mobile .app{
+    position:relative !important;
+    z-index:1 !important;
+    min-height:var(--finai-vh,100dvh) !important;
+  }
+  #finai-root.finai-mobile .left{
+    top:74px !important;
+    bottom:0 !important;
+    height:calc(var(--finai-vh,100dvh) - 74px) !important;
+    max-height:calc(var(--finai-vh,100dvh) - 74px) !important;
+    z-index:4000 !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    -webkit-overflow-scrolling:touch !important;
+    padding:18px 16px 24px !important;
+    box-shadow:12px 0 40px rgba(0,0,0,.20) !important;
+  }
+  #finai-root.finai-mobile .left:not(.mobile-open){
+    pointer-events:none !important;
+  }
+  #finai-root.finai-mobile .left.mobile-open{
+    pointer-events:auto !important;
+  }
+  #finai-root.finai-mobile .left .sidebar-head{
+    display:none !important;
+  }
+  #finai-root.finai-mobile .left .nav{
+    margin-top:0 !important;
+    padding-top:2px !important;
+  }
+  #finai-root.finai-mobile .left .nav-item{
+    min-height:48px !important;
+    height:48px !important;
+  }
+  #finai-root.finai-mobile .config{
+    position:relative !important;
+    left:auto !important;
+    right:auto !important;
+    bottom:auto !important;
+    margin-top:28px !important;
+  }
+  #finai-root.finai-mobile .mobile-overlay{
+    top:74px !important;
+    bottom:0 !important;
+    z-index:3500 !important;
+    background:rgba(0,48,38,.34) !important;
+    pointer-events:none !important;
+  }
+  #finai-root.finai-mobile .mobile-overlay.show{
+    pointer-events:auto !important;
+  }
+  #finai-root.finai-mobile .ai{
+    z-index:5000 !important;
+  }
+}
