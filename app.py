@@ -58,7 +58,7 @@ def mark_active(source_html: str, active_page: str) -> str:
 def render_chat_messages() -> str:
     if not st.session_state.chat_messages:
         return """
-        <div class="msg">
+        <div class="msg welcome">
           <div class="bot">✦</div>
           <div class="msgtext"><b>Hi there! 👋</b><br>
             <span class="muted">I'm your Financial AI Assistant.<br>How can I help you today?</span>
