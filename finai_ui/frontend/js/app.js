@@ -19,8 +19,11 @@ export default function(component) {
       : 0;
     const viewportHeight = Math.max(320, window.innerHeight - headerBottom);
 
-    root.style.setProperty('--finai-top-offset', `${headerBottom}px`);
-    root.style.setProperty('--finai-vh', `${viewportHeight}px`);
+    // parentElement supplied by Streamlit Components V2 is not guaranteed to
+    // expose HTMLElement.dataset/style. The actual app element is a stable
+    // HTMLElement, so keep component state/CSS variables there.
+    app.style.setProperty('--finai-top-offset', `${headerBottom}px`);
+    app.style.setProperty('--finai-vh', `${viewportHeight}px`);
   }
 
   function isMobile() {
@@ -138,8 +141,8 @@ export default function(component) {
   function bindButtons() {
     // Delegated handler is intentional: it remains reliable when Streamlit
     // updates/reuses the component DOM after a rerun.
-    if (root.dataset.finaiEventsBound !== '1') {
-      root.dataset.finaiEventsBound = '1';
+    if (app.dataset.finaiEventsBound !== '1') {
+      app.dataset.finaiEventsBound = '1';
 
       root.addEventListener('click', event => {
         const toggle = event.target.closest('#leftToggle');
@@ -249,8 +252,8 @@ export default function(component) {
 
   updateViewportOffset();
 
-  if (!root.dataset.finaiResizeBound) {
-    root.dataset.finaiResizeBound = '1';
+  if (!app.dataset.finaiResizeBound) {
+    app.dataset.finaiResizeBound = '1';
     window.addEventListener('resize', updateViewportOffset, {passive:true});
   }
 
