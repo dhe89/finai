@@ -49,7 +49,6 @@ button{font:inherit;cursor:pointer}
 .ai-head{padding:24px 20px 17px;border-bottom:1px solid #edf0ef;display:flex;justify-content:space-between;align-items:flex-start}.ai-title{font-size:16px;font-weight:800}.ai-status{color:#9ba49f;font-size:8px;margin-top:5px}.ai-close{width:38px;height:38px;border:0;border-radius:50%;background:#f0f2f1;color:#7c8581;font-size:22px;display:grid;place-items:center}.ai-body{padding:24px 18px;overflow:auto;flex:1}.msg{display:flex;gap:10px;margin-bottom:22px}.msg.user{justify-content:flex-end}.bot{width:22px;height:22px;border-radius:50%;background:var(--green);color:var(--lime);display:grid;place-items:center;flex:none;font-size:11px}.msgtext{font-size:11px;line-height:1.45;max-width:280px}.muted{color:#9ba49f}.bubble{border:1px solid #e1e5e3;border-radius:9px;padding:10px 12px;color:#68716e;font-size:10px;max-width:250px}.ai-foot{padding:12px 18px 18px;border-top:1px solid #edf0ef}.input{border:1px solid #e1e5e3;border-radius:9px;padding:11px 12px;color:#a6afab;font-size:9px;margin-bottom:8px}.send{width:100%;border:0;border-radius:9px;padding:10px;background:var(--lime);color:#25410d;font-size:9px;font-weight:800}
 
 .mobile-head{display:none}
-.mobile-overlay{display:none}
 
 @media(max-width:800px){
  body{background:#f4f7f5}
@@ -66,11 +65,10 @@ button{font:inherit;cursor:pointer}
  .desktop-header{display:none}
  .topbar{margin-bottom:20px}.title{font-size:29px}.metrics{gap:12px}.metric{padding:17px}.metric-value{font-size:20px}.bottom{grid-template-columns:1fr}
  .mobile-head{display:flex;position:fixed;top:0;left:0;right:0;height:74px;z-index:250;background:#fff;border-bottom:1px solid #edf0ef;align-items:center;justify-content:center}
- .mobile-menu{position:absolute;left:18px;top:16px;width:42px;height:42px;border-radius:50%;border:1px solid #e7ebe9;background:#fff;font-size:21px;color:#66716d;display:grid;place-items:center}
- .mobile-brand{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:800;color:#18211f}
- .mobile-brand .brand-mark{width:28px;height:28px;border-radius:8px;font-size:14px}
- .mobile-ai{position:absolute;right:18px;top:16px;width:42px;height:42px;border-radius:50%;border:1px solid #e7ebe9;background:#fff;color:var(--green);font-size:17px;display:grid;place-items:center;box-shadow:0 4px 12px #0000000d}
- .ai{z-index:500;inset:0;width:100vw;height:100dvh;border:0;box-shadow:-14px 0 40px #00000016;transition:transform .24s ease,opacity .18s ease}
+ .mobile-menu{position:absolute;left:18px;top:16px;width:42px;height:42px;border-radius:50%;border:1px solid #e7ebe9;background:#fff;font-size:21px;color:#66716d}
+ .mobile-brand{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:800}
+ .mobile-ai{position:absolute;right:18px;top:16px;width:42px;height:42px;border-radius:50%;border:1px solid #e7ebe9;background:#fff;color:var(--green);font-size:17px}
+ .ai{z-index:500;inset:0;width:100vw;height:100dvh;border:0;box-shadow:none;transition:transform .24s ease,opacity .18s ease}
  .ai.closed{transform:translateX(105%)}
  .mobile-overlay{display:none;position:fixed;inset:0;z-index:280;background:#00302655}.mobile-overlay.show{display:block}
  .ai-head{padding-top:24px}
@@ -98,8 +96,10 @@ button{font:inherit;cursor:pointer}
  .ai-foot-row .send{min-width:64px}
 }
 
-/* MULTIPAGE STACK — only one page participates in the layout at a time. */
-.page-stack{min-width:0;min-height:100vh;overflow:hidden}
-.page-view{display:none;min-width:0;min-height:100%}
-.page-view.active{display:block}
-.page-view .main{min-height:100vh}
+/* V4: keep fixed UI below the native Streamlit toolbar/header. */
+#finai-root .ai{top:var(--finai-top-offset,0px);height:var(--finai-vh,100dvh)}
+#finai-root .mobile-head{top:var(--finai-top-offset,0px)}
+@media(max-width:800px){
+  #finai-root .left{top:var(--finai-top-offset,0px);height:var(--finai-vh,100dvh)}
+  #finai-root .ai{inset:var(--finai-top-offset,0px) 0 0 0;width:100vw;height:var(--finai-vh,100dvh)}
+}
