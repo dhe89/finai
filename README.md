@@ -31,3 +31,30 @@ streamlit run app.py
 ```
 
 The original prototype's visual baseline is retained: green/lime palette, typography, cards, tables, sidebar geometry, AI overlay, and transition timings.
+
+## Baseline v1 — Mobile Layer Architecture
+
+`finai-main-4.zip` is the new baseline for subsequent work.
+
+The shell hierarchy is intentionally flat:
+- mobile header
+- sidebar
+- page content
+- mobile backdrop
+- AI overlay
+
+The sidebar is a permanent sibling of the page content. JavaScript no longer
+re-parents the sidebar between containers.
+
+Mobile layer order:
+1. Sidebar
+2. Shadow/backdrop
+3. FinAI mobile header
+4. Page content
+
+The sidebar and backdrop share the same top/bottom boundary. The FinAI header
+uses the same top boundary and has a 74px visual height. The native Streamlit
+toolbar/header remains outside this component.
+
+The mobile hamburger and AI buttons are icon-only, without circular button
+containers.
