@@ -1,1 +1,1 @@
-
+"""FinAI AI integration layer."""
