@@ -40,13 +40,16 @@ except ImportError as exc:
 
 
 def mark_active(source_html: str, active_page: str) -> str:
+    """Mark exactly one navigation item as active for the current page."""
     def repl(match):
         attrs = match.group(1)
         active = f'data-page="{active_page}"' in attrs
         return '<div class="nav-item' + (" active" if active else "") + '"' + attrs + ">"
 
+    # Important: the closing quote of class is outside the optional `active`
+    # token. The previous regex missed every item, leaving Dashboard active.
     return re.sub(
-        r'<div class="nav-item(?: active)?(\s+data-page="[^"]+"\s+tabindex="0")>',
+        r'<div class="nav-item(?: active)?"(\s+data-page="[^"]+"\s+tabindex="0")>',
         repl,
         source_html,
     )
@@ -85,13 +88,17 @@ sidebar = mark_active(sidebar, page)
 page_content = PAGE_MAP[page].read_text(encoding="utf-8")
 ai_chat = ai_chat.replace("{{CHAT_MESSAGES}}", render_chat_messages())
 
-# One root keeps the original layout intact. The mobile header is outside the
-# .app grid just like the baseline.
+# Keep the visual shell in the intended layout hierarchy:
+# .app = sidebar + page + AI overlay, while the mobile header/backdrop sit
+# outside the grid. The sidebar CSS relies on .app being the grid container.
 html_content = f"""<div id="finai-root">
-{sidebar}
-{page_content}
-{ai_chat}
-{header}
+  {header}
+  <div id="app" class="app">
+    {sidebar}
+    {page_content}
+    {ai_chat}
+  </div>
+  <div id="mobileOverlay" class="mobile-overlay" aria-hidden="true"></div>
 </div>"""
 
 messages = st.session_state.chat_messages[-30:]
