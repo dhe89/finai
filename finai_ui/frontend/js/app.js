@@ -29,7 +29,15 @@ export default function(component) {
   }
 
   function isMobile() {
-    return window.matchMedia('(max-width: 800px)').matches;
+    // Components V2 can report a viewport width that differs from the
+    // browser's media-query viewport on mobile. Use the actual component
+    // width so the shell switches reliably to the mobile layout.
+    const width = root.getBoundingClientRect().width;
+    return width <= 800;
+  }
+
+  function applyResponsiveMode() {
+    root.classList.toggle('finai-mobile', isMobile());
   }
 
   function applyActivePage() {
@@ -255,11 +263,15 @@ export default function(component) {
   }
   setCollapsed(app.dataset.leftCollapsed === '1');
 
+  applyResponsiveMode();
   updateViewportOffset();
 
   if (!app.dataset.finaiResizeBound) {
     app.dataset.finaiResizeBound = '1';
-    window.addEventListener('resize', updateViewportOffset, {passive:true});
+    window.addEventListener('resize', () => {
+      applyResponsiveMode();
+      updateViewportOffset();
+    }, {passive:true});
   }
 
   requestAnimationFrame(updateViewportOffset);
