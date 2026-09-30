@@ -1,1 +1,1 @@
-"""FinAI AI integration layer."""
+"""FinAI AI provider integrations."""

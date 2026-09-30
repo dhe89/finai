@@ -14,23 +14,19 @@ SYSTEM_PROMPT = (
 
 def get_api_key():
     try:
-        if "OPENROUTER_API_KEY" in st.secrets:
-            return str(st.secrets["OPENROUTER_API_KEY"]).strip()
-        if "api_key" in st.secrets:
-            return str(st.secrets["api_key"]).strip()
+        key = st.secrets.get("OPENROUTER_API_KEY", "")
+        if not key:
+            key = st.secrets.get("api_key", "")
+        return str(key).strip() if key else None
     except Exception:
         return None
-    return None
 
 
-def chat(messages, model=DEFAULT_MODEL, timeout=30):
-    """Send a chat request to OpenRouter without exposing the API key to JS."""
+def chat(messages, model=DEFAULT_MODEL, timeout=45):
+    """Call OpenRouter server-side; the API key is never sent to browser JS."""
     api_key = get_api_key()
     if not api_key:
-        return {
-            "ok": False,
-            "error": "API key OpenRouter belum ditemukan di Streamlit Secrets."
-        }
+        return {"ok": False, "error": "API key OpenRouter belum ditemukan di Streamlit Secrets."}
 
     payload_messages = [{"role": "system", "content": SYSTEM_PROMPT}]
     payload_messages.extend(messages[-12:])
@@ -65,10 +61,7 @@ def chat(messages, model=DEFAULT_MODEL, timeout=30):
             message = error_data.get("message") or response.text
         except Exception:
             message = response.text
-        return {
-            "ok": False,
-            "error": f"OpenRouter HTTP {response.status_code}: {message}"
-        }
+        return {"ok": False, "error": f"OpenRouter HTTP {response.status_code}: {message}"}
 
     try:
         data = response.json()
@@ -84,6 +77,9 @@ def chat(messages, model=DEFAULT_MODEL, timeout=30):
                 str(part.get("text", "")) if isinstance(part, dict) else str(part)
                 for part in content
             )
+
+        if not content:
+            content = message.get("reasoning") or choices[0].get("text")
 
         if not content:
             return {"ok": False, "error": "OpenRouter mengembalikan jawaban kosong."}
