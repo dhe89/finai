@@ -441,53 +441,82 @@ button{font:inherit;cursor:pointer}
 
 
 /* V5 STRUCTURAL MOBILE DRAWER FIX\n   The mobile drawer is re-parented by app.js to #finai-root so it no longer\n   competes with #app's desktop/grid stacking context. Layer order:\n   backdrop < header < drawer < AI. */\n@media(max-width:800px){\n  #finai-root.finai-mobile > .left{\n    position:fixed !important;\n    left:0 !important;\n    top:74px !important;\n    right:auto !important;\n    bottom:0 !important;\n    width:min(82vw,320px) !important;\n    height:calc(var(--finai-vh,100dvh) - 74px) !important;\n    max-height:calc(var(--finai-vh,100dvh) - 74px) !important;\n    transform:translateX(-105%) !important;\n    z-index:3000 !important;\n    isolation:isolate !important;\n    overflow-y:auto !important;\n    overflow-x:hidden !important;\n    -webkit-overflow-scrolling:touch !important;\n    background:#005642 !important;\n    opacity:1 !important;\n    pointer-events:none !important;\n    padding:18px 16px 24px !important;\n    box-shadow:12px 0 40px rgba(0,0,0,.20) !important;\n  }\n  #finai-root.finai-mobile > .left.mobile-open{\n    transform:translateX(0) !important;\n    pointer-events:auto !important;\n  }\n  #finai-root.finai-mobile > .left .sidebar-head{display:none !important;}\n  #finai-root.finai-mobile > .left .nav{margin-top:0 !important;padding-top:2px !important;}\n  #finai-root.finai-mobile > .left .nav-item{min-height:48px !important;height:48px !important;}\n  #finai-root.finai-mobile > .left .config{\n    position:relative !important;left:auto !important;right:auto !important;bottom:auto !important;margin-top:28px !important;\n  }\n  #finai-root.finai-mobile > .mobile-head{\n    position:absolute !important;top:0 !important;left:0 !important;right:0 !important;z-index:2000 !important;\n  }\n  #finai-root.finai-mobile > .mobile-overlay{\n    position:fixed !important;top:74px !important;right:0 !important;bottom:0 !important;left:0 !important;\n    z-index:1000 !important;background:rgba(0,48,38,.34) !important;pointer-events:none !important;\n  }\n  #finai-root.finai-mobile > .mobile-overlay.show{pointer-events:auto !important;}\n}\n
-/* V6 MOBILE STACK / BOUNDARY FIX
-   Mobile layer order (front -> back):
-   1. sidebar
-   2. shadow / backdrop
-   3. mobile header
-   4. page content
+/* FINAL MOBILE LAYER / BOUNDARY ARCHITECTURE
+   Mobile stacking order, front -> back:
+     1. Sidebar
+     2. Shadow/backdrop
+     3. Mobile header
+     4. Page content
 
-   All three fixed surfaces use the same component viewport boundary.
-   The sidebar is full-height; the header is only a visual layer above the
-   backdrop. This avoids the previous 74px offset mismatch. */
+   IMPORTANT:
+   - Sidebar, shadow and header all use the SAME top/bottom/left/right boundary.
+   - No 74px offset is added to the sidebar or shadow.
+   - The 74px value belongs ONLY to the visual header height.
+   - The sidebar is re-parented by app.js to #finai-root on mobile, so it is
+     no longer trapped inside #app's stacking context.
+*/
 @media (max-width:800px){
   #finai-root.finai-mobile{
     position:relative !important;
+    display:block !important;
     width:100% !important;
+    min-width:0 !important;
     min-height:var(--finai-vh,100dvh) !important;
+    margin:0 !important;
+    padding:0 !important;
+    overflow:visible !important;
   }
 
-  /* Content starts below the visual header, but does not participate in the
-     drawer stacking order. */
-  #finai-root.finai-mobile .app{
+  /* PAGE CONTENT — back layer */
+  #finai-root.finai-mobile > .app{
     position:relative !important;
-    z-index:0 !important;
+    display:block !important;
+    width:100% !important;
+    min-width:0 !important;
     min-height:var(--finai-vh,100dvh) !important;
+    height:auto !important;
+    margin:0 !important;
+    padding:0 !important;
+    overflow:visible !important;
+    z-index:0 !important;
   }
 
-  /* 1 — SIDEBAR: full component viewport, including the header area. */
+  #finai-root.finai-mobile > .app .main{
+    padding:96px 18px 38px !important;
+    min-width:0 !important;
+    overflow:visible !important;
+  }
+
+  /* 1 — SIDEBAR — highest layer.
+     Full component viewport: its top/bottom/left boundary is identical to
+     the shadow and header. This intentionally lets it cover the header. */
   #finai-root.finai-mobile > .left{
     position:fixed !important;
-    left:0 !important;
     top:var(--finai-top-offset,0px) !important;
     right:auto !important;
-    bottom:auto !important;
+    bottom:0 !important;
+    left:0 !important;
     width:min(82vw,320px) !important;
-    height:var(--finai-vh,100dvh) !important;
-    max-height:var(--finai-vh,100dvh) !important;
+    height:auto !important;
+    max-height:none !important;
+    min-height:0 !important;
     margin:0 !important;
     padding:92px 16px 24px !important;
     box-sizing:border-box !important;
     transform:translateX(-105%) !important;
+    transition:transform .25s ease !important;
     z-index:3000 !important;
     isolation:isolate !important;
     overflow-y:auto !important;
     overflow-x:hidden !important;
     -webkit-overflow-scrolling:touch !important;
     background:#005642 !important;
+    background-color:#005642 !important;
+    color:#fff !important;
     opacity:1 !important;
+    visibility:visible !important;
     box-shadow:12px 0 40px rgba(0,0,0,.20) !important;
+    pointer-events:none !important;
   }
 
   #finai-root.finai-mobile > .left.mobile-open{
@@ -495,23 +524,33 @@ button{font:inherit;cursor:pointer}
     pointer-events:auto !important;
   }
 
-  #finai-root.finai-mobile > .left:not(.mobile-open){
-    pointer-events:none !important;
-  }
-
-  /* Do not render a second brand/header inside the mobile drawer. */
+  /* Mobile drawer does not need its desktop brand/header row. */
   #finai-root.finai-mobile > .left .sidebar-head{
     display:none !important;
   }
 
   #finai-root.finai-mobile > .left .nav{
+    display:flex !important;
     margin:0 !important;
     padding:0 !important;
+    gap:8px !important;
+    background:transparent !important;
   }
 
   #finai-root.finai-mobile > .left .nav-item{
+    width:100% !important;
     min-height:48px !important;
     height:48px !important;
+    margin:0 !important;
+    padding:0 12px !important;
+    justify-content:flex-start !important;
+    background:transparent !important;
+    color:#d9ece6 !important;
+  }
+
+  #finai-root.finai-mobile > .left .nav-item.active{
+    background:#14765f !important;
+    color:#fff !important;
   }
 
   #finai-root.finai-mobile > .left .config{
@@ -519,24 +558,30 @@ button{font:inherit;cursor:pointer}
     left:auto !important;
     right:auto !important;
     bottom:auto !important;
-    margin-top:28px !important;
+    margin:28px 0 0 !important;
+    width:100% !important;
   }
 
-  /* 2 — SHADOW/BACKDROP: same full boundary as the header and sidebar. */
+  /* 2 — SHADOW/BACKDROP — middle layer.
+     Same exact outer boundary as the sidebar/header. It starts at the native
+     Streamlit header bottom and ends at the viewport bottom. */
   #finai-root.finai-mobile > .mobile-overlay{
     display:none !important;
     position:fixed !important;
     top:var(--finai-top-offset,0px) !important;
     right:0 !important;
-    bottom:auto !important;
+    bottom:0 !important;
     left:0 !important;
-    width:100vw !important;
-    height:var(--finai-vh,100dvh) !important;
+    width:auto !important;
+    height:auto !important;
     margin:0 !important;
+    padding:0 !important;
+    box-sizing:border-box !important;
     z-index:2500 !important;
     background:rgba(0,48,38,.34) !important;
     backdrop-filter:blur(1px) !important;
     -webkit-backdrop-filter:blur(1px) !important;
+    pointer-events:none !important;
   }
 
   #finai-root.finai-mobile > .mobile-overlay.show{
@@ -544,8 +589,9 @@ button{font:inherit;cursor:pointer}
     pointer-events:auto !important;
   }
 
-  /* 3 — HEADER: same top boundary, but below the backdrop and sidebar. */
+  /* 3 — MOBILE HEADER — below shadow, above content. */
   #finai-root.finai-mobile > .mobile-head{
+    display:flex !important;
     position:fixed !important;
     top:var(--finai-top-offset,0px) !important;
     right:0 !important;
@@ -553,21 +599,67 @@ button{font:inherit;cursor:pointer}
     left:0 !important;
     width:100% !important;
     height:74px !important;
+    min-height:74px !important;
     margin:0 !important;
-    z-index:2000 !important;
+    padding:0 !important;
     box-sizing:border-box !important;
+    z-index:2000 !important;
+    background:#fff !important;
+    border-bottom:1px solid #edf0ef !important;
+    box-shadow:0 3px 12px rgba(0,0,0,.04) !important;
+    align-items:center !important;
+    justify-content:center !important;
   }
 
   #finai-root.finai-mobile .mobile-menu,
   #finai-root.finai-mobile .mobile-ai{
+    display:grid !important;
+    position:absolute !important;
+    top:16px !important;
+    width:42px !important;
+    height:42px !important;
+    margin:0 !important;
+    padding:0 !important;
     border:0 !important;
+    border-radius:10px !important;
     background:transparent !important;
     box-shadow:none !important;
-    border-radius:10px !important;
+    color:#65716c !important;
+    place-items:center !important;
   }
 
-  /* AI stays above the mobile drawer because it is a separate modal. */
+  #finai-root.finai-mobile .mobile-menu{left:18px !important}
+  #finai-root.finai-mobile .mobile-ai{right:18px !important;color:var(--green) !important}
+
+  #finai-root.finai-mobile .mobile-menu:hover,
+  #finai-root.finai-mobile .mobile-ai:hover{
+    background:#f4f7f5 !important;
+  }
+
+  /* AI is an independent modal and remains above everything. */
   #finai-root.finai-mobile > .ai{
+    position:fixed !important;
+    top:var(--finai-top-offset,0px) !important;
+    right:0 !important;
+    bottom:0 !important;
+    left:0 !important;
+    width:100vw !important;
+    height:auto !important;
+    min-height:0 !important;
     z-index:4000 !important;
+    border:0 !important;
+    box-shadow:none !important;
+  }
+
+  #finai-root.finai-mobile > .ai .ai-head{
+    min-height:72px !important;
+    padding:18px 18px 15px !important;
+  }
+
+  #finai-root.finai-mobile > .ai .ai-close{
+    position:relative !important;
+    top:auto !important;
+    right:auto !important;
+    z-index:1 !important;
   }
 }
