@@ -8,7 +8,8 @@ export default function(component) {
 
   if (!app || !left || !ai) return;
 
-  const qs = (selector) => root.querySelector(selector);
+  const shell = app;
+  const qs = (selector) => shell.querySelector(selector);
 
   function updateViewportOffset() {
     const nativeHeader = document.querySelector(
@@ -32,19 +33,17 @@ export default function(component) {
     // Components V2 can report a viewport width that differs from the
     // browser's media-query viewport on mobile. Use the actual component
     // width so the shell switches reliably to the mobile layout.
-    // Components V2's parentElement is not guaranteed to be a native
-    // HTMLElement. The actual #app element is, so measure that instead.
-    const width = app.getBoundingClientRect().width;
+    const width = shell.getBoundingClientRect().width;
     return width <= 800;
   }
 
   function applyResponsiveMode() {
-    root.classList.toggle('finai-mobile', isMobile());
+    shell.classList.toggle('finai-mobile', isMobile());
   }
 
   function applyActivePage() {
     const currentPage = data && data.page ? String(data.page) : '';
-    root.querySelectorAll('.nav-item[data-page]').forEach(item => {
+    shell.querySelectorAll('.nav-item[data-page]').forEach(item => {
       const active = item.dataset.page === currentPage;
       item.classList.toggle('active', active);
       item.setAttribute('aria-current', active ? 'page' : 'false');
@@ -105,7 +104,7 @@ export default function(component) {
   }
 
   function bindNavigation() {
-    root.querySelectorAll('.nav-item[data-page]').forEach(item => {
+    shell.querySelectorAll('.nav-item[data-page]').forEach(item => {
       if (item.dataset.finaiBound === '1') return;
       item.dataset.finaiBound = '1';
 
@@ -159,9 +158,9 @@ export default function(component) {
     if (app.dataset.finaiEventsBound !== '1') {
       app.dataset.finaiEventsBound = '1';
 
-      root.addEventListener('click', event => {
+      shell.addEventListener('click', event => {
         const toggle = event.target.closest('#leftToggle');
-        if (toggle && root.contains(toggle)) {
+        if (toggle && shell.contains(toggle)) {
           event.preventDefault();
           event.stopPropagation();
 
@@ -175,35 +174,35 @@ export default function(component) {
         }
 
         const mobileMenu = event.target.closest('#mobileMenu');
-        if (mobileMenu && root.contains(mobileMenu)) {
+        if (mobileMenu && shell.contains(mobileMenu)) {
           event.preventDefault();
           toggleDrawer();
           return;
         }
 
         const overlay = event.target.closest('#mobileOverlay');
-        if (overlay && root.contains(overlay)) {
+        if (overlay && shell.contains(overlay)) {
           closeDrawer();
           return;
         }
 
         const desktopAI = event.target.closest('#desktopAI');
         const mobileAI = event.target.closest('#mobileAI');
-        if ((desktopAI || mobileAI) && root.contains(desktopAI || mobileAI)) {
+        if ((desktopAI || mobileAI) && shell.contains(desktopAI || mobileAI)) {
           event.preventDefault();
           setTriggerValue('ai', {action:'open'});
           return;
         }
 
         const aiClose = event.target.closest('#aiClose');
-        if (aiClose && root.contains(aiClose)) {
+        if (aiClose && shell.contains(aiClose)) {
           event.preventDefault();
           setTriggerValue('ai', {action:'close'});
           return;
         }
       });
 
-      root.addEventListener('keydown', event => {
+      shell.addEventListener('keydown', event => {
         const toggle = event.target.closest('#leftToggle');
         if (toggle && (event.key === 'Enter' || event.key === ' ')) {
           event.preventDefault();
