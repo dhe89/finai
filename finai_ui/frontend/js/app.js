@@ -1,4 +1,5 @@
 (function(){
+  const SERVER_PAGE = null;
   const app=document.getElementById('app');
   const left=document.getElementById('left');
   const leftToggle=document.getElementById('leftToggle');
@@ -159,9 +160,27 @@
     if(!chatInput) return;
     const text=chatInput.value.trim();
     if(!text) return;
+
     appendMessage(text,true);
     chatInput.value='';
-    setTimeout(()=>appendMessage(dummyResponse(text),false),450);
+
+    // Streamlit renders this UI inside an iframe. Send the message to Python
+    // through a one-shot top-level query parameter so the API key stays server-side.
+    const nonce=Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,8);
+    try{
+      const topUrl=new URL(window.top.location.href);
+      topUrl.searchParams.set('finai_q',text);
+      topUrl.searchParams.set('finai_n',nonce);
+      if(currentPage==='kinerja') topUrl.searchParams.delete('page');
+      else topUrl.searchParams.set('page',currentPage);
+      window.top.location.assign(topUrl.toString());
+    }catch(e){
+      // Fallback for browsers that restrict direct top-frame access.
+      const url=new URL(window.location.href);
+      url.searchParams.set('finai_q',text);
+      url.searchParams.set('finai_n',nonce);
+      window.location.assign(url.toString());
+    }
   }
 
   if(sendChat) sendChat.addEventListener('click',send);
@@ -171,6 +190,6 @@
 
   setSidebarCollapsed(false);
   setAI(false);
-  setActivePage(currentPage,false);
+  setActivePage(SERVER_PAGE || currentPage,false);
   syncResponsive();
 })();
