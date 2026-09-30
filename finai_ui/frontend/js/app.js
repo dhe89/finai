@@ -1,12 +1,17 @@
 export default function(component) {
   const { data, setTriggerValue, parentElement } = component;
   const root = parentElement;
-  const app = root.querySelector('#app');
+  // Components V2 uses a ShadowRoot when isolate_styles=True. ShadowRoot
+  // supports querySelector(), but it does NOT have classList or
+  // getBoundingClientRect(). Keep root for DOM lookup and use the real shell
+  // element for layout measurements/classes.
+  const shell = root && root.querySelector ? root.querySelector('#finai-root') : null;
+  const app = root && root.querySelector ? root.querySelector('#app') : null;
   const left = root.querySelector('#left');
   const ai = root.querySelector('#ai');
   const chatBody = root.querySelector('#chatBody');
 
-  if (!app || !left || !ai) return;
+  if (!app || !left || !ai || !shell) return;
 
   const qs = (selector) => root.querySelector(selector);
 
@@ -29,43 +34,22 @@ export default function(component) {
   }
 
   function isMobile() {
-    // Components V2 can expose a desktop-sized CSS viewport even when the
-    // actual device/component is narrow. Use the smallest reliable viewport
-    // signal available so mobile controls are activated on real phones.
-    const widths = [];
-
-    if (window.visualViewport && Number.isFinite(window.visualViewport.width)) {
-      widths.push(window.visualViewport.width);
+    // Components V2 can report a viewport width that differs from the
+    // browser's media-query viewport on mobile. Use the actual component
+    // width so the shell switches reliably to the mobile layout.
+    const target = shell || app;
+    if (!target || typeof target.getBoundingClientRect !== 'function') {
+      return window.matchMedia('(max-width: 800px)').matches;
     }
-
-    if (Number.isFinite(document.documentElement.clientWidth) && document.documentElement.clientWidth > 0) {
-      widths.push(document.documentElement.clientWidth);
-    }
-
-    if (app && Number.isFinite(app.clientWidth) && app.clientWidth > 0) {
-      widths.push(app.clientWidth);
-    }
-
-    const appRect = app && typeof app.getBoundingClientRect === 'function'
-      ? app.getBoundingClientRect()
-      : null;
-    if (appRect && Number.isFinite(appRect.width) && appRect.width > 0) {
-      widths.push(appRect.width);
-    }
-
-    const rootRect = root && typeof root.getBoundingClientRect === 'function'
-      ? root.getBoundingClientRect()
-      : null;
-    if (rootRect && Number.isFinite(rootRect.width) && rootRect.width > 0) {
-      widths.push(rootRect.width);
-    }
-
-    const width = widths.length ? Math.min(...widths) : window.innerWidth;
+    const width = target.getBoundingClientRect().width;
     return width <= 800;
   }
 
   function applyResponsiveMode() {
-    root.classList.toggle('finai-mobile', isMobile());
+    const target = shell || app;
+    if (target && target.classList) {
+      target.classList.toggle('finai-mobile', isMobile());
+    }
   }
 
   function applyActivePage() {
