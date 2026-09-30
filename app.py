@@ -21,54 +21,25 @@ PAGE_MAP = {
 # ------------------------------------------------------------------
 # SERVER STATE
 # ------------------------------------------------------------------
-if "chat_messages" not in st.session_state:
-    st.session_state.chat_messages = []
-if "last_chat_nonce" not in st.session_state:
-    st.session_state.last_chat_nonce = None
-
-page = str(st.query_params.get("page", "kinerja"))
-if page not in PAGE_MAP:
-    page = "kinerja"
-
-# AI open state is primarily controlled in the browser. When a message is
-# submitted, ai=1 is sent together with the one-shot message transport so the
-# overlay remains open after the Streamlit rerun.
-ai_param = str(st.query_params.get("ai", "0")) == "1"
+st.session_state.setdefault("chat_messages", [])
+st.session_state.setdefault("ai_open", False)
+st.session_state.setdefault("last_chat_trigger", None)
+st.session_state.setdefault("page", "kinerja")
 
 # ------------------------------------------------------------------
-# CHAT TRANSPORT: browser -> Streamlit -> OpenRouter -> browser
+# CUSTOM COMPONENT V2
 # ------------------------------------------------------------------
-chat_query = st.query_params.get("finai_q")
-chat_nonce = str(st.query_params.get("finai_n", "")).strip()
-
-if chat_query is not None:
-    chat_query = str(chat_query).strip()
-
-    if chat_query and chat_nonce and chat_nonce != st.session_state.last_chat_nonce:
-        st.session_state.last_chat_nonce = chat_nonce
-        st.session_state.chat_messages.append({"role": "user", "content": chat_query})
-
-        result = openrouter_chat(st.session_state.chat_messages)
-        if result.get("ok"):
-            answer = result["content"]
-        else:
-            answer = "⚠️ " + result.get("error", "LLM belum dapat merespons saat ini.")
-
-        st.session_state.chat_messages.append({"role": "assistant", "content": answer})
-
-    # One-shot transport parameters must be removed before rerun so a refresh
-    # never submits the same message twice.
-    try:
-        st.query_params.pop("finai_q", None)
-        st.query_params.pop("finai_n", None)
-        st.query_params["ai"] = "1"
-    except Exception:
-        pass
-
-    st.rerun()
+# Streamlit Components V2 run in the main app DOM (not an iframe) and provide
+# a supported JS -> Python event channel. This replaces the fragile URL/query
+# transport used by the previous prototype.
+try:
+    import streamlit.components.v2 as components_v2
+except ImportError as exc:
+    st.error("Streamlit Components V2 tidak tersedia. Gunakan Streamlit >= 1.51.")
+    raise
 
 
-def mark_active(source_html, active_page):
+def mark_active(source_html: str, active_page: str) -> str:
     def repl(match):
         attrs = match.group(1)
         active = f'data-page="{active_page}"' in attrs
@@ -81,8 +52,7 @@ def mark_active(source_html, active_page):
     )
 
 
-def render_chat_messages():
-    """Render chat bubbles as normal HTML so they survive iframe reloads."""
+def render_chat_messages() -> str:
     if not st.session_state.chat_messages:
         return """
         <div class="msg">
@@ -97,56 +67,103 @@ def render_chat_messages():
     for message in st.session_state.chat_messages[-30:]:
         role = message.get("role")
         content = html.escape(str(message.get("content", ""))).replace("\n", "<br>")
-
         if role == "user":
             blocks.append(f'<div class="msg user"><div class="bubble">{content}</div></div>')
         elif role == "assistant":
-            # AI responses are plain text except for the small formatting we
-            # explicitly add below. Escape first so model output cannot inject
-            # arbitrary HTML into the page.
             blocks.append(f'<div class="msg"><div class="bot">✦</div><div class="msgtext">{content}</div></div>')
-
     return "".join(blocks)
 
 
-def js_json(value):
-    return json.dumps(value, ensure_ascii=False).replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
-
-
-template = (FRONTEND / "index.html").read_text(encoding="utf-8")
+sidebar = (FRONTEND / "layout" / "sidebar.html").read_text(encoding="utf-8")
+header = (FRONTEND / "layout" / "header.html").read_text(encoding="utf-8")
+ai_chat = (FRONTEND / "layout" / "ai_chat.html").read_text(encoding="utf-8")
 css = (FRONTEND / "css" / "main.css").read_text(encoding="utf-8")
 js = (FRONTEND / "js" / "app.js").read_text(encoding="utf-8")
-sidebar = (FRONTEND / "layout" / "sidebar.html").read_text(encoding="utf-8")
-mobile_header = (FRONTEND / "layout" / "header.html").read_text(encoding="utf-8")
-ai_chat = (FRONTEND / "layout" / "ai_chat.html").read_text(encoding="utf-8")
-page_content = PAGE_MAP[page].read_text(encoding="utf-8")
 
+page = st.session_state.page
 sidebar = mark_active(sidebar, page)
+page_content = PAGE_MAP[page].read_text(encoding="utf-8")
 ai_chat = ai_chat.replace("{{CHAT_MESSAGES}}", render_chat_messages())
 
-# The JS must not blindly execute setAI(false) after the server has restored a
-# chat session. This was the main reason the overlay closed immediately after
-# sending a message.
-js = js.replace("const SERVER_AI_OPEN = false;", f"const SERVER_AI_OPEN = {str(ai_param).lower()};")
-js = js.replace("const SERVER_PAGE = null;", f"const SERVER_PAGE = {json.dumps(page)};")
+# One root keeps the original layout intact. The mobile header is outside the
+# .app grid just like the baseline.
+html_content = f"""<div id="finai-root">
+{sidebar}
+{page_content}
+{ai_chat}
+{header}
+</div>"""
 
-# The visual baseline is deliberately untouched: same CSS, same HTML shell,
-# same sidebar/header/page fragments, same component height.
-document = (
-    template
-    .replace("{{CSS}}", css)
-    .replace("{{SIDEBAR}}", sidebar)
-    .replace("{{PAGE_CONTENT}}", page_content)
-    .replace("{{AI_CHAT}}", ai_chat)
-    .replace("{{MOBILE_HEADER}}", mobile_header)
-    .replace("{{JS}}", js)
+messages = st.session_state.chat_messages[-30:]
+
+finai_component = components_v2.component(
+    "finai_ui.finai_shell",
+    html=html_content,
+    css=css,
+    js=js,
+    isolate_styles=True,
 )
 
-# Streamlit's native st.html is not iframe-isolated, so the existing frontend
-# JavaScript can control navigation/query parameters reliably. Keep the legacy
-# component fallback for older Streamlit versions that do not expose st.html.
-try:
-    st.html(document, unsafe_allow_javascript=True)
-except (AttributeError, TypeError):
-    import streamlit.components.v1 as components
-    components.html(document, height=1550, scrolling=True)
+result = finai_component(
+    key="finai_shell",
+    data={
+        "page": page,
+        "ai_open": bool(st.session_state.ai_open),
+        "messages": messages,
+        "mobile": False,
+    },
+    default={},
+    width="stretch",
+    height="content",
+    on_navigate_change=lambda: None,
+    on_ai_change=lambda: None,
+    on_chat_change=lambda: None,
+)
+
+# ------------------------------------------------------------------
+# EVENTS FROM BROWSER
+# ------------------------------------------------------------------
+nav_event = getattr(result, "navigate", None)
+ai_event = getattr(result, "ai", None)
+chat_event = getattr(result, "chat", None)
+
+if nav_event:
+    target = str(nav_event)
+    if target in PAGE_MAP:
+        st.session_state.page = target
+        st.session_state.ai_open = False
+        st.rerun()
+
+if ai_event:
+    value = ai_event
+    if isinstance(value, dict):
+        action = value.get("action")
+    else:
+        action = str(value)
+    if action == "open":
+        st.session_state.ai_open = True
+        st.rerun()
+    elif action == "close":
+        st.session_state.ai_open = False
+        st.rerun()
+
+if chat_event:
+    if isinstance(chat_event, dict):
+        text = str(chat_event.get("text", "")).strip()
+        nonce = str(chat_event.get("nonce", ""))
+    else:
+        text = str(chat_event).strip()
+        nonce = ""
+
+    if text and nonce != st.session_state.last_chat_trigger:
+        st.session_state.last_chat_trigger = nonce
+        st.session_state.ai_open = True
+        st.session_state.chat_messages.append({"role": "user", "content": text})
+
+        response = openrouter_chat(st.session_state.chat_messages)
+        if response.get("ok"):
+            answer = response.get("content", "").strip()
+        else:
+            answer = "⚠️ " + response.get("error", "LLM belum dapat merespons saat ini.")
+        st.session_state.chat_messages.append({"role": "assistant", "content": answer})
+        st.rerun()
