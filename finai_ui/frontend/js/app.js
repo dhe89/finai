@@ -1,85 +1,119 @@
 (function(){
   const app=document.getElementById('app');
   const left=document.getElementById('left');
-  const ai=document.getElementById('ai');
   const leftToggle=document.getElementById('leftToggle');
+  const ai=document.getElementById('ai');
   const aiClose=document.getElementById('aiClose');
-  const desktopAI=document.getElementById('desktopAI');
-  const mobileAI=document.getElementById('mobileAI');
+  const desktopAI=document.querySelectorAll('.desktop-ai-trigger');
+  const mobileAI=document.querySelectorAll('.mobile-ai');
   const mobileMenu=document.getElementById('mobileMenu');
   const overlay=document.getElementById('mobileOverlay');
   const chatBody=document.getElementById('chatBody');
   const chatInput=document.getElementById('chatInput');
   const sendChat=document.getElementById('sendChat');
+  const pageViews=document.querySelectorAll('.page-view[data-page-view]');
+  const navItems=document.querySelectorAll('.nav-item[data-page]');
 
   let leftCollapsed=false;
   let aiOpen=false;
+  let currentPage=document.querySelector('.page-view.active')?.dataset.pageView || 'kinerja';
 
   function isMobile(){ return window.innerWidth <= 800; }
 
   function setAI(open){
     aiOpen=!!open;
+    if(!ai) return;
     ai.classList.toggle('closed',!aiOpen);
     ai.setAttribute('aria-hidden',String(!aiOpen));
-    // Deliberately no focus() here. Opening the AI must not summon the mobile keyboard.
+    // Never auto-focus the input. This prevents mobile keyboard/viewport zoom.
   }
 
   function setSidebarCollapsed(collapsed){
     leftCollapsed=!!collapsed;
+    if(!app || !leftToggle) return;
     app.classList.toggle('left-collapsed',leftCollapsed);
     leftToggle.setAttribute('aria-label',leftCollapsed?'Expand navigation':'Collapse navigation');
   }
 
   function closeDrawer(){
-    left.classList.remove('mobile-open');
-    overlay.classList.remove('show');
+    if(left) left.classList.remove('mobile-open');
+    if(overlay) overlay.classList.remove('show');
   }
 
   function syncResponsive(){
     if(isMobile()){
-      app.classList.remove('left-collapsed');
-      overlay.classList.toggle('show',left.classList.contains('mobile-open'));
+      if(app) app.classList.remove('left-collapsed');
+      if(left && overlay) overlay.classList.toggle('show',left.classList.contains('mobile-open'));
     }else{
       closeDrawer();
     }
   }
 
-  function navigate(page){
-    const url=new URL(window.top.location.href);
-    if(page==='kinerja') url.searchParams.delete('page');
-    else url.searchParams.set('page',page);
-    window.top.location.href=url.toString();
+  function setActivePage(page, updateUrl){
+    if(!page) return;
+    const target=document.querySelector('.page-view[data-page-view="'+page+'"]');
+    if(!target) return;
+
+    currentPage=page;
+    pageViews.forEach(view=>view.classList.toggle('active',view===target));
+    navItems.forEach(item=>{
+      const active=item.dataset.page===page;
+      item.classList.toggle('active',active);
+      if(active) item.setAttribute('aria-current','page');
+      else item.removeAttribute('aria-current');
+    });
+
+    if(updateUrl){
+      try{
+        const url=new URL(window.top.location.href);
+        if(page==='kinerja') url.searchParams.delete('page');
+        else url.searchParams.set('page',page);
+        window.top.history.replaceState({},'',url.toString());
+      }catch(e){ /* Streamlit iframe may restrict top history; page still changes locally. */ }
+    }
+
+    const main=target.querySelector('.main');
+    if(main) main.scrollTop=0;
+    closeDrawer();
   }
 
-  document.querySelectorAll('.nav-item[data-page]').forEach(item=>{
-    item.addEventListener('click',()=>navigate(item.dataset.page));
+  navItems.forEach(item=>{
+    item.addEventListener('click',()=>setActivePage(item.dataset.page,true));
     item.addEventListener('keydown',e=>{
-      if(e.key==='Enter'||e.key===' '){e.preventDefault();navigate(item.dataset.page);}
+      if(e.key==='Enter'||e.key===' '){
+        e.preventDefault();
+        setActivePage(item.dataset.page,true);
+      }
     });
   });
 
-  leftToggle.addEventListener('click',()=>{
-    if(isMobile()){
-      left.classList.toggle('mobile-open');
-      overlay.classList.toggle('show',left.classList.contains('mobile-open'));
-    }else{
-      setSidebarCollapsed(!leftCollapsed);
-    }
-  });
+  if(leftToggle){
+    leftToggle.addEventListener('click',()=>{
+      if(isMobile()){
+        if(left) left.classList.toggle('mobile-open');
+        if(left && overlay) overlay.classList.toggle('show',left.classList.contains('mobile-open'));
+      }else{
+        setSidebarCollapsed(!leftCollapsed);
+      }
+    });
+  }
 
-  if(aiClose) aiClose.addEventListener('click',()=>setAI(false));
-  if(desktopAI) desktopAI.addEventListener('click',()=>setAI(true));
-  if(mobileAI) mobileAI.addEventListener('click',()=>setAI(true));
+  if(mobileMenu){
+    mobileMenu.addEventListener('click',()=>{
+      if(left) left.classList.toggle('mobile-open');
+      if(left && overlay) overlay.classList.toggle('show',left.classList.contains('mobile-open'));
+    });
+  }
 
-  mobileMenu.addEventListener('click',()=>{
-    left.classList.toggle('mobile-open');
-    overlay.classList.toggle('show',left.classList.contains('mobile-open'));
-  });
-
-  overlay.addEventListener('click',closeDrawer);
+  if(overlay) overlay.addEventListener('click',closeDrawer);
   window.addEventListener('resize',syncResponsive);
 
+  if(aiClose) aiClose.addEventListener('click',()=>setAI(false));
+  desktopAI.forEach(btn=>btn.addEventListener('click',()=>setAI(true)));
+  mobileAI.forEach(btn=>btn.addEventListener('click',()=>setAI(true)));
+
   function appendMessage(text,user){
+    if(!chatBody) return;
     const msg=document.createElement('div');
     msg.className='msg'+(user?' user':'');
     if(user){
@@ -102,7 +136,7 @@
   }
 
   function safe(text){
-    return text.replace(/[<>&"]/g,function(s){
+    return String(text).replace(/[<>&"]/g,function(s){
       return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[s];
     });
   }
@@ -122,20 +156,21 @@
   }
 
   function send(){
+    if(!chatInput) return;
     const text=chatInput.value.trim();
-    if(!text)return;
+    if(!text) return;
     appendMessage(text,true);
     chatInput.value='';
     setTimeout(()=>appendMessage(dummyResponse(text),false),450);
   }
 
-  sendChat.addEventListener('click',send);
-  chatInput.addEventListener('keydown',e=>{
-    if(e.key==='Enter'){e.preventDefault();send();}
+  if(sendChat) sendChat.addEventListener('click',send);
+  if(chatInput) chatInput.addEventListener('keydown',e=>{
+    if(e.key==='Enter' && !e.shiftKey){e.preventDefault();send();}
   });
 
-  // Required initial state.
   setSidebarCollapsed(false);
   setAI(false);
+  setActivePage(currentPage,false);
   syncResponsive();
 })();
