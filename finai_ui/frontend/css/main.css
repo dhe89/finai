@@ -379,11 +379,13 @@ button{font:inherit;cursor:pointer}
     min-height:var(--finai-vh,100dvh) !important;
   }
   #finai-root.finai-mobile .mobile-head{
-    z-index:3000 !important;
+    z-index:2000 !important;
   }
+  /* IMPORTANT: do not create a stacking context around the app.
+     The fixed mobile drawer must be able to layer above the header/overlay. */
   #finai-root.finai-mobile .app{
     position:relative !important;
-    z-index:1 !important;
+    z-index:auto !important;
     min-height:var(--finai-vh,100dvh) !important;
   }
   #finai-root.finai-mobile .left{
@@ -391,7 +393,7 @@ button{font:inherit;cursor:pointer}
     bottom:0 !important;
     height:calc(var(--finai-vh,100dvh) - 74px) !important;
     max-height:calc(var(--finai-vh,100dvh) - 74px) !important;
-    z-index:4000 !important;
+    z-index:3000 !important;
     overflow-y:auto !important;
     overflow-x:hidden !important;
     -webkit-overflow-scrolling:touch !important;
@@ -425,7 +427,7 @@ button{font:inherit;cursor:pointer}
   #finai-root.finai-mobile .mobile-overlay{
     top:74px !important;
     bottom:0 !important;
-    z-index:3500 !important;
+    z-index:1000 !important;
     background:rgba(0,48,38,.34) !important;
     pointer-events:none !important;
   }
@@ -433,6 +435,6 @@ button{font:inherit;cursor:pointer}
     pointer-events:auto !important;
   }
   #finai-root.finai-mobile .ai{
-    z-index:5000 !important;
+    z-index:4000 !important;
   }
 }
