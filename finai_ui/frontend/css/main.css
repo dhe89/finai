@@ -35,6 +35,9 @@ button{font:inherit;cursor:pointer}
 }
 .sidebar-head{height:42px;display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 2px 24px}
 .sidebar-mobile-brand{display:none}
+.mobile-brand{display:flex;align-items:center;justify-content:center;gap:10px;font-size:20px;font-weight:800;white-space:nowrap;line-height:1}
+.mobile-brand-mark{width:30px;height:30px;min-width:30px;min-height:30px;border-radius:9px;background:var(--lime);color:var(--green);display:grid;place-items:center;font-weight:900;line-height:1;flex:none}
+.mobile-brand-text{display:block}
 .brand{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;white-space:nowrap;min-width:0}
 .brand-mark,.ai-mark{width:30px;height:30px;border-radius:9px;background:var(--lime);color:var(--green);display:grid;place-items:center;font-weight:900;flex:none}
 .sidebar-toggle{width:34px;height:34px;border-radius:10px;border:1px solid rgba(255,255,255,.28);background:#0b6a56;color:#fff !important;display:grid;place-items:center;font-size:19px;line-height:1;flex:none;opacity:1;visibility:visible;position:relative;z-index:1100;appearance:none;-webkit-appearance:none}
@@ -385,6 +388,38 @@ button{font:inherit;cursor:pointer}
     align-items:center !important;
     justify-content:center !important;
   }
+  #finai-root > .mobile-head .mobile-brand{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:10px !important;
+    height:42px !important;
+    line-height:1 !important;
+  }
+  #finai-root > .mobile-head .mobile-brand-mark{
+    width:30px !important;
+    height:30px !important;
+    min-width:30px !important;
+    min-height:30px !important;
+    border-radius:9px !important;
+    background:#b7f51d !important;
+    color:#005642 !important;
+    display:grid !important;
+    place-items:center !important;
+    font-weight:900 !important;
+    line-height:1 !important;
+    flex:none !important;
+    opacity:1 !important;
+    visibility:visible !important;
+  }
+  #finai-root > .mobile-head .mobile-brand-text{
+    display:block !important;
+    color:#18211f !important;
+    font-size:20px !important;
+    font-weight:800 !important;
+    line-height:1 !important;
+  }
+
   #finai-root > .mobile-head .mobile-menu,
   #finai-root > .mobile-head .mobile-ai{
     display:grid !important;
