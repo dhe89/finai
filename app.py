@@ -85,17 +85,13 @@ sidebar = mark_active(sidebar, page)
 page_content = PAGE_MAP[page].read_text(encoding="utf-8")
 ai_chat = ai_chat.replace("{{CHAT_MESSAGES}}", render_chat_messages())
 
-# Keep the visual shell in the intended layout hierarchy:
-# .app = sidebar + page + AI overlay, while the mobile header/backdrop sit
-# outside the grid. The sidebar CSS relies on .app being the grid container.
+# One root keeps the original layout intact. The mobile header is outside the
+# .app grid just like the baseline.
 html_content = f"""<div id="finai-root">
-  <div id="app" class="app">
-    {sidebar}
-    {page_content}
-    {ai_chat}
-  </div>
-  {header}
-  <div id="mobileOverlay" class="mobile-overlay" aria-hidden="true"></div>
+{sidebar}
+{page_content}
+{ai_chat}
+{header}
 </div>"""
 
 messages = st.session_state.chat_messages[-30:]
