@@ -35,7 +35,7 @@ button{font:inherit;cursor:pointer}
 }
 .sidebar-head{height:42px;display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 2px 24px}
 .brand{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;white-space:nowrap;min-width:0}
-.brand-mark,.ai-mark{width:30px;height:30px;border-radius:9px;background:var(--lime);color:var(--green);display:grid;place-items:center;font-weight:900;flex:none}
+.brand-mark,.ai-mark{width:30px;height:30px;min-width:30px;min-height:30px;border-radius:9px;background:#b7f51d !important;color:#005642 !important;display:grid;place-items:center;font-weight:900;line-height:1;flex:none}
 .sidebar-toggle{width:34px;height:34px;border-radius:10px;border:1px solid rgba(255,255,255,.28);background:#0b6a56;color:#fff !important;display:grid;place-items:center;font-size:19px;line-height:1;flex:none;opacity:1;visibility:visible;position:relative;z-index:1100;appearance:none;-webkit-appearance:none}
 .nav{display:flex;flex-direction:column;gap:8px}
 .nav-item{height:46px;border-radius:13px;display:flex;align-items:center;gap:12px;padding:0 12px;color:#d9ece6;font-size:14px;font-weight:650;white-space:nowrap}
@@ -92,6 +92,8 @@ button{font:inherit;cursor:pointer}
 .send:hover{transform:translateY(-1px)}
 .send:disabled{opacity:.55;cursor:default;transform:none}
 .mobile-head{display:none}
+.mobile-brand{display:flex;align-items:center;justify-content:center;gap:10px;font-size:20px;font-weight:800;line-height:1;white-space:nowrap;color:#18211f}
+.mobile-brand .brand-mark{display:grid;width:30px;height:30px;min-width:30px;min-height:30px;margin:0;padding:0;border-radius:9px;background:#b7f51d !important;color:#005642 !important;place-items:center;font-size:16px;font-weight:900;line-height:1;flex:none}
 
 
 
