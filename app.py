@@ -3,7 +3,6 @@ import html
 import json
 import re
 import streamlit as st
-import streamlit.components.v1 as components
 
 from finai_ui.ai.openrouter import chat as openrouter_chat
 
@@ -143,4 +142,11 @@ document = (
     .replace("{{JS}}", js)
 )
 
-components.html(document, height=1550, scrolling=True)
+# Streamlit's native st.html is not iframe-isolated, so the existing frontend
+# JavaScript can control navigation/query parameters reliably. Keep the legacy
+# component fallback for older Streamlit versions that do not expose st.html.
+try:
+    st.html(document, unsafe_allow_javascript=True)
+except (AttributeError, TypeError):
+    import streamlit.components.v1 as components
+    components.html(document, height=1550, scrolling=True)
