@@ -8,8 +8,7 @@ export default function(component) {
 
   if (!app || !left || !ai) return;
 
-  const shell = app;
-  const qs = (selector) => shell.querySelector(selector);
+  const qs = (selector) => root.querySelector(selector);
 
   function updateViewportOffset() {
     const nativeHeader = document.querySelector(
@@ -30,20 +29,48 @@ export default function(component) {
   }
 
   function isMobile() {
-    // Components V2 can report a viewport width that differs from the
-    // browser's media-query viewport on mobile. Use the actual component
-    // width so the shell switches reliably to the mobile layout.
-    const width = shell.getBoundingClientRect().width;
+    // Components V2 can expose a desktop-sized CSS viewport even when the
+    // actual device/component is narrow. Use the smallest reliable viewport
+    // signal available so mobile controls are activated on real phones.
+    const widths = [];
+
+    if (window.visualViewport && Number.isFinite(window.visualViewport.width)) {
+      widths.push(window.visualViewport.width);
+    }
+
+    if (Number.isFinite(document.documentElement.clientWidth) && document.documentElement.clientWidth > 0) {
+      widths.push(document.documentElement.clientWidth);
+    }
+
+    if (app && Number.isFinite(app.clientWidth) && app.clientWidth > 0) {
+      widths.push(app.clientWidth);
+    }
+
+    const appRect = app && typeof app.getBoundingClientRect === 'function'
+      ? app.getBoundingClientRect()
+      : null;
+    if (appRect && Number.isFinite(appRect.width) && appRect.width > 0) {
+      widths.push(appRect.width);
+    }
+
+    const rootRect = root && typeof root.getBoundingClientRect === 'function'
+      ? root.getBoundingClientRect()
+      : null;
+    if (rootRect && Number.isFinite(rootRect.width) && rootRect.width > 0) {
+      widths.push(rootRect.width);
+    }
+
+    const width = widths.length ? Math.min(...widths) : window.innerWidth;
     return width <= 800;
   }
 
   function applyResponsiveMode() {
-    shell.classList.toggle('finai-mobile', isMobile());
+    root.classList.toggle('finai-mobile', isMobile());
   }
 
   function applyActivePage() {
     const currentPage = data && data.page ? String(data.page) : '';
-    shell.querySelectorAll('.nav-item[data-page]').forEach(item => {
+    root.querySelectorAll('.nav-item[data-page]').forEach(item => {
       const active = item.dataset.page === currentPage;
       item.classList.toggle('active', active);
       item.setAttribute('aria-current', active ? 'page' : 'false');
@@ -104,7 +131,7 @@ export default function(component) {
   }
 
   function bindNavigation() {
-    shell.querySelectorAll('.nav-item[data-page]').forEach(item => {
+    root.querySelectorAll('.nav-item[data-page]').forEach(item => {
       if (item.dataset.finaiBound === '1') return;
       item.dataset.finaiBound = '1';
 
@@ -158,9 +185,9 @@ export default function(component) {
     if (app.dataset.finaiEventsBound !== '1') {
       app.dataset.finaiEventsBound = '1';
 
-      shell.addEventListener('click', event => {
+      root.addEventListener('click', event => {
         const toggle = event.target.closest('#leftToggle');
-        if (toggle && shell.contains(toggle)) {
+        if (toggle && root.contains(toggle)) {
           event.preventDefault();
           event.stopPropagation();
 
@@ -174,35 +201,35 @@ export default function(component) {
         }
 
         const mobileMenu = event.target.closest('#mobileMenu');
-        if (mobileMenu && shell.contains(mobileMenu)) {
+        if (mobileMenu && root.contains(mobileMenu)) {
           event.preventDefault();
           toggleDrawer();
           return;
         }
 
         const overlay = event.target.closest('#mobileOverlay');
-        if (overlay && shell.contains(overlay)) {
+        if (overlay && root.contains(overlay)) {
           closeDrawer();
           return;
         }
 
         const desktopAI = event.target.closest('#desktopAI');
         const mobileAI = event.target.closest('#mobileAI');
-        if ((desktopAI || mobileAI) && shell.contains(desktopAI || mobileAI)) {
+        if ((desktopAI || mobileAI) && root.contains(desktopAI || mobileAI)) {
           event.preventDefault();
           setTriggerValue('ai', {action:'open'});
           return;
         }
 
         const aiClose = event.target.closest('#aiClose');
-        if (aiClose && shell.contains(aiClose)) {
+        if (aiClose && root.contains(aiClose)) {
           event.preventDefault();
           setTriggerValue('ai', {action:'close'});
           return;
         }
       });
 
-      shell.addEventListener('keydown', event => {
+      root.addEventListener('keydown', event => {
         const toggle = event.target.closest('#leftToggle');
         if (toggle && (event.key === 'Enter' || event.key === ' ')) {
           event.preventDefault();
