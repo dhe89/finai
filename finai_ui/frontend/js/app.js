@@ -32,7 +32,9 @@ export default function(component) {
     // Components V2 can report a viewport width that differs from the
     // browser's media-query viewport on mobile. Use the actual component
     // width so the shell switches reliably to the mobile layout.
-    const width = root.getBoundingClientRect().width;
+    // Components V2's parentElement is not guaranteed to be a native
+    // HTMLElement. The actual #app element is, so measure that instead.
+    const width = app.getBoundingClientRect().width;
     return width <= 800;
   }
 
