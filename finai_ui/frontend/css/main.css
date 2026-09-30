@@ -118,3 +118,148 @@ button{font:inherit;cursor:pointer}
   #finai-root .left{top:var(--finai-top-offset,0px);height:var(--finai-vh,100dvh)}
   #finai-root .ai{inset:var(--finai-top-offset,0px) 0 0 0;width:100vw;height:var(--finai-vh,100dvh)}
 }
+
+/* =========================================================
+   FINAI SIDEBAR PATCH
+   Keep sidebar styling independent from Streamlit host CSS.
+   AI/chat and navigation logic are intentionally untouched.
+   ========================================================= */
+
+#finai-root .left,
+#finai-root .left.mobile-open {
+  background-color: #005642 !important;
+  background-image: none !important;
+  color: #ffffff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  isolation: isolate;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+#finai-root .left::before,
+#finai-root .left::after {
+  content: none !important;
+  display: none !important;
+}
+
+#finai-root .sidebar-head,
+#finai-root .nav,
+#finai-root .config {
+  position: relative;
+  z-index: 2;
+}
+
+#finai-root .sidebar-toggle {
+  background-color: rgba(255,255,255,.10) !important;
+  border-color: rgba(255,255,255,.28) !important;
+  color: #ffffff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+#finai-root .sidebar-toggle:hover,
+#finai-root .sidebar-toggle:focus-visible {
+  background-color: rgba(255,255,255,.18) !important;
+  color: #ffffff !important;
+}
+
+#finai-root .nav-item {
+  color: #d9ece6 !important;
+  opacity: 1 !important;
+}
+
+#finai-root .nav-item:hover {
+  background-color: #08735d !important;
+  color: #ffffff !important;
+}
+
+#finai-root .nav-item.active {
+  background-color: #14765f !important;
+  color: #ffffff !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.08) !important;
+}
+
+#finai-root .brand,
+#finai-root .brand-text,
+#finai-root .nav-text,
+#finai-root .nav-icon {
+  opacity: 1 !important;
+}
+
+#finai-root .brand-mark {
+  background-color: #b7f51d !important;
+  color: #005642 !important;
+}
+
+#finai-root .config {
+  color: #9ac3b8 !important;
+  border-top-color: rgba(255,255,255,.14) !important;
+}
+
+#finai-root .config-pill {
+  background-color: #ffffff !important;
+  color: #60736e !important;
+}
+
+#finai-root .status {
+  color: #d2e7e1 !important;
+}
+
+#finai-root .dot {
+  background-color: #b7f51d !important;
+}
+
+/* Desktop: make the collapse button unmissable against the green sidebar. */
+@media (min-width: 801px) {
+  #finai-root .left {
+    background-color: #005642 !important;
+    z-index: 300 !important;
+  }
+
+  #finai-root .sidebar-toggle {
+    display: grid !important;
+    place-items: center !important;
+    width: 34px !important;
+    height: 34px !important;
+    flex: 0 0 34px !important;
+    font-size: 19px !important;
+    line-height: 1 !important;
+  }
+
+  #finai-root .app.left-collapsed .sidebar-toggle {
+    display: grid !important;
+    width: 30px !important;
+    height: 30px !important;
+    color: #ffffff !important;
+    background-color: rgba(255,255,255,.14) !important;
+    border-color: rgba(255,255,255,.28) !important;
+  }
+}
+
+/* Mobile drawer: opaque green layer above the page and below the overlay. */
+@media (max-width: 800px) {
+  #finai-root .left {
+    background-color: #005642 !important;
+    background-image: none !important;
+    z-index: 300 !important;
+    box-shadow: 12px 0 40px rgba(0,0,0,.20) !important;
+  }
+
+  #finai-root .left.mobile-open {
+    transform: translateX(0) !important;
+    background-color: #005642 !important;
+  }
+
+  #finai-root .mobile-overlay.show {
+    background-color: rgba(0,48,38,.34) !important;
+  }
+
+  #finai-root .mobile-menu,
+  #finai-root .mobile-ai {
+    background-color: #ffffff !important;
+    color: #005642 !important;
+    border-color: #e7ebe9 !important;
+    opacity: 1 !important;
+  }
+}
