@@ -274,9 +274,10 @@ button{font:inherit;cursor:pointer}
   top:16px !important;
   width:42px !important;
   height:42px !important;
-  border-radius:50% !important;
-  border:1px solid #e7ebe9 !important;
-  background:#fff !important;
+  border-radius:10px !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
 }
 #finai-root.finai-mobile .mobile-menu{left:18px !important}
 #finai-root.finai-mobile .mobile-ai{right:18px !important;color:var(--green) !important}
@@ -290,12 +291,12 @@ button{font:inherit;cursor:pointer}
 #finai-root.finai-mobile .left{
   position:fixed !important;
   left:0 !important;
-  top:0 !important;
-  bottom:auto !important;
+  top:calc(var(--finai-top-offset,0px) + 74px) !important;
+  bottom:0 !important;
   width:min(82vw,320px) !important;
-  height:100dvh !important;
+  height:auto !important;
   transform:translateX(-105%) !important;
-  z-index:1300 !important;
+  z-index:1500 !important;
   padding:18px 16px !important;
 }
 #finai-root.finai-mobile .left.mobile-open{transform:translateX(0) !important}
@@ -312,21 +313,24 @@ button{font:inherit;cursor:pointer}
 #finai-root.finai-mobile .desktop-header{display:none !important}
 #finai-root.finai-mobile .ai{
   position:fixed !important;
-  z-index:1400 !important;
-  top:0 !important;
+  z-index:1700 !important;
+  top:var(--finai-top-offset,0px) !important;
   right:0 !important;
   bottom:0 !important;
   left:0 !important;
   width:100vw !important;
-  height:100dvh !important;
+  height:var(--finai-vh,100dvh) !important;
   border:0 !important;
   box-shadow:none !important;
 }
 #finai-root.finai-mobile .mobile-overlay{
   display:none;
   position:fixed !important;
-  inset:0 !important;
-  z-index:1250 !important;
+  top:calc(var(--finai-top-offset,0px) + 74px) !important;
+  right:0 !important;
+  bottom:0 !important;
+  left:0 !important;
+  z-index:1400 !important;
   background:#00302655 !important;
 }
 #finai-root.finai-mobile .mobile-overlay.show{display:block !important}
@@ -335,4 +339,30 @@ button{font:inherit;cursor:pointer}
    so it does not sit on top of the lime FinAI logo. */
 @media(min-width:801px){
   #finai-root .app.left-collapsed .sidebar-toggle{right:1px !important;top:5px !important}
+}
+
+/* MOBILE UI POLISH: keep the drawer below the FinAI mobile header, keep the AI
+   overlay below the native Streamlit toolbar, and use icon-only controls. */
+@media(max-width:800px){
+  #finai-root.finai-mobile .mobile-menu,
+  #finai-root.finai-mobile .mobile-ai{
+    color:#65716c !important;
+    background:transparent !important;
+    border:0 !important;
+    box-shadow:none !important;
+  }
+  #finai-root.finai-mobile .mobile-menu:hover,
+  #finai-root.finai-mobile .mobile-ai:hover{
+    background:#f4f7f5 !important;
+  }
+  #finai-root.finai-mobile .ai-head{
+    min-height:72px !important;
+    padding:18px 18px 15px !important;
+  }
+  #finai-root.finai-mobile .ai-close{
+    position:relative !important;
+    top:auto !important;
+    right:auto !important;
+    z-index:1 !important;
+  }
 }
