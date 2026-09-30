@@ -1,17 +1,13 @@
 export default function(component) {
   const { data, setTriggerValue, parentElement } = component;
   const root = parentElement;
-  // Components V2 uses a ShadowRoot when isolate_styles=True. ShadowRoot
-  // supports querySelector(), but it does NOT have classList or
-  // getBoundingClientRect(). Keep root for DOM lookup and use the real shell
-  // element for layout measurements/classes.
   const shell = root && root.querySelector ? root.querySelector('#finai-root') : null;
   const app = root && root.querySelector ? root.querySelector('#app') : null;
-  const left = root.querySelector('#left');
-  const ai = root.querySelector('#ai');
-  const chatBody = root.querySelector('#chatBody');
+  const left = root && root.querySelector ? root.querySelector('#left') : null;
+  const ai = root && root.querySelector ? root.querySelector('#ai') : null;
+  const chatBody = root && root.querySelector ? root.querySelector('#chatBody') : null;
 
-  if (!app || !left || !ai || !shell) return;
+  if (!root || !shell || !app || !left || !ai) return;
 
   const qs = (selector) => root.querySelector(selector);
 
@@ -19,58 +15,40 @@ export default function(component) {
     const nativeHeader = document.querySelector(
       'header[data-testid="stHeader"], [data-testid="stHeader"]'
     );
-    const headerBottom = nativeHeader
+
+    const topOffset = nativeHeader
       ? Math.max(0, nativeHeader.getBoundingClientRect().bottom)
       : 0;
-    // The component is rendered below Streamlit's native toolbar.
-    // Use only the native header bottom as the fixed-UI offset. Using the
-    // component/root position here would change when the page scrolls and
-    // can also be a non-HTMLElement in Components V2, which has no .style.
-    const topOffset = headerBottom;
+
     const viewportHeight = Math.max(320, window.innerHeight - topOffset);
 
-    // Keep the responsive viewport variables on the shell itself. The mobile
-    // header, drawer and backdrop are siblings of #app, so variables stored
-    // only on #app do not reliably reach them.
+    // All mobile fixed layers use the same coordinate system.
     shell.style.setProperty('--finai-top-offset', `${topOffset}px`);
     shell.style.setProperty('--finai-vh', `${viewportHeight}px`);
-    app.style.setProperty('--finai-top-offset', `${topOffset}px`);
-    app.style.setProperty('--finai-vh', `${viewportHeight}px`);
   }
 
   function isMobile() {
-    // Components V2 can report a viewport width that differs from the
-    // browser's media-query viewport on mobile. Use the actual component
-    // width so the shell switches reliably to the mobile layout.
-    const target = shell || app;
-    if (!target || typeof target.getBoundingClientRect !== 'function') {
-      return window.matchMedia('(max-width: 800px)').matches;
+    // Components V2 can expose a width that differs from the browser viewport.
+    // Use the actual FinAI shell width instead of relying only on CSS media queries.
+    if (shell && typeof shell.getBoundingClientRect === 'function') {
+      return shell.getBoundingClientRect().width <= 800;
     }
-    const width = target.getBoundingClientRect().width;
-    return width <= 800;
+    return window.matchMedia('(max-width: 800px)').matches;
   }
 
   function applyResponsiveMode() {
-    const target = shell || app;
     const mobile = isMobile();
-    if (target && target.classList) {
-      target.classList.toggle('finai-mobile', mobile);
-    }
-    syncMobileDrawerLayer(mobile);
-  }
+    shell.classList.toggle('finai-mobile', mobile);
 
-  // On mobile the drawer must be a direct child of #finai-root. Keeping it
-  // inside the desktop grid (#app) allows ancestor stacking contexts to put
-  // it behind the mobile header/backdrop even when its own z-index is higher.
-  // Re-parent it only in mobile mode; restore the original grid position on
-  // desktop so the desktop layout remains unchanged.
-  function syncMobileDrawerLayer(mobile) {
-    if (!shell || !app || !left) return;
-
-    if (mobile) {
-      if (left.parentElement !== shell) shell.appendChild(left);
-    } else {
-      if (left.parentElement !== app) app.insertBefore(left, app.firstElementChild);
+    // Never re-parent the drawer. It is a permanent sibling of the page,
+    // header and backdrop. This is the key structural fix for mobile layers.
+    if (!mobile) {
+      left.classList.remove('mobile-open');
+      const overlay = qs('#mobileOverlay');
+      if (overlay) {
+        overlay.classList.remove('show');
+        overlay.setAttribute('aria-hidden', 'true');
+      }
     }
   }
 
@@ -103,6 +81,7 @@ export default function(component) {
   }
 
   function openDrawer() {
+    if (!isMobile()) return;
     left.classList.add('mobile-open');
     const overlay = qs('#mobileOverlay');
     if (overlay) {
@@ -117,8 +96,11 @@ export default function(component) {
   }
 
   function setCollapsed(collapsed) {
-    app.classList.toggle('left-collapsed', collapsed);
-    app.dataset.leftCollapsed = collapsed ? '1' : '0';
+    // Desktop collapse belongs to the root because the sidebar is now a
+    // sibling of #app rather than a child of it.
+    shell.classList.toggle('desktop-collapsed', collapsed);
+    shell.dataset.leftCollapsed = collapsed ? '1' : '0';
+
     const toggle = qs('#leftToggle');
     if (toggle) {
       toggle.setAttribute('aria-expanded', String(!collapsed));
@@ -130,8 +112,6 @@ export default function(component) {
         'title',
         collapsed ? 'Expand navigation' : 'Collapse navigation'
       );
-      // A compact chevron avoids the toggle colliding with the centered logo
-      // when the desktop sidebar is collapsed.
       if (!isMobile()) toggle.textContent = collapsed ? '›' : '☰';
     }
   }
@@ -159,12 +139,12 @@ export default function(component) {
   function appendOptimisticUser(text) {
     if (!chatBody) return;
 
-    // Remove the welcome state once the first real message is sent.
     const welcome = chatBody.querySelector('.msg.welcome');
     if (welcome) welcome.remove();
 
     const user = document.createElement('div');
     user.className = 'msg user optimistic-user';
+
     const bubble = document.createElement('div');
     bubble.className = 'bubble';
     bubble.textContent = text;
@@ -186,69 +166,60 @@ export default function(component) {
   }
 
   function bindButtons() {
-    // Delegated handler is intentional: it remains reliable when Streamlit
-    // updates/reuses the component DOM after a rerun.
-    if (app.dataset.finaiEventsBound !== '1') {
-      app.dataset.finaiEventsBound = '1';
+    if (shell.dataset.finaiEventsBound === '1') return;
+    shell.dataset.finaiEventsBound = '1';
 
-      root.addEventListener('click', event => {
-        const toggle = event.target.closest('#leftToggle');
-        if (toggle && root.contains(toggle)) {
-          event.preventDefault();
-          event.stopPropagation();
+    root.addEventListener('click', event => {
+      const toggle = event.target.closest('#leftToggle');
+      if (toggle && root.contains(toggle)) {
+        event.preventDefault();
+        event.stopPropagation();
 
-          if (isMobile()) {
-            toggleDrawer();
-          } else {
-            const collapsed = !app.classList.contains('left-collapsed');
-            setCollapsed(collapsed);
-          }
-          return;
-        }
-
-        const mobileMenu = event.target.closest('#mobileMenu');
-        if (mobileMenu && root.contains(mobileMenu)) {
-          event.preventDefault();
+        if (isMobile()) {
           toggleDrawer();
-          return;
+        } else {
+          setCollapsed(!shell.classList.contains('desktop-collapsed'));
         }
+        return;
+      }
 
-        const overlay = event.target.closest('#mobileOverlay');
-        if (overlay && root.contains(overlay)) {
-          closeDrawer();
-          return;
-        }
+      const mobileMenu = event.target.closest('#mobileMenu');
+      if (mobileMenu && root.contains(mobileMenu)) {
+        event.preventDefault();
+        toggleDrawer();
+        return;
+      }
 
-        const desktopAI = event.target.closest('#desktopAI');
-        const mobileAI = event.target.closest('#mobileAI');
-        if ((desktopAI || mobileAI) && root.contains(desktopAI || mobileAI)) {
-          event.preventDefault();
-          setTriggerValue('ai', {action:'open'});
-          return;
-        }
+      const overlay = event.target.closest('#mobileOverlay');
+      if (overlay && root.contains(overlay)) {
+        closeDrawer();
+        return;
+      }
 
-        const aiClose = event.target.closest('#aiClose');
-        if (aiClose && root.contains(aiClose)) {
-          event.preventDefault();
-          setTriggerValue('ai', {action:'close'});
-          return;
-        }
-      });
+      const desktopAI = event.target.closest('#desktopAI');
+      const mobileAI = event.target.closest('#mobileAI');
+      if ((desktopAI || mobileAI) && root.contains(desktopAI || mobileAI)) {
+        event.preventDefault();
+        setTriggerValue('ai', {action:'open'});
+        return;
+      }
 
-      root.addEventListener('keydown', event => {
-        const toggle = event.target.closest('#leftToggle');
-        if (toggle && (event.key === 'Enter' || event.key === ' ')) {
-          event.preventDefault();
-          if (isMobile()) toggleDrawer();
-          else setCollapsed(!app.classList.contains('left-collapsed'));
-        }
-      });
-    }
-  }
+      const aiClose = event.target.closest('#aiClose');
+      if (aiClose && root.contains(aiClose)) {
+        event.preventDefault();
+        setTriggerValue('ai', {action:'close'});
+        return;
+      }
+    });
 
-  function bindNavigationClicks() {
-    // Navigation is bound separately because it changes Streamlit state.
-    bindNavigation();
+    root.addEventListener('keydown', event => {
+      const toggle = event.target.closest('#leftToggle');
+      if (toggle && (event.key === 'Enter' || event.key === ' ')) {
+        event.preventDefault();
+        if (isMobile()) toggleDrawer();
+        else setCollapsed(!shell.classList.contains('desktop-collapsed'));
+      }
+    });
   }
 
   function bindChat() {
@@ -262,7 +233,6 @@ export default function(component) {
       const text = chatInput.value.trim();
       if (!text || sendChat.disabled) return;
 
-      // Render immediately in the browser before the Python/OpenRouter roundtrip.
       appendOptimisticUser(text);
 
       sendChat.disabled = true;
@@ -286,27 +256,30 @@ export default function(component) {
   }
 
   applyActivePage();
-  bindNavigationClicks();
+  bindNavigation();
   bindButtons();
   bindChat();
   setAI(Boolean(data && data.ai_open));
 
-  // Preserve a client-side collapse state across component rerenders.
-  if (app.dataset.leftCollapsed === undefined) {
-    app.dataset.leftCollapsed = '0';
+  if (shell.dataset.leftCollapsed === undefined) {
+    shell.dataset.leftCollapsed = '0';
   }
-  setCollapsed(app.dataset.leftCollapsed === '1');
+  setCollapsed(shell.dataset.leftCollapsed === '1');
 
-  applyResponsiveMode();
   updateViewportOffset();
+  applyResponsiveMode();
 
-  if (!app.dataset.finaiResizeBound) {
-    app.dataset.finaiResizeBound = '1';
+  if (shell.dataset.finaiResizeBound !== '1') {
+    shell.dataset.finaiResizeBound = '1';
+
     window.addEventListener('resize', () => {
-      applyResponsiveMode();
       updateViewportOffset();
+      applyResponsiveMode();
     }, {passive:true});
   }
 
-  requestAnimationFrame(updateViewportOffset);
+  requestAnimationFrame(() => {
+    updateViewportOffset();
+    applyResponsiveMode();
+  });
 }
