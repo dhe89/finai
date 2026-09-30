@@ -1,4 +1,4 @@
-<aside id="ai" class="ai {{AI_OPEN_CLASS}}" aria-hidden="{{AI_HIDDEN}}">
+<aside id="ai" class="ai closed" aria-hidden="true">
   <div class="ai-head">
     <div>
       <div class="ai-title">AI Assistant</div>
@@ -6,7 +6,9 @@
     </div>
     <button id="aiClose" class="ai-close" aria-label="Close AI Assistant">×</button>
   </div>
-  <div id="chatBody" class="ai-body">{{CHAT_MESSAGES}}</div>
+  <div id="chatBody" class="ai-body">
+    {{CHAT_MESSAGES}}
+  </div>
   <div class="ai-foot">
     <div class="ai-foot-row">
       <input id="chatInput" class="chat-input" type="text" autocomplete="off" placeholder="Write a message..." aria-label="Write a message">
