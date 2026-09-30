@@ -17,13 +17,21 @@ export default function(component) {
     const headerBottom = nativeHeader
       ? Math.max(0, nativeHeader.getBoundingClientRect().bottom)
       : 0;
-    const viewportHeight = Math.max(320, window.innerHeight - headerBottom);
+    // The component itself is rendered below Streamlit's native toolbar.
+    // Use the component's real viewport position as the single source of truth
+    // so fixed UI (AI overlay/mobile header) and the in-flow sidebar share
+    // exactly the same top boundary. Fall back to the native header only when
+    // the component rect is not measurable yet.
+    const rootTop = root && typeof root.getBoundingClientRect === 'function'
+      ? Math.max(0, root.getBoundingClientRect().top)
+      : 0;
+    const topOffset = rootTop > 0 ? rootTop : headerBottom;
+    const viewportHeight = Math.max(320, window.innerHeight - topOffset);
 
-    // parentElement supplied by Streamlit Components V2 is not guaranteed to
-    // expose HTMLElement.dataset/style. The actual app element is a stable
-    // HTMLElement, so keep component state/CSS variables there.
-    app.style.setProperty('--finai-top-offset', `${headerBottom}px`);
+    app.style.setProperty('--finai-top-offset', `${topOffset}px`);
     app.style.setProperty('--finai-vh', `${viewportHeight}px`);
+    root.style.setProperty('--finai-top-offset', `${topOffset}px`);
+    root.style.setProperty('--finai-vh', `${viewportHeight}px`);
   }
 
   function isMobile() {
@@ -86,6 +94,9 @@ export default function(component) {
         'title',
         collapsed ? 'Expand navigation' : 'Collapse navigation'
       );
+      // A compact chevron avoids the toggle colliding with the centered logo
+      // when the desktop sidebar is collapsed.
+      if (!isMobile()) toggle.textContent = collapsed ? '›' : '☰';
     }
   }
 
