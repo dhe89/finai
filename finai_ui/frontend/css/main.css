@@ -11,11 +11,11 @@ button{font:inherit;cursor:pointer}
 .app.left-collapsed{grid-template-columns:72px minmax(0,1fr)}
 
 /* LEFT SIDEBAR */
-.left{position:relative;background:var(--green);color:#fff;padding:18px 14px 18px;min-width:0;min-height:100%;overflow:hidden;z-index:300}
+.left{position:relative;background:var(--green) !important;background-color:#005642 !important;color:#fff !important;padding:18px 14px 18px;min-width:0;min-height:100%;overflow:hidden;z-index:1000;isolation:isolate;opacity:1}
 .sidebar-head{height:42px;display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 2px 24px}
 .brand{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;white-space:nowrap;min-width:0}
 .brand-mark,.ai-mark{width:30px;height:30px;border-radius:9px;background:var(--lime);color:var(--green);display:grid;place-items:center;font-weight:900;flex:none}
-.sidebar-toggle{width:34px;height:34px;border-radius:10px;border:1px solid #ffffff22;background:#ffffff12;color:#fff;display:grid;place-items:center;font-size:19px;line-height:1;flex:none}
+.sidebar-toggle{width:34px;height:34px;border-radius:10px;border:1px solid rgba(255,255,255,.28);background:#0b6a56;color:#fff !important;display:grid;place-items:center;font-size:19px;line-height:1;flex:none;opacity:1;visibility:visible;position:relative;z-index:1100;appearance:none;-webkit-appearance:none}
 .nav{display:flex;flex-direction:column;gap:8px}
 .nav-item{height:46px;border-radius:13px;display:flex;align-items:center;gap:12px;padding:0 12px;color:#d9ece6;font-size:14px;font-weight:650;white-space:nowrap}
 .nav-item{cursor:pointer;transition:background .18s ease,transform .18s ease,color .18s ease}
@@ -25,7 +25,7 @@ button{font:inherit;cursor:pointer}
 .app.left-collapsed .brand-text,.app.left-collapsed .nav-text,.app.left-collapsed .config-text,.app.left-collapsed .config-pill,.app.left-collapsed .status{display:none}
 .app.left-collapsed .sidebar-head{justify-content:center;margin-left:0;margin-right:0}
 .app.left-collapsed .brand{justify-content:center}
-.app.left-collapsed .sidebar-toggle{position:absolute;top:22px;right:7px;width:26px;height:26px;border-radius:8px;font-size:15px;background:#ffffff18}
+.app.left-collapsed .sidebar-toggle{position:absolute;top:22px;right:7px;width:30px;height:30px;border-radius:8px;font-size:15px;background:#0b6a56 !important;color:#fff !important;z-index:1100}
 .app.left-collapsed .brand-mark{width:32px;height:32px}
 .app.left-collapsed .nav-item{justify-content:center;padding:0}
 .config{position:absolute;left:14px;right:14px;bottom:18px;border-top:1px solid #ffffff1f;padding-top:15px;color:#9ac3b8;font-size:9px;letter-spacing:1.3px}
@@ -76,8 +76,8 @@ button{font:inherit;cursor:pointer}
  body{background:#f4f7f5}
  .app,.app.left-collapsed{display:block;min-height:100vh;overflow:visible}
  .left{position:fixed;z-index:300;left:0;top:var(--finai-top-offset,0px);bottom:0;width:min(82vw,320px);height:var(--finai-vh,100dvh);transform:translateX(-105%);transition:transform .25s ease;box-shadow:12px 0 40px #0003;padding:18px 16px}
- .left.mobile-open{transform:translateX(0)}
- .app.left-collapsed .left{padding:18px 16px}
+ .left.mobile-open{transform:translateX(0);z-index:1000}
+ .app.left-collapsed .left{padding:18px 16px;background:#005642 !important}
  .app.left-collapsed .brand-text,.app.left-collapsed .nav-text,.app.left-collapsed .config-text,.app.left-collapsed .config-pill,.app.left-collapsed .status{display:inline}
  .app.left-collapsed .sidebar-head{justify-content:space-between;margin-left:2px;margin-right:2px}
  .app.left-collapsed .brand{justify-content:flex-start}
@@ -92,10 +92,21 @@ button{font:inherit;cursor:pointer}
  .mobile-ai{position:absolute;right:18px;top:16px;width:42px;height:42px;border-radius:50%;border:1px solid #e7ebe9;background:#fff;color:var(--green);font-size:17px}
  .ai{z-index:500;inset:0;width:100vw;height:100dvh;border:0;box-shadow:none;transition:transform .24s ease,opacity .18s ease}
  .ai.closed{transform:translateX(105%)}
- .mobile-overlay{display:none;position:fixed;inset:0;z-index:280;background:#00302655;backdrop-filter:blur(1px)}.mobile-overlay.show{display:block}
+ .mobile-overlay{display:none;position:fixed;inset:0;z-index:200;background:#00302655;backdrop-filter:blur(1px)}.mobile-overlay.show{display:block}
  .ai-head{padding-top:24px}
 }
 @media(min-width:801px){.mobile-head,.mobile-overlay{display:none}}
+/* SIDEBAR VISIBILITY PATCH
+   Keep the navigation surface opaque in both desktop and mobile component contexts.
+   The drawer must sit above the dimming overlay. */
+#finai-root .app > .left{background:#005642 !important;background-color:#005642 !important;opacity:1 !important;z-index:1000 !important;}
+#finai-root .app > .left .nav{background:transparent !important;}
+#finai-root .app > .left .nav-item:not(.active){background:transparent !important;color:#d9ece6 !important;}
+#finai-root .app > .left .nav-item.active{background:#14765f !important;color:#fff !important;}
+#finai-root .app > .left .sidebar-toggle{display:grid !important;visibility:visible !important;opacity:1 !important;color:#fff !important;background:#0b6a56 !important;z-index:1100 !important;}
+#finai-root .mobile-overlay{z-index:200 !important;}
+#finai-root .app > .left.mobile-open{z-index:1000 !important;}
+
 .nav-item[data-page]{cursor:pointer}
 .nav-item[data-page]:focus-visible,.desktop-ai-trigger:focus-visible,
 .mobile-menu:focus-visible,.mobile-ai:focus-visible,.sidebar-toggle:focus-visible,
