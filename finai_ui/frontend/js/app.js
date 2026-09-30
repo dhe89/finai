@@ -29,6 +29,11 @@ export default function(component) {
     const topOffset = headerBottom;
     const viewportHeight = Math.max(320, window.innerHeight - topOffset);
 
+    // Keep the responsive viewport variables on the shell itself. The mobile
+    // header, drawer and backdrop are siblings of #app, so variables stored
+    // only on #app do not reliably reach them.
+    shell.style.setProperty('--finai-top-offset', `${topOffset}px`);
+    shell.style.setProperty('--finai-vh', `${viewportHeight}px`);
     app.style.setProperty('--finai-top-offset', `${topOffset}px`);
     app.style.setProperty('--finai-vh', `${viewportHeight}px`);
   }
