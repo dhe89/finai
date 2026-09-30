@@ -245,3 +245,94 @@ button{font:inherit;cursor:pointer}
   #finai-root .left{top:var(--finai-top-offset,0px) !important;height:var(--finai-vh,100dvh) !important}
   #finai-root .ai{top:var(--finai-top-offset,0px) !important;height:var(--finai-vh,100dvh) !important}
 }
+
+/* FINAL MOBILE WIDTH FIX
+   Streamlit Components V2 can expose a desktop media-query viewport even when
+   the component itself is rendered in a narrow mobile column. Drive the
+   responsive shell from the component width class added by app.js. */
+#finai-root{position:relative}
+#finai-root.finai-mobile .mobile-head{
+  display:flex !important;
+  position:absolute !important;
+  top:0 !important;
+  left:0 !important;
+  right:0 !important;
+  height:74px !important;
+  z-index:1200 !important;
+  background:#fff !important;
+  border-bottom:1px solid #edf0ef !important;
+  align-items:center !important;
+  justify-content:center !important;
+  box-shadow:0 3px 12px #00000006 !important;
+}
+#finai-root.finai-mobile .mobile-menu,
+#finai-root.finai-mobile .mobile-ai{
+  display:grid !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  position:absolute !important;
+  top:16px !important;
+  width:42px !important;
+  height:42px !important;
+  border-radius:50% !important;
+  border:1px solid #e7ebe9 !important;
+  background:#fff !important;
+}
+#finai-root.finai-mobile .mobile-menu{left:18px !important}
+#finai-root.finai-mobile .mobile-ai{right:18px !important;color:var(--green) !important}
+#finai-root.finai-mobile .app,
+#finai-root.finai-mobile .app.left-collapsed{
+  display:block !important;
+  height:auto !important;
+  min-height:0 !important;
+  overflow:visible !important;
+}
+#finai-root.finai-mobile .left{
+  position:fixed !important;
+  left:0 !important;
+  top:0 !important;
+  bottom:auto !important;
+  width:min(82vw,320px) !important;
+  height:100dvh !important;
+  transform:translateX(-105%) !important;
+  z-index:1300 !important;
+  padding:18px 16px !important;
+}
+#finai-root.finai-mobile .left.mobile-open{transform:translateX(0) !important}
+#finai-root.finai-mobile .app.left-collapsed .left{padding:18px 16px !important}
+#finai-root.finai-mobile .app.left-collapsed .brand-text,
+#finai-root.finai-mobile .app.left-collapsed .nav-text,
+#finai-root.finai-mobile .app.left-collapsed .config-text,
+#finai-root.finai-mobile .app.left-collapsed .config-pill,
+#finai-root.finai-mobile .app.left-collapsed .status{display:inline !important}
+#finai-root.finai-mobile .app.left-collapsed .sidebar-head{justify-content:space-between !important;margin-left:2px !important;margin-right:2px !important}
+#finai-root.finai-mobile .app.left-collapsed .sidebar-toggle{position:static !important;width:34px !important;height:34px !important;border-radius:10px !important;font-size:19px !important;background:#ffffff12 !important}
+#finai-root.finai-mobile .app.left-collapsed .nav-item{justify-content:flex-start !important;padding:0 12px !important}
+#finai-root.finai-mobile .main{padding:96px 18px 38px !important;overflow:visible !important}
+#finai-root.finai-mobile .desktop-header{display:none !important}
+#finai-root.finai-mobile .ai{
+  position:fixed !important;
+  z-index:1400 !important;
+  top:0 !important;
+  right:0 !important;
+  bottom:0 !important;
+  left:0 !important;
+  width:100vw !important;
+  height:100dvh !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+#finai-root.finai-mobile .mobile-overlay{
+  display:none;
+  position:fixed !important;
+  inset:0 !important;
+  z-index:1250 !important;
+  background:#00302655 !important;
+}
+#finai-root.finai-mobile .mobile-overlay.show{display:block !important}
+
+/* Desktop collapsed sidebar: move the compact expand control slightly right
+   so it does not sit on top of the lime FinAI logo. */
+@media(min-width:801px){
+  #finai-root .app.left-collapsed .sidebar-toggle{right:1px !important;top:5px !important}
+}
