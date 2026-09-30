@@ -93,53 +93,7 @@ button{font:inherit;cursor:pointer}
 .send:disabled{opacity:.55;cursor:default;transform:none}
 .mobile-head{display:none}
 
-@media(max-width:800px){
- body{background:#f4f7f5}
- .app,.app.left-collapsed{
-   display:block;
-   height:auto;
-   min-height:0;
-   overflow:visible;
- }
- .left{position:fixed;z-index:300;left:0;top:var(--finai-top-offset,0px);bottom:auto;width:min(82vw,320px);height:var(--finai-vh,100dvh);transform:translateX(-105%);transition:transform .25s ease;box-shadow:12px 0 40px #0003;padding:18px 16px}
- .left.mobile-open{transform:translateX(0);z-index:1000}
- .app.left-collapsed .left{padding:18px 16px;background:#005642 !important}
- .app.left-collapsed .brand-text,.app.left-collapsed .nav-text,.app.left-collapsed .config-text,.app.left-collapsed .config-pill,.app.left-collapsed .status{display:inline}
- .app.left-collapsed .sidebar-head{justify-content:space-between;margin-left:2px;margin-right:2px}
- .app.left-collapsed .brand{justify-content:flex-start}
- .app.left-collapsed .sidebar-toggle{position:static;width:34px;height:34px;border-radius:10px;font-size:19px;background:#ffffff12}
- .app.left-collapsed .nav-item{justify-content:flex-start;padding:0 12px}
- .main{padding:96px 18px 38px;overflow:visible}
- .desktop-header{display:none}
- .topbar{margin-bottom:20px}.title{font-size:29px}.metrics{gap:12px}.metric{padding:17px}.metric-value{font-size:20px}.bottom{grid-template-columns:1fr}
- .mobile-head{
-   display:flex;
-   position:fixed;
-   top:var(--finai-top-offset,0px);
-   left:0;
-   right:0;
-   height:74px;
-   z-index:1200;
-   background:#fff;border-bottom:1px solid #edf0ef;align-items:center;justify-content:center;box-shadow:0 3px 12px #00000006}
- .mobile-menu{position:absolute;left:18px;top:16px;width:42px;height:42px;border-radius:50%;border:1px solid #e7ebe9;background:#fff;font-size:21px;color:#66716d}
- .mobile-brand{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:800}
- .mobile-ai{position:absolute;right:18px;top:16px;width:42px;height:42px;border-radius:50%;border:1px solid #e7ebe9;background:#fff;color:var(--green);font-size:17px}
- .ai{z-index:500;inset:0;width:100vw;height:100dvh;border:0;box-shadow:none;transition:transform .24s ease,opacity .18s ease}
- .ai.closed{transform:translateX(105%)}
- .mobile-overlay{display:none;position:fixed;inset:0;z-index:200;background:#00302655;backdrop-filter:blur(1px)}.mobile-overlay.show{display:block}
- .ai-head{padding-top:24px}
-}
-@media(min-width:801px){.mobile-head,.mobile-overlay{display:none}}
-/* SIDEBAR VISIBILITY PATCH
-   Keep the navigation surface opaque in both desktop and mobile component contexts.
-   The drawer must sit above the dimming overlay. */
-#finai-root .app > .left{background:#005642 !important;background-color:#005642 !important;opacity:1 !important;z-index:1000 !important;}
-#finai-root .app > .left .nav{background:transparent !important;}
-#finai-root .app > .left .nav-item:not(.active){background:transparent !important;color:#d9ece6 !important;}
-#finai-root .app > .left .nav-item.active{background:#14765f !important;color:#fff !important;}
-#finai-root .app > .left .sidebar-toggle{display:grid !important;visibility:visible !important;opacity:1 !important;color:#fff !important;background:#0b6a56 !important;z-index:1100 !important;}
-#finai-root .mobile-overlay{z-index:200 !important;}
-#finai-root .app > .left.mobile-open{z-index:1000 !important;}
+
 
 .nav-item[data-page]{cursor:pointer}
 .nav-item[data-page]:focus-visible,.desktop-ai-trigger:focus-visible,
@@ -155,32 +109,6 @@ button{font:inherit;cursor:pointer}
  .ai-foot-row{align-items:flex-end}
  .ai-foot-row .send{min-width:34px}
 }
-
-/* V4: keep fixed UI below the native Streamlit toolbar/header. */
-#finai-root .ai{top:var(--finai-top-offset,0px);height:var(--finai-vh,100dvh)}
-#finai-root .mobile-head{top:var(--finai-top-offset,0px);z-index:1200}
-@media(max-width:800px){
-  #finai-root .left{top:var(--finai-top-offset,0px);height:var(--finai-vh,100dvh)}
-  #finai-root .ai{inset:var(--finai-top-offset,0px) 0 0 0;width:100vw;height:var(--finai-vh,100dvh)}
-}
-
-/* V9 BASELINE: lime logo + stable top boundary */
-#finai-root .brand-mark,
-#finai-root .mobile-brand .brand-mark{
-  background:#b7f51d !important;
-  color:#005642 !important;
-  opacity:1 !important;
-}
-
-/* Keep the three vertical boundaries aligned to the component viewport. */
-#finai-root .app{top:0}
-#finai-root .ai{top:var(--finai-top-offset,0px);height:var(--finai-vh,100dvh)}
-#finai-root .left{height:100%}
-@media(max-width:800px){
-  #finai-root .left{top:var(--finai-top-offset,0px);height:var(--finai-vh,100dvh)}
-  #finai-root .ai{top:var(--finai-top-offset,0px);right:0;bottom:0;left:0;width:100vw;height:var(--finai-vh,100dvh);inset:var(--finai-top-offset,0px) 0 0 0}
-}
-
 /* Chat analysis animation */
 .typing-msg{align-items:flex-start}
 .typing-bubble{
@@ -208,289 +136,114 @@ button{font:inherit;cursor:pointer}
 }
 
 
-/* FINAL FOCUSED FIX: mobile controls + shared top boundary + collapsed desktop toggle */
-#finai-root .mobile-head{
-  position:fixed !important;
-  top:var(--finai-top-offset,0px) !important;
-  left:0 !important;
-  right:0 !important;
-  z-index:1200 !important;
+/* ================================================================
+   FINAI MOBILE/STACKING BASELINE
+   Single source of truth for shell geometry.
+   ================================================================ */
+#finai-root{
+  position:relative;
+  width:100%;
+  min-width:0;
+  min-height:var(--finai-vh,100dvh);
+  display:grid;
+  grid-template-columns:250px minmax(0,1fr);
+  background:var(--bg);
 }
-#finai-root .mobile-menu,
-#finai-root .mobile-ai{
-  display:grid !important;
-  visibility:visible !important;
-  opacity:1 !important;
+#finai-root.desktop-collapsed{
+  grid-template-columns:72px minmax(0,1fr);
 }
-#finai-root .mobile-overlay{z-index:1100 !important}
-@media(min-width:801px){
-  #finai-root .app.left-collapsed .sidebar-head{justify-content:flex-start !important;position:relative}
-  #finai-root .app.left-collapsed .sidebar-toggle{
-    position:absolute !important;
-    top:5px !important;
-    right:5px !important;
-    width:22px !important;
-    height:22px !important;
-    border-radius:7px !important;
-    font-size:18px !important;
-    line-height:1 !important;
-    padding:0 !important;
-  }
-  #finai-root .app.left-collapsed .brand{justify-content:flex-start !important}
+#finai-root > .left{
+  grid-column:1;
+  grid-row:1;
+  position:relative;
+  width:auto;
+  height:var(--finai-vh,100dvh);
+  min-height:0;
+  padding:18px 14px 18px;
+  overflow:hidden;
+  z-index:1;
 }
-@media(max-width:800px){
-  #finai-root .mobile-head{height:74px !important}
-  #finai-root .mobile-menu{left:18px !important;top:16px !important}
-  #finai-root .mobile-ai{right:18px !important;top:16px !important}
-  #finai-root .left{top:var(--finai-top-offset,0px) !important;height:var(--finai-vh,100dvh) !important}
-  #finai-root .ai{top:var(--finai-top-offset,0px) !important;height:var(--finai-vh,100dvh) !important}
+#finai-root > .app{
+  grid-column:2;
+  grid-row:1;
+  position:relative;
+  display:block;
+  min-width:0;
+  min-height:var(--finai-vh,100dvh);
+  height:var(--finai-vh,100dvh);
+  overflow:hidden;
+  background:var(--bg);
 }
-
-/* FINAL MOBILE WIDTH FIX
-   Streamlit Components V2 can expose a desktop media-query viewport even when
-   the component itself is rendered in a narrow mobile column. Drive the
-   responsive shell from the component width class added by app.js. */
-#finai-root{position:relative}
-#finai-root.finai-mobile .mobile-head{
-  display:flex !important;
-  position:absolute !important;
-  top:0 !important;
-  left:0 !important;
-  right:0 !important;
-  height:74px !important;
-  z-index:1200 !important;
-  background:#fff !important;
-  border-bottom:1px solid #edf0ef !important;
-  align-items:center !important;
-  justify-content:center !important;
-  box-shadow:0 3px 12px #00000006 !important;
-}
-#finai-root.finai-mobile .mobile-menu,
-#finai-root.finai-mobile .mobile-ai{
-  display:grid !important;
-  visibility:visible !important;
-  opacity:1 !important;
-  position:absolute !important;
-  top:16px !important;
-  width:42px !important;
-  height:42px !important;
-  border-radius:10px !important;
-  border:0 !important;
-  background:transparent !important;
-  box-shadow:none !important;
-}
-#finai-root.finai-mobile .mobile-menu{left:18px !important}
-#finai-root.finai-mobile .mobile-ai{right:18px !important;color:var(--green) !important}
-#finai-root.finai-mobile .app,
-#finai-root.finai-mobile .app.left-collapsed{
-  display:block !important;
-  height:auto !important;
-  min-height:0 !important;
-  overflow:visible !important;
-}
-#finai-root.finai-mobile .left{
-  position:fixed !important;
-  left:0 !important;
-  top:calc(var(--finai-top-offset,0px) + 74px) !important;
-  bottom:0 !important;
-  width:min(82vw,320px) !important;
-  height:auto !important;
-  transform:translateX(-105%) !important;
-  z-index:1500 !important;
-  padding:18px 16px !important;
-}
-#finai-root.finai-mobile .left.mobile-open{transform:translateX(0) !important}
-#finai-root.finai-mobile .app.left-collapsed .left{padding:18px 16px !important}
-#finai-root.finai-mobile .app.left-collapsed .brand-text,
-#finai-root.finai-mobile .app.left-collapsed .nav-text,
-#finai-root.finai-mobile .app.left-collapsed .config-text,
-#finai-root.finai-mobile .app.left-collapsed .config-pill,
-#finai-root.finai-mobile .app.left-collapsed .status{display:inline !important}
-#finai-root.finai-mobile .app.left-collapsed .sidebar-head{justify-content:space-between !important;margin-left:2px !important;margin-right:2px !important}
-#finai-root.finai-mobile .app.left-collapsed .sidebar-toggle{position:static !important;width:34px !important;height:34px !important;border-radius:10px !important;font-size:19px !important;background:#ffffff12 !important}
-#finai-root.finai-mobile .app.left-collapsed .nav-item{justify-content:flex-start !important;padding:0 12px !important}
-#finai-root.finai-mobile .main{padding:96px 18px 38px !important;overflow:visible !important}
-#finai-root.finai-mobile .desktop-header{display:none !important}
-#finai-root.finai-mobile .ai{
-  position:fixed !important;
-  z-index:1700 !important;
-  top:var(--finai-top-offset,0px) !important;
-  right:0 !important;
-  bottom:0 !important;
-  left:0 !important;
-  width:100vw !important;
-  height:var(--finai-vh,100dvh) !important;
-  border:0 !important;
-  box-shadow:none !important;
-}
-#finai-root.finai-mobile .mobile-overlay{
+#finai-root > .mobile-head,
+#finai-root > .mobile-overlay{
   display:none;
-  position:fixed !important;
-  top:calc(var(--finai-top-offset,0px) + 74px) !important;
-  right:0 !important;
-  bottom:0 !important;
-  left:0 !important;
-  z-index:1400 !important;
-  background:#00302655 !important;
 }
-#finai-root.finai-mobile .mobile-overlay.show{display:block !important}
-
-/* Desktop collapsed sidebar: move the compact expand control slightly right
-   so it does not sit on top of the lime FinAI logo. */
-@media(min-width:801px){
-  #finai-root .app.left-collapsed .sidebar-toggle{right:1px !important;top:5px !important}
+#finai-root.desktop-collapsed > .left .brand-text,
+#finai-root.desktop-collapsed > .left .nav-text,
+#finai-root.desktop-collapsed > .left .config-text,
+#finai-root.desktop-collapsed > .left .config-pill,
+#finai-root.desktop-collapsed > .left .status{display:none}
+#finai-root.desktop-collapsed > .left .sidebar-head{
+  justify-content:flex-start;
+  margin-left:0;
+  margin-right:0;
+  position:relative;
 }
-
-/* MOBILE UI POLISH: keep the drawer below the FinAI mobile header, keep the AI
-   overlay below the native Streamlit toolbar, and use icon-only controls. */
-@media(max-width:800px){
-  #finai-root.finai-mobile .mobile-menu,
-  #finai-root.finai-mobile .mobile-ai{
-    color:#65716c !important;
-    background:transparent !important;
-    border:0 !important;
-    box-shadow:none !important;
-  }
-  #finai-root.finai-mobile .mobile-menu:hover,
-  #finai-root.finai-mobile .mobile-ai:hover{
-    background:#f4f7f5 !important;
-  }
-  #finai-root.finai-mobile .ai-head{
-    min-height:72px !important;
-    padding:18px 18px 15px !important;
-  }
-  #finai-root.finai-mobile .ai-close{
-    position:relative !important;
-    top:auto !important;
-    right:auto !important;
-    z-index:1 !important;
-  }
+#finai-root.desktop-collapsed > .left .brand{justify-content:flex-start}
+#finai-root.desktop-collapsed > .left .sidebar-toggle{
+  position:absolute;
+  top:5px;
+  right:1px;
+  width:22px;
+  height:22px;
+  border-radius:7px;
+  font-size:18px;
+  padding:0;
+}
+#finai-root.desktop-collapsed > .left .nav-item{
+  justify-content:center;
+  padding:0;
 }
 
-
-/* FINAL MOBILE DRAWER LAYER FIX
-   Keep the mobile top bar visually independent from the drawer. The drawer
-   starts immediately below the FinAI mobile header, so the header is never
-   painted through the drawer/overlay. The sidebar's own desktop brand row is
-   hidden on mobile to avoid a second header inside the drawer. */
-@media(max-width:800px){
-  #finai-root.finai-mobile{
-    position:relative !important;
-    min-height:var(--finai-vh,100dvh) !important;
-  }
-  #finai-root.finai-mobile .mobile-head{
-    z-index:2000 !important;
-  }
-  /* IMPORTANT: do not create a stacking context around the app.
-     The fixed mobile drawer must be able to layer above the header/overlay. */
-  #finai-root.finai-mobile .app{
-    position:relative !important;
-    z-index:auto !important;
-    min-height:var(--finai-vh,100dvh) !important;
-  }
-  #finai-root.finai-mobile .left{
-    top:74px !important;
-    bottom:0 !important;
-    height:calc(var(--finai-vh,100dvh) - 74px) !important;
-    max-height:calc(var(--finai-vh,100dvh) - 74px) !important;
-    z-index:3000 !important;
-    overflow-y:auto !important;
-    overflow-x:hidden !important;
-    -webkit-overflow-scrolling:touch !important;
-    padding:18px 16px 24px !important;
-    box-shadow:12px 0 40px rgba(0,0,0,.20) !important;
-  }
-  #finai-root.finai-mobile .left:not(.mobile-open){
-    pointer-events:none !important;
-  }
-  #finai-root.finai-mobile .left.mobile-open{
-    pointer-events:auto !important;
-  }
-  #finai-root.finai-mobile .left .sidebar-head{
-    display:none !important;
-  }
-  #finai-root.finai-mobile .left .nav{
-    margin-top:0 !important;
-    padding-top:2px !important;
-  }
-  #finai-root.finai-mobile .left .nav-item{
-    min-height:48px !important;
-    height:48px !important;
-  }
-  #finai-root.finai-mobile .config{
-    position:relative !important;
-    left:auto !important;
-    right:auto !important;
-    bottom:auto !important;
-    margin-top:28px !important;
-  }
-  #finai-root.finai-mobile .mobile-overlay{
-    top:74px !important;
-    bottom:0 !important;
-    z-index:1000 !important;
-    background:rgba(0,48,38,.34) !important;
-    pointer-events:none !important;
-  }
-  #finai-root.finai-mobile .mobile-overlay.show{
-    pointer-events:auto !important;
-  }
-  #finai-root.finai-mobile .ai{
-    z-index:4000 !important;
-  }
-}
-
-
-/* V5 STRUCTURAL MOBILE DRAWER FIX\n   The mobile drawer is re-parented by app.js to #finai-root so it no longer\n   competes with #app's desktop/grid stacking context. Layer order:\n   backdrop < header < drawer < AI. */\n@media(max-width:800px){\n  #finai-root.finai-mobile > .left{\n    position:fixed !important;\n    left:0 !important;\n    top:74px !important;\n    right:auto !important;\n    bottom:0 !important;\n    width:min(82vw,320px) !important;\n    height:calc(var(--finai-vh,100dvh) - 74px) !important;\n    max-height:calc(var(--finai-vh,100dvh) - 74px) !important;\n    transform:translateX(-105%) !important;\n    z-index:3000 !important;\n    isolation:isolate !important;\n    overflow-y:auto !important;\n    overflow-x:hidden !important;\n    -webkit-overflow-scrolling:touch !important;\n    background:#005642 !important;\n    opacity:1 !important;\n    pointer-events:none !important;\n    padding:18px 16px 24px !important;\n    box-shadow:12px 0 40px rgba(0,0,0,.20) !important;\n  }\n  #finai-root.finai-mobile > .left.mobile-open{\n    transform:translateX(0) !important;\n    pointer-events:auto !important;\n  }\n  #finai-root.finai-mobile > .left .sidebar-head{display:none !important;}\n  #finai-root.finai-mobile > .left .nav{margin-top:0 !important;padding-top:2px !important;}\n  #finai-root.finai-mobile > .left .nav-item{min-height:48px !important;height:48px !important;}\n  #finai-root.finai-mobile > .left .config{\n    position:relative !important;left:auto !important;right:auto !important;bottom:auto !important;margin-top:28px !important;\n  }\n  #finai-root.finai-mobile > .mobile-head{\n    position:absolute !important;top:0 !important;left:0 !important;right:0 !important;z-index:2000 !important;\n  }\n  #finai-root.finai-mobile > .mobile-overlay{\n    position:fixed !important;top:74px !important;right:0 !important;bottom:0 !important;left:0 !important;\n    z-index:1000 !important;background:rgba(0,48,38,.34) !important;pointer-events:none !important;\n  }\n  #finai-root.finai-mobile > .mobile-overlay.show{pointer-events:auto !important;}\n}\n
-/* FINAL MOBILE LAYER / BOUNDARY ARCHITECTURE
-   Mobile stacking order, front -> back:
-     1. Sidebar
-     2. Shadow/backdrop
-     3. Mobile header
-     4. Page content
-
-   IMPORTANT:
-   - Sidebar, shadow and header all use the SAME top/bottom/left/right boundary.
-   - No 74px offset is added to the sidebar or shadow.
-   - The 74px value belongs ONLY to the visual header height.
-   - The sidebar is re-parented by app.js to #finai-root on mobile, so it is
-     no longer trapped inside #app's stacking context.
+/* Mobile:
+   native Streamlit header ends at --finai-top-offset.
+   FinAI header is 74px high.
+   Sidebar and backdrop use the exact same top/bottom boundary.
+   Front -> back: sidebar / backdrop / header / content.
 */
-@media (max-width:800px){
-  #finai-root.finai-mobile{
-    position:relative !important;
-    display:block !important;
-    width:100% !important;
-    min-width:0 !important;
-    min-height:var(--finai-vh,100dvh) !important;
-    margin:0 !important;
-    padding:0 !important;
-    overflow:visible !important;
+@media(max-width:800px){
+  #finai-root,
+  #finai-root.desktop-collapsed{
+    display:block;
+    width:100%;
+    min-width:0;
+    min-height:var(--finai-vh,100dvh);
+    margin:0;
+    padding:0;
+    background:var(--bg);
+    overflow:visible;
   }
 
-  /* PAGE CONTENT — back layer */
-  #finai-root.finai-mobile > .app{
-    position:relative !important;
-    display:block !important;
-    width:100% !important;
-    min-width:0 !important;
-    min-height:var(--finai-vh,100dvh) !important;
-    height:auto !important;
-    margin:0 !important;
-    padding:0 !important;
-    overflow:visible !important;
-    z-index:0 !important;
+  #finai-root > .app{
+    display:block;
+    width:100%;
+    min-width:0;
+    min-height:var(--finai-vh,100dvh);
+    height:auto;
+    margin:0;
+    padding:0;
+    overflow:visible;
+    background:var(--bg);
+    z-index:0;
+  }
+  #finai-root > .app .main{
+    min-width:0;
+    overflow:visible;
+    padding:96px 18px 38px;
   }
 
-  #finai-root.finai-mobile > .app .main{
-    padding:96px 18px 38px !important;
-    min-width:0 !important;
-    overflow:visible !important;
-  }
-
-  /* 1 — SIDEBAR — highest layer.
-     Full component viewport: its top/bottom/left boundary is identical to
-     the shadow and header. This intentionally lets it cover the header. */
-  #finai-root.finai-mobile > .left{
+  /* 1 — SIDEBAR */
+  #finai-root > .left{
     position:fixed !important;
     top:var(--finai-top-offset,0px) !important;
     right:auto !important;
@@ -501,71 +254,60 @@ button{font:inherit;cursor:pointer}
     max-height:none !important;
     min-height:0 !important;
     margin:0 !important;
-    padding:92px 16px 24px !important;
+    padding:18px 16px 24px !important;
     box-sizing:border-box !important;
-    transform:translateX(-105%) !important;
-    transition:transform .25s ease !important;
-    z-index:3000 !important;
-    isolation:isolate !important;
-    overflow-y:auto !important;
-    overflow-x:hidden !important;
-    -webkit-overflow-scrolling:touch !important;
     background:#005642 !important;
     background-color:#005642 !important;
     color:#fff !important;
     opacity:1 !important;
     visibility:visible !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    -webkit-overflow-scrolling:touch !important;
+    transform:translateX(-105%) !important;
+    transition:transform .25s ease !important;
+    z-index:3000 !important;
+    isolation:isolate !important;
     box-shadow:12px 0 40px rgba(0,0,0,.20) !important;
     pointer-events:none !important;
   }
-
-  #finai-root.finai-mobile > .left.mobile-open{
+  #finai-root > .left.mobile-open{
     transform:translateX(0) !important;
     pointer-events:auto !important;
   }
-
-  /* Mobile drawer does not need its desktop brand/header row. */
-  #finai-root.finai-mobile > .left .sidebar-head{
-    display:none !important;
-  }
-
-  #finai-root.finai-mobile > .left .nav{
+  #finai-root > .left .sidebar-head{display:none !important}
+  #finai-root > .left .nav{
     display:flex !important;
     margin:0 !important;
     padding:0 !important;
     gap:8px !important;
     background:transparent !important;
   }
-
-  #finai-root.finai-mobile > .left .nav-item{
+  #finai-root > .left .nav-item{
     width:100% !important;
-    min-height:48px !important;
     height:48px !important;
+    min-height:48px !important;
     margin:0 !important;
     padding:0 12px !important;
     justify-content:flex-start !important;
     background:transparent !important;
     color:#d9ece6 !important;
   }
-
-  #finai-root.finai-mobile > .left .nav-item.active{
+  #finai-root > .left .nav-item.active{
     background:#14765f !important;
     color:#fff !important;
   }
-
-  #finai-root.finai-mobile > .left .config{
+  #finai-root > .left .config{
     position:relative !important;
     left:auto !important;
     right:auto !important;
     bottom:auto !important;
-    margin:28px 0 0 !important;
     width:100% !important;
+    margin:28px 0 0 !important;
   }
 
-  /* 2 — SHADOW/BACKDROP — middle layer.
-     Same exact outer boundary as the sidebar/header. It starts at the native
-     Streamlit header bottom and ends at the viewport bottom. */
-  #finai-root.finai-mobile > .mobile-overlay{
+  /* 2 — SHADOW / BACKDROP */
+  #finai-root > .mobile-overlay{
     display:none !important;
     position:fixed !important;
     top:var(--finai-top-offset,0px) !important;
@@ -583,14 +325,13 @@ button{font:inherit;cursor:pointer}
     -webkit-backdrop-filter:blur(1px) !important;
     pointer-events:none !important;
   }
-
-  #finai-root.finai-mobile > .mobile-overlay.show{
+  #finai-root > .mobile-overlay.show{
     display:block !important;
     pointer-events:auto !important;
   }
 
-  /* 3 — MOBILE HEADER — below shadow, above content. */
-  #finai-root.finai-mobile > .mobile-head{
+  /* 3 — FINAI HEADER */
+  #finai-root > .mobile-head{
     display:flex !important;
     position:fixed !important;
     top:var(--finai-top-offset,0px) !important;
@@ -610,9 +351,8 @@ button{font:inherit;cursor:pointer}
     align-items:center !important;
     justify-content:center !important;
   }
-
-  #finai-root.finai-mobile .mobile-menu,
-  #finai-root.finai-mobile .mobile-ai{
+  #finai-root > .mobile-head .mobile-menu,
+  #finai-root > .mobile-head .mobile-ai{
     display:grid !important;
     position:absolute !important;
     top:16px !important;
@@ -627,17 +367,13 @@ button{font:inherit;cursor:pointer}
     color:#65716c !important;
     place-items:center !important;
   }
+  #finai-root > .mobile-head .mobile-menu{left:18px !important}
+  #finai-root > .mobile-head .mobile-ai{right:18px !important;color:var(--green) !important}
+  #finai-root > .mobile-head .mobile-menu:hover,
+  #finai-root > .mobile-head .mobile-ai:hover{background:#f4f7f5 !important}
 
-  #finai-root.finai-mobile .mobile-menu{left:18px !important}
-  #finai-root.finai-mobile .mobile-ai{right:18px !important;color:var(--green) !important}
-
-  #finai-root.finai-mobile .mobile-menu:hover,
-  #finai-root.finai-mobile .mobile-ai:hover{
-    background:#f4f7f5 !important;
-  }
-
-  /* AI is an independent modal and remains above everything. */
-  #finai-root.finai-mobile > .ai{
+  /* AI modal stays above the navigation drawer. */
+  #finai-root > .ai{
     position:fixed !important;
     top:var(--finai-top-offset,0px) !important;
     right:0 !important;
@@ -650,13 +386,11 @@ button{font:inherit;cursor:pointer}
     border:0 !important;
     box-shadow:none !important;
   }
-
-  #finai-root.finai-mobile > .ai .ai-head{
+  #finai-root > .ai .ai-head{
     min-height:72px !important;
     padding:18px 18px 15px !important;
   }
-
-  #finai-root.finai-mobile > .ai .ai-close{
+  #finai-root > .ai .ai-close{
     position:relative !important;
     top:auto !important;
     right:auto !important;
