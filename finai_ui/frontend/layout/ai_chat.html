@@ -1,4 +1,4 @@
-<aside id="ai" class="ai closed" aria-hidden="true">
+<aside id="ai" class="ai {{AI_OPEN_CLASS}}" aria-hidden="{{AI_HIDDEN}}">
   <div class="ai-head">
     <div>
       <div class="ai-title">AI Assistant</div>
@@ -6,12 +6,7 @@
     </div>
     <button id="aiClose" class="ai-close" aria-label="Close AI Assistant">×</button>
   </div>
-  <div id="chatBody" class="ai-body">
-    <div class="msg">
-      <div class="bot">✦</div>
-      <div class="msgtext"><b>Hi there! 👋</b><br><span class="muted">I'm your Financial AI Assistant.<br>How can I help you today?</span></div>
-    </div>
-  </div>
+  <div id="chatBody" class="ai-body">{{CHAT_MESSAGES}}</div>
   <div class="ai-foot">
     <div class="ai-foot-row">
       <input id="chatInput" class="chat-input" type="text" autocomplete="off" placeholder="Write a message..." aria-label="Write a message">
