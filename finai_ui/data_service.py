@@ -694,12 +694,42 @@ def _detect_metrics(text):
 
 def _has_financial_term(text):
     text = _normalise_text(text)
-    return any(term in text for term in _FINANCIAL_TERMS)
+    if any(term in text for term in _FINANCIAL_TERMS):
+        return True
+    # Treat every statement/target line item in the actual CSV as financial
+    # vocabulary, so questions such as “berapa kas?” or “berapa modal?” are
+    # not incorrectly blocked as out-of-scope.
+    for df in (BS, IS, TARGETS):
+        if df is not None and not df.empty:
+            for col in ("line_item", "metric", "category"):
+                if col in df.columns:
+                    terms = [
+                        _normalise_text(v) for v in df[col].dropna().astype(str).unique()
+                    ]
+                    if any(term and term in text for term in terms):
+                        return True
+    return False
+
+
+def _is_assistant_meta(text):
+    """Questions about FinAI itself can be answered without financial evidence."""
+    text = _normalise_text(text)
+    return any(term in text for term in [
+        "perkenalkan dirimu", "perkenalkan diri", "siapa kamu",
+        "siapa anda", "apa itu finai", "apa itu fin ai",
+    ])
 
 
 def _is_out_of_scope(text):
+    """Fail closed for non-financial questions before they reach the LLM."""
     text = _normalise_text(text)
-    return any(term in text for term in _OUT_OF_SCOPE_TERMS) and not _has_financial_term(text)
+    if _is_assistant_meta(text):
+        return False
+    if any(term in text for term in _OUT_OF_SCOPE_TERMS) and not _has_financial_term(text):
+        return True
+    # If a question has no financial vocabulary at all, it is not a FinAI
+    # financial question. Do not let the LLM guess or answer from general knowledge.
+    return not _has_financial_term(text)
 
 
 def _period_records(df, period):
@@ -818,6 +848,50 @@ def _statement_line_evidence(question, period, comparison_periods):
                 break
     return matches
 
+def _direct_answer(question, evidence):
+    """Return a deterministic answer for simple factual questions.
+
+    This keeps the LLM out of one-number lookups, eliminating reasoning leakage
+    and preventing the model from reinterpreting an exact Python result.
+    """
+    q = _normalise_text(question)
+    if any(x in q for x in [
+        "kenapa", "mengapa", "bagaimana", "bandingkan", "dibandingkan",
+        "perubahan", "naik", "turun", "pertumbuhan", "target", "pencapaian",
+    ]):
+        return None
+    if evidence.get("comparison"):
+        return None
+    period_label = evidence.get("selected_period_label") or evidence.get("selected_period")
+    unit = evidence.get("unit", UNIT)
+
+    # Exact statement-line matches take priority over broad aliases such as
+    # “pendapatan” or “beban”, otherwise a specific line could be answered with
+    # the total KPI instead of the requested child item.
+    lines = evidence.get("statement_lines") or []
+    if len(lines) == 1:
+        item = lines[0]
+        return f"{item['line_item']} {period_label}: Rp {float(item['amount']):,.2f} miliar."
+
+    kpi = (evidence.get("current") or {}).get("kpi") or {}
+    labels = {
+        "net_profit": "Laba bersih", "total_assets": "Total aset",
+        "total_credit": "Total kredit", "total_investment": "Total investasi",
+        "total_dpk": "Total DPK", "total_other_funding": "Dana lainnya",
+        "revenue": "Pendapatan", "operating_expense": "Beban operasional",
+        "ckpn": "CKPN", "npl_ratio": "NPL",
+        "ckpn_coverage": "CKPN Coverage", "low_cost_funding": "Low Cost Funding",
+    }
+    if len(kpi) == 1:
+        key, value = next(iter(kpi.items()))
+        label = labels.get(key, key.replace("_", " ").title())
+        if key in {"npl_ratio", "ckpn_coverage", "low_cost_funding"}:
+            return f"{label} {period_label}: {float(value):.2f}%."
+        return f"{label} {period_label}: Rp {float(value):,.2f} miliar."
+
+    return None
+
+
 def build_financial_evidence(question, selected_period=None):
     """Validate a question and build deterministic evidence from CSV data.
 
@@ -829,6 +903,12 @@ def build_financial_evidence(question, selected_period=None):
     q = _normalise_text(question)
     if not q:
         return {"status": "AMBIGUOUS", "message": "Pertanyaan belum diisi."}
+
+    if _is_assistant_meta(q):
+        return {
+            "status": "META",
+            "message": "Saya FinAI, asisten Financial Intelligence yang menjawab pertanyaan berdasarkan data keuangan yang tersedia di aplikasi.",
+        }
 
     if _is_out_of_scope(q):
         return {
@@ -982,6 +1062,9 @@ def build_financial_evidence(question, selected_period=None):
             }
 
     evidence["status"] = "READY"
+    direct = _direct_answer(q, evidence)
+    if direct:
+        evidence["direct_answer"] = direct
     return evidence
 
 
