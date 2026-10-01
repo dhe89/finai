@@ -77,6 +77,9 @@ button{font:inherit;cursor:pointer}
 
 .metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:14px}.card{background:#fff;border:1px solid #edf0ef;border-radius:17px;box-shadow:0 7px 20px #1e41370b}.metric{padding:17px}.metric-label{color:#909b97;font-size:10px}.metric-value{font-size:22px;font-weight:800;margin-top:6px}.metric-change{color:#a78282;font-size:8px;margin-top:5px}
 .table-card{overflow:hidden}.table-head{display:flex;justify-content:space-between;align-items:center;padding:16px 17px 12px}.table-title{font-size:14px;font-weight:800}.caption{font-size:8px;color:#9ba5a1;margin-top:3px}.switcher{background:#f0f6df;color:#718044;border-radius:18px;padding:8px 12px;font-size:9px;font-weight:700}.data-wrap{overflow-x:auto}table{width:100%;min-width:680px;border-collapse:collapse;font-size:8px}th{color:#a1aaa7;font-weight:600;padding:8px 12px;text-align:right;border-top:1px solid var(--line)}th:first-child,td:first-child{text-align:left}td{color:#737d79;padding:10px 12px;text-align:right;border-top:1px solid #edf0ef}tr.section td{background:#eef5ef;color:#64806f;font-size:9px;letter-spacing:1.5px;font-weight:800;text-align:left;padding:8px 12px}
+tr.section.parent-total td:not(:first-child){text-align:right;letter-spacing:0}
+tr.section.parent-total td{font-weight:800}
+tr.profit-total td{font-weight:900;background:#f0f6df;color:#35423e}
 .bottom{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}.small{padding:16px}.small-title{font-size:12px;font-weight:800}.kpi{display:flex;justify-content:space-between;margin-top:15px;font-size:9px}.kpi-label{color:#68736f}.kpi-value{font-size:11px;font-weight:800}
 
 /* AI ASSISTANT OVERLAY */
@@ -497,67 +500,4 @@ button{font:inherit;cursor:pointer}
     right:auto !important;
     z-index:1 !important;
   }
-}
-
-/* ================================================================
-   FINAI TYPOGRAPHY READABILITY PATCH
-   Typography only: no layout, spacing, colour, positioning, or
-   responsive geometry changes.
-   ================================================================ */
-html,body,#finai-root{
-  font-family:Inter,"Segoe UI",Arial,sans-serif;
-}
-
-/* Navigation / sidebar */
-.nav-item{font-size:15px}
-.nav-icon{font-size:15px}
-.brand,.mobile-brand{font-size:21px}
-.config{font-size:10px}
-.config-pill{font-size:10px}
-.status{font-size:10px}
-
-/* Page headings */
-.desktop-app-name{font-size:14px}
-.eyebrow{font-size:10px}
-.title{font-size:34px}
-.subtitle{font-size:12px}
-.period,.period-select{font-size:11px}
-.period-picker{font-size:11px}
-.period-chevron{font-size:12px}
-
-/* KPI cards */
-.metric-label{font-size:11px}
-.metric-value{font-size:24px}
-.metric-change{font-size:9px}
-
-/* Tables / financial statements */
-.table-title{font-size:15px}
-.caption{font-size:9px}
-.switcher{font-size:10px}
-table{font-size:10px}
-th{font-size:10px}
-td{font-size:10px}
-tr.section td{font-size:10px}
-
-/* Summary cards */
-.small-title{font-size:13px}
-.kpi{font-size:10px}
-.kpi-value{font-size:12px}
-
-/* Forms / settings */
-.setting-row{font-size:11px}
-.badge{font-size:10px}
-
-/* AI assistant */
-.ai-title{font-size:16px}
-.ai-status{font-size:9px}
-.msgtext{font-size:12px}
-.bubble{font-size:11px}
-.chat-input{font-size:12px}
-
-/* Mobile typography only. Geometry remains unchanged. */
-@media(max-width:800px){
-  #finai-root > .left .sidebar-mobile-brand{font-size:21px !important}
-  #finai-root > .mobile-head .mobile-brand-text{font-size:21px !important}
-  .period-select{font-size:11px}
 }
