@@ -69,7 +69,7 @@ period,statement,line_item,amount
 2024-05,Ekuitas,Modal,6059.857156418416
 2024-05,Ekuitas,Laba Tahun Lalu,-628.39
 2024-05,Ekuitas,Laba Tahun Berjalan,337.11
-2024-06,Asset,Kas,4379.13
+2024-06,Asset,Kas,4379.14
 2024-06,Asset,Penempatan,9150.0
 2024-06,Asset,Kredit,43000.0
 2024-06,Asset,Aktiva Tetap,2300.0
@@ -82,8 +82,8 @@ period,statement,line_item,amount
 2024-06,Kewajiban,Kewajiban Lainnya,1050.0
 2024-06,Ekuitas,Modal,6059.857156418416
 2024-06,Ekuitas,Laba Tahun Lalu,-1031.55
-2024-06,Ekuitas,Laba Tahun Berjalan,400.82
-2024-07,Asset,Kas,5205.39
+2024-06,Ekuitas,Laba Tahun Berjalan,400.83
+2024-07,Asset,Kas,5205.4
 2024-07,Asset,Penempatan,9000.0
 2024-07,Asset,Kredit,43000.0
 2024-07,Asset,Aktiva Tetap,2300.0
@@ -96,8 +96,8 @@ period,statement,line_item,amount
 2024-07,Kewajiban,Kewajiban Lainnya,1075.0
 2024-07,Ekuitas,Modal,6059.857156418416
 2024-07,Ekuitas,Laba Tahun Lalu,-1412.87
-2024-07,Ekuitas,Laba Tahun Berjalan,463.4
-2024-08,Asset,Kas,6031.52
+2024-07,Ekuitas,Laba Tahun Berjalan,463.41
+2024-08,Asset,Kas,6031.54
 2024-08,Asset,Penempatan,8850.0
 2024-08,Asset,Kredit,43000.0
 2024-08,Asset,Aktiva Tetap,2300.0
@@ -110,8 +110,8 @@ period,statement,line_item,amount
 2024-08,Kewajiban,Kewajiban Lainnya,1000.0
 2024-08,Ekuitas,Modal,6059.857156418416
 2024-08,Ekuitas,Laba Tahun Lalu,-1694.19
-2024-08,Ekuitas,Laba Tahun Berjalan,525.85
-2024-09,Asset,Kas,6791.93
+2024-08,Ekuitas,Laba Tahun Berjalan,525.87
+2024-09,Asset,Kas,6791.96
 2024-09,Asset,Penempatan,8740.19
 2024-09,Asset,Kredit,43000.0
 2024-09,Asset,Aktiva Tetap,2300.0
@@ -124,8 +124,8 @@ period,statement,line_item,amount
 2024-09,Kewajiban,Kewajiban Lainnya,1025.0
 2024-09,Ekuitas,Modal,6059.857156418416
 2024-09,Ekuitas,Laba Tahun Lalu,-2097.35
-2024-09,Ekuitas,Laba Tahun Berjalan,584.61
-2024-10,Asset,Kas,7497.43
+2024-09,Ekuitas,Laba Tahun Berjalan,584.64
+2024-10,Asset,Kas,7497.47
 2024-10,Asset,Penempatan,8700.0
 2024-10,Asset,Kredit,43000.0
 2024-10,Asset,Aktiva Tetap,2300.0
@@ -138,8 +138,8 @@ period,statement,line_item,amount
 2024-10,Kewajiban,Kewajiban Lainnya,1050.0
 2024-10,Ekuitas,Modal,6059.857156418416
 2024-10,Ekuitas,Laba Tahun Lalu,-2478.67
-2024-10,Ekuitas,Laba Tahun Berjalan,636.24
-2024-11,Asset,Kas,8107.63
+2024-10,Ekuitas,Laba Tahun Berjalan,636.28
+2024-11,Asset,Kas,8107.68
 2024-11,Asset,Penempatan,8740.19
 2024-11,Asset,Kredit,43000.0
 2024-11,Asset,Aktiva Tetap,2300.0
@@ -152,8 +152,8 @@ period,statement,line_item,amount
 2024-11,Kewajiban,Kewajiban Lainnya,1075.0
 2024-11,Ekuitas,Modal,6059.857156418416
 2024-11,Ekuitas,Laba Tahun Lalu,-2881.84
-2024-11,Ekuitas,Laba Tahun Berjalan,694.8
-2024-12,Asset,Kas,8678.58
+2024-11,Ekuitas,Laba Tahun Berjalan,694.85
+2024-12,Asset,Kas,8678.63
 2024-12,Asset,Penempatan,8850.0
 2024-12,Asset,Kredit,43000.0
 2024-12,Asset,Aktiva Tetap,2300.0
@@ -166,7 +166,7 @@ period,statement,line_item,amount
 2024-12,Kewajiban,Kewajiban Lainnya,1000.0
 2024-12,Ekuitas,Modal,6059.857156418416
 2024-12,Ekuitas,Laba Tahun Lalu,-3163.16
-2024-12,Ekuitas,Laba Tahun Berjalan,761.88
+2024-12,Ekuitas,Laba Tahun Berjalan,761.93
 2025-01,Asset,Kas,2028.95
 2025-01,Asset,Penempatan,8700.0
 2025-01,Asset,Kredit,50000.0
@@ -237,7 +237,7 @@ period,statement,line_item,amount
 2025-05,Ekuitas,Modal,6059.857156418416
 2025-05,Ekuitas,Laba Tahun Lalu,-1818.74
 2025-05,Ekuitas,Laba Tahun Berjalan,404.8
-2025-06,Asset,Kas,3478.5
+2025-06,Asset,Kas,3478.51
 2025-06,Asset,Penempatan,8850.0
 2025-06,Asset,Kredit,50000.0
 2025-06,Asset,Aktiva Tetap,2380.0
@@ -250,8 +250,8 @@ period,statement,line_item,amount
 2025-06,Kewajiban,Kewajiban Lainnya,1050.0
 2025-06,Ekuitas,Modal,6059.857156418416
 2025-06,Ekuitas,Laba Tahun Lalu,-1664.56
-2025-06,Ekuitas,Laba Tahun Berjalan,483.2
-2025-07,Asset,Kas,3956.89
+2025-06,Ekuitas,Laba Tahun Berjalan,483.21
+2025-07,Asset,Kas,3956.9
 2025-07,Asset,Penempatan,8700.0
 2025-07,Asset,Kredit,50000.0
 2025-07,Asset,Aktiva Tetap,2380.0
@@ -264,8 +264,8 @@ period,statement,line_item,amount
 2025-07,Kewajiban,Kewajiban Lainnya,1075.0
 2025-07,Ekuitas,Modal,6059.857156418416
 2025-07,Ekuitas,Laba Tahun Lalu,-1499.86
-2025-07,Ekuitas,Laba Tahun Berjalan,561.89
-2025-08,Asset,Kas,4428.18
+2025-07,Ekuitas,Laba Tahun Berjalan,561.9
+2025-08,Asset,Kas,4428.2
 2025-08,Asset,Penempatan,8550.0
 2025-08,Asset,Kredit,50000.0
 2025-08,Asset,Aktiva Tetap,2380.0
@@ -278,8 +278,8 @@ period,statement,line_item,amount
 2025-08,Kewajiban,Kewajiban Lainnya,1000.0
 2025-08,Ekuitas,Modal,6059.857156418416
 2025-08,Ekuitas,Laba Tahun Lalu,-1235.17
-2025-08,Ekuitas,Laba Tahun Berjalan,633.49
-2025-09,Asset,Kas,4847.18
+2025-08,Ekuitas,Laba Tahun Berjalan,633.51
+2025-09,Asset,Kas,4847.21
 2025-09,Asset,Penempatan,8440.19
 2025-09,Asset,Kredit,50000.0
 2025-09,Asset,Aktiva Tetap,2380.0
@@ -292,8 +292,8 @@ period,statement,line_item,amount
 2025-09,Kewajiban,Kewajiban Lainnya,1025.0
 2025-09,Ekuitas,Modal,6059.857156418416
 2025-09,Ekuitas,Laba Tahun Lalu,-1080.99
-2025-09,Ekuitas,Laba Tahun Berjalan,703.5
-2025-10,Asset,Kas,5200.2
+2025-09,Ekuitas,Laba Tahun Berjalan,703.53
+2025-10,Asset,Kas,5200.23
 2025-10,Asset,Penempatan,8400.0
 2025-10,Asset,Kredit,50000.0
 2025-10,Asset,Aktiva Tetap,2380.0
@@ -306,8 +306,8 @@ period,statement,line_item,amount
 2025-10,Kewajiban,Kewajiban Lainnya,1050.0
 2025-10,Ekuitas,Modal,6059.857156418416
 2025-10,Ekuitas,Laba Tahun Lalu,-916.3
-2025-10,Ekuitas,Laba Tahun Berjalan,766.64
-2025-11,Asset,Kas,5470.82
+2025-10,Ekuitas,Laba Tahun Berjalan,766.67
+2025-11,Asset,Kas,5470.86
 2025-11,Asset,Penempatan,8440.19
 2025-11,Asset,Kredit,50000.0
 2025-11,Asset,Aktiva Tetap,2380.0
@@ -320,8 +320,8 @@ period,statement,line_item,amount
 2025-11,Kewajiban,Kewajiban Lainnya,1075.0
 2025-11,Ekuitas,Modal,6059.857156418416
 2025-11,Ekuitas,Laba Tahun Lalu,-762.12
-2025-11,Ekuitas,Laba Tahun Berjalan,838.27
-2025-12,Asset,Kas,5688.4
+2025-11,Ekuitas,Laba Tahun Berjalan,838.31
+2025-12,Asset,Kas,5688.44
 2025-12,Asset,Penempatan,8550.0
 2025-12,Asset,Kredit,50000.0
 2025-12,Asset,Aktiva Tetap,2380.0
@@ -334,7 +334,7 @@ period,statement,line_item,amount
 2025-12,Kewajiban,Kewajiban Lainnya,1000.0
 2025-12,Ekuitas,Modal,6059.857156418416
 2025-12,Ekuitas,Laba Tahun Lalu,-497.42
-2025-12,Ekuitas,Laba Tahun Berjalan,915.96
+2025-12,Ekuitas,Laba Tahun Berjalan,916.0
 2026-01,Asset,Kas,1809.1
 2026-01,Asset,Penempatan,8400.0
 2026-01,Asset,Kredit,57817.32
@@ -391,7 +391,7 @@ period,statement,line_item,amount
 2026-04,Ekuitas,Modal,6059.857156418416
 2026-04,Ekuitas,Laba Tahun Lalu,1853.08
 2026-04,Ekuitas,Laba Tahun Berjalan,354.33
-2026-05,Asset,Kas,1809.35
+2026-05,Asset,Kas,1809.34
 2026-05,Asset,Penempatan,8659.81
 2026-05,Asset,Kredit,58619.08
 2026-05,Asset,Aktiva Tetap,2460.0
@@ -404,8 +404,8 @@ period,statement,line_item,amount
 2026-05,Kewajiban,Kewajiban Lainnya,1025.0
 2026-05,Ekuitas,Modal,6059.857156418416
 2026-05,Ekuitas,Laba Tahun Lalu,2115.15
-2026-05,Ekuitas,Laba Tahun Berjalan,442.05
-2026-06,Asset,Kas,1814.13
+2026-05,Ekuitas,Laba Tahun Berjalan,442.04
+2026-06,Asset,Kas,1814.12
 2026-06,Asset,Penempatan,8550.0
 2026-06,Asset,Kredit,58819.51
 2026-06,Asset,Aktiva Tetap,2460.0
@@ -418,8 +418,8 @@ period,statement,line_item,amount
 2026-06,Kewajiban,Kewajiban Lainnya,1050.0
 2026-06,Ekuitas,Modal,6059.857156418416
 2026-06,Ekuitas,Laba Tahun Lalu,2366.58
-2026-06,Ekuitas,Laba Tahun Berjalan,533.37
-2026-07,Asset,Kas,1813.97
+2026-06,Ekuitas,Laba Tahun Berjalan,533.36
+2026-07,Asset,Kas,1813.96
 2026-07,Asset,Penempatan,8400.0
 2026-07,Asset,Kredit,59019.95
 2026-07,Asset,Aktiva Tetap,2460.0
@@ -432,8 +432,8 @@ period,statement,line_item,amount
 2026-07,Kewajiban,Kewajiban Lainnya,1075.0
 2026-07,Ekuitas,Modal,6059.857156418416
 2026-07,Ekuitas,Laba Tahun Lalu,2628.65
-2026-07,Ekuitas,Laba Tahun Berjalan,619.75
-2026-08,Asset,Kas,1805.28
+2026-07,Ekuitas,Laba Tahun Berjalan,619.74
+2026-08,Asset,Kas,1805.27
 2026-08,Asset,Penempatan,8250.0
 2026-08,Asset,Kredit,59220.39
 2026-08,Asset,Aktiva Tetap,2460.0
@@ -446,8 +446,8 @@ period,statement,line_item,amount
 2026-08,Kewajiban,Kewajiban Lainnya,1000.0
 2026-08,Ekuitas,Modal,6059.857156418416
 2026-08,Ekuitas,Laba Tahun Lalu,2990.72
-2026-08,Ekuitas,Laba Tahun Berjalan,697.6
-2026-09,Asset,Kas,1800.0
+2026-08,Ekuitas,Laba Tahun Berjalan,697.59
+2026-09,Asset,Kas,1799.99
 2026-09,Asset,Penempatan,8140.19
 2026-09,Asset,Kredit,59420.83
 2026-09,Asset,Aktiva Tetap,2460.0
@@ -460,4 +460,4 @@ period,statement,line_item,amount
 2026-09,Kewajiban,Kewajiban Lainnya,1025.0
 2026-09,Ekuitas,Modal,6059.857156418416
 2026-09,Ekuitas,Laba Tahun Lalu,3242.15
-2026-09,Ekuitas,Laba Tahun Berjalan,778.86
+2026-09,Ekuitas,Laba Tahun Berjalan,778.85

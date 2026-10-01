@@ -15,10 +15,10 @@ period,target_type,metric,target
 2024-02,Growth,Total Investment,9241.5
 2024-02,Growth,Total DPK,54270.0
 2024-02,Funding,Total Other Funding,3487.35
-2024-02,Profitability,Total Revenue,659.76
-2024-02,Profitability,Net Profit,63.49
+2024-02,Profitability,Total Revenue,1266.6599999999999
+2024-02,Profitability,Net Profit,126.98
 2024-02,Efficiency,Low Cost Funding %,61.07
-2024-02,Efficiency,Operating Expense,284.79
+2024-02,Efficiency,Operating Expense,566.09
 2024-02,Quality,NPL Ratio %,2.0
 2024-02,Quality,CKPN Coverage %,110.0
 2024-03,Growth,Total Asset,65953.07
@@ -26,10 +26,10 @@ period,target_type,metric,target
 2024-03,Growth,Total Investment,9352.41
 2024-03,Growth,Total DPK,55275.0
 2024-03,Funding,Total Other Funding,3457.2
-2024-03,Profitability,Total Revenue,681.59
-2024-03,Profitability,Net Profit,63.49
+2024-03,Profitability,Total Revenue,1948.25
+2024-03,Profitability,Net Profit,190.47
 2024-03,Efficiency,Low Cost Funding %,57.25
-2024-03,Efficiency,Operating Expense,286.57
+2024-03,Efficiency,Operating Expense,852.6600000000001
 2024-03,Quality,NPL Ratio %,2.0
 2024-03,Quality,CKPN Coverage %,110.0
 2024-04,Growth,Total Asset,66609.71
@@ -37,10 +37,10 @@ period,target_type,metric,target
 2024-04,Growth,Total Investment,9393.0
 2024-04,Growth,Total DPK,56280.0
 2024-04,Funding,Total Other Funding,3427.05
-2024-04,Profitability,Total Revenue,687.43
-2024-04,Profitability,Net Profit,63.49
+2024-04,Profitability,Total Revenue,2635.68
+2024-04,Profitability,Net Profit,253.96
 2024-04,Efficiency,Low Cost Funding %,65.3
-2024-04,Efficiency,Operating Expense,286.15
+2024-04,Efficiency,Operating Expense,1138.81
 2024-04,Quality,NPL Ratio %,2.0
 2024-04,Quality,CKPN Coverage %,110.0
 2024-05,Growth,Total Asset,67288.23
@@ -48,10 +48,10 @@ period,target_type,metric,target
 2024-05,Growth,Total Investment,9352.41
 2024-05,Growth,Total DPK,57285.0
 2024-05,Funding,Total Other Funding,3396.9
-2024-05,Profitability,Total Revenue,693.69
-2024-05,Profitability,Net Profit,63.49
+2024-05,Profitability,Total Revenue,3329.37
+2024-05,Profitability,Net Profit,317.45
 2024-05,Efficiency,Low Cost Funding %,65.51
-2024-05,Efficiency,Operating Expense,283.66
+2024-05,Efficiency,Operating Expense,1422.47
 2024-05,Quality,NPL Ratio %,2.0
 2024-05,Quality,CKPN Coverage %,110.0
 2024-06,Growth,Total Asset,67944.87
@@ -59,10 +59,10 @@ period,target_type,metric,target
 2024-06,Growth,Total Investment,9241.5
 2024-06,Growth,Total DPK,58290.0
 2024-06,Funding,Total Other Funding,3366.75
-2024-06,Profitability,Total Revenue,690.48
-2024-06,Profitability,Net Profit,63.49
+2024-06,Profitability,Total Revenue,4019.85
+2024-06,Profitability,Net Profit,380.94
 2024-06,Efficiency,Low Cost Funding %,61.39
-2024-06,Efficiency,Operating Expense,279.75
+2024-06,Efficiency,Operating Expense,1702.22
 2024-06,Quality,NPL Ratio %,2.0
 2024-06,Quality,CKPN Coverage %,110.0
 2024-07,Growth,Total Asset,68623.39
@@ -70,10 +70,10 @@ period,target_type,metric,target
 2024-07,Growth,Total Investment,9090.0
 2024-07,Growth,Total DPK,59295.0
 2024-07,Funding,Total Other Funding,3336.6
-2024-07,Profitability,Total Revenue,679.78
-2024-07,Profitability,Net Profit,63.49
+2024-07,Profitability,Total Revenue,4699.63
+2024-07,Profitability,Net Profit,444.43
 2024-07,Efficiency,Low Cost Funding %,65.97
-2024-07,Efficiency,Operating Expense,275.48
+2024-07,Efficiency,Operating Expense,1977.7
 2024-07,Quality,NPL Ratio %,2.0
 2024-07,Quality,CKPN Coverage %,110.0
 2024-08,Growth,Total Asset,69301.92
@@ -81,10 +81,10 @@ period,target_type,metric,target
 2024-08,Growth,Total Investment,8938.5
 2024-08,Growth,Total DPK,60300.0
 2024-08,Funding,Total Other Funding,3306.45
-2024-08,Profitability,Total Revenue,658.41
-2024-08,Profitability,Net Profit,63.49
+2024-08,Profitability,Total Revenue,5358.04
+2024-08,Profitability,Net Profit,507.92
 2024-08,Efficiency,Low Cost Funding %,72.84
-2024-08,Efficiency,Operating Expense,271.99
+2024-08,Efficiency,Operating Expense,2249.69
 2024-08,Quality,NPL Ratio %,2.0
 2024-08,Quality,CKPN Coverage %,110.0
 2024-09,Growth,Total Asset,69958.56
@@ -92,10 +92,10 @@ period,target_type,metric,target
 2024-09,Growth,Total Investment,8827.59
 2024-09,Growth,Total DPK,61305.0
 2024-09,Funding,Total Other Funding,3276.3
-2024-09,Profitability,Total Revenue,644.94
-2024-09,Profitability,Net Profit,63.49
+2024-09,Profitability,Total Revenue,6002.98
+2024-09,Profitability,Net Profit,571.41
 2024-09,Efficiency,Low Cost Funding %,73.66
-2024-09,Efficiency,Operating Expense,270.21
+2024-09,Efficiency,Operating Expense,2519.9
 2024-09,Quality,NPL Ratio %,2.0
 2024-09,Quality,CKPN Coverage %,110.0
 2024-10,Growth,Total Asset,70637.08
@@ -103,10 +103,10 @@ period,target_type,metric,target
 2024-10,Growth,Total Investment,8787.0
 2024-10,Growth,Total DPK,62310.0
 2024-10,Funding,Total Other Funding,3246.15
-2024-10,Profitability,Total Revenue,636.97
-2024-10,Profitability,Net Profit,63.49
+2024-10,Profitability,Total Revenue,6639.95
+2024-10,Profitability,Net Profit,634.9
 2024-10,Efficiency,Low Cost Funding %,75.85
-2024-10,Efficiency,Operating Expense,270.63
+2024-10,Efficiency,Operating Expense,2790.53
 2024-10,Quality,NPL Ratio %,2.0
 2024-10,Quality,CKPN Coverage %,110.0
 2024-11,Growth,Total Asset,71293.72
@@ -114,10 +114,10 @@ period,target_type,metric,target
 2024-11,Growth,Total Investment,8827.59
 2024-11,Growth,Total DPK,63315.0
 2024-11,Funding,Total Other Funding,3216.0
-2024-11,Profitability,Total Revenue,637.36
-2024-11,Profitability,Net Profit,63.49
+2024-11,Profitability,Total Revenue,7277.31
+2024-11,Profitability,Net Profit,698.39
 2024-11,Efficiency,Low Cost Funding %,76.55
-2024-11,Efficiency,Operating Expense,273.12
+2024-11,Efficiency,Operating Expense,3063.65
 2024-11,Quality,NPL Ratio %,2.0
 2024-11,Quality,CKPN Coverage %,110.0
 2024-12,Growth,Total Asset,71972.24
@@ -125,10 +125,10 @@ period,target_type,metric,target
 2024-12,Growth,Total Investment,8938.5
 2024-12,Growth,Total DPK,64320.0
 2024-12,Funding,Total Other Funding,3185.85
-2024-12,Profitability,Total Revenue,648.88
-2024-12,Profitability,Net Profit,63.49
+2024-12,Profitability,Total Revenue,7926.1900000000005
+2024-12,Profitability,Net Profit,761.88
 2024-12,Efficiency,Low Cost Funding %,75.94
-2024-12,Efficiency,Operating Expense,277.03
+2024-12,Efficiency,Operating Expense,3340.68
 2024-12,Quality,NPL Ratio %,2.0
 2024-12,Quality,CKPN Coverage %,110.0
 2025-01,Growth,Total Asset,72025.74
@@ -147,10 +147,10 @@ period,target_type,metric,target
 2025-02,Growth,Total Investment,8938.5
 2025-02,Growth,Total DPK,64867.72
 2025-02,Funding,Total Other Funding,2929.58
-2025-02,Profitability,Total Revenue,723.91
-2025-02,Profitability,Net Profit,76.33
+2025-02,Profitability,Total Revenue,1431.26
+2025-02,Profitability,Net Profit,152.66
 2025-02,Efficiency,Low Cost Funding %,77.07
-2025-02,Efficiency,Operating Expense,284.79
+2025-02,Efficiency,Operating Expense,566.09
 2025-02,Quality,NPL Ratio %,2.0
 2025-02,Quality,CKPN Coverage %,110.0
 2025-03,Growth,Total Asset,72791.53
@@ -158,10 +158,10 @@ period,target_type,metric,target
 2025-03,Growth,Total Investment,9049.41
 2025-03,Growth,Total DPK,64912.95
 2025-03,Funding,Total Other Funding,2944.65
-2025-03,Profitability,Total Revenue,740.15
-2025-03,Profitability,Net Profit,76.33
+2025-03,Profitability,Total Revenue,2171.41
+2025-03,Profitability,Net Profit,228.99
 2025-03,Efficiency,Low Cost Funding %,76.21
-2025-03,Efficiency,Operating Expense,286.57
+2025-03,Efficiency,Operating Expense,852.6600000000001
 2025-03,Quality,NPL Ratio %,2.0
 2025-03,Quality,CKPN Coverage %,110.0
 2025-04,Growth,Total Asset,73107.67
@@ -169,10 +169,10 @@ period,target_type,metric,target
 2025-04,Growth,Total Investment,9090.0
 2025-04,Growth,Total DPK,64958.18
 2025-04,Funding,Total Other Funding,2959.72
-2025-04,Profitability,Total Revenue,747.93
-2025-04,Profitability,Net Profit,76.33
+2025-04,Profitability,Total Revenue,2919.34
+2025-04,Profitability,Net Profit,305.32
 2025-04,Efficiency,Low Cost Funding %,77.78
-2025-04,Efficiency,Operating Expense,286.15
+2025-04,Efficiency,Operating Expense,1138.81
 2025-04,Quality,NPL Ratio %,2.0
 2025-04,Quality,CKPN Coverage %,110.0
 2025-05,Growth,Total Asset,73434.35
@@ -180,10 +180,10 @@ period,target_type,metric,target
 2025-05,Growth,Total Investment,9049.41
 2025-05,Growth,Total DPK,65003.4
 2025-05,Funding,Total Other Funding,2974.8
-2025-05,Profitability,Total Revenue,746.84
-2025-05,Profitability,Net Profit,76.33
+2025-05,Profitability,Total Revenue,3666.18
+2025-05,Profitability,Net Profit,381.65
 2025-05,Efficiency,Low Cost Funding %,78.75
-2025-05,Efficiency,Operating Expense,283.66
+2025-05,Efficiency,Operating Expense,1422.47
 2025-05,Quality,NPL Ratio %,2.0
 2025-05,Quality,CKPN Coverage %,110.0
 2025-06,Growth,Total Asset,73750.49
@@ -191,10 +191,10 @@ period,target_type,metric,target
 2025-06,Growth,Total Investment,8938.5
 2025-06,Growth,Total DPK,65048.62
 2025-06,Funding,Total Other Funding,2989.87
-2025-06,Profitability,Total Revenue,739.66
-2025-06,Profitability,Net Profit,76.33
+2025-06,Profitability,Total Revenue,4405.84
+2025-06,Profitability,Net Profit,457.98
 2025-06,Efficiency,Low Cost Funding %,78.87
-2025-06,Efficiency,Operating Expense,279.75
+2025-06,Efficiency,Operating Expense,1702.22
 2025-06,Quality,NPL Ratio %,2.0
 2025-06,Quality,CKPN Coverage %,110.0
 2025-07,Growth,Total Asset,74077.16
@@ -202,10 +202,10 @@ period,target_type,metric,target
 2025-07,Growth,Total Investment,8787.0
 2025-07,Growth,Total DPK,65093.85
 2025-07,Funding,Total Other Funding,3004.95
-2025-07,Profitability,Total Revenue,726.18
-2025-07,Profitability,Net Profit,76.33
+2025-07,Profitability,Total Revenue,5132.0199999999995
+2025-07,Profitability,Net Profit,534.31
 2025-07,Efficiency,Low Cost Funding %,78.74
-2025-07,Efficiency,Operating Expense,275.48
+2025-07,Efficiency,Operating Expense,1977.7
 2025-07,Quality,NPL Ratio %,2.0
 2025-07,Quality,CKPN Coverage %,110.0
 2025-08,Growth,Total Asset,74403.84
@@ -213,10 +213,10 @@ period,target_type,metric,target
 2025-08,Growth,Total Investment,8635.5
 2025-08,Growth,Total DPK,65139.07
 2025-08,Funding,Total Other Funding,3020.02
-2025-08,Profitability,Total Revenue,711.61
-2025-08,Profitability,Net Profit,76.33
+2025-08,Profitability,Total Revenue,5843.63
+2025-08,Profitability,Net Profit,610.64
 2025-08,Efficiency,Low Cost Funding %,78.02
-2025-08,Efficiency,Operating Expense,271.99
+2025-08,Efficiency,Operating Expense,2249.69
 2025-08,Quality,NPL Ratio %,2.0
 2025-08,Quality,CKPN Coverage %,110.0
 2025-09,Growth,Total Asset,74719.98
@@ -224,10 +224,10 @@ period,target_type,metric,target
 2025-09,Growth,Total Investment,8524.59
 2025-09,Growth,Total DPK,65184.3
 2025-09,Funding,Total Other Funding,3035.1
-2025-09,Profitability,Total Revenue,701.95
-2025-09,Profitability,Net Profit,76.33
+2025-09,Profitability,Total Revenue,6545.58
+2025-09,Profitability,Net Profit,686.97
 2025-09,Efficiency,Low Cost Funding %,76.05
-2025-09,Efficiency,Operating Expense,270.21
+2025-09,Efficiency,Operating Expense,2519.9
 2025-09,Quality,NPL Ratio %,2.0
 2025-09,Quality,CKPN Coverage %,110.0
 2025-10,Growth,Total Asset,75046.66
@@ -235,10 +235,10 @@ period,target_type,metric,target
 2025-10,Growth,Total Investment,8484.0
 2025-10,Growth,Total DPK,65229.52
 2025-10,Funding,Total Other Funding,3050.18
-2025-10,Profitability,Total Revenue,695.06
-2025-10,Profitability,Net Profit,76.33
+2025-10,Profitability,Total Revenue,7240.639999999999
+2025-10,Profitability,Net Profit,763.3
 2025-10,Efficiency,Low Cost Funding %,74.81
-2025-10,Efficiency,Operating Expense,270.63
+2025-10,Efficiency,Operating Expense,2790.53
 2025-10,Quality,NPL Ratio %,2.0
 2025-10,Quality,CKPN Coverage %,110.0
 2025-11,Growth,Total Asset,75362.8
@@ -246,10 +246,10 @@ period,target_type,metric,target
 2025-11,Growth,Total Investment,8524.59
 2025-11,Growth,Total DPK,65274.75
 2025-11,Funding,Total Other Funding,3065.25
-2025-11,Profitability,Total Revenue,691.17
-2025-11,Profitability,Net Profit,76.33
+2025-11,Profitability,Total Revenue,7931.8099999999995
+2025-11,Profitability,Net Profit,839.63
 2025-11,Efficiency,Low Cost Funding %,75.32
-2025-11,Efficiency,Operating Expense,273.12
+2025-11,Efficiency,Operating Expense,3063.65
 2025-11,Quality,NPL Ratio %,2.0
 2025-11,Quality,CKPN Coverage %,110.0
 2025-12,Growth,Total Asset,75689.47
@@ -257,10 +257,10 @@ period,target_type,metric,target
 2025-12,Growth,Total Investment,8635.5
 2025-12,Growth,Total DPK,65319.97
 2025-12,Funding,Total Other Funding,3080.32
-2025-12,Profitability,Total Revenue,701.72
-2025-12,Profitability,Net Profit,76.33
+2025-12,Profitability,Total Revenue,8633.53
+2025-12,Profitability,Net Profit,915.96
 2025-12,Efficiency,Low Cost Funding %,73.07
-2025-12,Efficiency,Operating Expense,277.03
+2025-12,Efficiency,Operating Expense,3340.68
 2025-12,Quality,NPL Ratio %,2.0
 2025-12,Quality,CKPN Coverage %,110.0
 2026-01,Growth,Total Asset,76348.84
@@ -279,10 +279,10 @@ period,target_type,metric,target
 2026-02,Growth,Total Investment,8635.5
 2026-02,Growth,Total DPK,65434.56
 2026-02,Funding,Total Other Funding,3030.07
-2026-02,Profitability,Total Revenue,763.27
-2026-02,Profitability,Net Profit,86.54
+2026-02,Profitability,Total Revenue,1505.51
+2026-02,Profitability,Net Profit,173.08
 2026-02,Efficiency,Low Cost Funding %,73.42
-2026-02,Efficiency,Operating Expense,284.79
+2026-02,Efficiency,Operating Expense,566.09
 2026-02,Quality,NPL Ratio %,2.0
 2026-02,Quality,CKPN Coverage %,110.0
 2026-03,Growth,Total Asset,77130.05
@@ -290,10 +290,10 @@ period,target_type,metric,target
 2026-03,Growth,Total Investment,8746.41
 2026-03,Growth,Total DPK,65375.23
 2026-03,Funding,Total Other Funding,3045.15
-2026-03,Profitability,Total Revenue,780.94
-2026-03,Profitability,Net Profit,86.54
+2026-03,Profitability,Total Revenue,2286.45
+2026-03,Profitability,Net Profit,259.62
 2026-03,Efficiency,Low Cost Funding %,73.87
-2026-03,Efficiency,Operating Expense,286.57
+2026-03,Efficiency,Operating Expense,852.6600000000001
 2026-03,Quality,NPL Ratio %,2.0
 2026-03,Quality,CKPN Coverage %,110.0
 2026-04,Growth,Total Asset,77449.64
@@ -301,10 +301,10 @@ period,target_type,metric,target
 2026-04,Growth,Total Investment,8787.0
 2026-04,Growth,Total DPK,65315.9
 2026-04,Funding,Total Other Funding,3060.22
-2026-04,Profitability,Total Revenue,788.42
-2026-04,Profitability,Net Profit,86.54
+2026-04,Profitability,Total Revenue,3074.87
+2026-04,Profitability,Net Profit,346.16
 2026-04,Efficiency,Low Cost Funding %,75.6
-2026-04,Efficiency,Operating Expense,286.15
+2026-04,Efficiency,Operating Expense,1138.81
 2026-04,Quality,NPL Ratio %,2.0
 2026-04,Quality,CKPN Coverage %,110.0
 2026-05,Growth,Total Asset,77779.87
@@ -312,10 +312,10 @@ period,target_type,metric,target
 2026-05,Growth,Total Investment,8746.41
 2026-05,Growth,Total DPK,65256.58
 2026-05,Funding,Total Other Funding,3075.3
-2026-05,Profitability,Total Revenue,790.58
-2026-05,Profitability,Net Profit,86.54
+2026-05,Profitability,Total Revenue,3865.45
+2026-05,Profitability,Net Profit,432.70000000000005
 2026-05,Efficiency,Low Cost Funding %,74.93
-2026-05,Efficiency,Operating Expense,283.66
+2026-05,Efficiency,Operating Expense,1422.47
 2026-05,Quality,NPL Ratio %,2.0
 2026-05,Quality,CKPN Coverage %,110.0
 2026-06,Growth,Total Asset,78099.46
@@ -323,10 +323,10 @@ period,target_type,metric,target
 2026-06,Growth,Total Investment,8635.5
 2026-06,Growth,Total DPK,65197.25
 2026-06,Funding,Total Other Funding,3090.37
-2026-06,Profitability,Total Revenue,784.05
-2026-06,Profitability,Net Profit,86.54
+2026-06,Profitability,Total Revenue,4649.5
+2026-06,Profitability,Net Profit,519.24
 2026-06,Efficiency,Low Cost Funding %,74.9
-2026-06,Efficiency,Operating Expense,279.75
+2026-06,Efficiency,Operating Expense,1702.22
 2026-06,Quality,NPL Ratio %,2.0
 2026-06,Quality,CKPN Coverage %,110.0
 2026-07,Growth,Total Asset,78429.7
@@ -334,10 +334,10 @@ period,target_type,metric,target
 2026-07,Growth,Total Investment,8484.0
 2026-07,Growth,Total DPK,65137.93
 2026-07,Funding,Total Other Funding,3105.45
-2026-07,Profitability,Total Revenue,770.44
-2026-07,Profitability,Net Profit,86.54
+2026-07,Profitability,Total Revenue,5419.9400000000005
+2026-07,Profitability,Net Profit,605.7800000000001
 2026-07,Efficiency,Low Cost Funding %,74.86
-2026-07,Efficiency,Operating Expense,275.48
+2026-07,Efficiency,Operating Expense,1977.7
 2026-07,Quality,NPL Ratio %,2.0
 2026-07,Quality,CKPN Coverage %,110.0
 2026-08,Growth,Total Asset,78759.94
@@ -345,10 +345,10 @@ period,target_type,metric,target
 2026-08,Growth,Total Investment,8332.5
 2026-08,Growth,Total DPK,65078.6
 2026-08,Funding,Total Other Funding,3120.52
-2026-08,Profitability,Total Revenue,750.37
-2026-08,Profitability,Net Profit,86.54
+2026-08,Profitability,Total Revenue,6170.31
+2026-08,Profitability,Net Profit,692.32
 2026-08,Efficiency,Low Cost Funding %,74.38
-2026-08,Efficiency,Operating Expense,271.99
+2026-08,Efficiency,Operating Expense,2249.69
 2026-08,Quality,NPL Ratio %,2.0
 2026-08,Quality,CKPN Coverage %,110.0
 2026-09,Growth,Total Asset,79079.52
@@ -356,9 +356,9 @@ period,target_type,metric,target
 2026-09,Growth,Total Investment,8221.59
 2026-09,Growth,Total DPK,65019.29
 2026-09,Funding,Total Other Funding,3135.6
-2026-09,Profitability,Total Revenue,732.88
-2026-09,Profitability,Net Profit,86.54
+2026-09,Profitability,Total Revenue,6903.1900000000005
+2026-09,Profitability,Net Profit,778.86
 2026-09,Efficiency,Low Cost Funding %,75.44
-2026-09,Efficiency,Operating Expense,270.21
+2026-09,Efficiency,Operating Expense,2519.9
 2026-09,Quality,NPL Ratio %,2.0
 2026-09,Quality,CKPN Coverage %,110.0

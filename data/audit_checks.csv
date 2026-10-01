@@ -1,7 +1,7 @@
 period,check,difference,status
 2024-01,Assets = Liabilities + Equity,0.0028,PASS
 2024-01,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
-2024-01,Income Statement arithmetic,-0.0,PASS
+2024-01,Income Statement arithmetic,0.0,PASS
 2024-01,Credit detail = BS Credit,0.0,PASS
 2024-01,Investment detail = BS Penempatan,0.0,PASS
 2024-01,DPK detail = BS Giro+Tabungan+Deposito,-0.0,PASS
@@ -13,7 +13,7 @@ period,check,difference,status
 2024-02,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
 2024-03,Assets = Liabilities + Equity,0.0028,PASS
 2024-03,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
-2024-03,Income Statement arithmetic,-0.0,PASS
+2024-03,Income Statement arithmetic,0.0,PASS
 2024-03,Credit detail = BS Credit,0.0,PASS
 2024-03,Investment detail = BS Penempatan,0.0,PASS
 2024-03,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
@@ -31,7 +31,7 @@ period,check,difference,status
 2024-05,DPK detail = BS Giro+Tabungan+Deposito,-0.0,PASS
 2024-06,Assets = Liabilities + Equity,0.0028,PASS
 2024-06,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
-2024-06,Income Statement arithmetic,0.01,PASS
+2024-06,Income Statement arithmetic,-0.0,PASS
 2024-06,Credit detail = BS Credit,0.0,PASS
 2024-06,Investment detail = BS Penempatan,0.0,PASS
 2024-06,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
@@ -43,31 +43,31 @@ period,check,difference,status
 2024-07,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
 2024-08,Assets = Liabilities + Equity,0.0028,PASS
 2024-08,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
-2024-08,Income Statement arithmetic,0.01,PASS
+2024-08,Income Statement arithmetic,-0.0,PASS
 2024-08,Credit detail = BS Credit,0.0,PASS
 2024-08,Investment detail = BS Penempatan,0.0,PASS
 2024-08,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
 2024-09,Assets = Liabilities + Equity,0.0028,PASS
 2024-09,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
-2024-09,Income Statement arithmetic,0.01,PASS
+2024-09,Income Statement arithmetic,-0.0,PASS
 2024-09,Credit detail = BS Credit,0.0,PASS
 2024-09,Investment detail = BS Penempatan,0.0,PASS
 2024-09,DPK detail = BS Giro+Tabungan+Deposito,-0.0,PASS
 2024-10,Assets = Liabilities + Equity,0.0028,PASS
 2024-10,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
-2024-10,Income Statement arithmetic,0.01,PASS
+2024-10,Income Statement arithmetic,-0.0,PASS
 2024-10,Credit detail = BS Credit,0.0,PASS
 2024-10,Investment detail = BS Penempatan,0.0,PASS
 2024-10,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
 2024-11,Assets = Liabilities + Equity,0.0028,PASS
 2024-11,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
-2024-11,Income Statement arithmetic,0.01,PASS
+2024-11,Income Statement arithmetic,-0.0,PASS
 2024-11,Credit detail = BS Credit,0.0,PASS
 2024-11,Investment detail = BS Penempatan,-0.0,PASS
 2024-11,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
 2024-12,Assets = Liabilities + Equity,0.0028,PASS
 2024-12,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
-2024-12,Income Statement arithmetic,-0.0,PASS
+2024-12,Income Statement arithmetic,0.0,PASS
 2024-12,Credit detail = BS Credit,0.0,PASS
 2024-12,Investment detail = BS Penempatan,0.0,PASS
 2024-12,DPK detail = BS Giro+Tabungan+Deposito,-0.0,PASS
@@ -85,13 +85,13 @@ period,check,difference,status
 2025-02,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
 2025-03,Assets = Liabilities + Equity,0.0028,PASS
 2025-03,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
-2025-03,Income Statement arithmetic,-0.0,PASS
+2025-03,Income Statement arithmetic,0.0,PASS
 2025-03,Credit detail = BS Credit,0.0,PASS
 2025-03,Investment detail = BS Penempatan,0.0,PASS
 2025-03,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
 2025-04,Assets = Liabilities + Equity,0.0028,PASS
 2025-04,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
-2025-04,Income Statement arithmetic,-0.0,PASS
+2025-04,Income Statement arithmetic,0.0,PASS
 2025-04,Credit detail = BS Credit,0.0,PASS
 2025-04,Investment detail = BS Penempatan,0.0,PASS
 2025-04,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
@@ -103,7 +103,7 @@ period,check,difference,status
 2025-05,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
 2025-06,Assets = Liabilities + Equity,0.0028,PASS
 2025-06,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
-2025-06,Income Statement arithmetic,0.01,PASS
+2025-06,Income Statement arithmetic,0.0,PASS
 2025-06,Credit detail = BS Credit,0.0,PASS
 2025-06,Investment detail = BS Penempatan,0.0,PASS
 2025-06,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
@@ -115,31 +115,31 @@ period,check,difference,status
 2025-07,DPK detail = BS Giro+Tabungan+Deposito,-0.0,PASS
 2025-08,Assets = Liabilities + Equity,0.0028,PASS
 2025-08,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
-2025-08,Income Statement arithmetic,0.01,PASS
+2025-08,Income Statement arithmetic,-0.0,PASS
 2025-08,Credit detail = BS Credit,0.0,PASS
 2025-08,Investment detail = BS Penempatan,-0.0,PASS
 2025-08,DPK detail = BS Giro+Tabungan+Deposito,-0.0,PASS
 2025-09,Assets = Liabilities + Equity,0.0028,PASS
 2025-09,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
-2025-09,Income Statement arithmetic,0.01,PASS
+2025-09,Income Statement arithmetic,0.0,PASS
 2025-09,Credit detail = BS Credit,0.0,PASS
 2025-09,Investment detail = BS Penempatan,0.0,PASS
 2025-09,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
 2025-10,Assets = Liabilities + Equity,0.0028,PASS
 2025-10,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
-2025-10,Income Statement arithmetic,-0.0,PASS
+2025-10,Income Statement arithmetic,0.0,PASS
 2025-10,Credit detail = BS Credit,0.0,PASS
 2025-10,Investment detail = BS Penempatan,0.0,PASS
 2025-10,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
 2025-11,Assets = Liabilities + Equity,0.0028,PASS
 2025-11,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
-2025-11,Income Statement arithmetic,0.01,PASS
+2025-11,Income Statement arithmetic,0.0,PASS
 2025-11,Credit detail = BS Credit,0.0,PASS
 2025-11,Investment detail = BS Penempatan,0.0,PASS
 2025-11,DPK detail = BS Giro+Tabungan+Deposito,-0.0,PASS
 2025-12,Assets = Liabilities + Equity,0.0028,PASS
 2025-12,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
-2025-12,Income Statement arithmetic,0.0,PASS
+2025-12,Income Statement arithmetic,-0.0,PASS
 2025-12,Credit detail = BS Credit,0.0,PASS
 2025-12,Investment detail = BS Penempatan,0.0,PASS
 2025-12,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
@@ -163,37 +163,37 @@ period,check,difference,status
 2026-03,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
 2026-04,Assets = Liabilities + Equity,0.0028,PASS
 2026-04,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
-2026-04,Income Statement arithmetic,0.0,PASS
+2026-04,Income Statement arithmetic,-0.0,PASS
 2026-04,Credit detail = BS Credit,0.0,PASS
 2026-04,Investment detail = BS Penempatan,0.0,PASS
 2026-04,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
 2026-05,Assets = Liabilities + Equity,0.0028,PASS
-2026-05,YTD Net Profit = BS Laba Tahun Berjalan,-0.0,PASS
-2026-05,Income Statement arithmetic,-0.01,PASS
+2026-05,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2026-05,Income Statement arithmetic,0.0,PASS
 2026-05,Credit detail = BS Credit,0.0,PASS
 2026-05,Investment detail = BS Penempatan,0.0,PASS
 2026-05,DPK detail = BS Giro+Tabungan+Deposito,-0.0,PASS
 2026-06,Assets = Liabilities + Equity,0.0028,PASS
-2026-06,YTD Net Profit = BS Laba Tahun Berjalan,-0.0,PASS
-2026-06,Income Statement arithmetic,-0.0,PASS
+2026-06,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2026-06,Income Statement arithmetic,0.0,PASS
 2026-06,Credit detail = BS Credit,-0.0,PASS
 2026-06,Investment detail = BS Penempatan,0.0,PASS
 2026-06,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
 2026-07,Assets = Liabilities + Equity,0.0028,PASS
-2026-07,YTD Net Profit = BS Laba Tahun Berjalan,-0.0,PASS
-2026-07,Income Statement arithmetic,0.0,PASS
+2026-07,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2026-07,Income Statement arithmetic,-0.0,PASS
 2026-07,Credit detail = BS Credit,0.0,PASS
 2026-07,Investment detail = BS Penempatan,-0.0,PASS
 2026-07,DPK detail = BS Giro+Tabungan+Deposito,-0.0,PASS
 2026-08,Assets = Liabilities + Equity,0.0028,PASS
-2026-08,YTD Net Profit = BS Laba Tahun Berjalan,-0.0,PASS
-2026-08,Income Statement arithmetic,0.0,PASS
+2026-08,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2026-08,Income Statement arithmetic,-0.0,PASS
 2026-08,Credit detail = BS Credit,0.0,PASS
 2026-08,Investment detail = BS Penempatan,0.0,PASS
 2026-08,DPK detail = BS Giro+Tabungan+Deposito,-0.0,PASS
 2026-09,Assets = Liabilities + Equity,0.0028,PASS
-2026-09,YTD Net Profit = BS Laba Tahun Berjalan,-0.0,PASS
-2026-09,Income Statement arithmetic,-0.0,PASS
+2026-09,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2026-09,Income Statement arithmetic,0.0,PASS
 2026-09,Credit detail = BS Credit,-0.0,PASS
 2026-09,Investment detail = BS Penempatan,0.0,PASS
 2026-09,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
