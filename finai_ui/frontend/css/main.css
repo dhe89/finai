@@ -502,3 +502,25 @@ tr.profit-total td{font-weight:900;background:#f0f6df;color:#35423e}
     z-index:1 !important;
   }
 }
+
+/* Provider diagnostics: compact testing aid, hidden until opened. */
+.ai-diagnostics {
+  margin-top: 7px;
+  font-size: 11px;
+  color: #7a7f87;
+}
+.ai-diagnostics summary {
+  cursor: pointer;
+  user-select: none;
+  color: #6f747c;
+}
+.ai-attempt {
+  margin-top: 6px;
+  padding: 7px 9px;
+  border: 1px solid rgba(0,0,0,.07);
+  border-radius: 8px;
+  background: rgba(0,0,0,.025);
+  line-height: 1.35;
+}
+.ai-attempt-status { color: #8a5a5a; }
+.ai-attempt-reason { color: #666b73; }
