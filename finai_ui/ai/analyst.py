@@ -101,9 +101,10 @@ def inspect(question, evidence, context=None, model=DEFAULT_MODEL):
     return {"ok": True, "analysis": data, "model": result.get("model")}
 
 
-def synthesize(question, evidence, findings=None, model=DEFAULT_MODEL):
+def synthesize(question, evidence, findings=None, model=DEFAULT_MODEL, retry=False):
     model_evidence = prepare_model_evidence(evidence)
-    prompt = f"""PERTANYAAN PENGGUNA:\n{question}\n\nTEMUAN ANALISIS:\n{findings or []}\n\nEVIDENCE ANALITIS:\n{model_evidence}\n\nTulis jawaban final dalam Bahasa Indonesia. Jangan tampilkan proses berpikir atau metadata internal."""
+    retry_instruction = ("\nIni adalah percobaan kedua. Abaikan format/struktur yang tidak perlu dan berikan langsung jawaban analitis yang lengkap, singkat namun substantif." if retry else "")
+    prompt = f"""PERTANYAAN PENGGUNA:\n{question}\n\nTEMUAN ANALISIS:\n{findings or []}\n\nEVIDENCE ANALITIS:\n{model_evidence}\n{retry_instruction}\nTulis jawaban final dalam Bahasa Indonesia. Jangan tampilkan proses berpikir atau metadata internal."""
     response = complete_text(
         FINAL_PROMPT,
         prompt,
