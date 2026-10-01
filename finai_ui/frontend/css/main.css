@@ -7,14 +7,40 @@ button{font:inherit;cursor:pointer}
 /* APP LAYOUT
    The AI panel is intentionally NOT a grid column. It is a fixed overlay so
    opening/closing AI never changes the dashboard width. */
-.app{min-height:100vh;display:grid;grid-template-columns:250px minmax(0,1fr);background:var(--bg);overflow:hidden}
+.app{
+  position:relative;
+  height:var(--finai-vh,100dvh);
+  min-height:var(--finai-vh,100dvh);
+  display:grid;
+  grid-template-columns:250px minmax(0,1fr);
+  background:var(--bg);
+  overflow:hidden;
+}
 .app.left-collapsed{grid-template-columns:72px minmax(0,1fr)}
 
 /* LEFT SIDEBAR */
-.left{position:relative;background:var(--green) !important;background-color:#005642 !important;color:#fff !important;padding:18px 14px 18px;min-width:0;min-height:100%;overflow:hidden;z-index:1000;isolation:isolate;opacity:1}
+.left{
+  position:relative;
+  background:var(--green) !important;
+  background-color:#005642 !important;
+  color:#fff !important;
+  padding:18px 14px 18px;
+  min-width:0;
+  height:100%;
+  min-height:0;
+  overflow:hidden;
+  z-index:1000;
+  isolation:isolate;
+  opacity:1;
+}
 .sidebar-head{height:42px;display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 2px 24px}
+.sidebar-mobile-brand{display:none}
+.mobile-brand{display:flex;align-items:center;justify-content:center;gap:10px;font-size:20px;font-weight:800;white-space:nowrap;line-height:1}
+.mobile-brand-mark{width:30px;height:30px;min-width:30px;min-height:30px;border-radius:9px;background:var(--lime);color:var(--green);display:grid;place-items:center;font-weight:900;line-height:1;flex:none}
+.mobile-brand-text{display:block}
 .brand{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;white-space:nowrap;min-width:0}
 .brand-mark,.ai-mark{width:30px;height:30px;border-radius:9px;background:var(--lime);color:var(--green);display:grid;place-items:center;font-weight:900;flex:none}
+#finai-root > .left .brand-mark{width:30px !important;height:30px !important;min-width:30px !important;min-height:30px !important;border-radius:9px !important;background:#b7f51d !important;color:#005642 !important;display:grid !important;place-items:center !important;font-weight:900 !important;line-height:1 !important;flex:none !important;opacity:1 !important;visibility:visible !important;}
 .sidebar-toggle{width:34px;height:34px;border-radius:10px;border:1px solid rgba(255,255,255,.28);background:#0b6a56;color:#fff !important;display:grid;place-items:center;font-size:19px;line-height:1;flex:none;opacity:1;visibility:visible;position:relative;z-index:1100;appearance:none;-webkit-appearance:none}
 .nav{display:flex;flex-direction:column;gap:8px}
 .nav-item{height:46px;border-radius:13px;display:flex;align-items:center;gap:12px;padding:0 12px;color:#d9ece6;font-size:14px;font-weight:650;white-space:nowrap}
@@ -23,9 +49,9 @@ button{font:inherit;cursor:pointer}
 .nav-item.active{background:#14765f;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.10),0 4px 12px rgba(0,86,66,.16);font-weight:750}
 .nav-icon{width:22px;text-align:center;flex:none;font-size:14px}
 .app.left-collapsed .brand-text,.app.left-collapsed .nav-text,.app.left-collapsed .config-text,.app.left-collapsed .config-pill,.app.left-collapsed .status{display:none}
-.app.left-collapsed .sidebar-head{justify-content:center;margin-left:0;margin-right:0}
-.app.left-collapsed .brand{justify-content:center}
-.app.left-collapsed .sidebar-toggle{position:absolute;top:22px;right:7px;width:30px;height:30px;border-radius:8px;font-size:15px;background:#0b6a56 !important;color:#fff !important;z-index:1100}
+.app.left-collapsed .sidebar-head{justify-content:flex-start;margin-left:0;margin-right:0;position:relative}
+.app.left-collapsed .brand{justify-content:flex-start}
+.app.left-collapsed .sidebar-toggle{position:absolute;top:5px;right:5px;width:22px;height:22px;border-radius:7px;font-size:18px;font-weight:800;background:#0b6a56 !important;color:#fff !important;z-index:1100;padding:0}
 .app.left-collapsed .brand-mark{width:32px;height:32px}
 .app.left-collapsed .nav-item{justify-content:center;padding:0}
 .config{position:absolute;left:14px;right:14px;bottom:18px;border-top:1px solid #ffffff1f;padding-top:15px;color:#9ac3b8;font-size:9px;letter-spacing:1.3px}
@@ -34,19 +60,27 @@ button{font:inherit;cursor:pointer}
 .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--lime);margin-right:5px}
 
 /* MAIN DASHBOARD */
-.main{min-width:0;overflow:auto;padding:28px clamp(20px,3vw,44px) 44px}
+.main{min-width:0;overflow:auto;padding:0 clamp(20px,3vw,44px) 44px}
 .desktop-header{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:20px;min-height:42px}
 .desktop-header-left{display:flex;align-items:center;gap:10px;min-width:0}
-.desktop-app-name{font-size:13px;font-weight:800;color:#65716c}
+.desktop-app-name{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800;color:#65716c;line-height:1}
+.desktop-app-name::before{display:none;content:none}
 .desktop-ai-trigger{width:40px;height:40px;border-radius:50%;border:1px solid #e4e9e6;background:#fff;color:var(--green);display:grid;place-items:center;box-shadow:0 4px 12px #0000000d;font-size:18px}
 .topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:20px}
-.eyebrow{color:#a0aaa6;font-size:9px;letter-spacing:2px;font-weight:700}.title{font-size:31px;line-height:1.05;font-weight:800;margin:3px 0 0}.subtitle{color:#9aa49f;font-size:11px;margin-top:7px}.period{background:#eff6d9;color:#6c7d42;border-radius:18px;padding:10px 15px;font-size:10px;font-weight:700;white-space:nowrap}
+.eyebrow{color:#a0aaa6;font-size:9px;letter-spacing:2px;font-weight:700}.title{font-size:31px;line-height:1.05;font-weight:800;margin:3px 0 0}.subtitle{color:#9aa49f;font-size:11px;margin-top:7px} .period{background:#eff6d9;color:#6c7d42;border-radius:18px;padding:10px 15px;font-size:10px;font-weight:700;white-space:nowrap}
+.period-picker{position:relative;display:inline-flex;align-items:center;gap:6px;background:#eff6d9;color:#6c7d42;border-radius:18px;padding:0 12px 0 13px;min-height:38px;cursor:pointer;white-space:nowrap}
+.period-picker-label{display:none}
+.period-select{appearance:none;-webkit-appearance:none;border:0;outline:0;background:transparent;color:#6c7d42;font:inherit;font-size:10px;font-weight:700;padding:10px 20px 10px 0;cursor:pointer;max-width:150px}
+.period-select option{background:#fff;color:#35423e;font-weight:600}
+.period-chevron{position:absolute;right:11px;top:50%;transform:translateY(-54%);pointer-events:none;font-size:11px;color:#718044}
+.period-select:focus-visible{outline:2px solid #9ab56f;outline-offset:2px;border-radius:8px}
+
 .metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:14px}.card{background:#fff;border:1px solid #edf0ef;border-radius:17px;box-shadow:0 7px 20px #1e41370b}.metric{padding:17px}.metric-label{color:#909b97;font-size:10px}.metric-value{font-size:22px;font-weight:800;margin-top:6px}.metric-change{color:#a78282;font-size:8px;margin-top:5px}
 .table-card{overflow:hidden}.table-head{display:flex;justify-content:space-between;align-items:center;padding:16px 17px 12px}.table-title{font-size:14px;font-weight:800}.caption{font-size:8px;color:#9ba5a1;margin-top:3px}.switcher{background:#f0f6df;color:#718044;border-radius:18px;padding:8px 12px;font-size:9px;font-weight:700}.data-wrap{overflow-x:auto}table{width:100%;min-width:680px;border-collapse:collapse;font-size:8px}th{color:#a1aaa7;font-weight:600;padding:8px 12px;text-align:right;border-top:1px solid var(--line)}th:first-child,td:first-child{text-align:left}td{color:#737d79;padding:10px 12px;text-align:right;border-top:1px solid #edf0ef}tr.section td{background:#eef5ef;color:#64806f;font-size:9px;letter-spacing:1.5px;font-weight:800;text-align:left;padding:8px 12px}
 .bottom{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}.small{padding:16px}.small-title{font-size:12px;font-weight:800}.kpi{display:flex;justify-content:space-between;margin-top:15px;font-size:9px}.kpi-label{color:#68736f}.kpi-value{font-size:11px;font-weight:800}
 
 /* AI ASSISTANT OVERLAY */
-.ai{position:fixed;z-index:500;top:0;right:0;width:min(410px,42vw);height:100dvh;background:#fff;border-left:1px solid #e2e9e5;display:flex;flex-direction:column;overflow:hidden;box-shadow:-18px 0 48px #00000018;transform:translateX(0);opacity:1;visibility:visible;transition:transform .24s ease,opacity .18s ease,visibility .24s ease}
+.ai{position:fixed;z-index:500;top:var(--finai-top-offset,0px);right:0;width:min(410px,42vw);height:var(--finai-vh,100dvh);background:#fff;border-left:1px solid #e2e9e5;display:flex;flex-direction:column;overflow:hidden;box-shadow:-18px 0 48px #00000018;transform:translateX(0);opacity:1;visibility:visible;transition:transform .24s ease,opacity .18s ease,visibility .24s ease}
 .ai.closed{transform:translateX(105%);opacity:0;visibility:hidden;pointer-events:none}
 .ai-head{min-height:72px;padding:18px 18px 15px;border-bottom:1px solid #edf0ef;display:flex;justify-content:space-between;align-items:center;background:#fff}
 .ai-title{font-size:15px;font-weight:800;color:#18211f}
@@ -72,40 +106,7 @@ button{font:inherit;cursor:pointer}
 .send:disabled{opacity:.55;cursor:default;transform:none}
 .mobile-head{display:none}
 
-@media(max-width:800px){
- body{background:#f4f7f5}
- .app,.app.left-collapsed{display:block;min-height:100vh;overflow:visible}
- .left{position:fixed;z-index:300;left:0;top:var(--finai-top-offset,0px);bottom:0;width:min(82vw,320px);height:var(--finai-vh,100dvh);transform:translateX(-105%);transition:transform .25s ease;box-shadow:12px 0 40px #0003;padding:18px 16px}
- .left.mobile-open{transform:translateX(0);z-index:1000}
- .app.left-collapsed .left{padding:18px 16px;background:#005642 !important}
- .app.left-collapsed .brand-text,.app.left-collapsed .nav-text,.app.left-collapsed .config-text,.app.left-collapsed .config-pill,.app.left-collapsed .status{display:inline}
- .app.left-collapsed .sidebar-head{justify-content:space-between;margin-left:2px;margin-right:2px}
- .app.left-collapsed .brand{justify-content:flex-start}
- .app.left-collapsed .sidebar-toggle{position:static;width:34px;height:34px;border-radius:10px;font-size:19px;background:#ffffff12}
- .app.left-collapsed .nav-item{justify-content:flex-start;padding:0 12px}
- .main{padding:22px 18px 38px;overflow:visible}
- .desktop-header{display:none}
- .topbar{margin-bottom:20px}.title{font-size:29px}.metrics{gap:12px}.metric{padding:17px}.metric-value{font-size:20px}.bottom{grid-template-columns:1fr}
- .mobile-head{display:flex;position:sticky;top:0;left:auto;right:auto;height:74px;z-index:250;background:#fff;border-bottom:1px solid #edf0ef;align-items:center;justify-content:center;box-shadow:0 3px 12px #00000006}
- .mobile-menu{position:absolute;left:18px;top:16px;width:42px;height:42px;border-radius:50%;border:1px solid #e7ebe9;background:#fff;font-size:21px;color:#66716d}
- .mobile-brand{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:800}
- .mobile-ai{position:absolute;right:18px;top:16px;width:42px;height:42px;border-radius:50%;border:1px solid #e7ebe9;background:#fff;color:var(--green);font-size:17px}
- .ai{z-index:500;inset:0;width:100vw;height:100dvh;border:0;box-shadow:none;transition:transform .24s ease,opacity .18s ease}
- .ai.closed{transform:translateX(105%)}
- .mobile-overlay{display:none;position:fixed;inset:0;z-index:200;background:#00302655;backdrop-filter:blur(1px)}.mobile-overlay.show{display:block}
- .ai-head{padding-top:24px}
-}
-@media(min-width:801px){.mobile-head,.mobile-overlay{display:none}}
-/* SIDEBAR VISIBILITY PATCH
-   Keep the navigation surface opaque in both desktop and mobile component contexts.
-   The drawer must sit above the dimming overlay. */
-#finai-root .app > .left{background:#005642 !important;background-color:#005642 !important;opacity:1 !important;z-index:1000 !important;}
-#finai-root .app > .left .nav{background:transparent !important;}
-#finai-root .app > .left .nav-item:not(.active){background:transparent !important;color:#d9ece6 !important;}
-#finai-root .app > .left .nav-item.active{background:#14765f !important;color:#fff !important;}
-#finai-root .app > .left .sidebar-toggle{display:grid !important;visibility:visible !important;opacity:1 !important;color:#fff !important;background:#0b6a56 !important;z-index:1100 !important;}
-#finai-root .mobile-overlay{z-index:200 !important;}
-#finai-root .app > .left.mobile-open{z-index:1000 !important;}
+
 
 .nav-item[data-page]{cursor:pointer}
 .nav-item[data-page]:focus-visible,.desktop-ai-trigger:focus-visible,
@@ -117,92 +118,383 @@ button{font:inherit;cursor:pointer}
 .setting-label{color:#68736f}.setting-value{font-weight:800;color:#35423e}
 .badge{display:inline-block;background:#f0f6df;color:#718044;border-radius:18px;padding:8px 12px;font-size:9px;font-weight:700}
 @media(max-width:800px){
+  .period-picker{min-height:36px;padding-left:11px;padding-right:11px}
+  .period-select{font-size:10px;max-width:132px;padding-top:9px;padding-bottom:9px}
+
+ .desktop-app-name{display:block;line-height:normal}
+ .desktop-app-name::before{display:none;content:none}
  .form-grid{grid-template-columns:1fr}
  .ai-foot-row{align-items:flex-end}
  .ai-foot-row .send{min-width:34px}
 }
-
-/* V4: keep fixed UI below the native Streamlit toolbar/header. */
-#finai-root .ai{top:var(--finai-top-offset,0px);height:var(--finai-vh,100dvh)}
-#finai-root .mobile-head{top:var(--finai-top-offset,0px)}
-@media(max-width:800px){
-  #finai-root .left{top:var(--finai-top-offset,0px);height:var(--finai-vh,100dvh)}
-  #finai-root .ai{inset:var(--finai-top-offset,0px) 0 0 0;width:100vw;height:var(--finai-vh,100dvh)}
+/* Chat analysis animation */
+.typing-msg{align-items:flex-start}
+.typing-bubble{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  min-width:46px;
+  padding:10px 12px;
+  border:1px solid #e5ebe8;
+  border-radius:14px 14px 14px 4px;
+  background:#f7f9f8;
 }
+.typing-bubble span{
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#8a9791;
+  animation:finaiTyping 1.1s infinite ease-in-out;
+}
+.typing-bubble span:nth-child(2){animation-delay:.15s}
+.typing-bubble span:nth-child(3){animation-delay:.30s}
+@keyframes finaiTyping{
+  0%,60%,100%{transform:translateY(0);opacity:.35}
+  30%{transform:translateY(-4px);opacity:1}
+}
+
+
 /* ================================================================
-   FINAI TYPOGRAPHY PATCH — v2
-   Typography only. Do not change layout, spacing, positioning,
-   dimensions, grid/flex behaviour, or responsive structure.
+   FINAI MOBILE/STACKING BASELINE
+   Single source of truth for shell geometry.
    ================================================================ */
-#finai-root,
-#finai-root button,
-#finai-root input,
-#finai-root textarea,
-#finai-root select {
-  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+#finai-root{
+  position:relative;
+  width:100%;
+  min-width:0;
+  min-height:var(--finai-vh,100dvh);
+  display:grid;
+  grid-template-columns:250px minmax(0,1fr);
+  background:var(--bg);
+}
+#finai-root.desktop-collapsed{
+  grid-template-columns:72px minmax(0,1fr);
+}
+#finai-root > .left{
+  grid-column:1;
+  grid-row:1;
+  position:relative;
+  width:auto;
+  height:var(--finai-vh,100dvh);
+  min-height:0;
+  padding:18px 14px 18px;
+  overflow:hidden;
+  z-index:1;
+}
+#finai-root > .app{
+  grid-column:2;
+  grid-row:1;
+  position:relative;
+  display:block;
+  min-width:0;
+  min-height:var(--finai-vh,100dvh);
+  height:var(--finai-vh,100dvh);
+  overflow:hidden;
+  background:var(--bg);
+}
+#finai-root > .mobile-head,
+#finai-root > .mobile-overlay{
+  display:none;
+}
+#finai-root.desktop-collapsed > .left .brand-text,
+#finai-root.desktop-collapsed > .left .nav-text,
+#finai-root.desktop-collapsed > .left .config-text,
+#finai-root.desktop-collapsed > .left .config-pill,
+#finai-root.desktop-collapsed > .left .status{display:none}
+#finai-root.desktop-collapsed > .left .sidebar-head{
+  justify-content:flex-start;
+  margin-left:0;
+  margin-right:0;
+  position:relative;
+}
+#finai-root.desktop-collapsed > .left .brand{justify-content:flex-start}
+#finai-root.desktop-collapsed > .left{
+  /* Allow the desktop expand control to sit slightly outside the sidebar.
+     This is intentionally desktop-only; mobile uses its own drawer control. */
+  overflow:visible;
+}
+#finai-root.desktop-collapsed > .left .sidebar-toggle{
+  position:absolute;
+  top:6px;
+  right:-33px;
+  width:30px;
+  height:30px;
+  min-width:30px;
+  min-height:30px;
+  border-radius:9px;
+  border:1px solid rgba(255,255,255,.28);
+  background:#0b6a56 !important;
+  color:#fff !important;
+  font-size:22px;
+  font-weight:800;
+  line-height:1;
+  padding:0;
+  display:grid;
+  place-items:center;
+  z-index:1200;
+  box-shadow:0 3px 10px rgba(0,86,66,.22);
+}
+#finai-root.desktop-collapsed > .left .sidebar-toggle:hover{
+  background:#14765f !important;
+}
+#finai-root.desktop-collapsed > .left .nav-item{
+  justify-content:center;
+  padding:0;
 }
 
-/* Sidebar text */
-#finai-root .brand { font-size: 20px; }
-#finai-root .nav-item { font-size: 14px; }
-#finai-root .nav-icon { font-size: 14px; }
-#finai-root .config { font-size: 9px; }
-#finai-root .config-pill { font-size: 9px; }
-#finai-root .status { font-size: 9px; }
+/* Responsive shell:
+   --finai-top-offset is the actual top edge of #finai-root.
+   Sidebar, FinAI header and AI overlay therefore share one coordinate origin.
+   Mobile keeps the same stacking order: sidebar / backdrop / header / content.
+*/
+@media(max-width:800px){
+  #finai-root,
+  #finai-root.desktop-collapsed{
+    display:block;
+    width:100%;
+    min-width:0;
+    min-height:var(--finai-vh,100dvh);
+    margin:0;
+    padding:0;
+    background:var(--bg);
+    overflow:visible;
+  }
 
-/* Page heading */
-#finai-root .desktop-app-name { font-size: 13px; }
-#finai-root .eyebrow { font-size: 9px; }
-#finai-root .title { font-size: 31px; }
-#finai-root .subtitle { font-size: 11px; }
-#finai-root .period { font-size: 10px; }
+  #finai-root > .app{
+    display:block;
+    width:100%;
+    min-width:0;
+    min-height:var(--finai-vh,100dvh);
+    height:auto;
+    margin:0;
+    padding:0;
+    overflow:visible;
+    background:var(--bg);
+    z-index:0;
+  }
+  #finai-root > .app .main{
+    min-width:0;
+    overflow:visible;
+    padding:96px 18px 38px;
+  }
 
-/* KPI cards */
-#finai-root .metric-label { font-size: 10px; }
-#finai-root .metric-value { font-size: 22px; }
-#finai-root .metric-change { font-size: 8px; }
+  /* 1 — SIDEBAR */
+  #finai-root > .left{
+    position:fixed !important;
+    top:var(--finai-top-offset,0px) !important;
+    right:auto !important;
+    bottom:0 !important;
+    left:0 !important;
+    width:min(82vw,320px) !important;
+    height:auto !important;
+    max-height:none !important;
+    min-height:0 !important;
+    margin:0 !important;
+    padding:18px 16px 24px !important;
+    box-sizing:border-box !important;
+    background:#005642 !important;
+    background-color:#005642 !important;
+    color:#fff !important;
+    opacity:1 !important;
+    visibility:visible !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    -webkit-overflow-scrolling:touch !important;
+    transform:translateX(-105%) !important;
+    transition:transform .25s ease !important;
+    z-index:3000 !important;
+    isolation:isolate !important;
+    box-shadow:12px 0 40px rgba(0,0,0,.20) !important;
+    pointer-events:none !important;
+  }
+  #finai-root > .left.mobile-open{
+    transform:translateX(0) !important;
+    pointer-events:auto !important;
+  }
+  #finai-root > .left .sidebar-head{display:none !important}
+  #finai-root > .left .sidebar-mobile-brand{
+    display:flex !important;
+    align-items:center !important;
+    gap:10px !important;
+    height:42px !important;
+    margin:0 2px 24px !important;
+    color:#fff !important;
+    font-size:20px !important;
+    font-weight:800 !important;
+    white-space:nowrap !important;
+  }
+  #finai-root > .left .sidebar-mobile-brand .sidebar-logo-mark{
+    width:30px !important;
+    height:30px !important;
+    min-width:30px !important;
+    min-height:30px !important;
+    border-radius:9px !important;
+    background:#b7f51d !important;
+    color:#005642 !important;
+    display:grid !important;
+    place-items:center !important;
+    font-weight:900 !important;
+    line-height:1 !important;
+    flex:none !important;
+    opacity:1 !important;
+    visibility:visible !important;
+  }
+  #finai-root > .left .nav{
+    display:flex !important;
+    margin:0 !important;
+    padding:0 !important;
+    gap:8px !important;
+    background:transparent !important;
+  }
+  #finai-root > .left .nav-item{
+    width:100% !important;
+    height:48px !important;
+    min-height:48px !important;
+    margin:0 !important;
+    padding:0 12px !important;
+    justify-content:flex-start !important;
+    background:transparent !important;
+    color:#d9ece6 !important;
+  }
+  #finai-root > .left .nav-item.active{
+    background:#14765f !important;
+    color:#fff !important;
+  }
+  #finai-root > .left .config{
+    position:relative !important;
+    left:auto !important;
+    right:auto !important;
+    bottom:auto !important;
+    width:100% !important;
+    margin:28px 0 0 !important;
+  }
 
-/* Tables */
-#finai-root .table-title { font-size: 14px; }
-#finai-root .caption { font-size: 8px; }
-#finai-root .switcher { font-size: 9px; }
-#finai-root table { font-size: 9px; }
-#finai-root th { font-size: 9px; }
-#finai-root td { font-size: 9px; }
-#finai-root tr.section td { font-size: 9px; }
+  /* 2 — SHADOW / BACKDROP */
+  #finai-root > .mobile-overlay{
+    display:none !important;
+    position:fixed !important;
+    top:var(--finai-top-offset,0px) !important;
+    right:0 !important;
+    bottom:0 !important;
+    left:0 !important;
+    width:auto !important;
+    height:auto !important;
+    margin:0 !important;
+    padding:0 !important;
+    box-sizing:border-box !important;
+    z-index:2500 !important;
+    background:rgba(0,48,38,.34) !important;
+    backdrop-filter:blur(1px) !important;
+    -webkit-backdrop-filter:blur(1px) !important;
+    pointer-events:none !important;
+  }
+  #finai-root > .mobile-overlay.show{
+    display:block !important;
+    pointer-events:auto !important;
+  }
 
-/* Summary cards */
-#finai-root .small-title { font-size: 12px; }
-#finai-root .small .caption { font-size: 8px; }
-#finai-root .kpi { font-size: 9px; }
-#finai-root .kpi-value { font-size: 11px; }
+  /* On mobile the fixed FinAI header already owns the AI trigger.
+   Hide the duplicate page-level trigger so only one AI icon remains. */
+  #finai-root > .app .desktop-ai-trigger{
+    display:none !important;
+  }
 
-/* Forms / settings */
-#finai-root .setting-row { font-size: 10px; }
-#finai-root .badge { font-size: 9px; }
+  /* 3 — FINAI HEADER */
+  #finai-root > .mobile-head{
+    display:flex !important;
+    position:fixed !important;
+    top:var(--finai-top-offset,0px) !important;
+    right:0 !important;
+    bottom:auto !important;
+    left:0 !important;
+    width:100% !important;
+    height:74px !important;
+    min-height:74px !important;
+    margin:0 !important;
+    padding:0 !important;
+    box-sizing:border-box !important;
+    z-index:2000 !important;
+    background:#fff !important;
+    border-bottom:1px solid #edf0ef !important;
+    box-shadow:0 3px 12px rgba(0,0,0,.04) !important;
+    align-items:center !important;
+    justify-content:center !important;
+  }
+  #finai-root > .mobile-head .mobile-brand{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:10px !important;
+    height:42px !important;
+    line-height:1 !important;
+  }
+  #finai-root > .mobile-head .mobile-brand-mark{
+    width:30px !important;
+    height:30px !important;
+    min-width:30px !important;
+    min-height:30px !important;
+    border-radius:9px !important;
+    background:#b7f51d !important;
+    color:#005642 !important;
+    display:grid !important;
+    place-items:center !important;
+    font-weight:900 !important;
+    line-height:1 !important;
+    flex:none !important;
+    opacity:1 !important;
+    visibility:visible !important;
+  }
+  #finai-root > .mobile-head .mobile-brand-text{
+    display:block !important;
+    color:#18211f !important;
+    font-size:20px !important;
+    font-weight:800 !important;
+    line-height:1 !important;
+  }
 
-/* AI Assistant */
-#finai-root .ai-title { font-size: 15px; }
-#finai-root .ai-status { font-size: 8px; }
-#finai-root .msgtext { font-size: 10.5px; }
-#finai-root .bubble { font-size: 10px; }
-#finai-root .chat-input { font-size: 10px; }
+  #finai-root > .mobile-head .mobile-menu,
+  #finai-root > .mobile-head .mobile-ai{
+    display:grid !important;
+    position:absolute !important;
+    top:16px !important;
+    width:42px !important;
+    height:42px !important;
+    margin:0 !important;
+    padding:0 !important;
+    border:0 !important;
+    border-radius:10px !important;
+    background:transparent !important;
+    box-shadow:none !important;
+    color:#65716c !important;
+    place-items:center !important;
+  }
+  #finai-root > .mobile-head .mobile-menu{left:18px !important}
+  #finai-root > .mobile-head .mobile-ai{right:18px !important;color:var(--green) !important}
+  #finai-root > .mobile-head .mobile-menu:hover,
+  #finai-root > .mobile-head .mobile-ai:hover{background:#f4f7f5 !important}
 
-/* Mobile: font sizes only. No layout/spacing changes. */
-@media (max-width: 800px) {
-  #finai-root .title { font-size: 29px; }
-  #finai-root .subtitle { font-size: 11px; }
-  #finai-root .period { font-size: 10px; }
-  #finai-root .metric-label { font-size: 10px; }
-  #finai-root .metric-value { font-size: 20px; }
-  #finai-root .metric-change { font-size: 8px; }
-  #finai-root table { font-size: 9px; }
-  #finai-root th { font-size: 9px; }
-  #finai-root td { font-size: 9px; }
-  #finai-root tr.section td { font-size: 9px; }
-  #finai-root .small-title { font-size: 12px; }
-  #finai-root .kpi { font-size: 9px; }
-  #finai-root .kpi-value { font-size: 11px; }
+  /* AI modal stays above the navigation drawer. */
+  #finai-root > .ai{
+    position:fixed !important;
+    top:var(--finai-top-offset,0px) !important;
+    right:0 !important;
+    bottom:0 !important;
+    left:0 !important;
+    width:100vw !important;
+    height:auto !important;
+    min-height:0 !important;
+    z-index:4000 !important;
+    border:0 !important;
+    box-shadow:none !important;
+  }
+  #finai-root > .ai .ai-head{
+    min-height:72px !important;
+    padding:18px 18px 15px !important;
+  }
+  #finai-root > .ai .ai-close{
+    position:relative !important;
+    top:auto !important;
+    right:auto !important;
+    z-index:1 !important;
+  }
 }
