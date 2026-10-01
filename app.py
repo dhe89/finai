@@ -196,9 +196,9 @@ if chat_event:
         st.session_state.ai_open = True
         st.session_state.chat_messages.append({"role": "user", "content": text})
 
-        # New architecture:
-        # User question -> semantic analysis planner -> Python financial engine
-        # -> deep analyst -> deterministic verifier -> final answer.
+        # Financial Analyst architecture:
+        # User question -> semantic director -> Python analytics tools ->
+        # bounded drill-down loop -> synthesis -> deterministic verifier.
         # Chat history is rendered in the UI only; it is never sent as prior
         # questions to the analyst.
         result = run_financial_analysis(

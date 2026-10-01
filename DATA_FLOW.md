@@ -1,59 +1,40 @@
-# FinAI Data & AI Flow
-
-## Runtime
+# FinAI Data Flow
 
 ```text
-/data/*.csv
-     |
-     v
-finai_ui/data_service.py
-     |
-     +------------------------------+
-     |                              |
-     v                              v
-Web pages                    Financial Intelligence Engine
-                                   |
-                                   v
-                            Analysis Evidence
-                                   |
-                                   v
-                         AI Financial Analyst
-                                   |
-                                   v
-                              Verifier
-                                   |
-                                   v
-                              Final Answer
+CSV
+ │
+ ▼
+data_service.py
+ │
+ ▼
+financial_engine.py
+ │
+ ├── initial evidence
+ └── dynamic analytical tools
+        │
+        ▼
+ai/analyst.py
+ │
+ ├── inspect()
+ │      └── memilih kebutuhan drill-down
+ │
+ └── synthesize()
+        │
+        ▼
+ai/orchestrator.py
+ │
+ ├── bounded loop
+ ├── expand_evidence()
+ └── verifier
+        │
+        ▼
+Streamlit chat
 ```
 
-## AI request flow
+Chat history hanya untuk tampilan UI. History tidak dikirim sebagai daftar pertanyaan sebelumnya kepada model.
 
-```text
-Question
-  |
-  v
-Semantic Planner
-  |  understands goal/focus/comparisons/dimensions
-  v
-Python Financial Intelligence Engine
-  |  retrieves and calculates facts
-  |  MoM / YoY / year-start / target / trend
-  |  P&L drivers / balance-sheet drivers
-  |  product aggregation / relationships
-  |  optional correlation
-  v
-Evidence Package
-  |
-  v
-AI Analyst
-  |  interprets evidence
-  |  explains drivers and implications
-  |  distinguishes fact vs consideration
-  v
-Deterministic Verifier
-  |
-  v
-User-facing conclusion
-```
-
-Chat history is intentionally not sent to the analyst as prior user turns. Each request is isolated to the current question + its evidence package.
+## Failure behavior
+- Director gagal → gunakan default analytical context.
+- Tool gagal → agent tetap dapat melanjutkan dengan evidence yang tersedia.
+- Final analyst gagal → deterministic fallback.
+- Exception runtime → UI menerima pesan bersih, bukan menggantung pada typing indicator.
