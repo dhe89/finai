@@ -122,6 +122,89 @@ def _valid(result):
     }
 
 
+_SUPPORTED_ENTITIES = {
+    "btn", "bank btn", "bank tabungan negara", "bank tabungan negara (persero)",
+}
+_EXTERNAL_ENTITIES = {
+    "pertamina", "nvidia", "apple", "microsoft", "google", "amazon", "tesla",
+    "bank mandiri", "bri", "bca", "bni", "telkom", "gojek", "grab",
+}
+
+
+def _local_entity_status(q):
+    """Return OUT_OF_SCOPE when the user explicitly asks about another entity."""
+    qn = q.lower()
+    for entity in _EXTERNAL_ENTITIES:
+        if entity in qn and entity not in _SUPPORTED_ENTITIES:
+            return "OUT_OF_SCOPE"
+    return None
+
+
+def _local_classify(question):
+    """High-confidence routing for common FinAI questions.
+
+    This runs before the LLM so a semantic model cannot turn an external entity,
+    a target question, or a diagnosis question into an unrelated KPI lookup.
+    """
+    q = " ".join(str(question or "").lower().strip().split())
+    if not q:
+        return None
+    if any(x in q for x in ["perkenalkan dirimu", "perkenalkan diri", "siapa kamu", "siapa anda", "apa itu finai", "apa itu fin ai"]):
+        return {"scope":"META","intent":"UNKNOWN","metric":"unknown","dimension":"none","focus":"none","needs_clarification":False,"confidence":1.0,"source":"LOCAL_RULE"}
+    entity_status = _local_entity_status(q)
+    if entity_status:
+        return {"scope":entity_status,"intent":"UNKNOWN","metric":"unknown","dimension":"none","focus":"none","needs_clarification":False,"confidence":1.0,"source":"LOCAL_RULE"}
+
+    metric = "unknown"
+    aliases = {
+        "net_profit":["laba bersih","laba rugi","laba","net profit","profit"],
+        "total_assets":["total aset","total asset","aset"],
+        "total_credit":["total kredit","kredit","pembiayaan"],
+        "total_investment":["total investasi","investasi","penempatan"],
+        "total_dpk":["total dpk","dpk","dana pihak ketiga"],
+        "total_other_funding":["dana lainnya","other funding"],
+        "revenue":["revenue","pendapatan","total pendapatan"],
+        "operating_expense":["beban operasional","biaya operasional","operating expense","opex"],
+        "ckpn":["ckpn","cadangan kerugian penurunan nilai"],
+        "npl_ratio":["npl","npf","rasio npl","rasio npf"],
+        "ckpn_coverage":["ckpn coverage","coverage ckpn","cakupan ckpn"],
+        "low_cost_funding":["low cost funding","lcf","dana murah"],
+    }
+    hits=[]
+    for k, vals in aliases.items():
+        if any(v in q for v in vals): hits.append(k)
+    if hits: metric=hits[0]
+
+    if not any(k in q for k in ["laba", "profit", "pendapatan", "revenue", "beban", "biaya", "aset", "kredit", "dpk", "investasi", "ckpn", "npl", "target", "efisiensi", "kinerja", "keuangan", "produk"]):
+        return {"scope":"OUT_OF_SCOPE","intent":"UNKNOWN","metric":"unknown","dimension":"none","focus":"none","needs_clarification":False,"confidence":0.99,"source":"LOCAL_RULE"}
+
+    # Target/performance questions must be routed explicitly.
+    if any(x in q for x in ["target", "pencapaian", "achievement", "terhadap target", "gap target"]):
+        return {"scope":"FINANCIAL","intent":"TARGET","metric":metric,"dimension":"targets","focus":"none","needs_clarification":metric=="unknown","confidence":0.99,"source":"LOCAL_RULE"}
+
+    if any(x in q for x in ["kenapa", "mengapa", "faktor", "penyebab", "penyumbang", "berpengaruh"]):
+        return {"scope":"FINANCIAL","intent":"DIAGNOSIS","metric":metric,"dimension":"income_statement_lines","focus":"none","needs_clarification":metric=="unknown","confidence":0.99,"source":"LOCAL_RULE"}
+
+    if any(x in q for x in ["paling", "tertinggi", "terendah", "rincian", "komponen", "produk apa", "beban apa", "pendapatan apa"]):
+        focus="expense" if any(x in q for x in ["beban", "biaya", "efisiensi"]) else ("income" if any(x in q for x in ["pendapatan", "revenue"]) else "none")
+        dimension="loan_products" if any(x in q for x in ["produk kredit", "produk pembiayaan", "kpr", "loan"]) else "income_statement_lines"
+        return {"scope":"FINANCIAL","intent":"BREAKDOWN","metric":metric,"dimension":dimension,"focus":focus,"needs_clarification":False,"confidence":0.98,"source":"LOCAL_RULE"}
+
+    if any(x in q for x in ["bandingkan", "dibandingkan", "dibanding", "vs ", "gap ", "perubahan", "naik", "turun", "pertumbuhan", "tahun lalu", "bulan lalu", "yoy", "mom"]):
+        return {"scope":"FINANCIAL","intent":"COMPARISON","metric":metric,"dimension":"none","focus":"none","needs_clarification":metric=="unknown","confidence":0.98,"source":"LOCAL_RULE"}
+
+    if any(x in q for x in ["bagaimana strategi", "strategi agar", "apa yang harus", "perlu dilakukan"]):
+        return {"scope":"FINANCIAL","intent":"DIAGNOSIS","metric":metric,"dimension":"income_statement_lines","focus":"none","needs_clarification":metric=="unknown","confidence":0.96,"source":"LOCAL_RULE"}
+
+    if any(x in q for x in ["kinerja", "ringkasan", "overview", "kondisi keuangan"]):
+        return {"scope":"FINANCIAL","intent":"OVERVIEW","metric":"overview","dimension":"none","focus":"none","needs_clarification":False,"confidence":0.98,"source":"LOCAL_RULE"}
+
+    if any(x in q for x in ["berapa", "berapa nilai", "berapa besar", "nilai"]):
+        return {"scope":"FINANCIAL","intent":"LOOKUP","metric":metric,"dimension":"none","focus":"none","needs_clarification":metric=="unknown","confidence":0.98,"source":"LOCAL_RULE"}
+
+    return None
+
+
 def classify_question(question, model=DEFAULT_MODEL, timeout=20):
     """Return a validated intent object. No financial data is sent to the router."""
     q = str(question or "").strip()
@@ -131,6 +214,10 @@ def classify_question(question, model=DEFAULT_MODEL, timeout=20):
             "dimension": "none", "focus": "none", "needs_clarification": True, "confidence": 1.0,
             "source": "LOCAL_EMPTY",
         }
+
+    local = _local_classify(q)
+    if local is not None:
+        return local
 
     key = _api_key()
     if not key:
