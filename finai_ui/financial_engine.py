@@ -424,6 +424,16 @@ def build_evidence(question, period, plan):
     if year_start and year_start != primary:
         evidence["comparisons"]["year_start"] = _summary_comparison(primary, year_start, "year_start")
 
+    # Rich deterministic base analysis is always available to the analyst.
+    # This prevents the semantic director from becoming a single point of failure.
+    evidence["analysis_tools"] = {
+        "income_drivers": _tool_income_drivers(primary),
+        "balance_drivers": _tool_balance_drivers(primary),
+        "funding_analysis": _tool_funding_analysis(primary),
+        "trend": _tool_trend(primary, 18),
+        "target": _tool_target(primary),
+    }
+
     evidence["product_data"] = _product_aggregation(primary)
 
     if plan and plan.get("correlation_analysis"):
@@ -465,6 +475,83 @@ def build_evidence(question, period, plan):
 # Dynamic analytical tools
 # ---------------------------------------------------------------------------
 
+
+
+def _pnl_monthly_flow(period):
+    """Convert cumulative P&L balances into the amount generated in the month.
+
+    monthly_summary/income_statement P&L values are cumulative through the
+    selected month. Therefore a raw Aug->Sep delta is September's monthly
+    amount, not a MoM growth rate. This helper makes that distinction explicit.
+    """
+    periods = ds.available_periods()
+    if period not in periods:
+        return {}
+    idx = periods.index(period)
+    if idx == 0:
+        return {}
+    previous = periods[idx - 1]
+    previous_previous = periods[idx - 2] if idx >= 2 else None
+    cur = _summary_snapshot(period)
+    prev = _summary_snapshot(previous)
+    prevprev = _summary_snapshot(previous_previous) if previous_previous else {}
+    out = {}
+    for key in ["net_profit", "revenue", "operating_expense", "ckpn"]:
+        if key not in cur or key not in prev:
+            continue
+        current_flow = cur[key]["value"] - prev[key]["value"]
+        previous_flow = None
+        change = None
+        if previous_previous and key in prevprev:
+            previous_flow = prev[key]["value"] - prevprev[key]["value"]
+            change = _change(current_flow, previous_flow)
+        out[key] = {
+            "label": cur[key]["label"],
+            "period": period,
+            "previous_period": previous,
+            "current_flow": current_flow,
+            "previous_flow": previous_flow,
+            "change": change,
+            "unit": cur[key]["unit"],
+        }
+    return out
+
+
+def _pnl_monthly_line_drivers(period):
+    periods = ds.available_periods()
+    if period not in periods:
+        return []
+    idx = periods.index(period)
+    if idx == 0:
+        return []
+    prev = periods[idx - 1]
+    prevprev = periods[idx - 2] if idx >= 2 else None
+    cur_rows = _group_statement(period, "income_statement")
+    prev_rows = _group_statement(prev, "income_statement")
+    prevprev_rows = _group_statement(prevprev, "income_statement") if prevprev else []
+    cur_map = {r["line_item"]: r.get("amount") for r in cur_rows}
+    prev_map = {r["line_item"]: r.get("amount") for r in prev_rows}
+    prevprev_map = {r["line_item"]: r.get("amount") for r in prevprev_rows}
+    out = []
+    for item, cumulative in cur_map.items():
+        if cumulative is None or item not in prev_map or prev_map[item] is None:
+            continue
+        current_flow = cumulative - prev_map[item]
+        previous_flow = None
+        if prevprev and item in prevprev_map and prevprev_map[item] is not None:
+            previous_flow = prev_map[item] - prevprev_map[item]
+        is_expense = item.startswith("Beban")
+        out.append({
+            "line_item": item,
+            "current_flow": current_flow,
+            "previous_flow": previous_flow,
+            "change": _change(current_flow, previous_flow) if previous_flow is not None else None,
+            "profit_direction": "pressure" if is_expense and current_flow >= 0 else ("support" if not is_expense and current_flow >= 0 else "mixed"),
+        })
+    # Exclude the total profit line from the driver list.
+    out = [x for x in out if x["line_item"] != "Laba Bersih"]
+    return sorted(out, key=lambda x: abs(x.get("current_flow") or 0), reverse=True)
+
 def _tool_income_drivers(period):
     periods = ds.available_periods()
     if period not in periods:
@@ -474,11 +561,15 @@ def _tool_income_drivers(period):
     yoy = f"{int(period[:4])-1:04d}-{period[5:7]}"
     if yoy not in periods:
         yoy = None
+    monthly_flow = _pnl_monthly_flow(period)
     out = {
         "period": period,
-        "mom": _top_contributors(period, previous) if previous else [],
-        "yoy": _group_changes(_group_statement(period, "income_statement"), _group_statement(yoy, "income_statement"))[:15] if yoy else [],
-        "interpretation_rule": "Beban naik memberi tekanan laba; pendapatan naik memberi dukungan. Ini adalah kontribusi perubahan, bukan bukti kausalitas tunggal.",
+        "basis_note": "P&L pada data sumber bersifat kumulatif (YTD). Monthly flow dihitung sebagai selisih kumulatif bulan berjalan dengan bulan sebelumnya.",
+        "monthly_flow": monthly_flow,
+        "monthly_flow_drivers": _pnl_monthly_line_drivers(period)[:20],
+        "mom_cumulative": _top_contributors(period, previous) if previous else [],
+        "yoy_cumulative": _group_changes(_group_statement(period, "income_statement"), _group_statement(yoy, "income_statement"))[:15] if yoy else [],
+        "interpretation_rule": "Beban pada monthly flow memberi tekanan laba; pendapatan pada monthly flow memberi dukungan. Ini adalah kontribusi perubahan, bukan bukti kausalitas tunggal.",
     }
     return out
 
@@ -622,7 +713,7 @@ def prepare_model_evidence(evidence):
 
     def compact_comparisons(raw):
         out = {}
-        preferred = {"net_profit", "revenue", "operating_expense", "total_assets", "total_credit", "total_dpk", "npl_ratio", "ckpn"}
+        preferred = {"net_profit", "revenue", "operating_expense", "total_assets", "total_credit", "total_dpk", "npl_ratio", "ckpn_coverage"}
         for relation, item in (raw or {}).items():
             metrics = item.get("metrics", {}) if isinstance(item, dict) else {}
             selected = {}
@@ -642,7 +733,28 @@ def prepare_model_evidence(evidence):
 
     products = {}
     for key, rows in (evidence.get("product_data") or {}).items():
-        products[key] = rows[:5] if isinstance(rows, list) else rows
+        products[key] = rows[:3] if isinstance(rows, list) else rows
+
+    tools = evidence.get("analysis_tools", {}) or {}
+    income_tool = tools.get("income_drivers", {}) or {}
+    balance_tool = tools.get("balance_drivers", {}) or {}
+    compact_tools = {
+        "income_drivers": {
+            "basis_note": income_tool.get("basis_note"),
+            "monthly_flow": income_tool.get("monthly_flow", {}),
+            "monthly_flow_drivers": (income_tool.get("monthly_flow_drivers") or [])[:5],
+            "yoy_cumulative": (income_tool.get("yoy_cumulative") or [])[:5],
+            "interpretation_rule": income_tool.get("interpretation_rule"),
+        },
+        "balance_drivers": {
+            "period": balance_tool.get("period"),
+            "previous_period": balance_tool.get("previous_period"),
+            "drivers": {k: (v or [])[:4] for k, v in (balance_tool.get("drivers") or {}).items()},
+        },
+        "funding_analysis": tools.get("funding_analysis", {}),
+        "trend": {"periods": (tools.get("trend", {}).get("periods") or [])[-9:]},
+        "target": tools.get("target", {}),
+    }
 
     return {
         "status": evidence.get("status"),
@@ -653,16 +765,9 @@ def prepare_model_evidence(evidence):
         "current": evidence.get("current"),
         "comparisons": compact_comparisons(evidence.get("comparisons")),
         "target_analysis": evidence.get("target_analysis"),
-        "income_summary": evidence.get("income_summary"),
         "financial_relationships": evidence.get("financial_relationships"),
-        "income_statement_changes_mom": (evidence.get("income_statement_changes_mom") or [])[:8],
-        "income_summary_changes_mom": evidence.get("income_summary_changes_mom"),
-        "financial_relationship_changes_mom": evidence.get("financial_relationship_changes_mom"),
-        "balance_sheet_changes_mom": evidence.get("balance_sheet_changes_mom"),
-        "income_summary_changes_yoy": evidence.get("income_summary_changes_yoy"),
-        "financial_relationship_changes_yoy": evidence.get("financial_relationship_changes_yoy"),
-        "trend_12m": compact_trend,
+        "trend_12m": compact_trend[-9:],
         "product_data": products,
         "data_capabilities": evidence.get("data_capabilities"),
-        "analysis_tools": evidence.get("analysis_tools", {}),
+        "analysis_tools": compact_tools,
     }
