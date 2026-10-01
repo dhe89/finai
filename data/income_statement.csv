@@ -1,694 +1,694 @@
 period,line_item,amount
-2024-01,Pendapatan Bunga - KPR Subsidi,27.17
-2024-01,Pendapatan Bunga - KPR Non Subsidi,63.5
-2024-01,Pendapatan Bunga - Non KPR,55.7
-2024-01,Pendapatan Bunga - Multimanfaat,19.11
-2024-01,Pendapatan Bunga - Modal Kerja,57.43
-2024-01,Pendapatan Bunga - Investasi,37.99
-2024-01,Pendapatan Bunga - Konstruksi,44.9
-2024-01,Pendapatan Investasi,0.0
-2024-01,Beban Bunga - Giro,3.73
-2024-01,Beban Bunga - Tabungan,0.0
-2024-01,Beban Bunga - Deposito,122.79
+2024-01,Pendapatan Bunga - KPR Subsidi,42.42
+2024-01,Pendapatan Bunga - KPR Non Subsidi,74.99
+2024-01,Pendapatan Bunga - Non KPR,28.51
+2024-01,Pendapatan Bunga - Multimanfaat,27.2
+2024-01,Pendapatan Bunga - Modal Kerja,29.44
+2024-01,Pendapatan Bunga - Investasi,47.06
+2024-01,Pendapatan Bunga - Konstruksi,44.56
+2024-01,Pendapatan Investasi,36.98
+2024-01,Beban Bunga - Giro,33.46
+2024-01,Beban Bunga - Tabungan,6.34
+2024-01,Beban Bunga - Deposito,11.45
 2024-01,Beban Bunga - Pinjaman yang diterima,0.0
 2024-01,Beban Bunga - Surat Berharga Diterbitkan,0.0
 2024-01,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-01,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,55.0
-2024-01,Pendapatan Operasional Lainnya - Pendapatan Lainnya,293.87
+2024-01,Pendapatan Operasional Lainnya - Pendapatan Lainnya,196.73
 2024-01,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-01,Beban Operasional Lainnya - Beban CKPN,196.15
 2024-01,Beban Operasional Lainnya - Beban Administrasi,258.0
 2024-01,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-01,Laba Bersih,60.0
-2024-02,Pendapatan Bunga - KPR Subsidi,26.14
-2024-02,Pendapatan Bunga - KPR Non Subsidi,70.63
-2024-02,Pendapatan Bunga - Non KPR,56.19
-2024-02,Pendapatan Bunga - Multimanfaat,18.37
-2024-02,Pendapatan Bunga - Modal Kerja,55.27
-2024-02,Pendapatan Bunga - Investasi,36.58
-2024-02,Pendapatan Bunga - Konstruksi,43.21
-2024-02,Pendapatan Investasi,43.77
-2024-02,Beban Bunga - Giro,22.13
-2024-02,Beban Bunga - Tabungan,38.64
-2024-02,Beban Bunga - Deposito,53.78
-2024-02,Beban Bunga - Pinjaman yang diterima,19.11
-2024-02,Beban Bunga - Surat Berharga Diterbitkan,0.0
+2024-01,Laba Bersih,63.49
+2024-02,Pendapatan Bunga - KPR Subsidi,42.19
+2024-02,Pendapatan Bunga - KPR Non Subsidi,71.85
+2024-02,Pendapatan Bunga - Non KPR,29.42
+2024-02,Pendapatan Bunga - Multimanfaat,26.07
+2024-02,Pendapatan Bunga - Modal Kerja,29.98
+2024-02,Pendapatan Bunga - Investasi,47.35
+2024-02,Pendapatan Bunga - Konstruksi,47.56
+2024-02,Pendapatan Investasi,37.59
+2024-02,Beban Bunga - Giro,20.48
+2024-02,Beban Bunga - Tabungan,9.35
+2024-02,Beban Bunga - Deposito,41.45
+2024-02,Beban Bunga - Pinjaman yang diterima,4.54
+2024-02,Beban Bunga - Surat Berharga Diterbitkan,13.41
 2024-02,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-02,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,57.5
-2024-02,Pendapatan Operasional Lainnya - Pendapatan Lainnya,268.5
+2024-02,Pendapatan Operasional Lainnya - Pendapatan Lainnya,245.71
 2024-02,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-02,Beban Operasional Lainnya - Beban CKPN,206.9
 2024-02,Beban Operasional Lainnya - Beban Administrasi,261.6
 2024-02,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-02,Laba Bersih,60.0
-2024-03,Pendapatan Bunga - KPR Subsidi,26.09
-2024-03,Pendapatan Bunga - KPR Non Subsidi,70.48
-2024-03,Pendapatan Bunga - Non KPR,54.64
-2024-03,Pendapatan Bunga - Multimanfaat,17.86
-2024-03,Pendapatan Bunga - Modal Kerja,57.07
-2024-03,Pendapatan Bunga - Investasi,35.53
-2024-03,Pendapatan Bunga - Konstruksi,44.85
-2024-03,Pendapatan Investasi,42.94
-2024-03,Beban Bunga - Giro,15.33
-2024-03,Beban Bunga - Tabungan,31.59
-2024-03,Beban Bunga - Deposito,47.65
-2024-03,Beban Bunga - Pinjaman yang diterima,14.26
-2024-03,Beban Bunga - Surat Berharga Diterbitkan,4.34
+2024-02,Laba Bersih,63.49
+2024-03,Pendapatan Bunga - KPR Subsidi,43.17
+2024-03,Pendapatan Bunga - KPR Non Subsidi,68.4
+2024-03,Pendapatan Bunga - Non KPR,30.46
+2024-03,Pendapatan Bunga - Multimanfaat,24.79
+2024-03,Pendapatan Bunga - Modal Kerja,31.13
+2024-03,Pendapatan Bunga - Investasi,45.1
+2024-03,Pendapatan Bunga - Konstruksi,50.96
+2024-03,Pendapatan Investasi,38.23
+2024-03,Beban Bunga - Giro,23.6
+2024-03,Beban Bunga - Tabungan,11.24
+2024-03,Beban Bunga - Deposito,45.26
+2024-03,Beban Bunga - Pinjaman yang diterima,10.94
+2024-03,Beban Bunga - Surat Berharga Diterbitkan,7.23
 2024-03,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-03,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,59.33
-2024-03,Pendapatan Operasional Lainnya - Pendapatan Lainnya,259.46
+2024-03,Pendapatan Operasional Lainnya - Pendapatan Lainnya,265.27
 2024-03,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-03,Beban Operasional Lainnya - Beban CKPN,217.65
 2024-03,Beban Operasional Lainnya - Beban Administrasi,263.43
 2024-03,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-03,Laba Bersih,60.0
-2024-04,Pendapatan Bunga - KPR Subsidi,28.86
-2024-04,Pendapatan Bunga - KPR Non Subsidi,70.44
-2024-04,Pendapatan Bunga - Non KPR,53.98
-2024-04,Pendapatan Bunga - Multimanfaat,19.19
-2024-04,Pendapatan Bunga - Modal Kerja,56.51
-2024-04,Pendapatan Bunga - Investasi,33.17
-2024-04,Pendapatan Bunga - Konstruksi,41.86
-2024-04,Pendapatan Investasi,42.34
-2024-04,Beban Bunga - Giro,11.86
-2024-04,Beban Bunga - Tabungan,37.32
-2024-04,Beban Bunga - Deposito,32.44
-2024-04,Beban Bunga - Pinjaman yang diterima,14.95
-2024-04,Beban Bunga - Surat Berharga Diterbitkan,3.48
+2024-03,Laba Bersih,63.49
+2024-04,Pendapatan Bunga - KPR Subsidi,40.8
+2024-04,Pendapatan Bunga - KPR Non Subsidi,76.33
+2024-04,Pendapatan Bunga - Non KPR,28.78
+2024-04,Pendapatan Bunga - Multimanfaat,25.9
+2024-04,Pendapatan Bunga - Modal Kerja,32.66
+2024-04,Pendapatan Bunga - Investasi,42.6
+2024-04,Pendapatan Bunga - Konstruksi,48.13
+2024-04,Pendapatan Investasi,38.09
+2024-04,Beban Bunga - Giro,21.58
+2024-04,Beban Bunga - Tabungan,18.86
+2024-04,Beban Bunga - Deposito,37.79
+2024-04,Beban Bunga - Pinjaman yang diterima,14.08
+2024-04,Beban Bunga - Surat Berharga Diterbitkan,4.3
 2024-04,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-04,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,60.0
-2024-04,Pendapatan Operasional Lainnya - Pendapatan Lainnya,256.22
+2024-04,Pendapatan Operasional Lainnya - Pendapatan Lainnya,269.33
 2024-04,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-04,Beban Operasional Lainnya - Beban CKPN,225.52
 2024-04,Beban Operasional Lainnya - Beban Administrasi,263.0
 2024-04,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-04,Laba Bersih,60.0
-2024-05,Pendapatan Bunga - KPR Subsidi,31.12
-2024-05,Pendapatan Bunga - KPR Non Subsidi,67.49
-2024-05,Pendapatan Bunga - Non KPR,56.13
-2024-05,Pendapatan Bunga - Multimanfaat,18.4
-2024-05,Pendapatan Bunga - Modal Kerja,54.16
-2024-05,Pendapatan Bunga - Investasi,31.78
-2024-05,Pendapatan Bunga - Konstruksi,43.57
-2024-05,Pendapatan Investasi,41.46
-2024-05,Beban Bunga - Giro,12.83
-2024-05,Beban Bunga - Tabungan,31.78
-2024-05,Beban Bunga - Deposito,27.61
-2024-05,Beban Bunga - Pinjaman yang diterima,12.54
-2024-05,Beban Bunga - Surat Berharga Diterbitkan,5.48
+2024-04,Laba Bersih,63.49
+2024-05,Pendapatan Bunga - KPR Subsidi,44.2
+2024-05,Pendapatan Bunga - KPR Non Subsidi,72.77
+2024-05,Pendapatan Bunga - Non KPR,28.5
+2024-05,Pendapatan Bunga - Multimanfaat,24.67
+2024-05,Pendapatan Bunga - Modal Kerja,31.79
+2024-05,Pendapatan Bunga - Investasi,43.17
+2024-05,Pendapatan Bunga - Konstruksi,47.42
+2024-05,Pendapatan Investasi,35.94
+2024-05,Beban Bunga - Giro,21.37
+2024-05,Beban Bunga - Tabungan,24.43
+2024-05,Beban Bunga - Deposito,38.47
+2024-05,Beban Bunga - Pinjaman yang diterima,14.96
+2024-05,Beban Bunga - Surat Berharga Diterbitkan,3.27
 2024-05,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-05,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,59.33
-2024-05,Pendapatan Operasional Lainnya - Pendapatan Lainnya,249.63
+2024-05,Pendapatan Operasional Lainnya - Pendapatan Lainnya,281.03
 2024-05,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-05,Beban Operasional Lainnya - Beban CKPN,228.4
 2024-05,Beban Operasional Lainnya - Beban Administrasi,260.43
 2024-05,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-05,Laba Bersih,60.0
-2024-06,Pendapatan Bunga - KPR Subsidi,32.03
-2024-06,Pendapatan Bunga - KPR Non Subsidi,68.84
-2024-06,Pendapatan Bunga - Non KPR,55.3
-2024-06,Pendapatan Bunga - Multimanfaat,18.11
-2024-06,Pendapatan Bunga - Modal Kerja,53.34
-2024-06,Pendapatan Bunga - Investasi,31.31
-2024-06,Pendapatan Bunga - Konstruksi,42.93
-2024-06,Pendapatan Investasi,40.22
-2024-06,Beban Bunga - Giro,13.76
-2024-06,Beban Bunga - Tabungan,28.99
-2024-06,Beban Bunga - Deposito,36.81
-2024-06,Beban Bunga - Pinjaman yang diterima,13.87
-2024-06,Beban Bunga - Surat Berharga Diterbitkan,3.92
+2024-05,Laba Bersih,63.49
+2024-06,Pendapatan Bunga - KPR Subsidi,43.0
+2024-06,Pendapatan Bunga - KPR Non Subsidi,75.45
+2024-06,Pendapatan Bunga - Non KPR,27.71
+2024-06,Pendapatan Bunga - Multimanfaat,24.01
+2024-06,Pendapatan Bunga - Modal Kerja,31.9
+2024-06,Pendapatan Bunga - Investasi,44.85
+2024-06,Pendapatan Bunga - Konstruksi,46.13
+2024-06,Pendapatan Investasi,35.18
+2024-06,Beban Bunga - Giro,22.49
+2024-06,Beban Bunga - Tabungan,21.78
+2024-06,Beban Bunga - Deposito,44.2
+2024-06,Beban Bunga - Pinjaman yang diterima,11.76
+2024-06,Beban Bunga - Surat Berharga Diterbitkan,6.0
 2024-06,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-06,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,57.5
-2024-06,Pendapatan Operasional Lainnya - Pendapatan Lainnya,253.69
+2024-06,Pendapatan Operasional Lainnya - Pendapatan Lainnya,279.92
 2024-06,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-06,Beban Operasional Lainnya - Beban CKPN,225.52
 2024-06,Beban Operasional Lainnya - Beban Administrasi,256.4
 2024-06,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-06,Laba Bersih,60.0
-2024-07,Pendapatan Bunga - KPR Subsidi,31.24
-2024-07,Pendapatan Bunga - KPR Non Subsidi,69.96
-2024-07,Pendapatan Bunga - Non KPR,53.99
-2024-07,Pendapatan Bunga - Multimanfaat,18.93
-2024-07,Pendapatan Bunga - Modal Kerja,56.05
-2024-07,Pendapatan Bunga - Investasi,30.55
-2024-07,Pendapatan Bunga - Konstruksi,41.88
-2024-07,Pendapatan Investasi,40.58
-2024-07,Beban Bunga - Giro,12.69
-2024-07,Beban Bunga - Tabungan,32.48
-2024-07,Beban Bunga - Deposito,33.92
-2024-07,Beban Bunga - Pinjaman yang diterima,12.46
-2024-07,Beban Bunga - Surat Berharga Diterbitkan,5.14
+2024-06,Laba Bersih,63.49
+2024-07,Pendapatan Bunga - KPR Subsidi,42.39
+2024-07,Pendapatan Bunga - KPR Non Subsidi,72.31
+2024-07,Pendapatan Bunga - Non KPR,28.9
+2024-07,Pendapatan Bunga - Multimanfaat,25.48
+2024-07,Pendapatan Bunga - Modal Kerja,36.39
+2024-07,Pendapatan Bunga - Investasi,44.27
+2024-07,Pendapatan Bunga - Konstruksi,43.61
+2024-07,Pendapatan Investasi,34.46
+2024-07,Beban Bunga - Giro,20.31
+2024-07,Beban Bunga - Tabungan,30.1
+2024-07,Beban Bunga - Deposito,39.88
+2024-07,Beban Bunga - Pinjaman yang diterima,11.66
+2024-07,Beban Bunga - Surat Berharga Diterbitkan,5.95
 2024-07,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-07,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,55.0
-2024-07,Pendapatan Operasional Lainnya - Pendapatan Lainnya,242.16
+2024-07,Pendapatan Operasional Lainnya - Pendapatan Lainnya,272.23
 2024-07,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-07,Beban Operasional Lainnya - Beban CKPN,217.65
 2024-07,Beban Operasional Lainnya - Beban Administrasi,252.0
 2024-07,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-07,Laba Bersih,60.0
-2024-08,Pendapatan Bunga - KPR Subsidi,30.77
-2024-08,Pendapatan Bunga - KPR Non Subsidi,71.81
-2024-08,Pendapatan Bunga - Non KPR,54.58
-2024-08,Pendapatan Bunga - Multimanfaat,18.77
-2024-08,Pendapatan Bunga - Modal Kerja,54.64
-2024-08,Pendapatan Bunga - Investasi,27.2
-2024-08,Pendapatan Bunga - Konstruksi,45.79
-2024-08,Pendapatan Investasi,39.42
-2024-08,Beban Bunga - Giro,12.15
-2024-08,Beban Bunga - Tabungan,31.1
-2024-08,Beban Bunga - Deposito,44.5
-2024-08,Beban Bunga - Pinjaman yang diterima,12.63
-2024-08,Beban Bunga - Surat Berharga Diterbitkan,4.83
+2024-07,Laba Bersih,63.49
+2024-08,Pendapatan Bunga - KPR Subsidi,41.95
+2024-08,Pendapatan Bunga - KPR Non Subsidi,72.32
+2024-08,Pendapatan Bunga - Non KPR,26.69
+2024-08,Pendapatan Bunga - Multimanfaat,25.5
+2024-08,Pendapatan Bunga - Modal Kerja,35.0
+2024-08,Pendapatan Bunga - Investasi,47.9
+2024-08,Pendapatan Bunga - Konstruksi,43.6
+2024-08,Pendapatan Investasi,35.35
+2024-08,Beban Bunga - Giro,17.94
+2024-08,Beban Bunga - Tabungan,33.01
+2024-08,Beban Bunga - Deposito,32.83
+2024-08,Beban Bunga - Pinjaman yang diterima,10.56
+2024-08,Beban Bunga - Surat Berharga Diterbitkan,6.75
 2024-08,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-08,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,52.5
-2024-08,Pendapatan Operasional Lainnya - Pendapatan Lainnya,239.03
+2024-08,Pendapatan Operasional Lainnya - Pendapatan Lainnya,253.08
 2024-08,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-08,Beban Operasional Lainnya - Beban CKPN,206.9
 2024-08,Beban Operasional Lainnya - Beban Administrasi,248.4
 2024-08,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-08,Laba Bersih,60.0
-2024-09,Pendapatan Bunga - KPR Subsidi,29.79
-2024-09,Pendapatan Bunga - KPR Non Subsidi,68.15
-2024-09,Pendapatan Bunga - Non KPR,55.62
-2024-09,Pendapatan Bunga - Multimanfaat,18.21
-2024-09,Pendapatan Bunga - Modal Kerja,56.65
-2024-09,Pendapatan Bunga - Investasi,27.02
-2024-09,Pendapatan Bunga - Konstruksi,49.53
-2024-09,Pendapatan Investasi,39.01
-2024-09,Beban Bunga - Giro,15.39
-2024-09,Beban Bunga - Tabungan,26.09
-2024-09,Beban Bunga - Deposito,40.38
-2024-09,Beban Bunga - Pinjaman yang diterima,12.51
-2024-09,Beban Bunga - Surat Berharga Diterbitkan,4.77
+2024-08,Laba Bersih,63.49
+2024-09,Pendapatan Bunga - KPR Subsidi,41.65
+2024-09,Pendapatan Bunga - KPR Non Subsidi,70.27
+2024-09,Pendapatan Bunga - Non KPR,28.36
+2024-09,Pendapatan Bunga - Multimanfaat,26.52
+2024-09,Pendapatan Bunga - Modal Kerja,36.64
+2024-09,Pendapatan Bunga - Investasi,47.21
+2024-09,Pendapatan Bunga - Konstruksi,42.97
+2024-09,Pendapatan Investasi,34.9
+2024-09,Beban Bunga - Giro,18.04
+2024-09,Beban Bunga - Tabungan,32.65
+2024-09,Beban Bunga - Deposito,32.44
+2024-09,Beban Bunga - Pinjaman yang diterima,10.9
+2024-09,Beban Bunga - Surat Berharga Diterbitkan,6.31
 2024-09,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-09,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,50.67
-2024-09,Pendapatan Operasional Lainnya - Pendapatan Lainnya,221.21
+2024-09,Pendapatan Operasional Lainnya - Pendapatan Lainnya,241.37
 2024-09,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-09,Beban Operasional Lainnya - Beban CKPN,196.15
 2024-09,Beban Operasional Lainnya - Beban Administrasi,246.57
 2024-09,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-09,Laba Bersih,60.0
-2024-10,Pendapatan Bunga - KPR Subsidi,29.93
-2024-10,Pendapatan Bunga - KPR Non Subsidi,67.29
-2024-10,Pendapatan Bunga - Non KPR,54.87
-2024-10,Pendapatan Bunga - Multimanfaat,17.95
-2024-10,Pendapatan Bunga - Modal Kerja,54.75
-2024-10,Pendapatan Bunga - Investasi,27.23
-2024-10,Pendapatan Bunga - Konstruksi,53.31
-2024-10,Pendapatan Investasi,38.54
-2024-10,Beban Bunga - Giro,16.12
-2024-10,Beban Bunga - Tabungan,18.94
-2024-10,Beban Bunga - Deposito,47.74
-2024-10,Beban Bunga - Pinjaman yang diterima,12.4
-2024-10,Beban Bunga - Surat Berharga Diterbitkan,4.73
+2024-09,Laba Bersih,63.49
+2024-10,Pendapatan Bunga - KPR Subsidi,41.4
+2024-10,Pendapatan Bunga - KPR Non Subsidi,71.43
+2024-10,Pendapatan Bunga - Non KPR,26.26
+2024-10,Pendapatan Bunga - Multimanfaat,23.44
+2024-10,Pendapatan Bunga - Modal Kerja,38.83
+2024-10,Pendapatan Bunga - Investasi,46.22
+2024-10,Pendapatan Bunga - Konstruksi,45.97
+2024-10,Pendapatan Investasi,34.6
+2024-10,Beban Bunga - Giro,17.85
+2024-10,Beban Bunga - Tabungan,36.29
+2024-10,Beban Bunga - Deposito,28.78
+2024-10,Beban Bunga - Pinjaman yang diterima,9.87
+2024-10,Beban Bunga - Surat Berharga Diterbitkan,7.1
 2024-10,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-10,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,50.0
-2024-10,Pendapatan Operasional Lainnya - Pendapatan Lainnya,215.34
+2024-10,Pendapatan Operasional Lainnya - Pendapatan Lainnya,234.52
 2024-10,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-10,Beban Operasional Lainnya - Beban CKPN,188.28
 2024-10,Beban Operasional Lainnya - Beban Administrasi,247.0
 2024-10,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-10,Laba Bersih,60.0
-2024-11,Pendapatan Bunga - KPR Subsidi,30.38
-2024-11,Pendapatan Bunga - KPR Non Subsidi,68.22
-2024-11,Pendapatan Bunga - Non KPR,54.39
-2024-11,Pendapatan Bunga - Multimanfaat,17.75
-2024-11,Pendapatan Bunga - Modal Kerja,54.2
-2024-11,Pendapatan Bunga - Investasi,26.99
-2024-11,Pendapatan Bunga - Konstruksi,52.82
-2024-11,Pendapatan Investasi,38.99
-2024-11,Beban Bunga - Giro,16.32
-2024-11,Beban Bunga - Tabungan,19.66
-2024-11,Beban Bunga - Deposito,49.59
-2024-11,Beban Bunga - Pinjaman yang diterima,13.0
-2024-11,Beban Bunga - Surat Berharga Diterbitkan,4.0
+2024-10,Laba Bersih,63.49
+2024-11,Pendapatan Bunga - KPR Subsidi,41.09
+2024-11,Pendapatan Bunga - KPR Non Subsidi,73.88
+2024-11,Pendapatan Bunga - Non KPR,26.43
+2024-11,Pendapatan Bunga - Multimanfaat,23.58
+2024-11,Pendapatan Bunga - Modal Kerja,39.03
+2024-11,Pendapatan Bunga - Investasi,46.46
+2024-11,Pendapatan Bunga - Konstruksi,43.06
+2024-11,Pendapatan Investasi,35.4
+2024-11,Beban Bunga - Giro,16.4
+2024-11,Beban Bunga - Tabungan,36.53
+2024-11,Beban Bunga - Deposito,30.82
+2024-11,Beban Bunga - Pinjaman yang diterima,9.79
+2024-11,Beban Bunga - Surat Berharga Diterbitkan,7.04
 2024-11,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-11,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,50.67
-2024-11,Pendapatan Operasional Lainnya - Pendapatan Lainnya,217.13
+2024-11,Pendapatan Operasional Lainnya - Pendapatan Lainnya,233.45
 2024-11,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-11,Beban Operasional Lainnya - Beban CKPN,185.4
 2024-11,Beban Operasional Lainnya - Beban Administrasi,249.57
 2024-11,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-11,Laba Bersih,60.0
-2024-12,Pendapatan Bunga - KPR Subsidi,30.28
-2024-12,Pendapatan Bunga - KPR Non Subsidi,69.06
-2024-12,Pendapatan Bunga - Non KPR,53.78
-2024-12,Pendapatan Bunga - Multimanfaat,19.24
-2024-12,Pendapatan Bunga - Modal Kerja,53.61
-2024-12,Pendapatan Bunga - Investasi,26.69
-2024-12,Pendapatan Bunga - Konstruksi,52.25
-2024-12,Pendapatan Investasi,39.5
-2024-12,Beban Bunga - Giro,23.19
-2024-12,Beban Bunga - Tabungan,19.72
-2024-12,Beban Bunga - Deposito,44.8
-2024-12,Beban Bunga - Pinjaman yang diterima,12.85
-2024-12,Beban Bunga - Surat Berharga Diterbitkan,3.97
+2024-11,Laba Bersih,63.49
+2024-12,Pendapatan Bunga - KPR Subsidi,41.0
+2024-12,Pendapatan Bunga - KPR Non Subsidi,71.95
+2024-12,Pendapatan Bunga - Non KPR,25.82
+2024-12,Pendapatan Bunga - Multimanfaat,24.96
+2024-12,Pendapatan Bunga - Modal Kerja,42.34
+2024-12,Pendapatan Bunga - Investasi,45.37
+2024-12,Pendapatan Bunga - Konstruksi,42.1
+2024-12,Pendapatan Investasi,36.8
+2024-12,Beban Bunga - Giro,15.15
+2024-12,Beban Bunga - Tabungan,38.97
+2024-12,Beban Bunga - Deposito,34.33
+2024-12,Beban Bunga - Pinjaman yang diterima,9.38
+2024-12,Beban Bunga - Surat Berharga Diterbitkan,7.25
 2024-12,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-12,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,52.5
-2024-12,Pendapatan Operasional Lainnya - Pendapatan Lainnya,223.5
+2024-12,Pendapatan Operasional Lainnya - Pendapatan Lainnya,241.61
 2024-12,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-12,Beban Operasional Lainnya - Beban CKPN,188.28
 2024-12,Beban Operasional Lainnya - Beban Administrasi,253.6
 2024-12,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-12,Laba Bersih,60.0
-2025-01,Pendapatan Bunga - KPR Subsidi,34.48
-2025-01,Pendapatan Bunga - KPR Non Subsidi,78.41
-2025-01,Pendapatan Bunga - Non KPR,59.22
-2025-01,Pendapatan Bunga - Multimanfaat,22.83
-2025-01,Pendapatan Bunga - Modal Kerja,64.58
-2025-01,Pendapatan Bunga - Investasi,32.84
-2025-01,Pendapatan Bunga - Konstruksi,61.99
-2025-01,Pendapatan Investasi,38.76
-2025-01,Beban Bunga - Giro,25.2
-2025-01,Beban Bunga - Tabungan,20.1
-2025-01,Beban Bunga - Deposito,43.03
-2025-01,Beban Bunga - Pinjaman yang diterima,11.9
-2025-01,Beban Bunga - Surat Berharga Diterbitkan,3.53
+2024-12,Laba Bersih,63.49
+2025-01,Pendapatan Bunga - KPR Subsidi,45.52
+2025-01,Pendapatan Bunga - KPR Non Subsidi,82.61
+2025-01,Pendapatan Bunga - Non KPR,29.82
+2025-01,Pendapatan Bunga - Multimanfaat,28.81
+2025-01,Pendapatan Bunga - Modal Kerja,50.96
+2025-01,Pendapatan Bunga - Investasi,54.5
+2025-01,Pendapatan Bunga - Konstruksi,51.01
+2025-01,Pendapatan Investasi,35.86
+2025-01,Beban Bunga - Giro,14.36
+2025-01,Beban Bunga - Tabungan,39.93
+2025-01,Beban Bunga - Deposito,32.03
+2025-01,Beban Bunga - Pinjaman yang diterima,8.09
+2025-01,Beban Bunga - Surat Berharga Diterbitkan,7.1
 2025-01,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-01,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,55.0
-2025-01,Pendapatan Operasional Lainnya - Pendapatan Lainnya,235.15
+2025-01,Pendapatan Operasional Lainnya - Pendapatan Lainnya,248.25
 2025-01,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-01,Beban Operasional Lainnya - Beban CKPN,232.5
 2025-01,Beban Operasional Lainnya - Beban Administrasi,258.0
 2025-01,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-01,Laba Bersih,75.0
-2025-02,Pendapatan Bunga - KPR Subsidi,33.92
-2025-02,Pendapatan Bunga - KPR Non Subsidi,75.33
-2025-02,Pendapatan Bunga - Non KPR,60.53
-2025-02,Pendapatan Bunga - Multimanfaat,25.08
-2025-02,Pendapatan Bunga - Modal Kerja,63.67
-2025-02,Pendapatan Bunga - Investasi,33.5
-2025-02,Pendapatan Bunga - Konstruksi,63.45
-2025-02,Pendapatan Investasi,40.25
-2025-02,Beban Bunga - Giro,24.37
-2025-02,Beban Bunga - Tabungan,20.11
-2025-02,Beban Bunga - Deposito,40.87
-2025-02,Beban Bunga - Pinjaman yang diterima,12.15
-2025-02,Beban Bunga - Surat Berharga Diterbitkan,3.38
+2025-01,Laba Bersih,76.33
+2025-02,Pendapatan Bunga - KPR Subsidi,45.55
+2025-02,Pendapatan Bunga - KPR Non Subsidi,82.61
+2025-02,Pendapatan Bunga - Non KPR,29.83
+2025-02,Pendapatan Bunga - Multimanfaat,25.72
+2025-02,Pendapatan Bunga - Modal Kerja,51.12
+2025-02,Pendapatan Bunga - Investasi,54.55
+2025-02,Pendapatan Bunga - Konstruksi,54.09
+2025-02,Pendapatan Investasi,36.87
+2025-02,Beban Bunga - Giro,15.17
+2025-02,Beban Bunga - Tabungan,38.82
+2025-02,Beban Bunga - Deposito,32.58
+2025-02,Beban Bunga - Pinjaman yang diterima,8.32
+2025-02,Beban Bunga - Surat Berharga Diterbitkan,6.92
 2025-02,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-02,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,57.5
-2025-02,Pendapatan Operasional Lainnya - Pendapatan Lainnya,243.25
+2025-02,Pendapatan Operasional Lainnya - Pendapatan Lainnya,260.9
 2025-02,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-02,Beban Operasional Lainnya - Beban CKPN,245.0
 2025-02,Beban Operasional Lainnya - Beban Administrasi,261.6
 2025-02,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-02,Laba Bersih,75.0
-2025-03,Pendapatan Bunga - KPR Subsidi,36.72
-2025-03,Pendapatan Bunga - KPR Non Subsidi,76.34
-2025-03,Pendapatan Bunga - Non KPR,62.8
-2025-03,Pendapatan Bunga - Multimanfaat,24.73
-2025-03,Pendapatan Bunga - Modal Kerja,60.44
-2025-03,Pendapatan Bunga - Investasi,30.04
-2025-03,Pendapatan Bunga - Konstruksi,62.62
-2025-03,Pendapatan Investasi,40.75
-2025-03,Beban Bunga - Giro,24.37
-2025-03,Beban Bunga - Tabungan,19.92
-2025-03,Beban Bunga - Deposito,38.06
-2025-03,Beban Bunga - Pinjaman yang diterima,12.19
-2025-03,Beban Bunga - Surat Berharga Diterbitkan,3.4
+2025-02,Laba Bersih,76.33
+2025-03,Pendapatan Bunga - KPR Subsidi,43.36
+2025-03,Pendapatan Bunga - KPR Non Subsidi,84.15
+2025-03,Pendapatan Bunga - Non KPR,30.49
+2025-03,Pendapatan Bunga - Multimanfaat,26.35
+2025-03,Pendapatan Bunga - Modal Kerja,49.57
+2025-03,Pendapatan Bunga - Investasi,52.96
+2025-03,Pendapatan Bunga - Konstruksi,58.71
+2025-03,Pendapatan Investasi,37.51
+2025-03,Beban Bunga - Giro,16.51
+2025-03,Beban Bunga - Tabungan,40.24
+2025-03,Beban Bunga - Deposito,31.46
+2025-03,Beban Bunga - Pinjaman yang diterima,8.76
+2025-03,Beban Bunga - Surat Berharga Diterbitkan,6.59
 2025-03,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-03,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,59.33
-2025-03,Pendapatan Operasional Lainnya - Pendapatan Lainnya,254.1
+2025-03,Pendapatan Operasional Lainnya - Pendapatan Lainnya,272.39
 2025-03,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-03,Beban Operasional Lainnya - Beban CKPN,257.5
 2025-03,Beban Operasional Lainnya - Beban Administrasi,263.43
 2025-03,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-03,Laba Bersih,75.0
-2025-04,Pendapatan Bunga - KPR Subsidi,38.3
-2025-04,Pendapatan Bunga - KPR Non Subsidi,75.27
-2025-04,Pendapatan Bunga - Non KPR,61.87
-2025-04,Pendapatan Bunga - Multimanfaat,24.4
-2025-04,Pendapatan Bunga - Modal Kerja,60.57
-2025-04,Pendapatan Bunga - Investasi,30.28
-2025-04,Pendapatan Bunga - Konstruksi,61.74
-2025-04,Pendapatan Investasi,40.56
-2025-04,Beban Bunga - Giro,25.56
-2025-04,Beban Bunga - Tabungan,23.62
-2025-04,Beban Bunga - Deposito,35.77
-2025-04,Beban Bunga - Pinjaman yang diterima,11.73
-2025-04,Beban Bunga - Surat Berharga Diterbitkan,3.91
+2025-03,Laba Bersih,76.33
+2025-04,Pendapatan Bunga - KPR Subsidi,47.3
+2025-04,Pendapatan Bunga - KPR Non Subsidi,84.6
+2025-04,Pendapatan Bunga - Non KPR,27.89
+2025-04,Pendapatan Bunga - Multimanfaat,27.41
+2025-04,Pendapatan Bunga - Modal Kerja,47.26
+2025-04,Pendapatan Bunga - Investasi,52.65
+2025-04,Pendapatan Bunga - Konstruksi,53.86
+2025-04,Pendapatan Investasi,37.87
+2025-04,Beban Bunga - Giro,16.24
+2025-04,Beban Bunga - Tabungan,42.05
+2025-04,Beban Bunga - Deposito,28.8
+2025-04,Beban Bunga - Pinjaman yang diterima,9.61
+2025-04,Beban Bunga - Surat Berharga Diterbitkan,5.84
 2025-04,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-04,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,60.0
-2025-04,Pendapatan Operasional Lainnya - Pendapatan Lainnya,266.25
+2025-04,Pendapatan Operasional Lainnya - Pendapatan Lainnya,283.68
 2025-04,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-04,Beban Operasional Lainnya - Beban CKPN,266.65
 2025-04,Beban Operasional Lainnya - Beban Administrasi,263.0
 2025-04,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-04,Laba Bersih,75.0
-2025-05,Pendapatan Bunga - KPR Subsidi,37.86
-2025-05,Pendapatan Bunga - KPR Non Subsidi,75.29
-2025-05,Pendapatan Bunga - Non KPR,61.9
-2025-05,Pendapatan Bunga - Multimanfaat,23.2
-2025-05,Pendapatan Bunga - Modal Kerja,60.39
-2025-05,Pendapatan Bunga - Investasi,32.12
-2025-05,Pendapatan Bunga - Konstruksi,61.77
-2025-05,Pendapatan Investasi,40.58
-2025-05,Beban Bunga - Giro,26.2
-2025-05,Beban Bunga - Tabungan,22.31
-2025-05,Beban Bunga - Deposito,38.62
-2025-05,Beban Bunga - Pinjaman yang diterima,11.78
-2025-05,Beban Bunga - Surat Berharga Diterbitkan,3.9
+2025-04,Laba Bersih,76.33
+2025-05,Pendapatan Bunga - KPR Subsidi,47.39
+2025-05,Pendapatan Bunga - KPR Non Subsidi,82.28
+2025-05,Pendapatan Bunga - Non KPR,25.32
+2025-05,Pendapatan Bunga - Multimanfaat,32.39
+2025-05,Pendapatan Bunga - Modal Kerja,47.72
+2025-05,Pendapatan Bunga - Investasi,54.5
+2025-05,Pendapatan Bunga - Konstruksi,51.16
+2025-05,Pendapatan Investasi,38.27
+2025-05,Beban Bunga - Giro,16.11
+2025-05,Beban Bunga - Tabungan,41.87
+2025-05,Beban Bunga - Deposito,27.18
+2025-05,Beban Bunga - Pinjaman yang diterima,9.65
+2025-05,Beban Bunga - Surat Berharga Diterbitkan,5.87
 2025-05,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-05,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,59.33
-2025-05,Pendapatan Operasional Lainnya - Pendapatan Lainnya,269.8
+2025-05,Pendapatan Operasional Lainnya - Pendapatan Lainnya,283.08
 2025-05,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-05,Beban Operasional Lainnya - Beban CKPN,270.0
 2025-05,Beban Operasional Lainnya - Beban Administrasi,260.43
 2025-05,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-05,Laba Bersih,75.0
-2025-06,Pendapatan Bunga - KPR Subsidi,38.87
-2025-06,Pendapatan Bunga - KPR Non Subsidi,76.8
-2025-06,Pendapatan Bunga - Non KPR,63.41
-2025-06,Pendapatan Bunga - Multimanfaat,24.54
-2025-06,Pendapatan Bunga - Modal Kerja,62.27
-2025-06,Pendapatan Bunga - Investasi,25.61
-2025-06,Pendapatan Bunga - Konstruksi,61.09
-2025-06,Pendapatan Investasi,39.79
-2025-06,Beban Bunga - Giro,27.02
-2025-06,Beban Bunga - Tabungan,22.79
-2025-06,Beban Bunga - Deposito,31.9
-2025-06,Beban Bunga - Pinjaman yang diterima,12.33
-2025-06,Beban Bunga - Surat Berharga Diterbitkan,3.46
+2025-05,Laba Bersih,76.33
+2025-06,Pendapatan Bunga - KPR Subsidi,47.29
+2025-06,Pendapatan Bunga - KPR Non Subsidi,79.71
+2025-06,Pendapatan Bunga - Non KPR,28.38
+2025-06,Pendapatan Bunga - Multimanfaat,31.92
+2025-06,Pendapatan Bunga - Modal Kerja,44.92
+2025-06,Pendapatan Bunga - Investasi,56.28
+2025-06,Pendapatan Bunga - Konstruksi,52.85
+2025-06,Pendapatan Investasi,37.82
+2025-06,Beban Bunga - Giro,16.05
+2025-06,Beban Bunga - Tabungan,42.24
+2025-06,Beban Bunga - Deposito,27.06
+2025-06,Beban Bunga - Pinjaman yang diterima,9.68
+2025-06,Beban Bunga - Surat Berharga Diterbitkan,5.92
 2025-06,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-06,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,57.5
-2025-06,Pendapatan Operasional Lainnya - Pendapatan Lainnya,259.67
+2025-06,Pendapatan Operasional Lainnya - Pendapatan Lainnya,277.67
 2025-06,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-06,Beban Operasional Lainnya - Beban CKPN,266.65
 2025-06,Beban Operasional Lainnya - Beban Administrasi,256.4
 2025-06,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-06,Laba Bersih,75.0
-2025-07,Pendapatan Bunga - KPR Subsidi,37.23
-2025-07,Pendapatan Bunga - KPR Non Subsidi,77.59
-2025-07,Pendapatan Bunga - Non KPR,60.31
-2025-07,Pendapatan Bunga - Multimanfaat,29.45
-2025-07,Pendapatan Bunga - Modal Kerja,63.02
-2025-07,Pendapatan Bunga - Investasi,24.63
-2025-07,Pendapatan Bunga - Konstruksi,61.81
-2025-07,Pendapatan Investasi,39.25
-2025-07,Beban Bunga - Giro,27.1
-2025-07,Beban Bunga - Tabungan,22.19
-2025-07,Beban Bunga - Deposito,31.04
-2025-07,Beban Bunga - Pinjaman yang diterima,12.41
-2025-07,Beban Bunga - Surat Berharga Diterbitkan,3.48
+2025-06,Laba Bersih,76.33
+2025-07,Pendapatan Bunga - KPR Subsidi,49.16
+2025-07,Pendapatan Bunga - KPR Non Subsidi,79.15
+2025-07,Pendapatan Bunga - Non KPR,30.88
+2025-07,Pendapatan Bunga - Multimanfaat,31.78
+2025-07,Pendapatan Bunga - Modal Kerja,42.22
+2025-07,Pendapatan Bunga - Investasi,54.99
+2025-07,Pendapatan Bunga - Konstruksi,52.53
+2025-07,Pendapatan Investasi,37.7
+2025-07,Beban Bunga - Giro,15.69
+2025-07,Beban Bunga - Tabungan,41.87
+2025-07,Beban Bunga - Deposito,27.92
+2025-07,Beban Bunga - Pinjaman yang diterima,9.71
+2025-07,Beban Bunga - Surat Berharga Diterbitkan,5.97
 2025-07,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-07,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,55.0
-2025-07,Pendapatan Operasional Lainnya - Pendapatan Lainnya,246.43
+2025-07,Pendapatan Operasional Lainnya - Pendapatan Lainnya,267.58
 2025-07,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-07,Beban Operasional Lainnya - Beban CKPN,257.5
 2025-07,Beban Operasional Lainnya - Beban Administrasi,252.0
 2025-07,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-07,Laba Bersih,75.0
-2025-08,Pendapatan Bunga - KPR Subsidi,37.59
-2025-08,Pendapatan Bunga - KPR Non Subsidi,76.35
-2025-08,Pendapatan Bunga - Non KPR,61.68
-2025-08,Pendapatan Bunga - Multimanfaat,28.31
-2025-08,Pendapatan Bunga - Modal Kerja,61.93
-2025-08,Pendapatan Bunga - Investasi,25.24
-2025-08,Pendapatan Bunga - Konstruksi,63.34
-2025-08,Pendapatan Investasi,38.59
-2025-08,Beban Bunga - Giro,26.43
-2025-08,Beban Bunga - Tabungan,19.93
-2025-08,Beban Bunga - Deposito,29.08
-2025-08,Beban Bunga - Pinjaman yang diterima,12.47
-2025-08,Beban Bunga - Surat Berharga Diterbitkan,3.49
+2025-07,Laba Bersih,76.33
+2025-08,Pendapatan Bunga - KPR Subsidi,51.02
+2025-08,Pendapatan Bunga - KPR Non Subsidi,80.63
+2025-08,Pendapatan Bunga - Non KPR,32.07
+2025-08,Pendapatan Bunga - Multimanfaat,33.06
+2025-08,Pendapatan Bunga - Modal Kerja,43.89
+2025-08,Pendapatan Bunga - Investasi,50.83
+2025-08,Pendapatan Bunga - Konstruksi,47.19
+2025-08,Pendapatan Investasi,38.1
+2025-08,Beban Bunga - Giro,15.55
+2025-08,Beban Bunga - Tabungan,41.62
+2025-08,Beban Bunga - Deposito,29.9
+2025-08,Beban Bunga - Pinjaman yang diterima,9.76
+2025-08,Beban Bunga - Surat Berharga Diterbitkan,6.0
 2025-08,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-08,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,52.5
-2025-08,Pendapatan Operasional Lainnya - Pendapatan Lainnya,228.27
+2025-08,Pendapatan Operasional Lainnya - Pendapatan Lainnya,257.28
 2025-08,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-08,Beban Operasional Lainnya - Beban CKPN,245.0
 2025-08,Beban Operasional Lainnya - Beban Administrasi,248.4
 2025-08,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-08,Laba Bersih,75.0
-2025-09,Pendapatan Bunga - KPR Subsidi,38.84
-2025-09,Pendapatan Bunga - KPR Non Subsidi,76.08
-2025-09,Pendapatan Bunga - Non KPR,56.33
-2025-09,Pendapatan Bunga - Multimanfaat,28.4
-2025-09,Pendapatan Bunga - Modal Kerja,62.02
-2025-09,Pendapatan Bunga - Investasi,26.03
-2025-09,Pendapatan Bunga - Konstruksi,65.34
-2025-09,Pendapatan Investasi,37.71
-2025-09,Beban Bunga - Giro,25.84
-2025-09,Beban Bunga - Tabungan,21.16
-2025-09,Beban Bunga - Deposito,31.7
-2025-09,Beban Bunga - Pinjaman yang diterima,12.53
-2025-09,Beban Bunga - Surat Berharga Diterbitkan,3.5
+2025-08,Laba Bersih,76.33
+2025-09,Pendapatan Bunga - KPR Subsidi,50.24
+2025-09,Pendapatan Bunga - KPR Non Subsidi,81.38
+2025-09,Pendapatan Bunga - Non KPR,32.87
+2025-09,Pendapatan Bunga - Multimanfaat,33.91
+2025-09,Pendapatan Bunga - Modal Kerja,45.03
+2025-09,Pendapatan Bunga - Investasi,49.96
+2025-09,Pendapatan Bunga - Konstruksi,45.36
+2025-09,Pendapatan Investasi,37.73
+2025-09,Beban Bunga - Giro,15.03
+2025-09,Beban Bunga - Tabungan,42.0
+2025-09,Beban Bunga - Deposito,34.74
+2025-09,Beban Bunga - Pinjaman yang diterima,9.8
+2025-09,Beban Bunga - Surat Berharga Diterbitkan,6.02
 2025-09,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-09,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,50.67
-2025-09,Pendapatan Operasional Lainnya - Pendapatan Lainnya,221.38
+2025-09,Pendapatan Operasional Lainnya - Pendapatan Lainnya,249.85
 2025-09,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-09,Beban Operasional Lainnya - Beban CKPN,232.5
 2025-09,Beban Operasional Lainnya - Beban Administrasi,246.57
 2025-09,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-09,Laba Bersih,75.0
-2025-10,Pendapatan Bunga - KPR Subsidi,39.5
-2025-10,Pendapatan Bunga - KPR Non Subsidi,77.09
-2025-10,Pendapatan Bunga - Non KPR,55.59
-2025-10,Pendapatan Bunga - Multimanfaat,30.05
-2025-10,Pendapatan Bunga - Modal Kerja,55.39
-2025-10,Pendapatan Bunga - Investasi,26.07
-2025-10,Pendapatan Bunga - Konstruksi,69.08
-2025-10,Pendapatan Investasi,37.14
-2025-10,Beban Bunga - Giro,25.42
-2025-10,Beban Bunga - Tabungan,19.02
-2025-10,Beban Bunga - Deposito,35.3
-2025-10,Beban Bunga - Pinjaman yang diterima,12.57
-2025-10,Beban Bunga - Surat Berharga Diterbitkan,3.52
+2025-09,Laba Bersih,76.33
+2025-10,Pendapatan Bunga - KPR Subsidi,48.68
+2025-10,Pendapatan Bunga - KPR Non Subsidi,82.1
+2025-10,Pendapatan Bunga - Non KPR,34.59
+2025-10,Pendapatan Bunga - Multimanfaat,35.73
+2025-10,Pendapatan Bunga - Modal Kerja,42.82
+2025-10,Pendapatan Bunga - Investasi,52.56
+2025-10,Pendapatan Bunga - Konstruksi,43.71
+2025-10,Pendapatan Investasi,37.0
+2025-10,Beban Bunga - Giro,14.92
+2025-10,Beban Bunga - Tabungan,41.14
+2025-10,Beban Bunga - Deposito,37.54
+2025-10,Beban Bunga - Pinjaman yang diterima,9.83
+2025-10,Beban Bunga - Surat Berharga Diterbitkan,6.07
 2025-10,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-10,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,50.0
-2025-10,Pendapatan Operasional Lainnya - Pendapatan Lainnya,215.27
+2025-10,Pendapatan Operasional Lainnya - Pendapatan Lainnya,242.99
 2025-10,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-10,Beban Operasional Lainnya - Beban CKPN,223.35
 2025-10,Beban Operasional Lainnya - Beban Administrasi,247.0
 2025-10,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-10,Laba Bersih,75.0
-2025-11,Pendapatan Bunga - KPR Subsidi,38.82
-2025-11,Pendapatan Bunga - KPR Non Subsidi,72.77
-2025-11,Pendapatan Bunga - Non KPR,58.0
-2025-11,Pendapatan Bunga - Multimanfaat,29.84
-2025-11,Pendapatan Bunga - Modal Kerja,57.86
-2025-11,Pendapatan Bunga - Investasi,27.25
-2025-11,Pendapatan Bunga - Konstruksi,68.77
-2025-11,Pendapatan Investasi,37.31
-2025-11,Beban Bunga - Giro,24.98
-2025-11,Beban Bunga - Tabungan,18.51
-2025-11,Beban Bunga - Deposito,37.87
-2025-11,Beban Bunga - Pinjaman yang diterima,12.64
-2025-11,Beban Bunga - Surat Berharga Diterbitkan,3.54
+2025-10,Laba Bersih,76.33
+2025-11,Pendapatan Bunga - KPR Subsidi,49.53
+2025-11,Pendapatan Bunga - KPR Non Subsidi,79.76
+2025-11,Pendapatan Bunga - Non KPR,36.67
+2025-11,Pendapatan Bunga - Multimanfaat,37.91
+2025-11,Pendapatan Bunga - Modal Kerja,45.41
+2025-11,Pendapatan Bunga - Investasi,49.43
+2025-11,Pendapatan Bunga - Konstruksi,41.74
+2025-11,Pendapatan Investasi,36.72
+2025-11,Beban Bunga - Giro,16.0
+2025-11,Beban Bunga - Tabungan,39.95
+2025-11,Beban Bunga - Deposito,34.54
+2025-11,Beban Bunga - Pinjaman yang diterima,9.11
+2025-11,Beban Bunga - Surat Berharga Diterbitkan,6.82
 2025-11,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-11,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,50.67
-2025-11,Pendapatan Operasional Lainnya - Pendapatan Lainnya,214.82
+2025-11,Pendapatan Operasional Lainnya - Pendapatan Lainnya,238.49
 2025-11,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-11,Beban Operasional Lainnya - Beban CKPN,220.0
 2025-11,Beban Operasional Lainnya - Beban Administrasi,249.57
 2025-11,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-11,Laba Bersih,75.0
-2025-12,Pendapatan Bunga - KPR Subsidi,39.34
-2025-12,Pendapatan Bunga - KPR Non Subsidi,72.06
-2025-12,Pendapatan Bunga - Non KPR,56.37
-2025-12,Pendapatan Bunga - Multimanfaat,30.91
-2025-12,Pendapatan Bunga - Modal Kerja,59.85
-2025-12,Pendapatan Bunga - Investasi,28.18
-2025-12,Pendapatan Bunga - Konstruksi,66.16
-2025-12,Pendapatan Investasi,37.71
-2025-12,Beban Bunga - Giro,24.0
-2025-12,Beban Bunga - Tabungan,21.72
-2025-12,Beban Bunga - Deposito,40.2
-2025-12,Beban Bunga - Pinjaman yang diterima,12.68
-2025-12,Beban Bunga - Surat Berharga Diterbitkan,3.58
+2025-11,Laba Bersih,76.33
+2025-12,Pendapatan Bunga - KPR Subsidi,48.45
+2025-12,Pendapatan Bunga - KPR Non Subsidi,80.65
+2025-12,Pendapatan Bunga - Non KPR,36.26
+2025-12,Pendapatan Bunga - Multimanfaat,39.07
+2025-12,Pendapatan Bunga - Modal Kerja,43.19
+2025-12,Pendapatan Bunga - Investasi,50.82
+2025-12,Pendapatan Bunga - Konstruksi,42.92
+2025-12,Pendapatan Investasi,37.22
+2025-12,Beban Bunga - Giro,16.81
+2025-12,Beban Bunga - Tabungan,38.91
+2025-12,Beban Bunga - Deposito,37.73
+2025-12,Beban Bunga - Pinjaman yang diterima,9.19
+2025-12,Beban Bunga - Surat Berharga Diterbitkan,6.85
 2025-12,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-12,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,52.5
-2025-12,Pendapatan Operasional Lainnya - Pendapatan Lainnya,225.05
+2025-12,Pendapatan Operasional Lainnya - Pendapatan Lainnya,245.69
 2025-12,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-12,Beban Operasional Lainnya - Beban CKPN,223.35
 2025-12,Beban Operasional Lainnya - Beban Administrasi,253.6
 2025-12,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-12,Laba Bersih,75.0
-2026-01,Pendapatan Bunga - KPR Subsidi,44.36
-2026-01,Pendapatan Bunga - KPR Non Subsidi,82.89
-2026-01,Pendapatan Bunga - Non KPR,64.85
-2026-01,Pendapatan Bunga - Multimanfaat,33.09
-2026-01,Pendapatan Bunga - Modal Kerja,68.95
-2026-01,Pendapatan Bunga - Investasi,32.43
-2026-01,Pendapatan Bunga - Konstruksi,76.06
-2026-01,Pendapatan Investasi,36.69
-2026-01,Beban Bunga - Giro,24.47
-2026-01,Beban Bunga - Tabungan,21.98
-2026-01,Beban Bunga - Deposito,42.02
-2026-01,Beban Bunga - Pinjaman yang diterima,12.44
-2026-01,Beban Bunga - Surat Berharga Diterbitkan,3.49
+2025-12,Laba Bersih,76.33
+2026-01,Pendapatan Bunga - KPR Subsidi,56.07
+2026-01,Pendapatan Bunga - KPR Non Subsidi,95.52
+2026-01,Pendapatan Bunga - Non KPR,42.97
+2026-01,Pendapatan Bunga - Multimanfaat,42.28
+2026-01,Pendapatan Bunga - Modal Kerja,51.16
+2026-01,Pendapatan Bunga - Investasi,60.26
+2026-01,Pendapatan Bunga - Konstruksi,46.11
+2026-01,Pendapatan Investasi,36.56
+2026-01,Beban Bunga - Giro,13.66
+2026-01,Beban Bunga - Tabungan,38.42
+2026-01,Beban Bunga - Deposito,37.67
+2026-01,Beban Bunga - Pinjaman yang diterima,8.98
+2026-01,Beban Bunga - Surat Berharga Diterbitkan,6.71
 2026-01,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2026-01,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,55.0
-2026-01,Pendapatan Operasional Lainnya - Pendapatan Lainnya,215.66
+2026-01,Pendapatan Operasional Lainnya - Pendapatan Lainnya,230.96
 2026-01,Beban Operasional Lainnya - Beban Bonus,20.0
-2026-01,Beban Operasional Lainnya - Beban CKPN,250.25
+2026-01,Beban Operasional Lainnya - Beban CKPN,252.91
 2026-01,Beban Operasional Lainnya - Beban Administrasi,258.0
 2026-01,Beban Operasional Lainnya - Beban Lainnya,12.0
-2026-01,Laba Bersih,83.33
-2026-02,Pendapatan Bunga - KPR Subsidi,42.47
-2026-02,Pendapatan Bunga - KPR Non Subsidi,82.9
-2026-02,Pendapatan Bunga - Non KPR,59.6
-2026-02,Pendapatan Bunga - Multimanfaat,34.78
-2026-02,Pendapatan Bunga - Modal Kerja,72.34
-2026-02,Pendapatan Bunga - Investasi,34.04
-2026-02,Pendapatan Bunga - Konstruksi,79.71
-2026-02,Pendapatan Investasi,37.35
-2026-02,Beban Bunga - Giro,24.53
-2026-02,Beban Bunga - Tabungan,21.35
-2026-02,Beban Bunga - Deposito,40.7
-2026-02,Beban Bunga - Pinjaman yang diterima,12.5
-2026-02,Beban Bunga - Surat Berharga Diterbitkan,3.51
+2026-01,Laba Bersih,86.54
+2026-02,Pendapatan Bunga - KPR Subsidi,58.03
+2026-02,Pendapatan Bunga - KPR Non Subsidi,86.27
+2026-02,Pendapatan Bunga - Non KPR,45.94
+2026-02,Pendapatan Bunga - Multimanfaat,45.2
+2026-02,Pendapatan Bunga - Modal Kerja,49.22
+2026-02,Pendapatan Bunga - Investasi,64.32
+2026-02,Pendapatan Bunga - Konstruksi,45.68
+2026-02,Pendapatan Investasi,37.33
+2026-02,Beban Bunga - Giro,14.85
+2026-02,Beban Bunga - Tabungan,35.31
+2026-02,Beban Bunga - Deposito,41.63
+2026-02,Beban Bunga - Pinjaman yang diterima,8.56
+2026-02,Beban Bunga - Surat Berharga Diterbitkan,7.16
 2026-02,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2026-02,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,57.5
-2026-02,Pendapatan Operasional Lainnya - Pendapatan Lainnya,226.64
+2026-02,Pendapatan Operasional Lainnya - Pendapatan Lainnya,248.22
 2026-02,Beban Operasional Lainnya - Beban Bonus,20.0
-2026-02,Beban Operasional Lainnya - Beban CKPN,265.81
+2026-02,Beban Operasional Lainnya - Beban CKPN,268.06
 2026-02,Beban Operasional Lainnya - Beban Administrasi,261.6
 2026-02,Beban Operasional Lainnya - Beban Lainnya,12.0
-2026-02,Laba Bersih,83.33
-2026-03,Pendapatan Bunga - KPR Subsidi,43.45
-2026-03,Pendapatan Bunga - KPR Non Subsidi,80.58
-2026-03,Pendapatan Bunga - Non KPR,62.23
-2026-03,Pendapatan Bunga - Multimanfaat,34.2
-2026-03,Pendapatan Bunga - Modal Kerja,68.35
-2026-03,Pendapatan Bunga - Investasi,34.19
-2026-03,Pendapatan Bunga - Konstruksi,86.35
-2026-03,Pendapatan Investasi,37.61
-2026-03,Beban Bunga - Giro,22.36
-2026-03,Beban Bunga - Tabungan,22.64
-2026-03,Beban Bunga - Deposito,40.17
-2026-03,Beban Bunga - Pinjaman yang diterima,12.53
-2026-03,Beban Bunga - Surat Berharga Diterbitkan,3.55
+2026-02,Laba Bersih,86.54
+2026-03,Pendapatan Bunga - KPR Subsidi,57.61
+2026-03,Pendapatan Bunga - KPR Non Subsidi,88.46
+2026-03,Pendapatan Bunga - Non KPR,47.15
+2026-03,Pendapatan Bunga - Multimanfaat,46.45
+2026-03,Pendapatan Bunga - Modal Kerja,50.46
+2026-03,Pendapatan Bunga - Investasi,59.9
+2026-03,Pendapatan Bunga - Konstruksi,46.82
+2026-03,Pendapatan Investasi,37.81
+2026-03,Beban Bunga - Giro,15.13
+2026-03,Beban Bunga - Tabungan,37.31
+2026-03,Beban Bunga - Deposito,39.69
+2026-03,Beban Bunga - Pinjaman yang diterima,8.18
+2026-03,Beban Bunga - Surat Berharga Diterbitkan,7.61
 2026-03,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2026-03,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,59.33
-2026-03,Pendapatan Operasional Lainnya - Pendapatan Lainnya,237.28
+2026-03,Pendapatan Operasional Lainnya - Pendapatan Lainnya,261.22
 2026-03,Beban Operasional Lainnya - Beban Bonus,20.0
-2026-03,Beban Operasional Lainnya - Beban CKPN,281.56
+2026-03,Beban Operasional Lainnya - Beban CKPN,283.32
 2026-03,Beban Operasional Lainnya - Beban Administrasi,263.43
 2026-03,Beban Operasional Lainnya - Beban Lainnya,12.0
-2026-03,Laba Bersih,83.33
-2026-04,Pendapatan Bunga - KPR Subsidi,42.3
-2026-04,Pendapatan Bunga - KPR Non Subsidi,76.15
-2026-04,Pendapatan Bunga - Non KPR,65.05
-2026-04,Pendapatan Bunga - Multimanfaat,35.86
-2026-04,Pendapatan Bunga - Modal Kerja,68.41
-2026-04,Pendapatan Bunga - Investasi,35.81
-2026-04,Pendapatan Bunga - Konstruksi,90.34
-2026-04,Pendapatan Investasi,37.55
-2026-04,Beban Bunga - Giro,21.91
-2026-04,Beban Bunga - Tabungan,22.5
-2026-04,Beban Bunga - Deposito,39.28
-2026-04,Beban Bunga - Pinjaman yang diterima,13.69
-2026-04,Beban Bunga - Surat Berharga Diterbitkan,2.55
+2026-03,Laba Bersih,86.54
+2026-04,Pendapatan Bunga - KPR Subsidi,61.12
+2026-04,Pendapatan Bunga - KPR Non Subsidi,88.23
+2026-04,Pendapatan Bunga - Non KPR,50.01
+2026-04,Pendapatan Bunga - Multimanfaat,49.31
+2026-04,Pendapatan Bunga - Modal Kerja,46.9
+2026-04,Pendapatan Bunga - Investasi,55.95
+2026-04,Pendapatan Bunga - Konstruksi,43.92
+2026-04,Pendapatan Investasi,37.64
+2026-04,Beban Bunga - Giro,16.38
+2026-04,Beban Bunga - Tabungan,38.85
+2026-04,Beban Bunga - Deposito,33.24
+2026-04,Beban Bunga - Pinjaman yang diterima,8.06
+2026-04,Beban Bunga - Surat Berharga Diterbitkan,7.78
 2026-04,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2026-04,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,60.0
-2026-04,Pendapatan Operasional Lainnya - Pendapatan Lainnya,242.4
+2026-04,Pendapatan Operasional Lainnya - Pendapatan Lainnya,269.53
 2026-04,Beban Operasional Lainnya - Beban Bonus,20.0
-2026-04,Beban Operasional Lainnya - Beban CKPN,293.61
+2026-04,Beban Operasional Lainnya - Beban CKPN,294.76
 2026-04,Beban Operasional Lainnya - Beban Administrasi,263.0
 2026-04,Beban Operasional Lainnya - Beban Lainnya,12.0
-2026-04,Laba Bersih,83.33
-2026-05,Pendapatan Bunga - KPR Subsidi,43.2
-2026-05,Pendapatan Bunga - KPR Non Subsidi,77.61
-2026-05,Pendapatan Bunga - Non KPR,66.12
-2026-05,Pendapatan Bunga - Multimanfaat,35.66
-2026-05,Pendapatan Bunga - Modal Kerja,71.27
-2026-05,Pendapatan Bunga - Investasi,38.14
-2026-05,Pendapatan Bunga - Konstruksi,84.08
-2026-05,Pendapatan Investasi,37.39
-2026-05,Beban Bunga - Giro,23.18
-2026-05,Beban Bunga - Tabungan,23.2
-2026-05,Beban Bunga - Deposito,37.59
-2026-05,Beban Bunga - Pinjaman yang diterima,13.62
-2026-05,Beban Bunga - Surat Berharga Diterbitkan,2.7
+2026-04,Laba Bersih,86.54
+2026-05,Pendapatan Bunga - KPR Subsidi,63.58
+2026-05,Pendapatan Bunga - KPR Non Subsidi,87.82
+2026-05,Pendapatan Bunga - Non KPR,52.03
+2026-05,Pendapatan Bunga - Multimanfaat,51.31
+2026-05,Pendapatan Bunga - Modal Kerja,45.65
+2026-05,Pendapatan Bunga - Investasi,50.24
+2026-05,Pendapatan Bunga - Konstruksi,45.62
+2026-05,Pendapatan Investasi,37.52
+2026-05,Beban Bunga - Giro,17.49
+2026-05,Beban Bunga - Tabungan,38.31
+2026-05,Beban Bunga - Deposito,32.57
+2026-05,Beban Bunga - Pinjaman yang diterima,8.12
+2026-05,Beban Bunga - Surat Berharga Diterbitkan,7.82
 2026-05,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2026-05,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,59.33
-2026-05,Pendapatan Operasional Lainnya - Pendapatan Lainnya,244.25
+2026-05,Pendapatan Operasional Lainnya - Pendapatan Lainnya,271.65
 2026-05,Beban Operasional Lainnya - Beban Bonus,20.0
-2026-05,Beban Operasional Lainnya - Beban CKPN,299.0
+2026-05,Beban Operasional Lainnya - Beban CKPN,299.48
 2026-05,Beban Operasional Lainnya - Beban Administrasi,260.43
 2026-05,Beban Operasional Lainnya - Beban Lainnya,12.0
-2026-05,Laba Bersih,83.33
-2026-06,Pendapatan Bunga - KPR Subsidi,43.03
-2026-06,Pendapatan Bunga - KPR Non Subsidi,72.25
-2026-06,Pendapatan Bunga - Non KPR,66.08
-2026-06,Pendapatan Bunga - Multimanfaat,39.85
-2026-06,Pendapatan Bunga - Modal Kerja,77.71
-2026-06,Pendapatan Bunga - Investasi,38.0
-2026-06,Pendapatan Bunga - Konstruksi,82.61
-2026-06,Pendapatan Investasi,36.47
-2026-06,Beban Bunga - Giro,23.49
-2026-06,Beban Bunga - Tabungan,24.75
-2026-06,Beban Bunga - Deposito,38.12
-2026-06,Beban Bunga - Pinjaman yang diterima,13.16
-2026-06,Beban Bunga - Surat Berharga Diterbitkan,3.23
+2026-05,Laba Bersih,86.54
+2026-06,Pendapatan Bunga - KPR Subsidi,66.97
+2026-06,Pendapatan Bunga - KPR Non Subsidi,82.42
+2026-06,Pendapatan Bunga - Non KPR,50.01
+2026-06,Pendapatan Bunga - Multimanfaat,51.46
+2026-06,Pendapatan Bunga - Modal Kerja,49.66
+2026-06,Pendapatan Bunga - Investasi,52.65
+2026-06,Pendapatan Bunga - Konstruksi,40.46
+2026-06,Pendapatan Investasi,37.04
+2026-06,Beban Bunga - Giro,17.47
+2026-06,Beban Bunga - Tabungan,39.02
+2026-06,Beban Bunga - Deposito,32.56
+2026-06,Beban Bunga - Pinjaman yang diterima,8.02
+2026-06,Beban Bunga - Surat Berharga Diterbitkan,7.94
 2026-06,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2026-06,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,57.5
-2026-06,Pendapatan Operasional Lainnya - Pendapatan Lainnya,239.54
+2026-06,Pendapatan Operasional Lainnya - Pendapatan Lainnya,270.12
 2026-06,Beban Operasional Lainnya - Beban Bonus,20.0
-2026-06,Beban Operasional Lainnya - Beban CKPN,296.56
+2026-06,Beban Operasional Lainnya - Beban CKPN,296.34
 2026-06,Beban Operasional Lainnya - Beban Administrasi,256.4
 2026-06,Beban Operasional Lainnya - Beban Lainnya,12.0
-2026-06,Laba Bersih,83.33
-2026-07,Pendapatan Bunga - KPR Subsidi,37.3
+2026-06,Laba Bersih,86.54
+2026-07,Pendapatan Bunga - KPR Subsidi,67.16
 2026-07,Pendapatan Bunga - KPR Non Subsidi,80.83
-2026-07,Pendapatan Bunga - Non KPR,69.27
-2026-07,Pendapatan Bunga - Multimanfaat,38.24
-2026-07,Pendapatan Bunga - Modal Kerja,79.99
-2026-07,Pendapatan Bunga - Investasi,32.42
-2026-07,Pendapatan Bunga - Konstruksi,89.51
-2026-07,Pendapatan Investasi,36.04
-2026-07,Beban Bunga - Giro,24.39
-2026-07,Beban Bunga - Tabungan,25.19
-2026-07,Beban Bunga - Deposito,35.27
-2026-07,Beban Bunga - Pinjaman yang diterima,13.22
-2026-07,Beban Bunga - Surat Berharga Diterbitkan,3.24
+2026-07,Pendapatan Bunga - Non KPR,52.58
+2026-07,Pendapatan Bunga - Multimanfaat,54.02
+2026-07,Pendapatan Bunga - Modal Kerja,52.18
+2026-07,Pendapatan Bunga - Investasi,53.01
+2026-07,Pendapatan Bunga - Konstruksi,34.54
+2026-07,Pendapatan Investasi,36.67
+2026-07,Beban Bunga - Giro,16.97
+2026-07,Beban Bunga - Tabungan,39.06
+2026-07,Beban Bunga - Deposito,33.85
+2026-07,Beban Bunga - Pinjaman yang diterima,8.69
+2026-07,Beban Bunga - Surat Berharga Diterbitkan,7.38
 2026-07,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2026-07,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,55.0
-2026-07,Pendapatan Operasional Lainnya - Pendapatan Lainnya,219.23
+2026-07,Pendapatan Operasional Lainnya - Pendapatan Lainnya,258.82
 2026-07,Beban Operasional Lainnya - Beban Bonus,20.0
-2026-07,Beban Operasional Lainnya - Beban CKPN,287.19
+2026-07,Beban Operasional Lainnya - Beban CKPN,286.32
 2026-07,Beban Operasional Lainnya - Beban Administrasi,252.0
 2026-07,Beban Operasional Lainnya - Beban Lainnya,12.0
-2026-07,Laba Bersih,83.33
-2026-08,Pendapatan Bunga - KPR Subsidi,34.32
-2026-08,Pendapatan Bunga - KPR Non Subsidi,71.44
-2026-08,Pendapatan Bunga - Non KPR,69.84
-2026-08,Pendapatan Bunga - Multimanfaat,42.76
-2026-08,Pendapatan Bunga - Modal Kerja,85.51
-2026-08,Pendapatan Bunga - Investasi,34.07
-2026-08,Pendapatan Bunga - Konstruksi,95.22
-2026-08,Pendapatan Investasi,34.32
-2026-08,Beban Bunga - Giro,25.06
-2026-08,Beban Bunga - Tabungan,24.93
-2026-08,Beban Bunga - Deposito,35.05
-2026-08,Beban Bunga - Pinjaman yang diterima,12.83
-2026-08,Beban Bunga - Surat Berharga Diterbitkan,3.66
+2026-07,Laba Bersih,86.54
+2026-08,Pendapatan Bunga - KPR Subsidi,67.57
+2026-08,Pendapatan Bunga - KPR Non Subsidi,88.69
+2026-08,Pendapatan Bunga - Non KPR,50.42
+2026-08,Pendapatan Bunga - Multimanfaat,59.29
+2026-08,Pendapatan Bunga - Modal Kerja,49.28
+2026-08,Pendapatan Bunga - Investasi,53.25
+2026-08,Pendapatan Bunga - Konstruksi,25.47
+2026-08,Pendapatan Investasi,35.81
+2026-08,Beban Bunga - Giro,17.86
+2026-08,Beban Bunga - Tabungan,36.68
+2026-08,Beban Bunga - Deposito,32.98
+2026-08,Beban Bunga - Pinjaman yang diterima,9.48
+2026-08,Beban Bunga - Surat Berharga Diterbitkan,6.73
 2026-08,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2026-08,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,52.5
-2026-08,Pendapatan Operasional Lainnya - Pendapatan Lainnya,200.97
+2026-08,Pendapatan Operasional Lainnya - Pendapatan Lainnya,242.66
 2026-08,Beban Operasional Lainnya - Beban Bonus,20.0
-2026-08,Beban Operasional Lainnya - Beban CKPN,273.69
+2026-08,Beban Operasional Lainnya - Beban CKPN,272.27
 2026-08,Beban Operasional Lainnya - Beban Administrasi,248.4
 2026-08,Beban Operasional Lainnya - Beban Lainnya,12.0
-2026-08,Laba Bersih,83.33
-2026-09,Pendapatan Bunga - KPR Subsidi,34.21
-2026-09,Pendapatan Bunga - KPR Non Subsidi,79.64
-2026-09,Pendapatan Bunga - Non KPR,71.2
-2026-09,Pendapatan Bunga - Multimanfaat,47.62
-2026-09,Pendapatan Bunga - Modal Kerja,78.16
-2026-09,Pendapatan Bunga - Investasi,35.52
-2026-09,Pendapatan Bunga - Konstruksi,88.98
-2026-09,Pendapatan Investasi,34.08
-2026-09,Beban Bunga - Giro,25.18
-2026-09,Beban Bunga - Tabungan,24.94
-2026-09,Beban Bunga - Deposito,35.39
-2026-09,Beban Bunga - Pinjaman yang diterima,14.23
-2026-09,Beban Bunga - Surat Berharga Diterbitkan,2.36
+2026-08,Laba Bersih,86.54
+2026-09,Pendapatan Bunga - KPR Subsidi,68.72
+2026-09,Pendapatan Bunga - KPR Non Subsidi,91.0
+2026-09,Pendapatan Bunga - Non KPR,28.48
+2026-09,Pendapatan Bunga - Multimanfaat,63.09
+2026-09,Pendapatan Bunga - Modal Kerja,51.91
+2026-09,Pendapatan Bunga - Investasi,59.0
+2026-09,Pendapatan Bunga - Konstruksi,28.24
+2026-09,Pendapatan Investasi,35.39
+2026-09,Beban Bunga - Giro,16.02
+2026-09,Beban Bunga - Tabungan,36.15
+2026-09,Beban Bunga - Deposito,33.97
+2026-09,Beban Bunga - Pinjaman yang diterima,9.5
+2026-09,Beban Bunga - Surat Berharga Diterbitkan,6.75
 2026-09,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2026-09,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,50.67
-2026-09,Pendapatan Operasional Lainnya - Pendapatan Lainnya,185.93
+2026-09,Pendapatan Operasional Lainnya - Pendapatan Lainnya,231.12
 2026-09,Beban Operasional Lainnya - Beban Bonus,20.0
-2026-09,Beban Operasional Lainnya - Beban CKPN,260.0
+2026-09,Beban Operasional Lainnya - Beban CKPN,258.12
 2026-09,Beban Operasional Lainnya - Beban Administrasi,246.57
 2026-09,Beban Operasional Lainnya - Beban Lainnya,12.0
-2026-09,Laba Bersih,83.33
+2026-09,Laba Bersih,86.54
