@@ -615,29 +615,384 @@ def render_page(page, p=LATEST_PERIOD):
     return renderers[page](p)
 
 
+# ---------------------------------------------------------------------------
+# AI EVIDENCE LAYER
+# ---------------------------------------------------------------------------
+# Python is the source of truth. The LLM receives only the evidence returned
+# by these functions and is never asked to discover figures from raw context.
+
+_MONTH_NAMES = {
+    "januari": 1, "februari": 2, "maret": 3, "april": 4, "mei": 5,
+    "juni": 6, "juli": 7, "agustus": 8, "september": 9, "oktober": 10,
+    "november": 11, "desember": 12,
+    "january": 1, "february": 2, "march": 3, "may": 5, "june": 6,
+    "july": 7, "august": 8, "october": 10, "december": 12,
+}
+
+_METRIC_ALIASES = {
+    "net_profit": ["laba bersih", "laba rugi", "laba", "net profit", "profit"],
+    "total_assets": ["total aset", "total asset", "aset"],
+    "total_credit": ["total kredit", "kredit", "pembiayaan", "pembiayaan kredit"],
+    "total_investment": ["total investasi", "investasi", "penempatan"],
+    "total_dpk": ["total dpk", "dpk", "dana pihak ketiga"],
+    "total_other_funding": ["dana lainnya", "other funding", "pendanaan lainnya"],
+    "revenue": ["revenue", "pendapatan", "total pendapatan"],
+    "operating_expense": ["beban operasional", "biaya operasional", "operating expense", "opex"],
+    "ckpn": ["ckpn", "cadangan kerugian penurunan nilai"],
+    "npl_ratio": ["npl", "npf", "npl ratio", "npf ratio", "rasio npl", "rasio npf"],
+    "ckpn_coverage": ["ckpn coverage", "coverage ckpn", "cakupan ckpn"],
+    "low_cost_funding": ["low cost funding", "lcf", "dana murah"],
+}
+
+_FINANCIAL_TERMS = set(sum(_METRIC_ALIASES.values(), [])) | {
+    "neraca", "balance sheet", "laba rugi", "income statement", "pendapatan bunga",
+    "beban bunga", "pendapatan investasi", "fee based", "kualitas aset", "kualitas kredit",
+    "kolektibilitas", "collectibility", "target", "efisiensi", "margin", "revenue",
+    "aset", "liabilitas", "kewajiban", "ekuitas", "modal", "loan", "kredit", "investasi",
+    "tabungan", "giro", "deposito", "dana", "account", "loan", "portfolio", "produk",
+    "profitabilitas", "profitability", "pertumbuhan", "growth", "ytd", "yoy",
+}
+
+_OUT_OF_SCOPE_TERMS = {
+    "presiden", "politik", "partai", "pemilu", "sepak bola", "bola", "film", "musik",
+    "resep", "masakan", "cuaca", "game", "pacar", "jodoh", "password", "instagram",
+}
+
+
+def _normalise_text(text):
+    return " ".join(str(text or "").lower().strip().split())
+
+
+def _detect_period_mentions(text):
+    """Detect explicit month/year mentions and return YYYY-MM periods."""
+    import re
+    text = _normalise_text(text)
+    found = []
+    # Indonesian/English month names + year.
+    month_pattern = "|".join(sorted((re.escape(x) for x in _MONTH_NAMES), key=len, reverse=True))
+    for m in re.finditer(rf"\b({month_pattern})\s+(20\d{{2}})\b", text, flags=re.I):
+        month = _MONTH_NAMES[m.group(1).lower()]
+        period = f"{int(m.group(2)):04d}-{month:02d}"
+        if period not in found:
+            found.append(period)
+    # YYYY-MM format.
+    for m in re.finditer(r"\b(20\d{2})-(0[1-9]|1[0-2])\b", text):
+        period = f"{m.group(1)}-{m.group(2)}"
+        if period not in found:
+            found.append(period)
+    return found
+
+
+def _detect_metrics(text):
+    text = _normalise_text(text)
+    hits = []
+    for metric, aliases in _METRIC_ALIASES.items():
+        if any(alias in text for alias in aliases):
+            hits.append(metric)
+    return hits
+
+
+def _has_financial_term(text):
+    text = _normalise_text(text)
+    return any(term in text for term in _FINANCIAL_TERMS)
+
+
+def _is_out_of_scope(text):
+    text = _normalise_text(text)
+    return any(term in text for term in _OUT_OF_SCOPE_TERMS) and not _has_financial_term(text)
+
+
+def _period_records(df, period):
+    if df is None or df.empty or "period" not in df.columns:
+        return df.iloc[0:0] if df is not None else pd.DataFrame()
+    return df[df.period.astype(str).eq(str(period))].copy()
+
+
+def _summary_evidence(period, metrics=None, include_overview=False):
+    row = srow(period)
+    all_values = {
+        "total_assets": float(row.total_assets),
+        "total_credit": float(row.total_credit),
+        "total_investment": float(row.total_investment),
+        "total_dpk": float(row.total_dpk),
+        "total_other_funding": float(row.total_other_funding),
+        "net_profit": float(row.net_profit),
+        "revenue": float(row.revenue),
+        "operating_expense": float(row.operating_expense),
+        "ckpn": float(row.ckpn),
+        "npl_ratio": float(row.npl_ratio),
+        "ckpn_coverage": float(row.ckpn_coverage),
+        "low_cost_funding": float(row.low_cost_funding),
+    }
+    selected = all_values if include_overview else {
+        key: all_values[key] for key in (metrics or []) if key in all_values
+    }
+    return {
+        "period": period,
+        "unit": UNIT,
+        "kpi": selected,
+    }
+
+
+def _income_group_totals(period):
+    df = _period_records(IS, period)
+    groups = {
+        "pendapatan_bunga": df[df.line_item.astype(str).str.startswith("Pendapatan Bunga")].amount.sum(),
+        "beban_bunga": df[df.line_item.astype(str).str.startswith("Beban Bunga")].amount.sum(),
+        "pendapatan_operasional_lainnya": df[
+            df.line_item.astype(str).str.startswith("Pendapatan Operasional Lainnya")
+            | df.line_item.astype(str).eq("Pendapatan Investasi")
+        ].amount.sum(),
+        "beban_operasional_lainnya": df[df.line_item.astype(str).str.startswith("Beban Operasional Lainnya")].amount.sum(),
+    }
+    groups["laba_rugi_hasil_perhitungan"] = (
+        groups["pendapatan_bunga"] - groups["beban_bunga"]
+        + groups["pendapatan_operasional_lainnya"] - groups["beban_operasional_lainnya"]
+    )
+    return {k: float(v) for k, v in groups.items()}
+
+
+def _metric_value(period, metric):
+    row = srow(period)
+    if metric in row.index:
+        return float(row[metric])
+    return None
+
+
+def _comparison_periods(question, primary):
+    """Return explicit comparison period(s) or the natural previous period."""
+    q = _normalise_text(question)
+    explicit = [p for p in _detect_period_mentions(q) if p != primary]
+    if explicit:
+        return explicit[:2]
+    if any(x in q for x in ["bulan lalu", "month over month", "mom", "mom", "vs bulan lalu"]):
+        return [prev_period(primary)]
+    if any(x in q for x in ["tahun lalu", "year over year", "yoy", "vs tahun lalu"]):
+        return [yoy_period(primary)]
+    if any(x in q for x in ["bandingkan", "dibandingkan", "compare", "perubahan", "naik", "turun"]):
+        return [prev_period(primary)]
+    return []
+
+
+def _compact_text(value):
+    import re
+    return re.sub(r"[^a-z0-9]+", "", _normalise_text(value))
+
+
+def _statement_line_evidence(question, period, comparison_periods):
+    """Find exact/near-exact CSV statement line items mentioned by the user."""
+    q_compact = _compact_text(question)
+    matches = []
+    for df_name, df in (("balance_sheet", BS), ("income_statement", IS)):
+        if df is None or df.empty:
+            continue
+        for item in sorted(df.line_item.dropna().astype(str).unique(), key=len, reverse=True):
+            item_compact = _compact_text(item)
+            if item_compact and item_compact in q_compact:
+                rows = _period_records(df, period)
+                hit = rows[rows.line_item.astype(str).eq(item)]
+                if hit.empty:
+                    continue
+                record = {
+                    "statement": df_name,
+                    "line_item": item,
+                    "period": period,
+                    "amount": float(hit.iloc[0].amount),
+                }
+                if comparison_periods:
+                    record["comparison"] = []
+                    for cp in comparison_periods:
+                        ch = _period_records(df, cp)
+                        ch = ch[ch.line_item.astype(str).eq(item)]
+                        if not ch.empty:
+                            previous = float(ch.iloc[0].amount)
+                            current = record["amount"]
+                            delta = current - previous
+                            record["comparison"].append({
+                                "period": cp,
+                                "amount": previous,
+                                "change_absolute": delta,
+                                "change_percent": (delta / previous * 100) if previous else None,
+                            })
+                matches.append(record)
+                break
+    return matches
+
+def build_financial_evidence(question, selected_period=None):
+    """Validate a question and build deterministic evidence from CSV data.
+
+    Returns a small structured object consumed by the LLM. It intentionally
+    does not expose the whole dataset, so the model cannot choose a different
+    period or manufacture facts from unrelated rows.
+    """
+    refresh_csv_data()
+    q = _normalise_text(question)
+    if not q:
+        return {"status": "AMBIGUOUS", "message": "Pertanyaan belum diisi."}
+
+    if _is_out_of_scope(q):
+        return {
+            "status": "OUT_OF_SCOPE",
+            "message": "Pertanyaan berada di luar cakupan FinAI. FinAI hanya menjawab berdasarkan data dan informasi keuangan yang tersedia.",
+        }
+
+    periods = available_periods()
+    mentioned = _detect_period_mentions(q)
+    if mentioned:
+        unavailable = [x for x in mentioned if x not in periods]
+        if unavailable:
+            return {
+                "status": "NO_DATA",
+                "period": unavailable[0],
+                "message": f"Data untuk periode {format_period_id(unavailable[0])} tidak tersedia.",
+            }
+        primary = mentioned[0]
+    else:
+        primary = resolve_period(selected_period)
+
+    if not primary:
+        return {"status": "NO_DATA", "message": "Periode data belum tersedia."}
+
+    metrics = _detect_metrics(q)
+    # A specific financial metric that is not present in the supported evidence
+    # model must fail closed rather than being guessed by the LLM.
+    unsupported_metrics = [
+        "roa", "roe", "car", "casa", "nim", "cost to income", "cir",
+        "fdr", "ldr", "nsfr", "lcr", "capital adequacy", "capital ratio",
+    ]
+    if any(x in q for x in unsupported_metrics):
+        return {
+            "status": "NO_DATA",
+            "period": primary,
+            "message": f"Data untuk metrik yang ditanyakan pada periode {format_period_id(primary)} belum tersedia dalam evidence FinAI.",
+        }
+
+    # A broad dashboard request is allowed; a vague question without a
+    # recognizable financial subject is not passed to the LLM.
+    broad_terms = ["kinerja keuangan", "overview", "ringkasan", "dashboard", "kondisi keuangan"]
+    statement_hint = bool(_statement_line_evidence(q, primary, []))
+    if not metrics and not statement_hint and not any(x in q for x in broad_terms):
+        return {
+            "status": "AMBIGUOUS",
+            "message": "Pertanyaan masih ambigu. Sebutkan metrik atau informasi yang ingin dilihat, misalnya laba, aset, kredit, DPK, pendapatan, CKPN, NPL, atau target.",
+        }
+
+    comparison = _comparison_periods(q, primary)
+    overview_requested = not metrics and any(x in q for x in broad_terms)
+    evidence = {
+        "source": "CSV simulation data via Python",
+        "selected_period": primary,
+        "selected_period_label": format_period_id(primary),
+        "unit": UNIT,
+        "requested_metrics": metrics or ["overview"],
+        "current": _summary_evidence(primary, metrics=metrics, include_overview=overview_requested),
+        "comparison": [],
+    }
+
+    for cp in comparison:
+        if cp and cp in periods:
+            current_ev = evidence["current"]["kpi"]
+            comparison_ev = _summary_evidence(cp, metrics=metrics, include_overview=overview_requested)
+            # Python calculates changes so the LLM only needs to explain them.
+            changes = {}
+            for key, current_value in current_ev.items():
+                previous_value = comparison_ev["kpi"].get(key)
+                if previous_value is None:
+                    continue
+                delta = float(current_value) - float(previous_value)
+                changes[key] = {
+                    "absolute": delta,
+                    "percent": (delta / float(previous_value) * 100) if float(previous_value) != 0 else None,
+                }
+            comparison_ev["changes_vs_selected_period"] = changes
+            evidence["comparison"].append(comparison_ev)
+
+    statement_lines = _statement_line_evidence(q, primary, comparison)
+    if statement_lines:
+        evidence["statement_lines"] = statement_lines
+
+    # P&L grouped evidence is supplied whenever the question concerns profit,
+    # revenue, expense, income statement, or diagnosis of a profit movement.
+    if any(x in q for x in [
+        "laba", "profit", "pendapatan", "revenue", "beban", "biaya", "ckpn",
+        "laba rugi", "income statement", "kenapa", "mengapa", "turun", "naik",
+    ]):
+        # For diagnosis/comparison, add only the P&L components needed to
+        # explain the movement. A simple "berapa laba" does not need the full P&L.
+        if any(x in q for x in ["kenapa", "mengapa", "turun", "naik", "bandingkan", "dibandingkan", "perubahan", "laba rugi", "income statement"]):
+            evidence["income_statement_groups"] = _income_group_totals(primary)
+            for cp in comparison:
+                if cp and cp in periods:
+                    current_groups = evidence["income_statement_groups"]
+                    comparison_groups = _income_group_totals(cp)
+                    group_changes = {}
+                    for key, current_value in current_groups.items():
+                        previous_value = comparison_groups.get(key)
+                        if previous_value is None:
+                            continue
+                        delta = float(current_value) - float(previous_value)
+                        group_changes[key] = {
+                            "absolute": delta,
+                            "percent": (delta / float(previous_value) * 100) if float(previous_value) != 0 else None,
+                        }
+                    evidence.setdefault("comparison_income_statement_groups", []).append({
+                        "period": cp,
+                        "values": comparison_groups,
+                        "changes_vs_selected_period": group_changes,
+                    })
+
+    # Product aggregation is included only when the question asks about a
+    # product/portfolio, preventing irrelevant data from entering the prompt.
+    if not statement_lines and any(x in q for x in ["rincian kredit", "rincian pembiayaan", "produk kredit", "produk pembiayaan", "portfolio kredit", "portofolio kredit", "kpr", "loan"]):
+        evidence["loan_products"] = agg(LOANS, primary, "product_type", "outstanding", "total_revenue").to_dict("records")
+    if not statement_lines and any(x in q for x in ["rincian investasi", "produk investasi", "portfolio investasi", "portofolio investasi", "penempatan", "surat berharga"]):
+        evidence["investment_products"] = agg(INVESTMENTS, primary, "investment_type", "investment_amount", "total_revenue").to_dict("records")
+    if not statement_lines and any(x in q for x in ["rincian dpk", "rincian dana pihak ketiga", "produk dpk", "giro", "tabungan", "deposito"]):
+        evidence["dpk_products"] = agg(DPK, primary, "product_type", "balance", "total_cost_bagi_hasil").to_dict("records")
+
+    # Target evidence is included only when target/performance is requested.
+    if "target" in q or "pencapaian" in q or "achievement" in q or "efisiensi" in q:
+        target_df = _period_records(TARGETS, primary)
+        if metrics:
+            target_map = {
+                "total_assets": "Total Asset",
+                "total_credit": "Total Credit",
+                "total_investment": "Total Investment",
+                "total_dpk": "Total DPK",
+                "total_other_funding": "Total Other Funding",
+                "net_profit": "Net Profit",
+                "revenue": "Total Revenue",
+                "operating_expense": "Operating Expense",
+                "npl_ratio": "NPL Ratio %",
+                "ckpn_coverage": "CKPN Coverage %",
+                "low_cost_funding": "Low Cost Funding %",
+            }
+            wanted = [target_map[m] for m in metrics if m in target_map]
+            if wanted:
+                target_df = target_df[target_df.metric.isin(wanted)]
+        evidence["targets"] = target_df.to_dict("records")
+
+    # If a comparison is requested but no valid comparison period exists, do
+    # not let the model guess a benchmark.
+    if any(x in q for x in ["bandingkan", "dibandingkan", "vs", "perubahan", "naik", "turun", "pertumbuhan"]):
+        if not evidence["comparison"]:
+            return {
+                "status": "NO_DATA",
+                "message": f"Data pembanding untuk periode {format_period_id(primary)} tidak tersedia.",
+            }
+
+    evidence["status"] = "READY"
+    return evidence
+
+
 def build_financial_context(p=None):
+    """Backward-compatible context builder for non-AI consumers.
+
+    New AI calls should use build_financial_evidence(question, p) instead.
+    """
     ensure_data_fresh()
     p = resolve_period(p)
-    s = srow(p)
-    pp = prev_period(p)
-    keys = [
-        "total_assets", "total_credit", "total_investment", "total_dpk",
-        "total_other_funding", "net_profit", "revenue", "operating_expense",
-        "ckpn", "npl_ratio", "ckpn_coverage", "low_cost_funding",
-    ]
-    return {
-        "period": p,
-        "unit": UNIT,
-        "kpi": {k: float(s[k]) for k in keys},
-        "previous_month": {k: float(srow(pp)[k]) for k in keys},
-        "balance_sheet": BS[BS.period.eq(p)].to_dict("records"),
-        "income_statement": IS[IS.period.eq(p)].to_dict("records"),
-        "targets": TARGETS[TARGETS.period.eq(p)].to_dict("records"),
-        "loan_products": agg(LOANS, p, "product_type", "outstanding", "total_revenue").to_dict("records"),
-        "investment_products": agg(INVESTMENTS, p, "investment_type", "investment_amount", "total_revenue").to_dict("records"),
-        "dpk_products": agg(DPK, p, "product_type", "balance", "total_cost_bagi_hasil").to_dict("records"),
-        "other_funding_products": agg(OTHER, p, "product_type", "balance", "total_cost_bagi_hasil").to_dict("records"),
-    }
+    return build_financial_evidence("ringkasan kinerja keuangan", p)
 
 # Initial load
 refresh_csv_data()
