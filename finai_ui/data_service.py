@@ -28,6 +28,20 @@ def _data_mtimes():
     return {name: path.stat().st_mtime_ns for name, path in _DATA_FILES.items()}
 
 
+def normalize_periods(values):
+    """Return unique YYYY-MM periods sorted chronologically."""
+    out = []
+    for value in values or []:
+        try:
+            out.append(pd.to_datetime(str(value) + "-01").strftime("%Y-%m"))
+        except Exception:
+            try:
+                out.append(pd.to_datetime(value).strftime("%Y-%m"))
+            except Exception:
+                continue
+    return sorted(set(out))
+
+
 _data = _read_data_files()
 _data_mtimes_snapshot = _data_mtimes()
 SUMMARY = _data["SUMMARY"]
@@ -40,9 +54,9 @@ DPK = _data["DPK"]
 OTHER = _data["OTHER"]
 AUDIT = _data["AUDIT"]
 
-PERIODS = SUMMARY["period"].tolist()
-LATEST_PERIOD = PERIODS[-1]
-START_PERIOD = PERIODS[0]
+PERIODS = normalize_periods(SUMMARY["period"].tolist()) if "period" in SUMMARY.columns else []
+LATEST_PERIOD = PERIODS[-1] if PERIODS else None
+START_PERIOD = PERIODS[0] if PERIODS else None
 UNIT = "Rp miliar"
 
 
@@ -69,9 +83,9 @@ def ensure_data_fresh():
     DPK = refreshed["DPK"]
     OTHER = refreshed["OTHER"]
     AUDIT = refreshed["AUDIT"]
-    PERIODS = SUMMARY["period"].tolist()
-    LATEST_PERIOD = PERIODS[-1]
-    START_PERIOD = PERIODS[0]
+    PERIODS = normalize_periods(SUMMARY["period"].tolist()) if "period" in SUMMARY.columns else []
+    LATEST_PERIOD = PERIODS[-1] if PERIODS else None
+    START_PERIOD = PERIODS[0] if PERIODS else None
     _data_mtimes_snapshot = current_mtimes
     return True
 
@@ -87,21 +101,65 @@ def pct(v):
 
 
 def period_label(p):
-    return pd.to_datetime(p + "-01").strftime("%B %Y")
+    return pd.to_datetime(str(p) + "-01").strftime("%B %Y")
+
+
+def available_periods():
+    refresh_csv_data()
+    return normalize_periods(SUMMARY["period"].tolist()) if "period" in SUMMARY.columns else []
+
+
+def resolve_period(p=None):
+    periods = available_periods()
+    if not periods:
+        return None
+    if p and str(p) in periods:
+        return str(p)
+    return periods[-1]
 
 
 def prev_period(p):
-    return PERIODS[max(0, PERIODS.index(p) - 1)]
+    periods = available_periods()
+    p = resolve_period(p)
+    if not p or p not in periods:
+        return p
+    idx = periods.index(p)
+    return periods[idx - 1] if idx > 0 else p
 
 
 def yoy_period(p):
+    periods = available_periods()
+    p = resolve_period(p)
+    if not p:
+        return p
     y, m = p.split("-")
     q = f"{int(y) - 1:04d}-{m}"
-    return q if q in PERIODS else PERIODS[0]
+    return q if q in periods else periods[0]
 
 
 def srow(p):
-    return SUMMARY.loc[SUMMARY.period.eq(p)].iloc[0]
+    p = resolve_period(p)
+    rows = SUMMARY.loc[SUMMARY.period.astype(str).eq(p)]
+    return rows.iloc[0]
+
+
+def period_selector_html(p):
+    """Render the shared reporting-period selector used by every page."""
+    periods = available_periods()
+    selected = resolve_period(p)
+    options = []
+    for item in periods:
+        sel = " selected" if item == selected else ""
+        options.append(f'<option value="{esc(item)}"{sel}>{esc(period_label(item))}</option>')
+    return (
+        '<label class="period-picker" title="Pilih periode pelaporan">'
+        '<span class="period-picker-label">Periode</span>'
+        '<select id="periodSelect" class="period-select" aria-label="Pilih periode pelaporan">'
+        + "".join(options) +
+        '</select>'
+        '<span class="period-chevron">⌄</span>'
+        '</label>'
+    )
 
 
 def target(p, metric):
@@ -140,7 +198,12 @@ def fill(template, **values):
 
 
 def shell_values(p):
-    return {"PERIOD": esc(period_label(p)), "UNIT": esc(UNIT)}
+    selected = resolve_period(p)
+    return {
+        "PERIOD": esc(period_label(selected)),
+        "UNIT": esc(UNIT),
+        "PERIOD_SELECTOR": period_selector_html(selected),
+    }
 
 
 
@@ -209,7 +272,7 @@ def _period_series(df):
 def get_latest_period():
     """Return the latest reporting period available in monthly_summary.csv."""
     refresh_csv_data()
-    df = _summary_df() if "_summary_df" in globals() else globals().get("SUMMARY", pd.DataFrame())
+    df = globals().get("SUMMARY", pd.DataFrame())
     s = _period_series(df)
     if s.notna().any():
         return s.max().strftime("%Y-%m")
@@ -218,7 +281,7 @@ def get_latest_period():
 def get_latest_date():
     """Return latest available reporting date/period as a pandas Timestamp."""
     refresh_csv_data()
-    df = _summary_df() if "_summary_df" in globals() else globals().get("SUMMARY", pd.DataFrame())
+    df = globals().get("SUMMARY", pd.DataFrame())
     s = _period_series(df)
     return s.max() if s.notna().any() else None
 
@@ -235,17 +298,16 @@ def filter_latest_period(df):
 def get_previous_period():
     """Return the immediately preceding period available in monthly_summary.csv."""
     refresh_csv_data()
-    df = _summary_df() if "_summary_df" in globals() else globals().get("SUMMARY", pd.DataFrame())
+    df = globals().get("SUMMARY", pd.DataFrame())
     s = _period_series(df)
     vals = sorted(s.dropna().dt.to_period("M").unique())
     if len(vals) >= 2:
         return str(vals[-2])
     return None
 
-def render_kinerja(p=LATEST_PERIOD):
+def render_kinerja(p=None):
     refresh_csv_data()
-    current_period = get_latest_period()
-    refresh_csv_data()
+    p = resolve_period(p)
     s = srow(p)
     prev = srow(prev_period(p))
     last = srow(yoy_period(p))
@@ -320,10 +382,9 @@ def render_kinerja(p=LATEST_PERIOD):
     )
 
 
-def render_financial_report(p=LATEST_PERIOD):
+def render_financial_report(p=None):
     refresh_csv_data()
-    current_period = get_latest_period()
-    refresh_csv_data()
+    p = resolve_period(p)
     pp = prev_period(p)
     current_is = IS[IS.period.eq(p)]
     previous_is = dict(zip(IS[IS.period.eq(pp)].line_item, IS[IS.period.eq(pp)].amount))
@@ -372,10 +433,9 @@ def product_summary_card(title, df, p, key, value, extra):
     )
 
 
-def render_data_detail(p=LATEST_PERIOD):
+def render_data_detail(p=None):
     refresh_csv_data()
-    current_period = get_latest_period()
-    refresh_csv_data()
+    p = resolve_period(p)
     sections = []
     for title, df, key, value, extra in [
         ("Produk Kredit", LOANS, "product_type", "outstanding", "total_revenue"),
@@ -446,8 +506,10 @@ def render_data_detail(p=LATEST_PERIOD):
     return fill(template, PRODUCT_SUMMARIES=summaries, DETAIL_TABLES=detail_tables, **shell_values(p))
 
 
-def render_setting(p=LATEST_PERIOD):
-    latest = srow(p)
+def render_setting(p=None):
+    refresh_csv_data()
+    p = resolve_period(p)
+    selected = srow(p)
     audit_pass = int((AUDIT.status == "PASS").sum())
     audit_total = len(AUDIT)
     audit_status = "PASS" if audit_pass == audit_total else "CHECK"
@@ -463,8 +525,8 @@ def render_setting(p=LATEST_PERIOD):
         TARGET_DPK=fmt(65000),
         AUDIT_STATUS=audit_status,
         AUDIT_TOTAL=f"{audit_pass}/{audit_total} PASS",
-        LATEST_ASSETS=fmt(latest.total_assets),
-        LATEST_NET_PROFIT=fmt(latest.net_profit),
+        LATEST_ASSETS=fmt(selected.total_assets),
+        LATEST_NET_PROFIT=fmt(selected.net_profit),
         **shell_values(p),
     )
 
@@ -480,8 +542,9 @@ def render_page(page, p=LATEST_PERIOD):
     return renderers[page](p)
 
 
-def build_financial_context(p=LATEST_PERIOD):
+def build_financial_context(p=None):
     ensure_data_fresh()
+    p = resolve_period(p)
     s = srow(p)
     pp = prev_period(p)
     keys = [
