@@ -220,6 +220,8 @@ if chat_event:
             )
             if response.get("ok"):
                 answer = response.get("content", "").strip()
+            elif evidence.get("fallback_answer"):
+                answer = evidence["fallback_answer"]
             else:
                 answer = "⚠️ " + response.get("error", "LLM belum dapat merespons saat ini.")
 
