@@ -214,8 +214,12 @@ if chat_event:
             # value even when the evidence is already definitive.
             answer = evidence["direct_answer"]
         else:
+            # IMPORTANT: send ONLY the current question to the answer model.
+            # The chat history is rendered in the UI, but it must not be sent
+            # as multiple user turns because that can make the LLM answer
+            # several previous questions as one combined request.
             response = openrouter_chat(
-                st.session_state.chat_messages,
+                text,
                 evidence=evidence,
             )
             if response.get("ok"):
