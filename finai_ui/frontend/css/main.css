@@ -40,6 +40,7 @@ button{font:inherit;cursor:pointer}
 .mobile-brand-text{display:block}
 .brand{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;white-space:nowrap;min-width:0}
 .brand-mark,.ai-mark{width:30px;height:30px;border-radius:9px;background:var(--lime);color:var(--green);display:grid;place-items:center;font-weight:900;flex:none}
+#finai-root > .left .brand-mark{width:30px !important;height:30px !important;min-width:30px !important;min-height:30px !important;border-radius:9px !important;background:#b7f51d !important;color:#005642 !important;display:grid !important;place-items:center !important;font-weight:900 !important;line-height:1 !important;flex:none !important;opacity:1 !important;visibility:visible !important;}
 .sidebar-toggle{width:34px;height:34px;border-radius:10px;border:1px solid rgba(255,255,255,.28);background:#0b6a56;color:#fff !important;display:grid;place-items:center;font-size:19px;line-height:1;flex:none;opacity:1;visibility:visible;position:relative;z-index:1100;appearance:none;-webkit-appearance:none}
 .nav{display:flex;flex-direction:column;gap:8px}
 .nav-item{height:46px;border-radius:13px;display:flex;align-items:center;gap:12px;padding:0 12px;color:#d9ece6;font-size:14px;font-weight:650;white-space:nowrap}
@@ -59,10 +60,11 @@ button{font:inherit;cursor:pointer}
 .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--lime);margin-right:5px}
 
 /* MAIN DASHBOARD */
-.main{min-width:0;overflow:auto;padding:28px clamp(20px,3vw,44px) 44px}
+.main{min-width:0;overflow:auto;padding:0 clamp(20px,3vw,44px) 44px}
 .desktop-header{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:20px;min-height:42px}
 .desktop-header-left{display:flex;align-items:center;gap:10px;min-width:0}
-.desktop-app-name{font-size:13px;font-weight:800;color:#65716c}
+.desktop-app-name{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800;color:#65716c;line-height:1}
+.desktop-app-name::before{content:"✦";width:30px;height:30px;min-width:30px;border-radius:9px;background:#b7f51d;color:#005642;display:grid;place-items:center;font-size:15px;font-weight:900;line-height:1}
 .desktop-ai-trigger{width:40px;height:40px;border-radius:50%;border:1px solid #e4e9e6;background:#fff;color:var(--green);display:grid;place-items:center;box-shadow:0 4px 12px #0000000d;font-size:18px}
 .topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:20px}
 .eyebrow{color:#a0aaa6;font-size:9px;letter-spacing:2px;font-weight:700}.title{font-size:31px;line-height:1.05;font-weight:800;margin:3px 0 0}.subtitle{color:#9aa49f;font-size:11px;margin-top:7px}.period{background:#eff6d9;color:#6c7d42;border-radius:18px;padding:10px 15px;font-size:10px;font-weight:700;white-space:nowrap}
@@ -71,7 +73,7 @@ button{font:inherit;cursor:pointer}
 .bottom{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}.small{padding:16px}.small-title{font-size:12px;font-weight:800}.kpi{display:flex;justify-content:space-between;margin-top:15px;font-size:9px}.kpi-label{color:#68736f}.kpi-value{font-size:11px;font-weight:800}
 
 /* AI ASSISTANT OVERLAY */
-.ai{position:fixed;z-index:500;top:0;right:0;width:min(410px,42vw);height:100dvh;background:#fff;border-left:1px solid #e2e9e5;display:flex;flex-direction:column;overflow:hidden;box-shadow:-18px 0 48px #00000018;transform:translateX(0);opacity:1;visibility:visible;transition:transform .24s ease,opacity .18s ease,visibility .24s ease}
+.ai{position:fixed;z-index:500;top:var(--finai-top-offset,0px);right:0;width:min(410px,42vw);height:var(--finai-vh,100dvh);background:#fff;border-left:1px solid #e2e9e5;display:flex;flex-direction:column;overflow:hidden;box-shadow:-18px 0 48px #00000018;transform:translateX(0);opacity:1;visibility:visible;transition:transform .24s ease,opacity .18s ease,visibility .24s ease}
 .ai.closed{transform:translateX(105%);opacity:0;visibility:hidden;pointer-events:none}
 .ai-head{min-height:72px;padding:18px 18px 15px;border-bottom:1px solid #edf0ef;display:flex;justify-content:space-between;align-items:center;background:#fff}
 .ai-title{font-size:15px;font-weight:800;color:#18211f}
@@ -109,6 +111,8 @@ button{font:inherit;cursor:pointer}
 .setting-label{color:#68736f}.setting-value{font-weight:800;color:#35423e}
 .badge{display:inline-block;background:#f0f6df;color:#718044;border-radius:18px;padding:8px 12px;font-size:9px;font-weight:700}
 @media(max-width:800px){
+ .desktop-app-name{display:block;line-height:normal}
+ .desktop-app-name::before{display:none;content:none}
  .form-grid{grid-template-columns:1fr}
  .ai-foot-row{align-items:flex-end}
  .ai-foot-row .send{min-width:34px}
