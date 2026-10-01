@@ -6,6 +6,7 @@ facts/evidence; a real LLM must produce the final financial-intelligence answer.
 from __future__ import annotations
 
 import json
+import time
 from typing import Any
 
 import requests
@@ -202,15 +203,20 @@ def chat(messages: list[dict[str, Any]], selected_period: str | None = None, tim
             attempts.append({"provider": provider, "status": "missing_key"})
             continue
         try:
+            started = time.perf_counter()
             if provider == "gemini":
                 content = _call_gemini(key, llm_messages[1:], timeout)
             else:
                 content = _call_openai_compatible(provider, key, llm_messages, timeout)
+            latency_ms = int((time.perf_counter() - started) * 1000)
             return {
                 "ok": True,
                 "content": content,
                 "provider": provider,
                 "model": _model(provider),
+                "latency_ms": latency_ms,
+                "attempt": len(attempts) + 1,
+                "fallback": len(attempts) > 0,
                 "period": evidence.get("period"),
                 "attempts": attempts,
             }
