@@ -96,6 +96,7 @@ tr.profit-total td{font-weight:900;background:#f0f6df;color:#35423e}
 .bot{width:24px;height:24px;border-radius:50%;background:var(--green);color:var(--lime);display:grid;place-items:center;flex:none;font-size:11px;box-shadow:0 3px 8px #00564218}
 .msgtext{font-size:10.5px;line-height:1.55;max-width:305px;color:#52605b}
 .msgtext b{color:#26332f}
+.ai-meta{margin-top:7px;font-size:8.5px;line-height:1.35;color:#9aa39f;letter-spacing:.05px}
 .muted{color:#9ba49f}
 .bubble{background:#f0f6df;border:1px solid #e1eacb;border-radius:14px 14px 4px 14px;padding:9px 12px;color:#42513e;font-size:10px;line-height:1.5;max-width:280px;box-shadow:0 3px 10px #1e413707;white-space:pre-wrap;overflow-wrap:anywhere}
 .ai-foot{padding:10px 14px 14px;border-top:1px solid #edf0ef;background:#fff}
