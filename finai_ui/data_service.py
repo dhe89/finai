@@ -143,7 +143,109 @@ def shell_values(p):
     return {"PERIOD": esc(period_label(p)), "UNIT": esc(UNIT)}
 
 
+
+# --- CSV auto-refresh layer ---
+_CSV_FILES = [
+    "monthly_summary.csv", "balance_sheet.csv", "income_statement.csv",
+    "monthly_targets.csv", "loan_detail.csv", "investment_detail.csv",
+    "dpk_detail.csv", "other_funding_detail.csv", "account_lifecycle.csv",
+    "account_status_monthly.csv", "audit_checks.csv"
+]
+_CSV_CACHE = {}
+_CSV_MTIME = {}
+
+def refresh_csv_data():
+    """Reload every simulation CSV whose file modification time changed."""
+    for _name in _CSV_FILES:
+        _path = DATA_DIR / _name
+        if not _path.exists():
+            continue
+        _mtime = _path.stat().st_mtime_ns
+        if _CSV_MTIME.get(_name) != _mtime:
+            _CSV_CACHE[_name] = pd.read_csv(_path)
+            _CSV_MTIME[_name] = _mtime
+    # Keep legacy module-level DataFrame names synchronized.
+    globals()["SUMMARY"] = _CSV_CACHE.get("monthly_summary.csv", pd.DataFrame())
+    globals()["BS"] = _CSV_CACHE.get("balance_sheet.csv", pd.DataFrame())
+    globals()["IS"] = _CSV_CACHE.get("income_statement.csv", pd.DataFrame())
+    globals()["TARGETS"] = _CSV_CACHE.get("monthly_targets.csv", pd.DataFrame())
+    globals()["LOANS"] = _CSV_CACHE.get("loan_detail.csv", pd.DataFrame())
+    globals()["INVESTMENTS"] = _CSV_CACHE.get("investment_detail.csv", pd.DataFrame())
+    globals()["DPK"] = _CSV_CACHE.get("dpk_detail.csv", pd.DataFrame())
+    globals()["OTHER_FUNDING"] = _CSV_CACHE.get("other_funding_detail.csv", pd.DataFrame())
+    globals()["LIFECYCLE"] = _CSV_CACHE.get("account_lifecycle.csv", pd.DataFrame())
+    globals()["STATUS_MONTHLY"] = _CSV_CACHE.get("account_status_monthly.csv", pd.DataFrame())
+    globals()["AUDIT"] = _CSV_CACHE.get("audit_checks.csv", pd.DataFrame())
+    return True
+
+
+
+def format_period_id(period_id):
+    if not period_id:
+        return "Latest"
+    try:
+        return pd.to_datetime(str(period_id) + "-01").strftime("%B %Y")
+    except Exception:
+        return str(period_id)
+
+# --- Latest period detection ---
+_PERIOD_COLUMNS = ("Period", "period", "Month", "month", "Date", "date", "Reporting Period")
+
+def _period_series(df):
+    if df is None or df.empty:
+        return pd.Series(dtype="datetime64[ns]")
+    for col in _PERIOD_COLUMNS:
+        if col in df.columns:
+            raw = df[col]
+            # First try normal datetime parsing, then YYYY-MM strings.
+            parsed = pd.to_datetime(raw, errors="coerce")
+            if parsed.notna().any():
+                return parsed
+            parsed = pd.to_datetime(raw.astype(str), format="%Y-%m", errors="coerce")
+            if parsed.notna().any():
+                return parsed
+    return pd.Series([pd.NaT] * len(df), index=df.index)
+
+def get_latest_period():
+    """Return the latest reporting period available in monthly_summary.csv."""
+    refresh_csv_data()
+    df = _summary_df() if "_summary_df" in globals() else globals().get("SUMMARY", pd.DataFrame())
+    s = _period_series(df)
+    if s.notna().any():
+        return s.max().strftime("%Y-%m")
+    return None
+
+def get_latest_date():
+    """Return latest available reporting date/period as a pandas Timestamp."""
+    refresh_csv_data()
+    df = _summary_df() if "_summary_df" in globals() else globals().get("SUMMARY", pd.DataFrame())
+    s = _period_series(df)
+    return s.max() if s.notna().any() else None
+
+def filter_latest_period(df):
+    """Return rows for the latest reporting period of the supplied dataframe."""
+    if df is None or df.empty:
+        return df
+    latest = get_latest_period()
+    s = _period_series(df)
+    if latest and s.notna().any():
+        return df.loc[s.dt.strftime("%Y-%m") == latest].copy()
+    return df
+
+def get_previous_period():
+    """Return the immediately preceding period available in monthly_summary.csv."""
+    refresh_csv_data()
+    df = _summary_df() if "_summary_df" in globals() else globals().get("SUMMARY", pd.DataFrame())
+    s = _period_series(df)
+    vals = sorted(s.dropna().dt.to_period("M").unique())
+    if len(vals) >= 2:
+        return str(vals[-2])
+    return None
+
 def render_kinerja(p=LATEST_PERIOD):
+    refresh_csv_data()
+    current_period = get_latest_period()
+    refresh_csv_data()
     s = srow(p)
     prev = srow(prev_period(p))
     last = srow(yoy_period(p))
@@ -219,6 +321,9 @@ def render_kinerja(p=LATEST_PERIOD):
 
 
 def render_financial_report(p=LATEST_PERIOD):
+    refresh_csv_data()
+    current_period = get_latest_period()
+    refresh_csv_data()
     pp = prev_period(p)
     current_is = IS[IS.period.eq(p)]
     previous_is = dict(zip(IS[IS.period.eq(pp)].line_item, IS[IS.period.eq(pp)].amount))
@@ -268,6 +373,9 @@ def product_summary_card(title, df, p, key, value, extra):
 
 
 def render_data_detail(p=LATEST_PERIOD):
+    refresh_csv_data()
+    current_period = get_latest_period()
+    refresh_csv_data()
     sections = []
     for title, df, key, value, extra in [
         ("Produk Kredit", LOANS, "product_type", "outstanding", "total_revenue"),
@@ -394,3 +502,10 @@ def build_financial_context(p=LATEST_PERIOD):
         "dpk_products": agg(DPK, p, "product_type", "balance", "total_cost_bagi_hasil").to_dict("records"),
         "other_funding_products": agg(OTHER, p, "product_type", "balance", "total_cost_bagi_hasil").to_dict("records"),
     }
+
+# Initial load
+refresh_csv_data()
+
+
+# Compatibility value: derived from the current CSV, never hardcoded.
+LATEST_PERIOD = get_latest_period()
