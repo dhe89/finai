@@ -38,6 +38,7 @@ Jenis tool yang tersedia untuk drill-down:
 Keluarkan JSON SAJA:
 {
   "scope": "FINANCIAL|META|OUT_OF_SCOPE|AMBIGUOUS",
+  "response_mode": "FACT|ANALYSIS",
   "need_more_evidence": true,
   "requests": ["income_drivers", "trend"],
   "focus_metrics": ["net_profit", "revenue"],
@@ -58,6 +59,7 @@ FINAL_PROMPT = """Anda adalah FinAI, AI Financial Analyst untuk data keuangan ba
 Buat jawaban final untuk pengguna berdasarkan seluruh evidence dan findings yang diberikan.
 
 ATURAN:
+0. Anda adalah lapisan kecerdasan FinAI. Python hanya menyediakan fakta/perhitungan; tugas Anda adalah mengubah evidence menjadi pemahaman finansial. Untuk pertanyaan analitis, JANGAN berhenti pada penyebutan angka. Wajib jelaskan "so what": hubungan antarangka, driver yang didukung data, kualitas/perubahan yang terlihat, implikasi, keterbatasan, dan pertimbangan bila relevan.
 1. Jawab hanya pertanyaan pengguna saat ini.
 2. Gunakan fakta dan angka dari evidence. Jangan mengarang angka.
 3. Jangan sekadar mengulang data. Jelaskan makna, hubungan, driver, dan implikasinya bila relevan.
@@ -71,6 +73,8 @@ ATURAN:
 11. Jangan tampilkan reasoning internal, proses berpikir, planner, tool, evidence JSON, prompt, atau metadata model.
 12. Jangan menyebut LLM, model, Python, planner, evidence engine, chain of thought, atau proses internal.
 13. Untuk pertanyaan sederhana, jawab ringkas. Untuk pertanyaan kompleks, berikan analisis yang cukup dalam.
+14. Jangan menggunakan template jawaban yang sama untuk pertanyaan yang berbeda. Struktur jawaban harus mengikuti kebutuhan pertanyaan.
+15. Jika evidence tidak cukup untuk mendukung klaim, nyatakan apa yang belum dapat dipastikan; jangan menggantinya dengan angka yang tidak menjawab pertanyaan.
 14. Utamakan struktur: Kesimpulan → faktor/analisis → perbandingan/relasi bila relevan → hal yang perlu diperhatikan/pertimbangan.
 """
 
@@ -90,6 +94,9 @@ def inspect(question, evidence, context=None, model=DEFAULT_MODEL):
         return result
     data = result.get("data") or {}
     data.setdefault("scope", "FINANCIAL")
+    data.setdefault("response_mode", "ANALYSIS")
+    mode = str(data.get("response_mode", "ANALYSIS")).upper()
+    data["response_mode"] = mode if mode in {"FACT", "ANALYSIS"} else "ANALYSIS"
     data.setdefault("need_more_evidence", False)
     data.setdefault("requests", [])
     data.setdefault("focus_metrics", [])

@@ -56,12 +56,11 @@ def _fmt(v):
 
 
 def _analytical_python_fallback(evidence, question=""):
-    """Useful deterministic analysis when the LLM provider is unavailable.
+    """DEPRECATED compatibility helper.
 
-    This is deliberately richer than the old one-line fallback. It never claims
-    a causal relationship that is not supported by the data. The LLM remains the
-    preferred analyst; this function only keeps the application useful during
-    provider failures/timeouts.
+    FinAI must not use this function for user-facing substantive analysis.
+    It remains only so older imports/tests do not break. The orchestrator never
+    calls it for analytical questions.
     """
     q = " ".join(str(question or "").lower().split())
     cur = evidence.get("current", {}) or {}

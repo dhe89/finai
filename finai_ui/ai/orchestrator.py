@@ -1,4 +1,12 @@
-"""FinAI orchestration: deterministic evidence -> optional semantic direction -> synthesis."""
+"""FinAI agent orchestration.
+
+Core principle:
+- Python is the auditable financial evidence/calculation layer.
+- LLM is the intelligence layer that understands the question, decides what
+  evidence is needed, interprets relationships, and synthesizes the conclusion.
+- There is NO analytical Python fallback. A failed LLM analysis must never be
+  presented as if it were Financial Intelligence.
+"""
 from .analyst import inspect, synthesize
 from .verifier import verify_answer, fallback_answer
 from .openrouter import DEFAULT_MODEL
@@ -16,32 +24,27 @@ def _meta(question):
     return any(x in q for x in META_PHRASES)
 
 
-def _is_simple_fact_question(question):
-    """Detect only obvious one-metric lookups; this is not a financial intent system."""
-    q = " ".join(str(question or "").lower().split())
-    analytical_markers = [
-        "kenapa", "mengapa", "bagaimana", "apa faktor", "faktor apa", "paling berpengaruh",
-        "bandingkan", "dibandingkan", "apakah", "risiko", "strategi", "perlu diperhatikan",
-        "menopang", "sehat", "tren", "target", "hubungan", "korelasi", "dampak", "pengaruh",
-        "efisiensi", "penyebab", "kontribusi", "sustainable", "sustainability",
-    ]
-    if any(x in q for x in analytical_markers):
-        return False
-    # Simple question forms such as "berapa laba/aset/kredit ...?" remain Python-only.
-    return q.startswith("berapa ") or q.startswith("berapa nilai ") or q.startswith("berapa jumlah ")
-
-
-def _apply_requested_tools(evidence, requests, period):
+def _apply_requested_tools(evidence, requests, period, used):
     added = []
     tools = evidence.setdefault("analysis_tools", {})
-    for request in requests[:4]:
-        if request in tools:
+    for request in requests[:3]:
+        request = str(request)
+        if request in used:
             continue
         expanded = expand_evidence(evidence, request, period)
+        used.add(request)
         if expanded is not None:
             tools[request] = expanded
             added.append(request)
     return added
+
+
+def _llm_unavailable_message():
+    return (
+        "Saya belum dapat menyelesaikan analisis ini dengan andal karena lapisan "
+        "analisis AI sedang tidak tersedia. Saya tidak akan menggantinya dengan "
+        "jawaban angka yang dapat menyesatkan. Silakan coba kembali."
+    )
 
 
 def run_financial_analysis(question, selected_period=None, model=DEFAULT_MODEL):
@@ -54,99 +57,129 @@ def run_financial_analysis(question, selected_period=None, model=DEFAULT_MODEL):
             "ok": True,
             "answer": "Saya FinAI, asisten Financial Intelligence untuk membantu menganalisis data keuangan yang tersedia di aplikasi.",
             "stage": "meta",
+            "model_used": False,
         }
 
     try:
         period = ds.resolve_period(selected_period)
         evidence = build_evidence(question, period, plan=None)
         if evidence.get("status") != "READY":
-            return {"ok": True, "answer": evidence.get("message", "Data yang diperlukan belum tersedia."), "stage": "data"}
+            return {"ok": True, "answer": evidence.get("message", "Data yang diperlukan belum tersedia."), "stage": "data", "model_used": False}
 
-        # Exact/simple lookups do not need an LLM. This is deliberate: it is faster,
-        # deterministic and avoids spending model calls where interpretation adds no value.
-        if _is_simple_fact_question(question):
-            return {
-                "ok": True,
-                "answer": fallback_answer(evidence, question=question, analytical=False),
-                "stage": "python_fact",
-                "evidence": evidence,
-                "model_used": False,
-            }
-
-        findings = []
-        seen_requests = set()
-
-        # The semantic director is advisory, not a gate. One call is enough to
-        # decide whether the already-rich base evidence needs a focused drill-down.
-        director = inspect(question, evidence, context=findings, model=model)
-        if director.get("ok"):
-            analysis = director.get("analysis", {})
-            scope = str(analysis.get("scope", "FINANCIAL")).upper()
-            findings.extend(analysis.get("findings", []))
-            requests = [r for r in analysis.get("requests", []) if r not in seen_requests]
-            if scope == "META":
-                return {"ok": True, "answer": "Saya FinAI, asisten Financial Intelligence untuk membantu menganalisis data keuangan yang tersedia di aplikasi.", "stage": "meta"}
-            if scope == "OUT_OF_SCOPE":
-                return {"ok": True, "answer": "Pertanyaan tersebut berada di luar cakupan FinAI. Saya fokus pada analisis data dan informasi keuangan yang tersedia di aplikasi.", "stage": "scope"}
-            _apply_requested_tools(evidence, requests, period)
-        else:
-            # Do not stop. Base evidence already contains financial drivers, trends,
-            # target and balance/funding analysis, so synthesis can proceed.
-            requests = []
-
-        # The base evidence is already rich; one focused drill-down pass keeps
-        # latency bounded while still allowing the model to choose additional
-        # analyses dynamically.
-
-        analysis = synthesize(question, evidence, findings, model=model)
-        if analysis.get("ok"):
-            answer = analysis.get("content", "").strip()
-            checked = verify_answer(question, answer, evidence)
-            if checked.get("ok"):
+        # Every non-meta question goes through the semantic director. This removes
+        # brittle keyword-based routing and lets the model decide FACT vs ANALYSIS.
+        director = inspect(question, evidence, context=[], model=model)
+        if not director.get("ok"):
+            # A factual lookup is the only safe case where Python may answer when
+            # the LLM is unavailable. The deterministic engine remains the source
+            # of the fact; it is not presented as an analytical conclusion.
+            if str(question).lower().strip().startswith(("berapa ", "berapa nilai ", "berapa jumlah ")):
                 return {
                     "ok": True,
-                    "answer": answer,
-                    "stage": "analyst_agent",
+                    "answer": fallback_answer(evidence, question=question, analytical=False),
+                    "stage": "python_fact_safe_fallback",
+                    "evidence": evidence,
+                    "model_used": False,
+                    "warning": "LLM unavailable; factual lookup only.",
+                }
+            return {
+                "ok": True,
+                "answer": _llm_unavailable_message(),
+                "stage": "llm_director_unavailable",
+                "evidence": evidence,
+                "model_used": False,
+                "warning": director.get("error", "LLM director unavailable"),
+            }
+
+        analysis = director.get("analysis", {})
+        scope = str(analysis.get("scope", "FINANCIAL")).upper()
+        if scope == "META":
+            return {"ok": True, "answer": "Saya FinAI, asisten Financial Intelligence untuk membantu menganalisis data keuangan yang tersedia di aplikasi.", "stage": "meta", "model_used": True}
+        if scope == "OUT_OF_SCOPE":
+            return {"ok": True, "answer": "Pertanyaan tersebut berada di luar cakupan FinAI. Saya fokus pada analisis data dan informasi keuangan yang tersedia di aplikasi.", "stage": "scope", "model_used": True}
+        if scope == "AMBIGUOUS":
+            return {"ok": True, "answer": "Saya belum dapat menentukan fokus analisis dari pertanyaan tersebut. Mohon sebutkan metrik atau kondisi keuangan yang ingin dianalisis.", "stage": "ambiguous", "model_used": True}
+
+        findings = list(analysis.get("findings", []) or [])
+        used_requests = set()
+        # Agent loop: up to two evidence-planning rounds. The LLM decides what it
+        # needs; Python executes only explicit, auditable tools.
+        for round_no in range(2):
+            requests = [str(r) for r in (analysis.get("requests", []) or [])[:3]]
+            if requests:
+                _apply_requested_tools(evidence, requests, period, used_requests)
+
+            need_more = bool(analysis.get("need_more_evidence"))
+            if not need_more or round_no == 1:
+                break
+
+            next_director = inspect(question, evidence, context=findings, model=model)
+            if not next_director.get("ok"):
+                return {
+                    "ok": True,
+                    "answer": _llm_unavailable_message(),
+                    "stage": "llm_planner_unavailable",
                     "evidence": evidence,
                     "findings": findings,
-                    "model": analysis.get("model"),
-                    "model_used": True,
+                    "model_used": False,
+                    "warning": next_director.get("error", "LLM planner unavailable"),
                 }
+            analysis = next_director.get("analysis", {})
+            findings.extend(analysis.get("findings", []) or [])
 
-            # One clean retry is preferable to immediately falling back to a shallow
-            # answer when the model produced a useful answer that failed a guardrail.
+        final = synthesize(question, evidence, findings, model=model)
+        if not final.get("ok"):
+            return {
+                "ok": True,
+                "answer": _llm_unavailable_message(),
+                "stage": "llm_synthesis_unavailable",
+                "evidence": evidence,
+                "findings": findings,
+                "model_used": False,
+                "warning": final.get("error", "LLM synthesis unavailable"),
+            }
+
+        answer = final.get("content", "").strip()
+        checked = verify_answer(question, answer, evidence)
+        if not checked.get("ok"):
             retry = synthesize(question, evidence, findings, model=model, retry=True)
             if retry.get("ok"):
-                retry_answer = retry.get("content", "").strip()
-                retry_check = verify_answer(question, retry_answer, evidence)
-                if retry_check.get("ok"):
+                answer = retry.get("content", "").strip()
+                checked = verify_answer(question, answer, evidence)
+                if checked.get("ok"):
                     return {
                         "ok": True,
-                        "answer": retry_answer,
+                        "answer": answer,
                         "stage": "analyst_agent_retry",
                         "evidence": evidence,
                         "findings": findings,
                         "model": retry.get("model"),
                         "model_used": True,
                     }
+            return {
+                "ok": True,
+                "answer": "Saya belum dapat memastikan jawaban analitis tersebut secara andal dari evidence yang tersedia. Saya tidak akan menggantinya dengan jawaban angka yang tidak menjawab pertanyaan.",
+                "stage": "verification_failed",
+                "evidence": evidence,
+                "findings": findings,
+                "model_used": True,
+                "warning": checked.get("reason", "verification failed"),
+            }
 
-        # If the provider is unavailable, keep the user-facing answer useful, but
-        # do not pretend it came from the LLM. The fallback performs real Python
-        # financial analysis using the same evidence package.
-        fallback = fallback_answer(evidence, question=question, analytical=True)
         return {
             "ok": True,
-            "answer": fallback,
-            "stage": "python_analytical_fallback",
+            "answer": answer,
+            "stage": "analyst_agent",
             "evidence": evidence,
             "findings": findings,
-            "model_used": False,
-            "warning": "LLM synthesis unavailable; deterministic financial analysis used.",
+            "model": final.get("model"),
+            "model_used": True,
         }
     except Exception as exc:
         return {
             "ok": True,
-            "answer": "Terjadi kendala saat memproses analisis. Data dasar masih tersedia, tetapi kesimpulan belum dapat disusun dengan andal.",
+            "answer": "Terjadi kendala saat memproses analisis. FinAI tidak akan mengganti analisis tersebut dengan jawaban angka yang berpotensi menyesatkan.",
             "stage": "runtime_error",
             "error": str(exc),
+            "model_used": False,
         }
