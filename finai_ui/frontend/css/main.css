@@ -523,4 +523,5 @@ tr.profit-total td{font-weight:900;background:#f0f6df;color:#35423e}
   line-height: 1.35;
 }
 .ai-attempt-status { color: #8a5a5a; }
+.ai-attempt-status.ok { color: #4f7d54; }
 .ai-attempt-reason { color: #666b73; }
