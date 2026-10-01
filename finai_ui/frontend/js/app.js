@@ -1,5 +1,5 @@
 export default function(component) {
-  const { data, setTriggerValue, parentElement } = component;
+  const { data, setStateValue, setTriggerValue, parentElement } = component;
   const root = parentElement;
   const shell = root && root.querySelector ? root.querySelector('#finai-root') : null;
   const app = root && root.querySelector ? root.querySelector('#app') : null;
@@ -129,8 +129,8 @@ export default function(component) {
   function bindNavigation() {
     const periodSelect = qs('#periodSelect');
     if (periodSelect) {
-      // Python is the source of truth after each rerun. Sync the visible
-      // selection without recreating the event listener.
+      // Python is the source of truth for the active period. Synchronise the
+      // visible selector after reruns without recreating its listener.
       const serverPeriod = data && data.period ? String(data.period) : '';
       if (serverPeriod && periodSelect.value !== serverPeriod) {
         periodSelect.value = serverPeriod;
@@ -151,7 +151,7 @@ export default function(component) {
 
       const go = () => {
         closeDrawer();
-        setStateValue('navigate', item.dataset.page);
+        setTriggerValue('navigate', item.dataset.page);
       };
 
       item.addEventListener('click', go);
