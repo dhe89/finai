@@ -141,22 +141,26 @@ result = finai_component(
 # ------------------------------------------------------------------
 # EVENTS FROM BROWSER
 # ------------------------------------------------------------------
+# Components V2 event values can remain present in the result object across
+# reruns.  Treat an event as actionable only when it actually changes the
+# server-side state.  This prevents the period event from forcing an endless
+# rerun and, importantly, prevents it from blocking navigation clicks after
+# the first period change.
 period_event = getattr(result, "period", None)
-
-if period_event is not None:
-    selected_period = str(period_event)
-    if selected_period in available_periods():
-        st.session_state.period = selected_period
-        st.session_state.ai_open = False
-        st.rerun()
-
 nav_event = getattr(result, "navigate", None)
 ai_event = getattr(result, "ai", None)
 chat_event = getattr(result, "chat", None)
 
+if period_event is not None:
+    selected_period = str(period_event)
+    if selected_period in available and selected_period != st.session_state.period:
+        st.session_state.period = selected_period
+        st.session_state.ai_open = False
+        st.rerun()
+
 if nav_event:
     target = str(nav_event)
-    if target in PAGE_MAP:
+    if target in PAGE_MAP and target != st.session_state.page:
         st.session_state.page = target
         st.session_state.ai_open = False
         st.rerun()
