@@ -1,28 +1,29 @@
 <main class="main">
 <div class="desktop-header">
   <div class="desktop-header-left"><div class="desktop-app-name">FinAI</div></div>
-  <button id="desktopAI" class="desktop-ai-trigger" aria-label="Open AI Assistant">✦</button>
+  <button id="desktopAI" class="desktop-ai-trigger" aria-label="Open AI Assistant" title="Open AI Assistant">✦</button>
 </div>
 <div class="topbar">
-  <div><div class="eyebrow">FINANCIAL INTELLIGENCE</div><div class="title">Setting Parameter</div>
-  <div class="subtitle">Prototype configuration for financial analysis</div></div>
-  <div class="period">September 2026⌄</div>
+  <div><div class="eyebrow">FINANCIAL INTELLIGENCE</div><div class="title">Setting Parameter</div><div class="subtitle">Simulation configuration and data integrity for {{PERIOD}}</div></div>
+  <div class="period">{{PERIOD}}⌄</div>
 </div>
 <div class="form-grid">
-<section class="card small"><div class="small-title">Analysis Period</div><div class="caption">Default reporting parameters</div>
-<div class="setting-row"><span class="setting-label">Period</span><span class="setting-value">September 2026</span></div>
-<div class="setting-row"><span class="setting-label">Comparison</span><span class="setting-value">Previous Month</span></div>
-<div class="setting-row"><span class="setting-label">View</span><span class="setting-value">Monthly</span></div>
+<section class="card small"><div class="small-title">Analysis Period</div><div class="caption">Available reporting parameters</div>
+<div class="setting-row"><span class="setting-label">Start</span><span class="setting-value">{{START_PERIOD}}</span></div>
+<div class="setting-row"><span class="setting-label">Latest</span><span class="setting-value">{{LATEST_PERIOD}}</span></div>
+<div class="setting-row"><span class="setting-label">Unit</span><span class="setting-value">{{UNIT}}</span></div>
 </section>
-<section class="card small"><div class="small-title">AI Assistant</div><div class="caption">Dummy assistant configuration</div>
-<div class="setting-row"><span class="setting-label">Engine</span><span class="setting-value">Dummy Response</span></div>
-<div class="setting-row"><span class="setting-label">Evidence</span><span class="setting-value">Python Prototype</span></div>
-<div class="setting-row"><span class="setting-label">Status</span><span class="badge">Ready</span></div>
+<section class="card small"><div class="small-title">Simulation Profile</div><div class="caption">Syariah banking prototype</div>
+<div class="setting-row"><span class="setting-label">Capital</span><span class="setting-value">{{CAPITAL}}</span></div>
+<div class="setting-row"><span class="setting-label">Target Assets</span><span class="setting-value">{{TARGET_ASSETS}}</span></div>
+<div class="setting-row"><span class="setting-label">Target Credit</span><span class="setting-value">{{TARGET_CREDIT}}</span></div>
+<div class="setting-row"><span class="setting-label">Target DPK</span><span class="setting-value">{{TARGET_DPK}}</span></div>
 </section>
 </div>
-<section class="card small"><div class="small-title">Prototype Status</div><div class="caption">UI-only configuration for this reset baseline.</div>
-<div class="setting-row"><span class="setting-label">Data processing</span><span class="setting-value">Not connected</span></div>
-<div class="setting-row"><span class="setting-label">AI response</span><span class="setting-value">Simulated</span></div>
-<div class="setting-row"><span class="setting-label">Backend</span><span class="setting-value">Streamlit + HTML/CSS/JS</span></div>
+<section class="card small"><div class="small-title">Data Integrity</div><div class="caption">Formation-time audit checks</div>
+<div class="setting-row"><span class="setting-label">Audit status</span><span class="badge">{{AUDIT_STATUS}}</span></div>
+<div class="setting-row"><span class="setting-label">Audit checks</span><span class="setting-value">{{AUDIT_TOTAL}}</span></div>
+<div class="setting-row"><span class="setting-label">Latest Assets</span><span class="setting-value">{{LATEST_ASSETS}}</span></div>
+<div class="setting-row"><span class="setting-label">Latest Net Profit</span><span class="setting-value">{{LATEST_NET_PROFIT}}</span></div>
 </section>
 </main>

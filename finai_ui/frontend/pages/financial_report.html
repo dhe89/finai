@@ -1,37 +1,24 @@
 <main class="main">
 <div class="desktop-header">
   <div class="desktop-header-left"><div class="desktop-app-name">FinAI</div></div>
-  <button id="desktopAI" class="desktop-ai-trigger" aria-label="Open AI Assistant">✦</button>
+  <button id="desktopAI" class="desktop-ai-trigger" aria-label="Open AI Assistant" title="Open AI Assistant">✦</button>
 </div>
 <div class="topbar">
-  <div><div class="eyebrow">FINANCIAL INTELLIGENCE</div><div class="title">Laporan Keuangan</div>
-  <div class="subtitle">Financial statement overview for September 2026</div></div>
-  <div class="period">September 2026⌄</div>
+  <div><div class="eyebrow">FINANCIAL INTELLIGENCE</div><div class="title">Laporan Keuangan</div><div class="subtitle">Income statement and balance sheet for {{PERIOD}} · Unit {{UNIT}}</div></div>
+  <div class="period">{{PERIOD}}⌄</div>
 </div>
 <div class="form-grid">
 <section class="card table-card">
-  <div class="table-head"><div><div class="table-title">Income Statement</div><div class="caption">Statement of profit and loss</div></div><div class="switcher">Monthly</div></div>
-  <div class="data-wrap"><table><thead><tr><th>Keterangan</th><th>Bulan Lalu</th><th>Bulan Ini</th><th>Target</th></tr></thead><tbody>
-    <tr><td>Revenue</td><td>1,274.2</td><td>1,255.2</td><td>1,378.0</td></tr>
-    <tr><td>Operating Expense</td><td>461.8</td><td>556.1</td><td>535.4</td></tr>
-    <tr><td>CKPN</td><td>106.9</td><td>207.9</td><td>198.0</td></tr>
-    <tr><td>Net Profit</td><td>812.4</td><td>699.1</td><td>727.1</td></tr>
-  </tbody></table></div>
+  <div class="table-head"><div><div class="table-title">Laporan Laba Rugi</div><div class="caption">Monthly financial performance</div></div><div class="switcher">Monthly</div></div>
+  <div class="data-wrap"><table><thead><tr><th>Keterangan</th><th>Bulan Lalu</th><th>Bulan Ini</th></tr></thead><tbody>{{INCOME_STATEMENT_ROWS}}</tbody></table></div>
 </section>
 <section class="card table-card">
-  <div class="table-head"><div><div class="table-title">Balance Sheet</div><div class="caption">Selected statement of financial position</div></div><div class="switcher">Monthly</div></div>
-  <div class="data-wrap"><table><thead><tr><th>Keterangan</th><th>Bulan Lalu</th><th>Bulan Ini</th><th>Target</th></tr></thead><tbody>
-    <tr class="section"><td colspan="4">ASSET</td></tr>
-    <tr><td>Total Asset</td><td>194,349.9</td><td>190,510.7</td><td>192,871.1</td></tr>
-    <tr><td>Total Credit</td><td>106,885.6</td><td>104,549.2</td><td>101,808.3</td></tr>
-    <tr><td>Total Investment</td><td>79,825.3</td><td>79,599.7</td><td>80,855.6</td></tr>
-    <tr class="section"><td colspan="4">FUNDING</td></tr>
-    <tr><td>Total DPK</td><td>163,153.8</td><td>158,545.5</td><td>160,414.1</td></tr>
-  </tbody></table></div>
+  <div class="table-head"><div><div class="table-title">Laporan Posisi Neraca</div><div class="caption">Assets = Liabilities + Equity</div></div><div class="switcher">Monthly</div></div>
+  <div class="data-wrap"><table><thead><tr><th>Keterangan</th><th>Bulan Lalu</th><th>Bulan Ini</th></tr></thead><tbody>{{BALANCE_SHEET_ROWS}}</tbody></table></div>
 </section>
 </div>
-<div class="card small"><div class="small-title">Reporting Note</div><div class="caption">Prototype information</div>
-  <div class="setting-row"><span class="setting-label">Reporting period</span><span class="setting-value">September 2026</span></div>
-  <div class="setting-row"><span class="setting-label">Data status</span><span class="badge">Prototype / Dummy Data</span></div>
+<div class="card small"><div class="small-title">Reporting Note</div><div class="caption">Simulation data source</div>
+  <div class="setting-row"><span class="setting-label">Reporting period</span><span class="setting-value">{{PERIOD}}</span></div>
+  <div class="setting-row"><span class="setting-label">Data status</span><span class="badge">{{DATA_STATUS}}</span></div>
 </div>
 </main>
