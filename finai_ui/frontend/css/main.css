@@ -198,15 +198,34 @@ button{font:inherit;cursor:pointer}
   position:relative;
 }
 #finai-root.desktop-collapsed > .left .brand{justify-content:flex-start}
+#finai-root.desktop-collapsed > .left{
+  /* Allow the desktop expand control to sit slightly outside the sidebar.
+     This is intentionally desktop-only; mobile uses its own drawer control. */
+  overflow:visible;
+}
 #finai-root.desktop-collapsed > .left .sidebar-toggle{
   position:absolute;
-  top:5px;
-  right:1px;
-  width:22px;
-  height:22px;
-  border-radius:7px;
-  font-size:18px;
+  top:6px;
+  right:-13px;
+  width:30px;
+  height:30px;
+  min-width:30px;
+  min-height:30px;
+  border-radius:9px;
+  border:1px solid rgba(255,255,255,.28);
+  background:#0b6a56 !important;
+  color:#fff !important;
+  font-size:22px;
+  font-weight:800;
+  line-height:1;
   padding:0;
+  display:grid;
+  place-items:center;
+  z-index:1200;
+  box-shadow:0 3px 10px rgba(0,86,66,.22);
+}
+#finai-root.desktop-collapsed > .left .sidebar-toggle:hover{
+  background:#14765f !important;
 }
 #finai-root.desktop-collapsed > .left .nav-item{
   justify-content:center;
