@@ -35,7 +35,7 @@ loan_products=[
     ('Commercial - Investasi','Investasi',0.13),
     ('Commercial - Konstruksi','Konstruksi',0.10),
 ]
-loan_n=140
+loan_n=220
 loan_rows=[]
 for i in range(loan_n):
     # deterministic weighted product
@@ -44,7 +44,15 @@ for i in range(loan_n):
         cum+=w
         if r<=cum: prod=name; break
     if prod is None: prod=loan_products[-1][0]
-    start_idx=random.randint(0,len(periods)-1)
+    # Ensure the bank already has a sufficiently diversified loan book at the
+    # beginning of the simulation, while still creating genuinely new accounts
+    # during later periods. This prevents early-month concentration/anomalies.
+    if i < 120:
+        start_idx=0
+    elif i < 180:
+        start_idx=random.randint(0,8)
+    else:
+        start_idx=random.randint(9,18)
     duration=random.randint(12,42)
     close_idx=min(len(periods), start_idx+duration)
     # some accounts close before period end; some remain open
@@ -381,7 +389,25 @@ for p in summary_df.period:
     checks.append({'period':p,'check':'Investment detail = BS Penempatan','difference':round(inv_sum-bs[(bs.period==p)&bs.line_item.eq('Penempatan')].amount.iloc[0],4),'status':'PASS' if abs(inv_sum-bs[(bs.period==p)&bs.line_item.eq('Penempatan')].amount.iloc[0])<0.02 else 'FAIL'})
     checks.append({'period':p,'check':'DPK detail = BS Giro+Tabungan+Deposito','difference':round(dpk_sum-bs[(bs.period==p)&bs.statement.eq('Kewajiban') & bs.line_item.isin(['Giro','Tabungan','Deposito'])].amount.sum(),4),'status':'PASS' if abs(dpk_sum-bs[(bs.period==p)&bs.statement.eq('Kewajiban') & bs.line_item.isin(['Giro','Tabungan','Deposito'])].amount.sum())<0.02 else 'FAIL'})
 
-# Remove the intentionally weird check and make audit clean
+# Detail-level sanity checks: these are formation-time controls so the
+# generated dataset cannot silently contain physically impossible records.
+for p in summary_df.period:
+    lsub=loans[loans.period.eq(p)]
+    isub=investments[investments.period.eq(p)]
+    dsub=funding[funding.period.eq(p)]
+    osub=other[other.period.eq(p)]
+    bad_loan=float((lsub.outstanding > lsub.facility_amount + 0.01).sum())
+    bad_inv=float((isub.investment_amount < -0.01).sum())
+    bad_dpk=float((dsub.balance < -0.01).sum())
+    bad_other=float((osub.balance < -0.01).sum())
+    bad_rate=float(((lsub.rate_pa < 0).sum() + (isub.rate_pa < 0).sum() + (dsub.rate_pa < 0).sum() + (osub.rate_pa < 0).sum()))
+    checks.append({'period':p,'check':'Loan Outstanding <= Facility Amount','difference':bad_loan,'status':'PASS' if bad_loan==0 else 'FAIL'})
+    checks.append({'period':p,'check':'Investment Amount non-negative','difference':bad_inv,'status':'PASS' if bad_inv==0 else 'FAIL'})
+    checks.append({'period':p,'check':'DPK Balance non-negative','difference':bad_dpk,'status':'PASS' if bad_dpk==0 else 'FAIL'})
+    checks.append({'period':p,'check':'Other Funding Balance non-negative','difference':bad_other,'status':'PASS' if bad_other==0 else 'FAIL'})
+    checks.append({'period':p,'check':'Product Rates non-negative','difference':bad_rate,'status':'PASS' if bad_rate==0 else 'FAIL'})
+
+# Remove the intentionally duplicated monthly check; YTD check below is the accounting control.
 checks=[c for c in checks if c['check']!='Net Profit = Current Year Profit in BS']
 aud=pd.DataFrame(checks)
 if (aud.status!='PASS').any():
