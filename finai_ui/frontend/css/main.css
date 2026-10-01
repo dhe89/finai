@@ -64,7 +64,7 @@ button{font:inherit;cursor:pointer}
 .desktop-header{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:20px;min-height:42px}
 .desktop-header-left{display:flex;align-items:center;gap:10px;min-width:0}
 .desktop-app-name{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800;color:#65716c;line-height:1}
-.desktop-app-name::before{content:"✦";width:30px;height:30px;min-width:30px;border-radius:9px;background:#b7f51d;color:#005642;display:grid;place-items:center;font-size:15px;font-weight:900;line-height:1}
+.desktop-app-name::before{display:none;content:none}
 .desktop-ai-trigger{width:40px;height:40px;border-radius:50%;border:1px solid #e4e9e6;background:#fff;color:var(--green);display:grid;place-items:center;box-shadow:0 4px 12px #0000000d;font-size:18px}
 .topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:20px}
 .eyebrow{color:#a0aaa6;font-size:9px;letter-spacing:2px;font-weight:700}.title{font-size:31px;line-height:1.05;font-weight:800;margin:3px 0 0}.subtitle{color:#9aa49f;font-size:11px;margin-top:7px}.period{background:#eff6d9;color:#6c7d42;border-radius:18px;padding:10px 15px;font-size:10px;font-weight:700;white-space:nowrap}
@@ -213,11 +213,10 @@ button{font:inherit;cursor:pointer}
   padding:0;
 }
 
-/* Mobile:
-   native Streamlit header ends at --finai-top-offset.
-   FinAI header is 74px high.
-   Sidebar and backdrop use the exact same top/bottom boundary.
-   Front -> back: sidebar / backdrop / header / content.
+/* Responsive shell:
+   --finai-top-offset is the actual top edge of #finai-root.
+   Sidebar, FinAI header and AI overlay therefore share one coordinate origin.
+   Mobile keeps the same stacking order: sidebar / backdrop / header / content.
 */
 @media(max-width:800px){
   #finai-root,
