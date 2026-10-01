@@ -161,6 +161,22 @@ class ProviderError(Exception):
         super().__init__(detail)
 
 
+def _diagnostic_reason(provider: str, status_code: int | str | None, detail: str = "") -> str:
+    """Return a safe, human-readable reason for provider diagnostics."""
+    code = str(status_code) if status_code is not None else ""
+    if code == "401": return "API key ditolak atau tidak valid (401)."
+    if code == "403": return "Akses ditolak oleh provider (403); cek project, izin, atau API key."
+    if code == "404": return "Model/endpoint tidak ditemukan (404); cek nama model dan endpoint."
+    if code == "408": return "Request timeout (408)."
+    if code == "429": return "Kena rate limit/quota (429). Router mencoba provider berikutnya."
+    if code.startswith("5"): return f"Provider mengalami server error ({code})."
+    if code == "400": return "Request ditolak sebagai bad request (400); cek payload/model."
+    if code == "network_error": return "Koneksi ke provider gagal atau timeout."
+    if code == "missing_key": return "API key tidak ditemukan di Streamlit Secrets."
+    if code == "unexpected_error": return "Terjadi error internal yang tidak terduga."
+    return "Provider tidak berhasil merespons."
+
+
 def _api_key(provider: str) -> str | None:
     return _secret({"gemini": "GEMINI_API_KEY", "groq": "GROQ_API_KEY", "openrouter": "OPENROUTER_API_KEY"}[provider])
 
@@ -198,36 +214,53 @@ def chat(messages: list[dict[str, Any]], selected_period: str | None = None, tim
     attempts = []
 
     for provider in _provider_order():
+        model = _model(provider)
+        started = time.perf_counter()
         key = _api_key(provider)
         if not key:
-            attempts.append({"provider": provider, "status": "missing_key"})
+            attempts.append({
+                "provider": provider, "model": model, "status": "missing_key",
+                "latency_ms": 0, "reason": _diagnostic_reason(provider, "missing_key"),
+            })
             continue
         try:
-            started = time.perf_counter()
             if provider == "gemini":
                 content = _call_gemini(key, llm_messages[1:], timeout)
             else:
                 content = _call_openai_compatible(provider, key, llm_messages, timeout)
             latency_ms = int((time.perf_counter() - started) * 1000)
             return {
-                "ok": True,
-                "content": content,
-                "provider": provider,
-                "model": _model(provider),
-                "latency_ms": latency_ms,
-                "attempt": len(attempts) + 1,
-                "fallback": len(attempts) > 0,
-                "period": evidence.get("period"),
+                "ok": True, "content": content, "provider": provider, "model": model,
+                "latency_ms": latency_ms, "attempt": len(attempts) + 1,
+                "fallback": len(attempts) > 0, "period": evidence.get("period"),
                 "attempts": attempts,
             }
         except (ProviderError, requests.RequestException) as exc:
+            latency_ms = int((time.perf_counter() - started) * 1000)
             if isinstance(exc, ProviderError):
-                attempts.append({"provider": provider, "status": exc.status_code, "error": exc.detail})
+                status, detail = exc.status_code, exc.detail
+                attempts.append({
+                    "provider": provider, "model": model, "status": status,
+                    "latency_ms": latency_ms,
+                    "reason": _diagnostic_reason(provider, status, detail),
+                    "error": detail,
+                })
             else:
-                attempts.append({"provider": provider, "status": "network_error", "error": str(exc)[:500]})
+                attempts.append({
+                    "provider": provider, "model": model, "status": "network_error",
+                    "latency_ms": latency_ms,
+                    "reason": _diagnostic_reason(provider, "network_error"),
+                    "error": str(exc)[:500],
+                })
             continue
         except Exception as exc:
-            attempts.append({"provider": provider, "status": "unexpected_error", "error": str(exc)[:500]})
+            latency_ms = int((time.perf_counter() - started) * 1000)
+            attempts.append({
+                "provider": provider, "model": model, "status": "unexpected_error",
+                "latency_ms": latency_ms,
+                "reason": _diagnostic_reason(provider, "unexpected_error"),
+                "error": str(exc)[:500],
+            })
             continue
 
     return {
