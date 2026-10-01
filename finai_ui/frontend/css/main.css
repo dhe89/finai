@@ -206,7 +206,7 @@ button{font:inherit;cursor:pointer}
 #finai-root.desktop-collapsed > .left .sidebar-toggle{
   position:absolute;
   top:6px;
-  right:-13px;
+  right:-33px;
   width:30px;
   height:30px;
   min-width:30px;
