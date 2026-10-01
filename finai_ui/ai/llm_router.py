@@ -16,7 +16,7 @@ from .financial_context import build_analysis_context
 DEFAULT_PROVIDER_ORDER = ["gemini", "groq", "openrouter"]
 DEFAULT_MODELS = {"gemini": "", "groq": "", "openrouter": ""}
 DISCOVERY_TIMEOUT = 15
-MAX_MODELS_PER_PROVIDER = 5
+MAX_MODELS_PER_PROVIDER = 8
 RETRYABLE_STATUSES = {408, 429, 500, 502, 503, 504}
 
 SYSTEM_PROMPT = """Anda adalah FinAI, Financial Intelligence Assistant untuk analisis keuangan.
@@ -110,6 +110,8 @@ def _error_category(status: int | None, detail: str) -> str:
     if status == 401:
         return "authentication"
     if status == 403:
+        if any(x in text for x in ("quota", "billing", "permission", "denied", "disabled")):
+            return "access_denied_or_billing_required"
         return "access_denied"
     if status == 404:
         return "model_or_endpoint_unavailable"
@@ -173,32 +175,71 @@ def _groq_models(api_key: str) -> list[str]:
     return models[:MAX_MODELS_PER_PROVIDER]
 
 
+# Gemini text-generation models that are intended for the free Developer API tier.
+# The Gemini Models API also exposes image/TTS/live/embedding models. Those must NOT
+# enter FinAI's text router even when they advertise generateContent.
+GEMINI_FREE_TEXT_MODELS = {
+    "gemini-3.8-flash",
+    "gemini-3.7-flash",
+    "gemini-3.6-flash",
+    "gemini-3.5-flash",
+    "gemini-3.5-flash-lite",
+    "gemini-3.1-flash-lite",
+    "gemini-3-flash-preview",
+    "gemini-2.5-flash",
+    "gemini-2.5-flash-lite",
+}
+
+
 def _gemini_models(api_key: str) -> list[str]:
-    r = requests.get("https://generativelanguage.googleapis.com/v1beta/models", params={"key": api_key, "pageSize": 100}, timeout=DISCOVERY_TIMEOUT)
+    r = requests.get(
+        "https://generativelanguage.googleapis.com/v1beta/models",
+        params={"key": api_key, "pageSize": 100},
+        timeout=DISCOVERY_TIMEOUT,
+    )
     if r.status_code != 200:
         raise ProviderError("gemini", r.status_code, r.text[:1000])
+
     configured = _configured_model("gemini")
     if configured:
-        return [configured.replace("models/", "")]
+        configured = configured.replace("models/", "")
+        # Keep an explicit override possible for testing, but do not invent/fallback
+        # to a hard-coded model when no override is supplied.
+        return [configured]
+
     data = r.json().get("models") or []
-    models = []
+    available = {}
+
     for item in data:
         name = str(item.get("name", "")).strip()
         methods = item.get("supportedGenerationMethods") or []
         if not name or "generateContent" not in methods:
             continue
+
         if name.startswith("models/"):
             name = name.split("/", 1)[1]
-        # Avoid embedding/speech/image-only models; prioritize flash text models.
-        lname = name.lower()
-        if "embedding" in lname or "imagen" in lname or "veo" in lname or "aqa" in lname:
-            continue
-        models.append(name)
-    def rank(name: str):
-        n = name.lower()
-        return (0 if "flash" in n else 1, 0 if "lite" not in n else 1, n)
-    models.sort(key=rank)
-    return models[:MAX_MODELS_PER_PROVIDER]
+
+        # Only models explicitly classified by this router as free text models.
+        # This prevents image/TTS/live/embedding models from being selected.
+        if name in GEMINI_FREE_TEXT_MODELS:
+            available[name] = item
+
+    # Order follows current FinAI testing priority: normal Flash first, then
+    # lighter models, then legacy/preview models. Actual availability is still
+    # determined by the Models API response above.
+    preferred_order = [
+        "gemini-3.7-flash",
+        "gemini-3.6-flash",
+        "gemini-3.5-flash",
+        "gemini-3.5-flash-lite",
+        "gemini-3.1-flash-lite",
+        "gemini-3-flash-preview",
+        "gemini-2.5-flash",
+        "gemini-2.5-flash-lite",
+        "gemini-3.8-flash",
+    ]
+
+    return [model for model in preferred_order if model in available][:MAX_MODELS_PER_PROVIDER]
 
 
 def _discover_models(provider: str, api_key: str) -> list[str]:
@@ -298,7 +339,7 @@ def chat(messages: list[dict[str, Any]], selected_period: str | None = None, tim
 
         for model in models:
             # Daily quota errors should not be retried for the same model.  A transient 429/503 may be retried once.
-            max_retries = 0
+            max_retries = 1
             retry_index = 0
             while True:
                 started = time.perf_counter()
@@ -329,4 +370,9 @@ def chat(messages: list[dict[str, Any]], selected_period: str | None = None, tim
                     attempts.append(_attempt_record(provider, model, "unexpected_error", "unexpected_error", str(exc)[:500], latency, retry_index))
                     break
 
-    return {"ok": False, "error": "Semua provider/model LLM gagal merespons. FinAI tidak akan menggantinya dengan jawaban Python agar tidak menghasilkan analisis palsu.", "provider": None, "attempts": attempts}
+    return {
+        "ok": False,
+        "error": "Semua provider/model LLM gagal merespons. FinAI tidak akan menggantinya dengan jawaban Python agar tidak menghasilkan analisis palsu. Lihat Riwayat percobaan LLM untuk status dan alasan tiap percobaan.",
+        "provider": None,
+        "attempts": attempts,
+    }
