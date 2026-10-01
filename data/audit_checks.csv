@@ -1,0 +1,364 @@
+period,check,difference,status
+2024-01,Assets = Liabilities + Equity,0.0,PASS
+2024-01,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2024-01,Income Statement arithmetic,0.0,PASS
+2024-01,Credit detail = BS Credit,0.0,PASS
+2024-01,Investment detail = BS Penempatan,0.0,PASS
+2024-01,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
+2024-02,Assets = Liabilities + Equity,0.0,PASS
+2024-02,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2024-02,Income Statement arithmetic,0.0,PASS
+2024-02,Credit detail = BS Credit,0.0,PASS
+2024-02,Investment detail = BS Penempatan,0.0,PASS
+2024-02,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
+2024-03,Assets = Liabilities + Equity,-0.0,PASS
+2024-03,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2024-03,Income Statement arithmetic,0.0,PASS
+2024-03,Credit detail = BS Credit,0.0,PASS
+2024-03,Investment detail = BS Penempatan,0.0,PASS
+2024-03,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
+2024-04,Assets = Liabilities + Equity,0.0,PASS
+2024-04,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2024-04,Income Statement arithmetic,0.0,PASS
+2024-04,Credit detail = BS Credit,0.0,PASS
+2024-04,Investment detail = BS Penempatan,0.0,PASS
+2024-04,DPK detail = BS Giro+Tabungan+Deposito,-0.0,PASS
+2024-05,Assets = Liabilities + Equity,0.0,PASS
+2024-05,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2024-05,Income Statement arithmetic,-0.0,PASS
+2024-05,Credit detail = BS Credit,0.0,PASS
+2024-05,Investment detail = BS Penempatan,0.0,PASS
+2024-05,DPK detail = BS Giro+Tabungan+Deposito,-0.0,PASS
+2024-06,Assets = Liabilities + Equity,-0.0,PASS
+2024-06,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2024-06,Income Statement arithmetic,0.0,PASS
+2024-06,Credit detail = BS Credit,0.0,PASS
+2024-06,Investment detail = BS Penempatan,0.0,PASS
+2024-06,DPK detail = BS Giro+Tabungan+Deposito,-0.0,PASS
+2024-07,Assets = Liabilities + Equity,-0.0,PASS
+2024-07,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2024-07,Income Statement arithmetic,0.0,PASS
+2024-07,Credit detail = BS Credit,0.0,PASS
+2024-07,Investment detail = BS Penempatan,0.0,PASS
+2024-07,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
+2024-08,Assets = Liabilities + Equity,-0.0,PASS
+2024-08,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2024-08,Income Statement arithmetic,0.0,PASS
+2024-08,Credit detail = BS Credit,0.0,PASS
+2024-08,Investment detail = BS Penempatan,0.0,PASS
+2024-08,DPK detail = BS Giro+Tabungan+Deposito,-0.0,PASS
+2024-09,Assets = Liabilities + Equity,0.0,PASS
+2024-09,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2024-09,Income Statement arithmetic,0.0,PASS
+2024-09,Credit detail = BS Credit,0.0,PASS
+2024-09,Investment detail = BS Penempatan,0.0,PASS
+2024-09,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
+2024-10,Assets = Liabilities + Equity,-0.0,PASS
+2024-10,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2024-10,Income Statement arithmetic,0.0,PASS
+2024-10,Credit detail = BS Credit,0.0,PASS
+2024-10,Investment detail = BS Penempatan,0.0,PASS
+2024-10,DPK detail = BS Giro+Tabungan+Deposito,-0.0,PASS
+2024-11,Assets = Liabilities + Equity,-0.0,PASS
+2024-11,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2024-11,Income Statement arithmetic,-0.0,PASS
+2024-11,Credit detail = BS Credit,0.0,PASS
+2024-11,Investment detail = BS Penempatan,0.0,PASS
+2024-11,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
+2024-12,Assets = Liabilities + Equity,0.0,PASS
+2024-12,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2024-12,Income Statement arithmetic,0.0,PASS
+2024-12,Credit detail = BS Credit,0.0,PASS
+2024-12,Investment detail = BS Penempatan,0.0,PASS
+2024-12,DPK detail = BS Giro+Tabungan+Deposito,-0.0,PASS
+2025-01,Assets = Liabilities + Equity,0.0,PASS
+2025-01,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2025-01,Income Statement arithmetic,0.0,PASS
+2025-01,Credit detail = BS Credit,0.0,PASS
+2025-01,Investment detail = BS Penempatan,0.0,PASS
+2025-01,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
+2025-02,Assets = Liabilities + Equity,-0.0,PASS
+2025-02,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2025-02,Income Statement arithmetic,0.0,PASS
+2025-02,Credit detail = BS Credit,0.0,PASS
+2025-02,Investment detail = BS Penempatan,-0.0,PASS
+2025-02,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
+2025-03,Assets = Liabilities + Equity,0.0,PASS
+2025-03,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2025-03,Income Statement arithmetic,0.0,PASS
+2025-03,Credit detail = BS Credit,0.0,PASS
+2025-03,Investment detail = BS Penempatan,-0.0,PASS
+2025-03,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
+2025-04,Assets = Liabilities + Equity,0.0,PASS
+2025-04,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2025-04,Income Statement arithmetic,0.0,PASS
+2025-04,Credit detail = BS Credit,0.0,PASS
+2025-04,Investment detail = BS Penempatan,0.0,PASS
+2025-04,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
+2025-05,Assets = Liabilities + Equity,0.0,PASS
+2025-05,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2025-05,Income Statement arithmetic,0.0,PASS
+2025-05,Credit detail = BS Credit,0.0,PASS
+2025-05,Investment detail = BS Penempatan,0.0,PASS
+2025-05,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
+2025-06,Assets = Liabilities + Equity,0.0,PASS
+2025-06,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2025-06,Income Statement arithmetic,0.0,PASS
+2025-06,Credit detail = BS Credit,0.0,PASS
+2025-06,Investment detail = BS Penempatan,0.0,PASS
+2025-06,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
+2025-07,Assets = Liabilities + Equity,0.0,PASS
+2025-07,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2025-07,Income Statement arithmetic,0.0,PASS
+2025-07,Credit detail = BS Credit,0.0,PASS
+2025-07,Investment detail = BS Penempatan,0.0,PASS
+2025-07,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
+2025-08,Assets = Liabilities + Equity,0.0,PASS
+2025-08,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2025-08,Income Statement arithmetic,0.0,PASS
+2025-08,Credit detail = BS Credit,0.0,PASS
+2025-08,Investment detail = BS Penempatan,0.0,PASS
+2025-08,DPK detail = BS Giro+Tabungan+Deposito,-0.0,PASS
+2025-09,Assets = Liabilities + Equity,-0.0,PASS
+2025-09,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2025-09,Income Statement arithmetic,0.0,PASS
+2025-09,Credit detail = BS Credit,0.0,PASS
+2025-09,Investment detail = BS Penempatan,0.0,PASS
+2025-09,DPK detail = BS Giro+Tabungan+Deposito,-0.0,PASS
+2025-10,Assets = Liabilities + Equity,0.0,PASS
+2025-10,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2025-10,Income Statement arithmetic,0.0,PASS
+2025-10,Credit detail = BS Credit,0.0,PASS
+2025-10,Investment detail = BS Penempatan,0.0,PASS
+2025-10,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
+2025-11,Assets = Liabilities + Equity,-0.0,PASS
+2025-11,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2025-11,Income Statement arithmetic,0.0,PASS
+2025-11,Credit detail = BS Credit,-0.0,PASS
+2025-11,Investment detail = BS Penempatan,-0.0,PASS
+2025-11,DPK detail = BS Giro+Tabungan+Deposito,-0.0,PASS
+2025-12,Assets = Liabilities + Equity,0.0,PASS
+2025-12,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2025-12,Income Statement arithmetic,0.0,PASS
+2025-12,Credit detail = BS Credit,0.0,PASS
+2025-12,Investment detail = BS Penempatan,0.0,PASS
+2025-12,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
+2026-01,Assets = Liabilities + Equity,0.0,PASS
+2026-01,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2026-01,Income Statement arithmetic,-0.0,PASS
+2026-01,Credit detail = BS Credit,0.0,PASS
+2026-01,Investment detail = BS Penempatan,0.0,PASS
+2026-01,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
+2026-02,Assets = Liabilities + Equity,0.0,PASS
+2026-02,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2026-02,Income Statement arithmetic,-0.0,PASS
+2026-02,Credit detail = BS Credit,0.0,PASS
+2026-02,Investment detail = BS Penempatan,0.0,PASS
+2026-02,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
+2026-03,Assets = Liabilities + Equity,0.0,PASS
+2026-03,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2026-03,Income Statement arithmetic,0.0,PASS
+2026-03,Credit detail = BS Credit,0.0,PASS
+2026-03,Investment detail = BS Penempatan,0.0,PASS
+2026-03,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
+2026-04,Assets = Liabilities + Equity,-0.0,PASS
+2026-04,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2026-04,Income Statement arithmetic,0.0,PASS
+2026-04,Credit detail = BS Credit,0.0,PASS
+2026-04,Investment detail = BS Penempatan,0.0,PASS
+2026-04,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
+2026-05,Assets = Liabilities + Equity,-0.0,PASS
+2026-05,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2026-05,Income Statement arithmetic,-0.0,PASS
+2026-05,Credit detail = BS Credit,-0.0,PASS
+2026-05,Investment detail = BS Penempatan,0.0,PASS
+2026-05,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
+2026-06,Assets = Liabilities + Equity,0.0,PASS
+2026-06,YTD Net Profit = BS Laba Tahun Berjalan,-0.0,PASS
+2026-06,Income Statement arithmetic,-0.0,PASS
+2026-06,Credit detail = BS Credit,0.0,PASS
+2026-06,Investment detail = BS Penempatan,-0.0,PASS
+2026-06,DPK detail = BS Giro+Tabungan+Deposito,-0.0,PASS
+2026-07,Assets = Liabilities + Equity,0.0,PASS
+2026-07,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2026-07,Income Statement arithmetic,0.0,PASS
+2026-07,Credit detail = BS Credit,0.0,PASS
+2026-07,Investment detail = BS Penempatan,0.0,PASS
+2026-07,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
+2026-08,Assets = Liabilities + Equity,0.0,PASS
+2026-08,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2026-08,Income Statement arithmetic,0.0,PASS
+2026-08,Credit detail = BS Credit,-0.0,PASS
+2026-08,Investment detail = BS Penempatan,-0.0,PASS
+2026-08,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
+2026-09,Assets = Liabilities + Equity,0.0,PASS
+2026-09,YTD Net Profit = BS Laba Tahun Berjalan,0.0,PASS
+2026-09,Income Statement arithmetic,0.01,PASS
+2026-09,Credit detail = BS Credit,0.0,PASS
+2026-09,Investment detail = BS Penempatan,0.0,PASS
+2026-09,DPK detail = BS Giro+Tabungan+Deposito,0.0,PASS
+2024-01,Loan Outstanding <= Facility Amount,0.0,PASS
+2024-01,Investment Amount non-negative,0.0,PASS
+2024-01,DPK Balance non-negative,0.0,PASS
+2024-01,Other Funding Balance non-negative,0.0,PASS
+2024-01,Product Rates non-negative,0.0,PASS
+2024-02,Loan Outstanding <= Facility Amount,0.0,PASS
+2024-02,Investment Amount non-negative,0.0,PASS
+2024-02,DPK Balance non-negative,0.0,PASS
+2024-02,Other Funding Balance non-negative,0.0,PASS
+2024-02,Product Rates non-negative,0.0,PASS
+2024-03,Loan Outstanding <= Facility Amount,0.0,PASS
+2024-03,Investment Amount non-negative,0.0,PASS
+2024-03,DPK Balance non-negative,0.0,PASS
+2024-03,Other Funding Balance non-negative,0.0,PASS
+2024-03,Product Rates non-negative,0.0,PASS
+2024-04,Loan Outstanding <= Facility Amount,0.0,PASS
+2024-04,Investment Amount non-negative,0.0,PASS
+2024-04,DPK Balance non-negative,0.0,PASS
+2024-04,Other Funding Balance non-negative,0.0,PASS
+2024-04,Product Rates non-negative,0.0,PASS
+2024-05,Loan Outstanding <= Facility Amount,0.0,PASS
+2024-05,Investment Amount non-negative,0.0,PASS
+2024-05,DPK Balance non-negative,0.0,PASS
+2024-05,Other Funding Balance non-negative,0.0,PASS
+2024-05,Product Rates non-negative,0.0,PASS
+2024-06,Loan Outstanding <= Facility Amount,0.0,PASS
+2024-06,Investment Amount non-negative,0.0,PASS
+2024-06,DPK Balance non-negative,0.0,PASS
+2024-06,Other Funding Balance non-negative,0.0,PASS
+2024-06,Product Rates non-negative,0.0,PASS
+2024-07,Loan Outstanding <= Facility Amount,0.0,PASS
+2024-07,Investment Amount non-negative,0.0,PASS
+2024-07,DPK Balance non-negative,0.0,PASS
+2024-07,Other Funding Balance non-negative,0.0,PASS
+2024-07,Product Rates non-negative,0.0,PASS
+2024-08,Loan Outstanding <= Facility Amount,0.0,PASS
+2024-08,Investment Amount non-negative,0.0,PASS
+2024-08,DPK Balance non-negative,0.0,PASS
+2024-08,Other Funding Balance non-negative,0.0,PASS
+2024-08,Product Rates non-negative,0.0,PASS
+2024-09,Loan Outstanding <= Facility Amount,0.0,PASS
+2024-09,Investment Amount non-negative,0.0,PASS
+2024-09,DPK Balance non-negative,0.0,PASS
+2024-09,Other Funding Balance non-negative,0.0,PASS
+2024-09,Product Rates non-negative,0.0,PASS
+2024-10,Loan Outstanding <= Facility Amount,0.0,PASS
+2024-10,Investment Amount non-negative,0.0,PASS
+2024-10,DPK Balance non-negative,0.0,PASS
+2024-10,Other Funding Balance non-negative,0.0,PASS
+2024-10,Product Rates non-negative,0.0,PASS
+2024-11,Loan Outstanding <= Facility Amount,0.0,PASS
+2024-11,Investment Amount non-negative,0.0,PASS
+2024-11,DPK Balance non-negative,0.0,PASS
+2024-11,Other Funding Balance non-negative,0.0,PASS
+2024-11,Product Rates non-negative,0.0,PASS
+2024-12,Loan Outstanding <= Facility Amount,0.0,PASS
+2024-12,Investment Amount non-negative,0.0,PASS
+2024-12,DPK Balance non-negative,0.0,PASS
+2024-12,Other Funding Balance non-negative,0.0,PASS
+2024-12,Product Rates non-negative,0.0,PASS
+2025-01,Loan Outstanding <= Facility Amount,0.0,PASS
+2025-01,Investment Amount non-negative,0.0,PASS
+2025-01,DPK Balance non-negative,0.0,PASS
+2025-01,Other Funding Balance non-negative,0.0,PASS
+2025-01,Product Rates non-negative,0.0,PASS
+2025-02,Loan Outstanding <= Facility Amount,0.0,PASS
+2025-02,Investment Amount non-negative,0.0,PASS
+2025-02,DPK Balance non-negative,0.0,PASS
+2025-02,Other Funding Balance non-negative,0.0,PASS
+2025-02,Product Rates non-negative,0.0,PASS
+2025-03,Loan Outstanding <= Facility Amount,0.0,PASS
+2025-03,Investment Amount non-negative,0.0,PASS
+2025-03,DPK Balance non-negative,0.0,PASS
+2025-03,Other Funding Balance non-negative,0.0,PASS
+2025-03,Product Rates non-negative,0.0,PASS
+2025-04,Loan Outstanding <= Facility Amount,0.0,PASS
+2025-04,Investment Amount non-negative,0.0,PASS
+2025-04,DPK Balance non-negative,0.0,PASS
+2025-04,Other Funding Balance non-negative,0.0,PASS
+2025-04,Product Rates non-negative,0.0,PASS
+2025-05,Loan Outstanding <= Facility Amount,0.0,PASS
+2025-05,Investment Amount non-negative,0.0,PASS
+2025-05,DPK Balance non-negative,0.0,PASS
+2025-05,Other Funding Balance non-negative,0.0,PASS
+2025-05,Product Rates non-negative,0.0,PASS
+2025-06,Loan Outstanding <= Facility Amount,0.0,PASS
+2025-06,Investment Amount non-negative,0.0,PASS
+2025-06,DPK Balance non-negative,0.0,PASS
+2025-06,Other Funding Balance non-negative,0.0,PASS
+2025-06,Product Rates non-negative,0.0,PASS
+2025-07,Loan Outstanding <= Facility Amount,0.0,PASS
+2025-07,Investment Amount non-negative,0.0,PASS
+2025-07,DPK Balance non-negative,0.0,PASS
+2025-07,Other Funding Balance non-negative,0.0,PASS
+2025-07,Product Rates non-negative,0.0,PASS
+2025-08,Loan Outstanding <= Facility Amount,0.0,PASS
+2025-08,Investment Amount non-negative,0.0,PASS
+2025-08,DPK Balance non-negative,0.0,PASS
+2025-08,Other Funding Balance non-negative,0.0,PASS
+2025-08,Product Rates non-negative,0.0,PASS
+2025-09,Loan Outstanding <= Facility Amount,0.0,PASS
+2025-09,Investment Amount non-negative,0.0,PASS
+2025-09,DPK Balance non-negative,0.0,PASS
+2025-09,Other Funding Balance non-negative,0.0,PASS
+2025-09,Product Rates non-negative,0.0,PASS
+2025-10,Loan Outstanding <= Facility Amount,0.0,PASS
+2025-10,Investment Amount non-negative,0.0,PASS
+2025-10,DPK Balance non-negative,0.0,PASS
+2025-10,Other Funding Balance non-negative,0.0,PASS
+2025-10,Product Rates non-negative,0.0,PASS
+2025-11,Loan Outstanding <= Facility Amount,0.0,PASS
+2025-11,Investment Amount non-negative,0.0,PASS
+2025-11,DPK Balance non-negative,0.0,PASS
+2025-11,Other Funding Balance non-negative,0.0,PASS
+2025-11,Product Rates non-negative,0.0,PASS
+2025-12,Loan Outstanding <= Facility Amount,0.0,PASS
+2025-12,Investment Amount non-negative,0.0,PASS
+2025-12,DPK Balance non-negative,0.0,PASS
+2025-12,Other Funding Balance non-negative,0.0,PASS
+2025-12,Product Rates non-negative,0.0,PASS
+2026-01,Loan Outstanding <= Facility Amount,0.0,PASS
+2026-01,Investment Amount non-negative,0.0,PASS
+2026-01,DPK Balance non-negative,0.0,PASS
+2026-01,Other Funding Balance non-negative,0.0,PASS
+2026-01,Product Rates non-negative,0.0,PASS
+2026-02,Loan Outstanding <= Facility Amount,0.0,PASS
+2026-02,Investment Amount non-negative,0.0,PASS
+2026-02,DPK Balance non-negative,0.0,PASS
+2026-02,Other Funding Balance non-negative,0.0,PASS
+2026-02,Product Rates non-negative,0.0,PASS
+2026-03,Loan Outstanding <= Facility Amount,0.0,PASS
+2026-03,Investment Amount non-negative,0.0,PASS
+2026-03,DPK Balance non-negative,0.0,PASS
+2026-03,Other Funding Balance non-negative,0.0,PASS
+2026-03,Product Rates non-negative,0.0,PASS
+2026-04,Loan Outstanding <= Facility Amount,0.0,PASS
+2026-04,Investment Amount non-negative,0.0,PASS
+2026-04,DPK Balance non-negative,0.0,PASS
+2026-04,Other Funding Balance non-negative,0.0,PASS
+2026-04,Product Rates non-negative,0.0,PASS
+2026-05,Loan Outstanding <= Facility Amount,0.0,PASS
+2026-05,Investment Amount non-negative,0.0,PASS
+2026-05,DPK Balance non-negative,0.0,PASS
+2026-05,Other Funding Balance non-negative,0.0,PASS
+2026-05,Product Rates non-negative,0.0,PASS
+2026-06,Loan Outstanding <= Facility Amount,0.0,PASS
+2026-06,Investment Amount non-negative,0.0,PASS
+2026-06,DPK Balance non-negative,0.0,PASS
+2026-06,Other Funding Balance non-negative,0.0,PASS
+2026-06,Product Rates non-negative,0.0,PASS
+2026-07,Loan Outstanding <= Facility Amount,0.0,PASS
+2026-07,Investment Amount non-negative,0.0,PASS
+2026-07,DPK Balance non-negative,0.0,PASS
+2026-07,Other Funding Balance non-negative,0.0,PASS
+2026-07,Product Rates non-negative,0.0,PASS
+2026-08,Loan Outstanding <= Facility Amount,0.0,PASS
+2026-08,Investment Amount non-negative,0.0,PASS
+2026-08,DPK Balance non-negative,0.0,PASS
+2026-08,Other Funding Balance non-negative,0.0,PASS
+2026-08,Product Rates non-negative,0.0,PASS
+2026-09,Loan Outstanding <= Facility Amount,0.0,PASS
+2026-09,Investment Amount non-negative,0.0,PASS
+2026-09,DPK Balance non-negative,0.0,PASS
+2026-09,Other Funding Balance non-negative,0.0,PASS
+2026-09,Product Rates non-negative,0.0,PASS

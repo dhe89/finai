@@ -1,0 +1,648 @@
+period,investment_no,investment_type,investment_amount,collectibility,rate_pa,total_revenue,status
+2024-02,INV2028,Surat berharga yang dimiliki - Bank Indonesia,4575.0,1,4.7,17.92,ACTIVE
+2024-02,INV2030,Surat berharga yang dimiliki - Korporasi,4575.0,1,6.78,25.85,ACTIVE
+2024-03,INV2028,Surat berharga yang dimiliki - Bank Indonesia,1554.68,1,4.7,6.09,ACTIVE
+2024-03,INV2029,Surat berharga yang dimiliki - Bank Lain,1537.61,1,6.06,7.76,ACTIVE
+2024-03,INV2030,Surat berharga yang dimiliki - Korporasi,1554.69,1,6.78,8.78,ACTIVE
+2024-03,INV2039,Surat berharga yang dimiliki - Pemerintah,1537.61,1,5.6,7.18,ACTIVE
+2024-03,INV2054,Surat berharga yang dimiliki - Pemerintah,1537.61,1,5.77,7.39,ACTIVE
+2024-03,INV2059,Penempatan dan Giro - Bank Indonesia,1537.61,1,4.48,5.74,ACTIVE
+2024-04,INV2028,Surat berharga yang dimiliki - Bank Indonesia,1341.06,1,4.7,5.25,ACTIVE
+2024-04,INV2029,Surat berharga yang dimiliki - Bank Lain,1326.49,1,6.06,6.7,ACTIVE
+2024-04,INV2030,Surat berharga yang dimiliki - Korporasi,1341.07,1,6.78,7.58,ACTIVE
+2024-04,INV2039,Surat berharga yang dimiliki - Pemerintah,1326.49,1,5.6,6.19,ACTIVE
+2024-04,INV2054,Surat berharga yang dimiliki - Pemerintah,1326.49,1,5.77,6.38,ACTIVE
+2024-04,INV2059,Penempatan dan Giro - Bank Indonesia,1326.49,1,4.48,4.95,ACTIVE
+2024-04,INV2061,Penempatan dan Giro - Bank Lain,1311.91,1,4.84,5.29,ACTIVE
+2024-05,INV2028,Surat berharga yang dimiliki - Bank Indonesia,856.88,1,4.7,3.36,ACTIVE
+2024-05,INV2029,Surat berharga yang dimiliki - Bank Lain,847.66,1,6.06,4.28,ACTIVE
+2024-05,INV2030,Surat berharga yang dimiliki - Korporasi,856.88,1,6.78,4.84,ACTIVE
+2024-05,INV2039,Surat berharga yang dimiliki - Pemerintah,847.66,1,5.6,3.96,ACTIVE
+2024-05,INV2040,Surat berharga yang dimiliki - Bank Indonesia,829.24,1,5.31,3.67,ACTIVE
+2024-05,INV2043,Penempatan dan Giro - Bank Indonesia,829.24,1,4.49,3.1,ACTIVE
+2024-05,INV2054,Surat berharga yang dimiliki - Pemerintah,847.66,1,5.77,4.08,ACTIVE
+2024-05,INV2058,Surat berharga yang dimiliki - Pemerintah,829.24,1,5.46,3.77,ACTIVE
+2024-05,INV2059,Penempatan dan Giro - Bank Indonesia,847.66,1,4.48,3.16,ACTIVE
+2024-05,INV2061,Penempatan dan Giro - Bank Lain,838.45,1,4.84,3.38,ACTIVE
+2024-05,INV2063,Surat berharga yang dimiliki - Pemerintah,829.24,1,5.58,3.86,ACTIVE
+2024-06,INV2028,Surat berharga yang dimiliki - Bank Indonesia,719.1,1,4.7,2.82,ACTIVE
+2024-06,INV2029,Surat berharga yang dimiliki - Bank Lain,711.5,1,6.06,3.59,ACTIVE
+2024-06,INV2030,Surat berharga yang dimiliki - Korporasi,719.15,1,6.78,4.06,ACTIVE
+2024-06,INV2039,Surat berharga yang dimiliki - Pemerintah,711.5,1,5.6,3.32,ACTIVE
+2024-06,INV2040,Surat berharga yang dimiliki - Bank Indonesia,696.2,1,5.31,3.08,ACTIVE
+2024-06,INV2042,Surat berharga yang dimiliki - Bank Indonesia,688.55,1,5.19,2.98,ACTIVE
+2024-06,INV2043,Penempatan dan Giro - Bank Indonesia,696.2,1,4.49,2.6,ACTIVE
+2024-06,INV2053,Penempatan dan Giro - Bank Indonesia,688.55,1,4.26,2.44,ACTIVE
+2024-06,INV2054,Surat berharga yang dimiliki - Pemerintah,711.5,1,5.77,3.42,ACTIVE
+2024-06,INV2058,Surat berharga yang dimiliki - Pemerintah,696.2,1,5.46,3.17,ACTIVE
+2024-06,INV2059,Penempatan dan Giro - Bank Indonesia,711.5,1,4.48,2.66,ACTIVE
+2024-06,INV2061,Penempatan dan Giro - Bank Lain,703.85,1,4.84,2.84,ACTIVE
+2024-06,INV2063,Surat berharga yang dimiliki - Pemerintah,696.2,1,5.58,3.24,ACTIVE
+2024-07,INV2028,Surat berharga yang dimiliki - Bank Indonesia,615.58,1,4.7,2.41,ACTIVE
+2024-07,INV2029,Surat berharga yang dimiliki - Bank Lain,609.07,1,6.06,3.08,ACTIVE
+2024-07,INV2030,Surat berharga yang dimiliki - Korporasi,615.55,1,6.78,3.48,ACTIVE
+2024-07,INV2039,Surat berharga yang dimiliki - Pemerintah,609.07,1,5.6,2.84,ACTIVE
+2024-07,INV2040,Surat berharga yang dimiliki - Bank Indonesia,596.11,1,5.31,2.64,ACTIVE
+2024-07,INV2042,Surat berharga yang dimiliki - Bank Indonesia,589.63,1,5.19,2.55,ACTIVE
+2024-07,INV2043,Penempatan dan Giro - Bank Indonesia,596.11,1,4.49,2.23,ACTIVE
+2024-07,INV2049,Surat berharga yang dimiliki - Pemerintah,583.15,1,5.55,2.7,ACTIVE
+2024-07,INV2051,Surat berharga yang dimiliki - Korporasi,583.15,1,7.1,3.45,ACTIVE
+2024-07,INV2053,Penempatan dan Giro - Bank Indonesia,589.63,1,4.26,2.09,ACTIVE
+2024-07,INV2054,Surat berharga yang dimiliki - Pemerintah,609.07,1,5.77,2.93,ACTIVE
+2024-07,INV2058,Surat berharga yang dimiliki - Pemerintah,596.11,1,5.46,2.71,ACTIVE
+2024-07,INV2059,Penempatan dan Giro - Bank Indonesia,609.07,1,4.48,2.27,ACTIVE
+2024-07,INV2061,Penempatan dan Giro - Bank Lain,602.59,1,4.84,2.43,ACTIVE
+2024-07,INV2063,Surat berharga yang dimiliki - Pemerintah,596.11,1,5.58,2.77,ACTIVE
+2024-08,INV2028,Surat berharga yang dimiliki - Bank Indonesia,507.51,1,4.7,1.99,ACTIVE
+2024-08,INV2029,Surat berharga yang dimiliki - Bank Lain,502.24,1,6.06,2.54,ACTIVE
+2024-08,INV2030,Surat berharga yang dimiliki - Korporasi,507.53,1,6.78,2.87,ACTIVE
+2024-08,INV2039,Surat berharga yang dimiliki - Pemerintah,502.24,1,5.6,2.34,ACTIVE
+2024-08,INV2040,Surat berharga yang dimiliki - Bank Indonesia,491.67,1,5.31,2.18,ACTIVE
+2024-08,INV2042,Surat berharga yang dimiliki - Bank Indonesia,486.38,1,5.19,2.1,ACTIVE
+2024-08,INV2043,Penempatan dan Giro - Bank Indonesia,491.67,1,4.49,1.84,ACTIVE
+2024-08,INV2047,Surat berharga yang dimiliki - Bank Indonesia,475.81,1,5.18,2.05,ACTIVE
+2024-08,INV2048,Surat berharga yang dimiliki - Pemerintah,475.81,1,5.83,2.31,ACTIVE
+2024-08,INV2049,Surat berharga yang dimiliki - Pemerintah,481.09,1,5.55,2.23,ACTIVE
+2024-08,INV2051,Surat berharga yang dimiliki - Korporasi,481.09,1,7.1,2.85,ACTIVE
+2024-08,INV2053,Penempatan dan Giro - Bank Indonesia,486.38,1,4.26,1.73,ACTIVE
+2024-08,INV2054,Surat berharga yang dimiliki - Pemerintah,502.24,1,5.77,2.41,ACTIVE
+2024-08,INV2056,Penempatan dan Giro - Bank Indonesia,475.81,1,3.97,1.57,ACTIVE
+2024-08,INV2058,Surat berharga yang dimiliki - Pemerintah,491.67,1,5.46,2.24,ACTIVE
+2024-08,INV2059,Penempatan dan Giro - Bank Indonesia,502.24,1,4.48,1.88,ACTIVE
+2024-08,INV2061,Penempatan dan Giro - Bank Lain,496.95,1,4.84,2.0,ACTIVE
+2024-08,INV2063,Surat berharga yang dimiliki - Pemerintah,491.67,1,5.58,2.29,ACTIVE
+2024-09,INV2027,Penempatan dan Giro - Bank Lain,466.56,1,4.62,1.8,ACTIVE
+2024-09,INV2028,Surat berharga yang dimiliki - Bank Indonesia,502.86,1,4.7,1.97,ACTIVE
+2024-09,INV2029,Surat berharga yang dimiliki - Bank Lain,497.66,1,6.06,2.51,ACTIVE
+2024-09,INV2030,Surat berharga yang dimiliki - Korporasi,502.85,1,6.78,2.84,ACTIVE
+2024-09,INV2039,Surat berharga yang dimiliki - Pemerintah,497.66,1,5.6,2.32,ACTIVE
+2024-09,INV2040,Surat berharga yang dimiliki - Bank Indonesia,487.29,1,5.31,2.16,ACTIVE
+2024-09,INV2042,Surat berharga yang dimiliki - Bank Indonesia,482.11,1,5.19,2.09,ACTIVE
+2024-09,INV2043,Penempatan dan Giro - Bank Indonesia,487.29,1,4.49,1.82,ACTIVE
+2024-09,INV2047,Surat berharga yang dimiliki - Bank Indonesia,471.74,1,5.18,2.04,ACTIVE
+2024-09,INV2048,Surat berharga yang dimiliki - Pemerintah,471.74,1,5.83,2.29,ACTIVE
+2024-09,INV2049,Surat berharga yang dimiliki - Pemerintah,476.93,1,5.55,2.21,ACTIVE
+2024-09,INV2051,Surat berharga yang dimiliki - Korporasi,476.93,1,7.1,2.82,ACTIVE
+2024-09,INV2053,Penempatan dan Giro - Bank Indonesia,482.11,1,4.26,1.71,ACTIVE
+2024-09,INV2054,Surat berharga yang dimiliki - Pemerintah,497.66,1,5.77,2.39,ACTIVE
+2024-09,INV2056,Penempatan dan Giro - Bank Indonesia,471.74,1,3.97,1.56,ACTIVE
+2024-09,INV2058,Surat berharga yang dimiliki - Pemerintah,487.29,1,5.46,2.22,ACTIVE
+2024-09,INV2061,Penempatan dan Giro - Bank Lain,492.48,1,4.84,1.99,ACTIVE
+2024-09,INV2063,Surat berharga yang dimiliki - Pemerintah,487.29,1,5.58,2.27,ACTIVE
+2024-10,INV2027,Penempatan dan Giro - Bank Lain,420.22,1,4.62,1.62,ACTIVE
+2024-10,INV2028,Surat berharga yang dimiliki - Bank Indonesia,452.55,1,4.7,1.77,ACTIVE
+2024-10,INV2029,Surat berharga yang dimiliki - Bank Lain,447.93,1,6.06,2.26,ACTIVE
+2024-10,INV2030,Surat berharga yang dimiliki - Korporasi,452.55,1,6.78,2.56,ACTIVE
+2024-10,INV2034,Surat berharga yang dimiliki - Bank Indonesia,415.61,1,4.89,1.69,ACTIVE
+2024-10,INV2039,Surat berharga yang dimiliki - Pemerintah,447.93,1,5.6,2.09,ACTIVE
+2024-10,INV2040,Surat berharga yang dimiliki - Bank Indonesia,438.69,1,5.31,1.94,ACTIVE
+2024-10,INV2042,Surat berharga yang dimiliki - Bank Indonesia,434.08,1,5.19,1.88,ACTIVE
+2024-10,INV2043,Penempatan dan Giro - Bank Indonesia,438.69,1,4.49,1.64,ACTIVE
+2024-10,INV2047,Surat berharga yang dimiliki - Bank Indonesia,424.84,1,5.18,1.83,ACTIVE
+2024-10,INV2048,Surat berharga yang dimiliki - Pemerintah,424.84,1,5.83,2.06,ACTIVE
+2024-10,INV2049,Surat berharga yang dimiliki - Pemerintah,429.46,1,5.55,1.99,ACTIVE
+2024-10,INV2050,Surat berharga yang dimiliki - Bank Indonesia,415.61,1,5.02,1.74,ACTIVE
+2024-10,INV2051,Surat berharga yang dimiliki - Korporasi,429.46,1,7.1,2.54,ACTIVE
+2024-10,INV2053,Penempatan dan Giro - Bank Indonesia,434.08,1,4.26,1.54,ACTIVE
+2024-10,INV2054,Surat berharga yang dimiliki - Pemerintah,447.93,1,5.77,2.15,ACTIVE
+2024-10,INV2056,Penempatan dan Giro - Bank Indonesia,424.84,1,3.97,1.41,ACTIVE
+2024-10,INV2058,Surat berharga yang dimiliki - Pemerintah,438.69,1,5.46,2.0,ACTIVE
+2024-10,INV2061,Penempatan dan Giro - Bank Lain,443.31,1,4.84,1.79,ACTIVE
+2024-10,INV2063,Surat berharga yang dimiliki - Pemerintah,438.69,1,5.58,2.04,ACTIVE
+2024-11,INV2027,Penempatan dan Giro - Bank Lain,404.68,1,4.62,1.56,ACTIVE
+2024-11,INV2028,Surat berharga yang dimiliki - Bank Indonesia,435.47,1,4.7,1.71,ACTIVE
+2024-11,INV2029,Surat berharga yang dimiliki - Bank Lain,431.07,1,6.06,2.18,ACTIVE
+2024-11,INV2030,Surat berharga yang dimiliki - Korporasi,435.47,1,6.78,2.46,ACTIVE
+2024-11,INV2032,Surat berharga yang dimiliki - Pemerintah,395.88,1,5.6,1.85,ACTIVE
+2024-11,INV2034,Surat berharga yang dimiliki - Bank Indonesia,400.28,1,4.89,1.63,ACTIVE
+2024-11,INV2039,Surat berharga yang dimiliki - Pemerintah,431.07,1,5.6,2.01,ACTIVE
+2024-11,INV2040,Surat berharga yang dimiliki - Bank Indonesia,422.27,1,5.31,1.87,ACTIVE
+2024-11,INV2042,Surat berharga yang dimiliki - Bank Indonesia,417.88,1,5.19,1.81,ACTIVE
+2024-11,INV2043,Penempatan dan Giro - Bank Indonesia,422.27,1,4.49,1.58,ACTIVE
+2024-11,INV2047,Surat berharga yang dimiliki - Bank Indonesia,409.08,1,5.18,1.77,ACTIVE
+2024-11,INV2048,Surat berharga yang dimiliki - Pemerintah,409.08,1,5.83,1.99,ACTIVE
+2024-11,INV2049,Surat berharga yang dimiliki - Pemerintah,413.48,1,5.55,1.91,ACTIVE
+2024-11,INV2050,Surat berharga yang dimiliki - Bank Indonesia,400.28,1,5.02,1.67,ACTIVE
+2024-11,INV2051,Surat berharga yang dimiliki - Korporasi,413.48,1,7.1,2.45,ACTIVE
+2024-11,INV2053,Penempatan dan Giro - Bank Indonesia,417.88,1,4.26,1.48,ACTIVE
+2024-11,INV2054,Surat berharga yang dimiliki - Pemerintah,431.07,1,5.77,2.07,ACTIVE
+2024-11,INV2056,Penempatan dan Giro - Bank Indonesia,409.08,1,3.97,1.35,ACTIVE
+2024-11,INV2057,Surat berharga yang dimiliki - Pemerintah,395.88,1,5.35,1.76,ACTIVE
+2024-11,INV2058,Surat berharga yang dimiliki - Pemerintah,422.27,1,5.46,1.92,ACTIVE
+2024-11,INV2063,Surat berharga yang dimiliki - Pemerintah,422.27,1,5.58,1.96,ACTIVE
+2024-12,INV2027,Penempatan dan Giro - Bank Lain,409.89,1,4.62,1.58,ACTIVE
+2024-12,INV2028,Surat berharga yang dimiliki - Bank Indonesia,440.75,1,4.7,1.73,ACTIVE
+2024-12,INV2029,Surat berharga yang dimiliki - Bank Lain,436.33,1,6.06,2.2,ACTIVE
+2024-12,INV2030,Surat berharga yang dimiliki - Korporasi,440.74,1,6.78,2.49,ACTIVE
+2024-12,INV2032,Surat berharga yang dimiliki - Pemerintah,401.07,1,5.6,1.87,ACTIVE
+2024-12,INV2034,Surat berharga yang dimiliki - Bank Indonesia,405.48,1,4.89,1.65,ACTIVE
+2024-12,INV2039,Surat berharga yang dimiliki - Pemerintah,436.33,1,5.6,2.04,ACTIVE
+2024-12,INV2040,Surat berharga yang dimiliki - Bank Indonesia,427.51,1,5.31,1.89,ACTIVE
+2024-12,INV2042,Surat berharga yang dimiliki - Bank Indonesia,423.11,1,5.19,1.83,ACTIVE
+2024-12,INV2043,Penempatan dan Giro - Bank Indonesia,427.51,1,4.49,1.6,ACTIVE
+2024-12,INV2047,Surat berharga yang dimiliki - Bank Indonesia,414.29,1,5.18,1.79,ACTIVE
+2024-12,INV2048,Surat berharga yang dimiliki - Pemerintah,414.29,1,5.83,2.01,ACTIVE
+2024-12,INV2049,Surat berharga yang dimiliki - Pemerintah,418.7,1,5.55,1.94,ACTIVE
+2024-12,INV2050,Surat berharga yang dimiliki - Bank Indonesia,405.48,1,5.02,1.7,ACTIVE
+2024-12,INV2051,Surat berharga yang dimiliki - Korporasi,418.7,1,7.1,2.48,ACTIVE
+2024-12,INV2053,Penempatan dan Giro - Bank Indonesia,423.11,1,4.26,1.5,ACTIVE
+2024-12,INV2054,Surat berharga yang dimiliki - Pemerintah,436.33,1,5.77,2.1,ACTIVE
+2024-12,INV2056,Penempatan dan Giro - Bank Indonesia,414.29,1,3.97,1.37,ACTIVE
+2024-12,INV2057,Surat berharga yang dimiliki - Pemerintah,401.07,1,5.35,1.79,ACTIVE
+2024-12,INV2058,Surat berharga yang dimiliki - Pemerintah,427.51,1,5.46,1.95,ACTIVE
+2024-12,INV2063,Surat berharga yang dimiliki - Pemerintah,427.51,1,5.58,1.99,ACTIVE
+2025-01,INV2027,Penempatan dan Giro - Bank Lain,385.94,1,4.62,1.49,ACTIVE
+2025-01,INV2028,Surat berharga yang dimiliki - Bank Indonesia,414.68,1,4.7,1.62,ACTIVE
+2025-01,INV2029,Surat berharga yang dimiliki - Bank Lain,410.57,1,6.06,2.07,ACTIVE
+2025-01,INV2030,Surat berharga yang dimiliki - Korporasi,414.68,1,6.78,2.34,ACTIVE
+2025-01,INV2032,Surat berharga yang dimiliki - Pemerintah,377.73,1,5.6,1.76,ACTIVE
+2025-01,INV2034,Surat berharga yang dimiliki - Bank Indonesia,381.83,1,4.89,1.56,ACTIVE
+2025-01,INV2036,Surat berharga yang dimiliki - Bank Indonesia,369.51,1,5.25,1.62,ACTIVE
+2025-01,INV2039,Surat berharga yang dimiliki - Pemerintah,410.57,1,5.6,1.92,ACTIVE
+2025-01,INV2040,Surat berharga yang dimiliki - Bank Indonesia,402.36,1,5.31,1.78,ACTIVE
+2025-01,INV2042,Surat berharga yang dimiliki - Bank Indonesia,398.25,1,5.19,1.72,ACTIVE
+2025-01,INV2043,Penempatan dan Giro - Bank Indonesia,402.36,1,4.49,1.51,ACTIVE
+2025-01,INV2047,Surat berharga yang dimiliki - Bank Indonesia,390.04,1,5.18,1.68,ACTIVE
+2025-01,INV2048,Surat berharga yang dimiliki - Pemerintah,390.04,1,5.83,1.89,ACTIVE
+2025-01,INV2049,Surat berharga yang dimiliki - Pemerintah,394.15,1,5.55,1.82,ACTIVE
+2025-01,INV2050,Surat berharga yang dimiliki - Bank Indonesia,381.83,1,5.02,1.6,ACTIVE
+2025-01,INV2051,Surat berharga yang dimiliki - Korporasi,394.15,1,7.1,2.33,ACTIVE
+2025-01,INV2053,Penempatan dan Giro - Bank Indonesia,398.25,1,4.26,1.41,ACTIVE
+2025-01,INV2054,Surat berharga yang dimiliki - Pemerintah,410.57,1,5.77,1.97,ACTIVE
+2025-01,INV2056,Penempatan dan Giro - Bank Indonesia,390.04,1,3.97,1.29,ACTIVE
+2025-01,INV2057,Surat berharga yang dimiliki - Pemerintah,377.73,1,5.35,1.68,ACTIVE
+2025-01,INV2058,Surat berharga yang dimiliki - Pemerintah,402.36,1,5.46,1.83,ACTIVE
+2025-01,INV2063,Surat berharga yang dimiliki - Pemerintah,402.36,1,5.58,1.87,ACTIVE
+2025-02,INV2027,Penempatan dan Giro - Bank Lain,377.87,1,4.62,1.45,ACTIVE
+2025-02,INV2028,Surat berharga yang dimiliki - Bank Indonesia,405.67,1,4.7,1.59,ACTIVE
+2025-02,INV2029,Surat berharga yang dimiliki - Bank Lain,401.73,1,6.06,2.03,ACTIVE
+2025-02,INV2030,Surat berharga yang dimiliki - Korporasi,405.71,1,6.78,2.29,ACTIVE
+2025-02,INV2032,Surat berharga yang dimiliki - Pemerintah,369.91,1,5.6,1.73,ACTIVE
+2025-02,INV2034,Surat berharga yang dimiliki - Bank Indonesia,373.89,1,4.89,1.52,ACTIVE
+2025-02,INV2036,Surat berharga yang dimiliki - Bank Indonesia,361.96,1,5.25,1.58,ACTIVE
+2025-02,INV2039,Surat berharga yang dimiliki - Pemerintah,401.73,1,5.6,1.87,ACTIVE
+2025-02,INV2040,Surat berharga yang dimiliki - Bank Indonesia,393.78,1,5.31,1.74,ACTIVE
+2025-02,INV2042,Surat berharga yang dimiliki - Bank Indonesia,389.8,1,5.19,1.69,ACTIVE
+2025-02,INV2043,Penempatan dan Giro - Bank Indonesia,393.78,1,4.49,1.47,ACTIVE
+2025-02,INV2047,Surat berharga yang dimiliki - Bank Indonesia,381.84,1,5.18,1.65,ACTIVE
+2025-02,INV2048,Surat berharga yang dimiliki - Pemerintah,381.84,1,5.83,1.86,ACTIVE
+2025-02,INV2049,Surat berharga yang dimiliki - Pemerintah,385.82,1,5.55,1.78,ACTIVE
+2025-02,INV2050,Surat berharga yang dimiliki - Bank Indonesia,373.89,1,5.02,1.56,ACTIVE
+2025-02,INV2051,Surat berharga yang dimiliki - Korporasi,385.82,1,7.1,2.28,ACTIVE
+2025-02,INV2053,Penempatan dan Giro - Bank Indonesia,389.8,1,4.26,1.38,ACTIVE
+2025-02,INV2054,Surat berharga yang dimiliki - Pemerintah,401.73,1,5.77,1.93,ACTIVE
+2025-02,INV2055,Surat berharga yang dimiliki - Korporasi,357.98,1,6.92,2.06,ACTIVE
+2025-02,INV2057,Surat berharga yang dimiliki - Pemerintah,369.91,1,5.35,1.65,ACTIVE
+2025-02,INV2058,Surat berharga yang dimiliki - Pemerintah,393.78,1,5.46,1.79,ACTIVE
+2025-02,INV2063,Surat berharga yang dimiliki - Pemerintah,393.78,1,5.58,1.83,ACTIVE
+2025-02,INV2064,Penempatan dan Giro - Bank Lain,357.98,1,5.08,1.52,ACTIVE
+2025-03,INV2027,Penempatan dan Giro - Bank Lain,384.68,1,4.62,1.48,ACTIVE
+2025-03,INV2028,Surat berharga yang dimiliki - Bank Indonesia,408.73,1,4.7,1.6,ACTIVE
+2025-03,INV2029,Surat berharga yang dimiliki - Bank Lain,408.72,1,6.06,2.06,ACTIVE
+2025-03,INV2030,Surat berharga yang dimiliki - Korporasi,408.72,1,6.78,2.31,ACTIVE
+2025-03,INV2032,Surat berharga yang dimiliki - Pemerintah,376.66,1,5.6,1.76,ACTIVE
+2025-03,INV2033,Penempatan dan Giro - Bank Indonesia,360.64,1,4.33,1.3,ACTIVE
+2025-03,INV2034,Surat berharga yang dimiliki - Bank Indonesia,380.67,1,4.89,1.55,ACTIVE
+2025-03,INV2036,Surat berharga yang dimiliki - Bank Indonesia,368.65,1,5.25,1.61,ACTIVE
+2025-03,INV2039,Surat berharga yang dimiliki - Pemerintah,408.72,1,5.6,1.91,ACTIVE
+2025-03,INV2040,Surat berharga yang dimiliki - Bank Indonesia,400.71,1,5.31,1.77,ACTIVE
+2025-03,INV2042,Surat berharga yang dimiliki - Bank Indonesia,396.7,1,5.19,1.72,ACTIVE
+2025-03,INV2047,Surat berharga yang dimiliki - Bank Indonesia,388.69,1,5.18,1.68,ACTIVE
+2025-03,INV2048,Surat berharga yang dimiliki - Pemerintah,388.69,1,5.83,1.89,ACTIVE
+2025-03,INV2049,Surat berharga yang dimiliki - Pemerintah,392.69,1,5.55,1.82,ACTIVE
+2025-03,INV2050,Surat berharga yang dimiliki - Bank Indonesia,380.67,1,5.02,1.59,ACTIVE
+2025-03,INV2051,Surat berharga yang dimiliki - Korporasi,392.69,1,7.1,2.32,ACTIVE
+2025-03,INV2053,Penempatan dan Giro - Bank Indonesia,396.7,1,4.26,1.41,ACTIVE
+2025-03,INV2054,Surat berharga yang dimiliki - Pemerintah,408.72,1,5.77,1.97,ACTIVE
+2025-03,INV2055,Surat berharga yang dimiliki - Korporasi,364.64,1,6.92,2.1,ACTIVE
+2025-03,INV2057,Surat berharga yang dimiliki - Pemerintah,376.66,1,5.35,1.68,ACTIVE
+2025-03,INV2058,Surat berharga yang dimiliki - Pemerintah,400.71,1,5.46,1.82,ACTIVE
+2025-03,INV2063,Surat berharga yang dimiliki - Pemerintah,400.71,1,5.58,1.86,ACTIVE
+2025-03,INV2064,Penempatan dan Giro - Bank Lain,364.64,1,5.08,1.54,ACTIVE
+2025-04,INV2024,Surat berharga yang dimiliki - Pemerintah,347.34,1,5.68,1.64,ACTIVE
+2025-04,INV2027,Penempatan dan Giro - Bank Lain,374.36,1,4.62,1.44,ACTIVE
+2025-04,INV2028,Surat berharga yang dimiliki - Bank Indonesia,393.66,1,4.7,1.54,ACTIVE
+2025-04,INV2029,Surat berharga yang dimiliki - Bank Lain,393.65,1,6.06,1.99,ACTIVE
+2025-04,INV2030,Surat berharga yang dimiliki - Korporasi,393.65,1,6.78,2.22,ACTIVE
+2025-04,INV2032,Surat berharga yang dimiliki - Pemerintah,366.64,1,5.6,1.71,ACTIVE
+2025-04,INV2033,Penempatan dan Giro - Bank Indonesia,351.2,1,4.33,1.27,ACTIVE
+2025-04,INV2034,Surat berharga yang dimiliki - Bank Indonesia,370.5,1,4.89,1.51,ACTIVE
+2025-04,INV2036,Surat berharga yang dimiliki - Bank Indonesia,358.92,1,5.25,1.57,ACTIVE
+2025-04,INV2039,Surat berharga yang dimiliki - Pemerintah,393.65,1,5.6,1.84,ACTIVE
+2025-04,INV2040,Surat berharga yang dimiliki - Bank Indonesia,389.79,1,5.31,1.72,ACTIVE
+2025-04,INV2042,Surat berharga yang dimiliki - Bank Indonesia,385.93,1,5.19,1.67,ACTIVE
+2025-04,INV2047,Surat berharga yang dimiliki - Bank Indonesia,378.22,1,5.18,1.63,ACTIVE
+2025-04,INV2048,Surat berharga yang dimiliki - Pemerintah,378.22,1,5.83,1.84,ACTIVE
+2025-04,INV2049,Surat berharga yang dimiliki - Pemerintah,382.08,1,5.55,1.77,ACTIVE
+2025-04,INV2050,Surat berharga yang dimiliki - Bank Indonesia,370.5,1,5.02,1.55,ACTIVE
+2025-04,INV2051,Surat berharga yang dimiliki - Korporasi,382.08,1,7.1,2.26,ACTIVE
+2025-04,INV2053,Penempatan dan Giro - Bank Indonesia,385.93,1,4.26,1.37,ACTIVE
+2025-04,INV2055,Surat berharga yang dimiliki - Korporasi,355.06,1,6.92,2.05,ACTIVE
+2025-04,INV2057,Surat berharga yang dimiliki - Pemerintah,366.64,1,5.35,1.63,ACTIVE
+2025-04,INV2058,Surat berharga yang dimiliki - Pemerintah,389.79,1,5.46,1.77,ACTIVE
+2025-04,INV2062,Penempatan dan Giro - Bank Indonesia,347.34,1,4.34,1.26,ACTIVE
+2025-04,INV2063,Surat berharga yang dimiliki - Pemerintah,389.79,1,5.58,1.81,ACTIVE
+2025-04,INV2064,Penempatan dan Giro - Bank Lain,355.06,1,5.08,1.5,ACTIVE
+2025-05,INV2024,Surat berharga yang dimiliki - Pemerintah,310.96,1,5.68,1.47,ACTIVE
+2025-05,INV2027,Penempatan dan Giro - Bank Lain,334.88,1,4.62,1.29,ACTIVE
+2025-05,INV2028,Surat berharga yang dimiliki - Bank Indonesia,348.56,1,4.7,1.37,ACTIVE
+2025-05,INV2029,Surat berharga yang dimiliki - Bank Lain,348.55,1,6.06,1.76,ACTIVE
+2025-05,INV2030,Surat berharga yang dimiliki - Korporasi,348.55,1,6.78,1.97,ACTIVE
+2025-05,INV2031,Surat berharga yang dimiliki - Pemerintah,307.54,1,5.47,1.4,ACTIVE
+2025-05,INV2032,Surat berharga yang dimiliki - Pemerintah,328.05,1,5.6,1.53,ACTIVE
+2025-05,INV2033,Penempatan dan Giro - Bank Indonesia,314.38,1,4.33,1.13,ACTIVE
+2025-05,INV2034,Surat berharga yang dimiliki - Bank Indonesia,331.47,1,4.89,1.35,ACTIVE
+2025-05,INV2036,Surat berharga yang dimiliki - Bank Indonesia,321.21,1,5.25,1.41,ACTIVE
+2025-05,INV2039,Surat berharga yang dimiliki - Pemerintah,348.55,1,5.6,1.63,ACTIVE
+2025-05,INV2040,Surat berharga yang dimiliki - Bank Indonesia,348.55,1,5.31,1.54,ACTIVE
+2025-05,INV2041,Surat berharga yang dimiliki - Korporasi,307.54,1,6.9,1.77,ACTIVE
+2025-05,INV2042,Surat berharga yang dimiliki - Bank Indonesia,345.13,1,5.19,1.49,ACTIVE
+2025-05,INV2047,Surat berharga yang dimiliki - Bank Indonesia,338.3,1,5.18,1.46,ACTIVE
+2025-05,INV2048,Surat berharga yang dimiliki - Pemerintah,338.3,1,5.83,1.64,ACTIVE
+2025-05,INV2049,Surat berharga yang dimiliki - Pemerintah,341.72,1,5.55,1.58,ACTIVE
+2025-05,INV2050,Surat berharga yang dimiliki - Bank Indonesia,331.47,1,5.02,1.39,ACTIVE
+2025-05,INV2051,Surat berharga yang dimiliki - Korporasi,341.72,1,7.1,2.02,ACTIVE
+2025-05,INV2053,Penempatan dan Giro - Bank Indonesia,345.13,1,4.26,1.23,ACTIVE
+2025-05,INV2055,Surat berharga yang dimiliki - Korporasi,317.8,1,6.92,1.83,ACTIVE
+2025-05,INV2057,Surat berharga yang dimiliki - Pemerintah,328.05,1,5.35,1.46,ACTIVE
+2025-05,INV2058,Surat berharga yang dimiliki - Pemerintah,348.55,1,5.46,1.59,ACTIVE
+2025-05,INV2062,Penempatan dan Giro - Bank Indonesia,310.96,1,4.34,1.12,ACTIVE
+2025-05,INV2063,Surat berharga yang dimiliki - Pemerintah,348.55,1,5.58,1.62,ACTIVE
+2025-05,INV2064,Penempatan dan Giro - Bank Lain,317.8,1,5.08,1.35,ACTIVE
+2025-05,INV2065,Penempatan dan Giro - Bank Indonesia,307.54,1,4.59,1.18,ACTIVE
+2025-06,INV2024,Surat berharga yang dimiliki - Pemerintah,311.0,1,5.68,1.47,ACTIVE
+2025-06,INV2027,Penempatan dan Giro - Bank Lain,334.66,1,4.62,1.29,ACTIVE
+2025-06,INV2028,Surat berharga yang dimiliki - Bank Indonesia,344.82,1,4.7,1.35,ACTIVE
+2025-06,INV2029,Surat berharga yang dimiliki - Bank Lain,344.81,1,6.06,1.74,ACTIVE
+2025-06,INV2030,Surat berharga yang dimiliki - Korporasi,344.81,1,6.78,1.95,ACTIVE
+2025-06,INV2031,Surat berharga yang dimiliki - Pemerintah,307.62,1,5.47,1.4,ACTIVE
+2025-06,INV2032,Surat berharga yang dimiliki - Pemerintah,327.9,1,5.6,1.53,ACTIVE
+2025-06,INV2033,Penempatan dan Giro - Bank Indonesia,314.38,1,4.33,1.13,ACTIVE
+2025-06,INV2034,Surat berharga yang dimiliki - Bank Indonesia,331.28,1,4.89,1.35,ACTIVE
+2025-06,INV2036,Surat berharga yang dimiliki - Bank Indonesia,321.14,1,5.25,1.4,ACTIVE
+2025-06,INV2040,Surat berharga yang dimiliki - Bank Indonesia,344.81,1,5.31,1.53,ACTIVE
+2025-06,INV2041,Surat berharga yang dimiliki - Korporasi,307.62,1,6.9,1.77,ACTIVE
+2025-06,INV2044,Penempatan dan Giro - Bank Indonesia,304.24,1,3.93,1.0,ACTIVE
+2025-06,INV2047,Surat berharga yang dimiliki - Bank Indonesia,338.04,1,5.18,1.46,ACTIVE
+2025-06,INV2048,Surat berharga yang dimiliki - Pemerintah,338.04,1,5.83,1.64,ACTIVE
+2025-06,INV2049,Surat berharga yang dimiliki - Pemerintah,341.42,1,5.55,1.58,ACTIVE
+2025-06,INV2050,Surat berharga yang dimiliki - Bank Indonesia,331.28,1,5.02,1.39,ACTIVE
+2025-06,INV2051,Surat berharga yang dimiliki - Korporasi,341.42,1,7.1,2.02,ACTIVE
+2025-06,INV2052,Surat berharga yang dimiliki - Bank Lain,304.24,1,5.74,1.46,ACTIVE
+2025-06,INV2053,Penempatan dan Giro - Bank Indonesia,344.81,1,4.26,1.22,ACTIVE
+2025-06,INV2055,Surat berharga yang dimiliki - Korporasi,317.76,1,6.92,1.83,ACTIVE
+2025-06,INV2057,Surat berharga yang dimiliki - Pemerintah,327.9,1,5.35,1.46,ACTIVE
+2025-06,INV2058,Surat berharga yang dimiliki - Pemerintah,344.81,1,5.46,1.57,ACTIVE
+2025-06,INV2062,Penempatan dan Giro - Bank Indonesia,311.0,1,4.34,1.12,ACTIVE
+2025-06,INV2063,Surat berharga yang dimiliki - Pemerintah,344.81,1,5.58,1.6,ACTIVE
+2025-06,INV2064,Penempatan dan Giro - Bank Lain,317.76,1,5.08,1.35,ACTIVE
+2025-06,INV2065,Penempatan dan Giro - Bank Indonesia,307.62,1,4.59,1.18,ACTIVE
+2025-07,INV2024,Surat berharga yang dimiliki - Pemerintah,308.11,1,5.68,1.46,ACTIVE
+2025-07,INV2025,Surat berharga yang dimiliki - Bank Indonesia,298.17,1,5.09,1.26,ACTIVE
+2025-07,INV2027,Penempatan dan Giro - Bank Lain,331.3,1,4.62,1.28,ACTIVE
+2025-07,INV2029,Surat berharga yang dimiliki - Bank Lain,337.89,1,6.06,1.71,ACTIVE
+2025-07,INV2030,Surat berharga yang dimiliki - Korporasi,337.93,1,6.78,1.91,ACTIVE
+2025-07,INV2031,Surat berharga yang dimiliki - Pemerintah,304.8,1,5.47,1.39,ACTIVE
+2025-07,INV2032,Surat berharga yang dimiliki - Pemerintah,324.68,1,5.6,1.52,ACTIVE
+2025-07,INV2033,Penempatan dan Giro - Bank Indonesia,311.42,1,4.33,1.12,ACTIVE
+2025-07,INV2034,Surat berharga yang dimiliki - Bank Indonesia,327.99,1,4.89,1.34,ACTIVE
+2025-07,INV2036,Surat berharga yang dimiliki - Bank Indonesia,318.05,1,5.25,1.39,ACTIVE
+2025-07,INV2040,Surat berharga yang dimiliki - Bank Indonesia,337.93,1,5.31,1.5,ACTIVE
+2025-07,INV2041,Surat berharga yang dimiliki - Korporasi,304.8,1,6.9,1.75,ACTIVE
+2025-07,INV2044,Penempatan dan Giro - Bank Indonesia,301.49,1,3.93,0.99,ACTIVE
+2025-07,INV2047,Surat berharga yang dimiliki - Bank Indonesia,334.62,1,5.18,1.44,ACTIVE
+2025-07,INV2048,Surat berharga yang dimiliki - Pemerintah,334.62,1,5.83,1.63,ACTIVE
+2025-07,INV2049,Surat berharga yang dimiliki - Pemerintah,337.93,1,5.55,1.56,ACTIVE
+2025-07,INV2050,Surat berharga yang dimiliki - Bank Indonesia,327.99,1,5.02,1.37,ACTIVE
+2025-07,INV2051,Surat berharga yang dimiliki - Korporasi,337.93,1,7.1,2.0,ACTIVE
+2025-07,INV2052,Surat berharga yang dimiliki - Bank Lain,301.49,1,5.74,1.44,ACTIVE
+2025-07,INV2053,Penempatan dan Giro - Bank Indonesia,337.93,1,4.26,1.2,ACTIVE
+2025-07,INV2055,Surat berharga yang dimiliki - Korporasi,314.74,1,6.92,1.82,ACTIVE
+2025-07,INV2057,Surat berharga yang dimiliki - Pemerintah,324.68,1,5.35,1.45,ACTIVE
+2025-07,INV2058,Surat berharga yang dimiliki - Pemerintah,337.93,1,5.46,1.54,ACTIVE
+2025-07,INV2062,Penempatan dan Giro - Bank Indonesia,308.11,1,4.34,1.11,ACTIVE
+2025-07,INV2063,Surat berharga yang dimiliki - Pemerintah,337.93,1,5.58,1.57,ACTIVE
+2025-07,INV2064,Penempatan dan Giro - Bank Lain,314.74,1,5.08,1.33,ACTIVE
+2025-07,INV2065,Penempatan dan Giro - Bank Indonesia,304.8,1,4.59,1.17,ACTIVE
+2025-08,INV2024,Surat berharga yang dimiliki - Pemerintah,286.93,1,5.68,1.36,ACTIVE
+2025-08,INV2025,Surat berharga yang dimiliki - Bank Indonesia,277.78,1,5.09,1.18,ACTIVE
+2025-08,INV2027,Penempatan dan Giro - Bank Lain,308.3,1,4.62,1.19,ACTIVE
+2025-08,INV2029,Surat berharga yang dimiliki - Bank Lain,311.37,1,6.06,1.57,ACTIVE
+2025-08,INV2030,Surat berharga yang dimiliki - Korporasi,311.35,1,6.78,1.76,ACTIVE
+2025-08,INV2031,Surat berharga yang dimiliki - Pemerintah,283.88,1,5.47,1.29,ACTIVE
+2025-08,INV2032,Surat berharga yang dimiliki - Pemerintah,302.2,1,5.6,1.41,ACTIVE
+2025-08,INV2033,Penempatan dan Giro - Bank Indonesia,289.99,1,4.33,1.05,ACTIVE
+2025-08,INV2034,Surat berharga yang dimiliki - Bank Indonesia,305.25,1,4.89,1.24,ACTIVE
+2025-08,INV2036,Surat berharga yang dimiliki - Bank Indonesia,296.09,1,5.25,1.3,ACTIVE
+2025-08,INV2037,Surat berharga yang dimiliki - Korporasi,274.72,1,6.75,1.55,ACTIVE
+2025-08,INV2040,Surat berharga yang dimiliki - Bank Indonesia,311.35,1,5.31,1.38,ACTIVE
+2025-08,INV2041,Surat berharga yang dimiliki - Korporasi,283.88,1,6.9,1.63,ACTIVE
+2025-08,INV2044,Penempatan dan Giro - Bank Indonesia,280.83,1,3.93,0.92,ACTIVE
+2025-08,INV2045,Surat berharga yang dimiliki - Bank Indonesia,274.72,1,4.76,1.09,ACTIVE
+2025-08,INV2046,Penempatan dan Giro - Bank Indonesia,274.72,1,3.93,0.9,ACTIVE
+2025-08,INV2047,Surat berharga yang dimiliki - Bank Indonesia,311.35,1,5.18,1.34,ACTIVE
+2025-08,INV2048,Surat berharga yang dimiliki - Pemerintah,311.35,1,5.83,1.51,ACTIVE
+2025-08,INV2049,Surat berharga yang dimiliki - Pemerintah,311.35,1,5.55,1.44,ACTIVE
+2025-08,INV2050,Surat berharga yang dimiliki - Bank Indonesia,305.25,1,5.02,1.28,ACTIVE
+2025-08,INV2051,Surat berharga yang dimiliki - Korporasi,311.35,1,7.1,1.84,ACTIVE
+2025-08,INV2052,Surat berharga yang dimiliki - Bank Lain,280.83,1,5.74,1.34,ACTIVE
+2025-08,INV2055,Surat berharga yang dimiliki - Korporasi,293.04,1,6.92,1.69,ACTIVE
+2025-08,INV2057,Surat berharga yang dimiliki - Pemerintah,302.2,1,5.35,1.35,ACTIVE
+2025-08,INV2058,Surat berharga yang dimiliki - Pemerintah,311.35,1,5.46,1.42,ACTIVE
+2025-08,INV2060,Surat berharga yang dimiliki - Bank Indonesia,274.72,1,5.19,1.19,ACTIVE
+2025-08,INV2062,Penempatan dan Giro - Bank Indonesia,286.93,1,4.34,1.04,ACTIVE
+2025-08,INV2064,Penempatan dan Giro - Bank Lain,293.04,1,5.08,1.24,ACTIVE
+2025-08,INV2065,Penempatan dan Giro - Bank Indonesia,283.88,1,4.59,1.09,ACTIVE
+2025-09,INV2024,Surat berharga yang dimiliki - Pemerintah,276.97,1,5.68,1.31,ACTIVE
+2025-09,INV2025,Surat berharga yang dimiliki - Bank Indonesia,268.22,1,5.09,1.14,ACTIVE
+2025-09,INV2026,Surat berharga yang dimiliki - Bank Lain,262.39,1,5.96,1.3,ACTIVE
+2025-09,INV2027,Penempatan dan Giro - Bank Lain,297.42,1,4.62,1.15,ACTIVE
+2025-09,INV2029,Surat berharga yang dimiliki - Bank Lain,297.37,1,6.06,1.5,ACTIVE
+2025-09,INV2030,Surat berharga yang dimiliki - Korporasi,297.37,1,6.78,1.68,ACTIVE
+2025-09,INV2031,Surat berharga yang dimiliki - Pemerintah,274.05,1,5.47,1.25,ACTIVE
+2025-09,INV2032,Surat berharga yang dimiliki - Pemerintah,291.54,1,5.6,1.36,ACTIVE
+2025-09,INV2033,Penempatan dan Giro - Bank Indonesia,279.88,1,4.33,1.01,ACTIVE
+2025-09,INV2034,Surat berharga yang dimiliki - Bank Indonesia,294.46,1,4.89,1.2,ACTIVE
+2025-09,INV2035,Surat berharga yang dimiliki - Pemerintah,262.39,1,5.38,1.18,ACTIVE
+2025-09,INV2036,Surat berharga yang dimiliki - Bank Indonesia,285.71,1,5.25,1.25,ACTIVE
+2025-09,INV2037,Surat berharga yang dimiliki - Korporasi,265.3,1,6.75,1.49,ACTIVE
+2025-09,INV2038,Surat berharga yang dimiliki - Bank Indonesia,262.39,1,4.74,1.04,ACTIVE
+2025-09,INV2040,Surat berharga yang dimiliki - Bank Indonesia,297.37,1,5.31,1.32,ACTIVE
+2025-09,INV2041,Surat berharga yang dimiliki - Korporasi,274.05,1,6.9,1.58,ACTIVE
+2025-09,INV2044,Penempatan dan Giro - Bank Indonesia,271.14,1,3.93,0.89,ACTIVE
+2025-09,INV2045,Surat berharga yang dimiliki - Bank Indonesia,265.3,1,4.76,1.05,ACTIVE
+2025-09,INV2046,Penempatan dan Giro - Bank Indonesia,265.3,1,3.93,0.87,ACTIVE
+2025-09,INV2047,Surat berharga yang dimiliki - Bank Indonesia,297.37,1,5.18,1.28,ACTIVE
+2025-09,INV2048,Surat berharga yang dimiliki - Pemerintah,297.37,1,5.83,1.44,ACTIVE
+2025-09,INV2049,Surat berharga yang dimiliki - Pemerintah,297.37,1,5.55,1.38,ACTIVE
+2025-09,INV2050,Surat berharga yang dimiliki - Bank Indonesia,294.46,1,5.02,1.23,ACTIVE
+2025-09,INV2051,Surat berharga yang dimiliki - Korporasi,297.37,1,7.1,1.76,ACTIVE
+2025-09,INV2052,Surat berharga yang dimiliki - Bank Lain,271.14,1,5.74,1.3,ACTIVE
+2025-09,INV2058,Surat berharga yang dimiliki - Pemerintah,297.37,1,5.46,1.35,ACTIVE
+2025-09,INV2060,Surat berharga yang dimiliki - Bank Indonesia,265.3,1,5.19,1.15,ACTIVE
+2025-09,INV2062,Penempatan dan Giro - Bank Indonesia,276.97,1,4.34,1.0,ACTIVE
+2025-09,INV2064,Penempatan dan Giro - Bank Lain,282.8,1,5.08,1.2,ACTIVE
+2025-09,INV2065,Penempatan dan Giro - Bank Indonesia,274.05,1,4.59,1.05,ACTIVE
+2025-10,INV2024,Surat berharga yang dimiliki - Pemerintah,286.57,1,5.68,1.36,ACTIVE
+2025-10,INV2025,Surat berharga yang dimiliki - Bank Indonesia,277.61,1,5.09,1.18,ACTIVE
+2025-10,INV2026,Surat berharga yang dimiliki - Bank Lain,271.64,1,5.96,1.35,ACTIVE
+2025-10,INV2027,Penempatan dan Giro - Bank Lain,304.45,1,4.62,1.17,ACTIVE
+2025-10,INV2029,Surat berharga yang dimiliki - Bank Lain,304.48,1,6.06,1.54,ACTIVE
+2025-10,INV2031,Surat berharga yang dimiliki - Pemerintah,283.58,1,5.47,1.29,ACTIVE
+2025-10,INV2032,Surat berharga yang dimiliki - Pemerintah,301.49,1,5.6,1.41,ACTIVE
+2025-10,INV2033,Penempatan dan Giro - Bank Indonesia,289.55,1,4.33,1.04,ACTIVE
+2025-10,INV2034,Surat berharga yang dimiliki - Bank Indonesia,304.48,1,4.89,1.24,ACTIVE
+2025-10,INV2035,Surat berharga yang dimiliki - Pemerintah,271.64,1,5.38,1.22,ACTIVE
+2025-10,INV2036,Surat berharga yang dimiliki - Bank Indonesia,295.52,1,5.25,1.29,ACTIVE
+2025-10,INV2037,Surat berharga yang dimiliki - Korporasi,274.63,1,6.75,1.54,ACTIVE
+2025-10,INV2038,Surat berharga yang dimiliki - Bank Indonesia,271.64,1,4.74,1.07,ACTIVE
+2025-10,INV2040,Surat berharga yang dimiliki - Bank Indonesia,304.48,1,5.31,1.35,ACTIVE
+2025-10,INV2041,Surat berharga yang dimiliki - Korporasi,283.58,1,6.9,1.63,ACTIVE
+2025-10,INV2044,Penempatan dan Giro - Bank Indonesia,280.6,1,3.93,0.92,ACTIVE
+2025-10,INV2045,Surat berharga yang dimiliki - Bank Indonesia,274.63,1,4.76,1.09,ACTIVE
+2025-10,INV2046,Penempatan dan Giro - Bank Indonesia,274.63,1,3.93,0.9,ACTIVE
+2025-10,INV2047,Surat berharga yang dimiliki - Bank Indonesia,304.48,1,5.18,1.31,ACTIVE
+2025-10,INV2048,Surat berharga yang dimiliki - Pemerintah,304.48,1,5.83,1.48,ACTIVE
+2025-10,INV2049,Surat berharga yang dimiliki - Pemerintah,304.48,1,5.55,1.41,ACTIVE
+2025-10,INV2050,Surat berharga yang dimiliki - Bank Indonesia,304.48,1,5.02,1.27,ACTIVE
+2025-10,INV2051,Surat berharga yang dimiliki - Korporasi,304.48,1,7.1,1.8,ACTIVE
+2025-10,INV2052,Surat berharga yang dimiliki - Bank Lain,280.6,1,5.74,1.34,ACTIVE
+2025-10,INV2058,Surat berharga yang dimiliki - Pemerintah,304.48,1,5.46,1.39,ACTIVE
+2025-10,INV2060,Surat berharga yang dimiliki - Bank Indonesia,274.63,1,5.19,1.19,ACTIVE
+2025-10,INV2062,Penempatan dan Giro - Bank Indonesia,286.57,1,4.34,1.04,ACTIVE
+2025-10,INV2064,Penempatan dan Giro - Bank Lain,292.54,1,5.08,1.24,ACTIVE
+2025-10,INV2065,Penempatan dan Giro - Bank Indonesia,283.58,1,4.59,1.08,ACTIVE
+2025-11,INV2024,Surat berharga yang dimiliki - Pemerintah,288.99,1,5.68,1.37,ACTIVE
+2025-11,INV2025,Surat berharga yang dimiliki - Bank Indonesia,280.05,1,5.09,1.19,ACTIVE
+2025-11,INV2026,Surat berharga yang dimiliki - Bank Lain,274.09,1,5.96,1.36,ACTIVE
+2025-11,INV2027,Penempatan dan Giro - Bank Lain,303.89,1,4.62,1.17,ACTIVE
+2025-11,INV2029,Surat berharga yang dimiliki - Bank Lain,303.88,1,6.06,1.53,ACTIVE
+2025-11,INV2031,Surat berharga yang dimiliki - Pemerintah,286.01,1,5.47,1.3,ACTIVE
+2025-11,INV2032,Surat berharga yang dimiliki - Pemerintah,303.88,1,5.6,1.42,ACTIVE
+2025-11,INV2033,Penempatan dan Giro - Bank Indonesia,291.97,1,4.33,1.05,ACTIVE
+2025-11,INV2034,Surat berharga yang dimiliki - Bank Indonesia,303.88,1,4.89,1.24,ACTIVE
+2025-11,INV2035,Surat berharga yang dimiliki - Pemerintah,274.09,1,5.38,1.23,ACTIVE
+2025-11,INV2036,Surat berharga yang dimiliki - Bank Indonesia,297.92,1,5.25,1.3,ACTIVE
+2025-11,INV2037,Surat berharga yang dimiliki - Korporasi,277.07,1,6.75,1.56,ACTIVE
+2025-11,INV2038,Surat berharga yang dimiliki - Bank Indonesia,274.09,1,4.74,1.08,ACTIVE
+2025-11,INV2040,Surat berharga yang dimiliki - Bank Indonesia,303.88,1,5.31,1.34,ACTIVE
+2025-11,INV2041,Surat berharga yang dimiliki - Korporasi,286.01,1,6.9,1.64,ACTIVE
+2025-11,INV2044,Penempatan dan Giro - Bank Indonesia,283.03,1,3.93,0.93,ACTIVE
+2025-11,INV2045,Surat berharga yang dimiliki - Bank Indonesia,277.07,1,4.76,1.1,ACTIVE
+2025-11,INV2046,Penempatan dan Giro - Bank Indonesia,277.07,1,3.93,0.91,ACTIVE
+2025-11,INV2047,Surat berharga yang dimiliki - Bank Indonesia,303.88,1,5.18,1.31,ACTIVE
+2025-11,INV2048,Surat berharga yang dimiliki - Pemerintah,303.88,1,5.83,1.48,ACTIVE
+2025-11,INV2049,Surat berharga yang dimiliki - Pemerintah,303.88,1,5.55,1.41,ACTIVE
+2025-11,INV2050,Surat berharga yang dimiliki - Bank Indonesia,303.88,1,5.02,1.27,ACTIVE
+2025-11,INV2051,Surat berharga yang dimiliki - Korporasi,303.88,1,7.1,1.8,ACTIVE
+2025-11,INV2052,Surat berharga yang dimiliki - Bank Lain,283.03,1,5.74,1.35,ACTIVE
+2025-11,INV2058,Surat berharga yang dimiliki - Pemerintah,303.88,1,5.46,1.38,ACTIVE
+2025-11,INV2060,Surat berharga yang dimiliki - Bank Indonesia,277.07,1,5.19,1.2,ACTIVE
+2025-11,INV2062,Penempatan dan Giro - Bank Indonesia,288.99,1,4.34,1.05,ACTIVE
+2025-11,INV2064,Penempatan dan Giro - Bank Lain,294.94,1,5.08,1.25,ACTIVE
+2025-11,INV2065,Penempatan dan Giro - Bank Indonesia,286.01,1,4.59,1.09,ACTIVE
+2025-12,INV2024,Surat berharga yang dimiliki - Pemerintah,304.8,1,5.68,1.44,ACTIVE
+2025-12,INV2025,Surat berharga yang dimiliki - Bank Indonesia,295.47,1,5.09,1.25,ACTIVE
+2025-12,INV2026,Surat berharga yang dimiliki - Bank Lain,289.25,1,5.96,1.44,ACTIVE
+2025-12,INV2027,Penempatan dan Giro - Bank Lain,317.29,1,4.62,1.22,ACTIVE
+2025-12,INV2029,Surat berharga yang dimiliki - Bank Lain,317.24,1,6.06,1.6,ACTIVE
+2025-12,INV2031,Surat berharga yang dimiliki - Pemerintah,301.69,1,5.47,1.38,ACTIVE
+2025-12,INV2032,Surat berharga yang dimiliki - Pemerintah,317.24,1,5.6,1.48,ACTIVE
+2025-12,INV2033,Penempatan dan Giro - Bank Indonesia,307.91,1,4.33,1.11,ACTIVE
+2025-12,INV2034,Surat berharga yang dimiliki - Bank Indonesia,317.24,1,4.89,1.29,ACTIVE
+2025-12,INV2035,Surat berharga yang dimiliki - Pemerintah,289.25,1,5.38,1.3,ACTIVE
+2025-12,INV2036,Surat berharga yang dimiliki - Bank Indonesia,314.13,1,5.25,1.37,ACTIVE
+2025-12,INV2037,Surat berharga yang dimiliki - Korporasi,292.36,1,6.75,1.64,ACTIVE
+2025-12,INV2038,Surat berharga yang dimiliki - Bank Indonesia,289.25,1,4.74,1.14,ACTIVE
+2025-12,INV2040,Surat berharga yang dimiliki - Bank Indonesia,317.24,1,5.31,1.4,ACTIVE
+2025-12,INV2041,Surat berharga yang dimiliki - Korporasi,301.69,1,6.9,1.73,ACTIVE
+2025-12,INV2044,Penempatan dan Giro - Bank Indonesia,298.58,1,3.93,0.98,ACTIVE
+2025-12,INV2045,Surat berharga yang dimiliki - Bank Indonesia,292.36,1,4.76,1.16,ACTIVE
+2025-12,INV2046,Penempatan dan Giro - Bank Indonesia,292.36,1,3.93,0.96,ACTIVE
+2025-12,INV2047,Surat berharga yang dimiliki - Bank Indonesia,317.24,1,5.18,1.37,ACTIVE
+2025-12,INV2048,Surat berharga yang dimiliki - Pemerintah,317.24,1,5.83,1.54,ACTIVE
+2025-12,INV2050,Surat berharga yang dimiliki - Bank Indonesia,317.24,1,5.02,1.33,ACTIVE
+2025-12,INV2051,Surat berharga yang dimiliki - Korporasi,317.24,1,7.1,1.88,ACTIVE
+2025-12,INV2052,Surat berharga yang dimiliki - Bank Lain,298.58,1,5.74,1.43,ACTIVE
+2025-12,INV2058,Surat berharga yang dimiliki - Pemerintah,317.24,1,5.46,1.44,ACTIVE
+2025-12,INV2060,Surat berharga yang dimiliki - Bank Indonesia,292.36,1,5.19,1.26,ACTIVE
+2025-12,INV2062,Penempatan dan Giro - Bank Indonesia,304.8,1,4.34,1.1,ACTIVE
+2025-12,INV2064,Penempatan dan Giro - Bank Lain,311.02,1,5.08,1.32,ACTIVE
+2025-12,INV2065,Penempatan dan Giro - Bank Indonesia,301.69,1,4.59,1.15,ACTIVE
+2026-01,INV2024,Surat berharga yang dimiliki - Pemerintah,323.83,1,5.68,1.53,ACTIVE
+2026-01,INV2025,Surat berharga yang dimiliki - Bank Indonesia,314.02,1,5.09,1.33,ACTIVE
+2026-01,INV2026,Surat berharga yang dimiliki - Bank Lain,307.48,1,5.96,1.53,ACTIVE
+2026-01,INV2027,Penempatan dan Giro - Bank Lain,333.68,1,4.62,1.28,ACTIVE
+2026-01,INV2029,Surat berharga yang dimiliki - Bank Lain,333.64,1,6.06,1.68,ACTIVE
+2026-01,INV2031,Surat berharga yang dimiliki - Pemerintah,320.56,1,5.47,1.46,ACTIVE
+2026-01,INV2032,Surat berharga yang dimiliki - Pemerintah,333.64,1,5.6,1.56,ACTIVE
+2026-01,INV2033,Penempatan dan Giro - Bank Indonesia,327.1,1,4.33,1.18,ACTIVE
+2026-01,INV2034,Surat berharga yang dimiliki - Bank Indonesia,333.64,1,4.89,1.36,ACTIVE
+2026-01,INV2035,Surat berharga yang dimiliki - Pemerintah,307.48,1,5.38,1.38,ACTIVE
+2026-01,INV2036,Surat berharga yang dimiliki - Bank Indonesia,333.64,1,5.25,1.46,ACTIVE
+2026-01,INV2037,Surat berharga yang dimiliki - Korporasi,310.75,1,6.75,1.75,ACTIVE
+2026-01,INV2038,Surat berharga yang dimiliki - Bank Indonesia,307.48,1,4.74,1.21,ACTIVE
+2026-01,INV2040,Surat berharga yang dimiliki - Bank Indonesia,333.64,1,5.31,1.48,ACTIVE
+2026-01,INV2044,Penempatan dan Giro - Bank Indonesia,317.29,1,3.93,1.04,ACTIVE
+2026-01,INV2045,Surat berharga yang dimiliki - Bank Indonesia,310.75,1,4.76,1.23,ACTIVE
+2026-01,INV2046,Penempatan dan Giro - Bank Indonesia,310.75,1,3.93,1.02,ACTIVE
+2026-01,INV2047,Surat berharga yang dimiliki - Bank Indonesia,333.64,1,5.18,1.44,ACTIVE
+2026-01,INV2048,Surat berharga yang dimiliki - Pemerintah,333.64,1,5.83,1.62,ACTIVE
+2026-01,INV2050,Surat berharga yang dimiliki - Bank Indonesia,333.64,1,5.02,1.4,ACTIVE
+2026-01,INV2051,Surat berharga yang dimiliki - Korporasi,333.64,1,7.1,1.97,ACTIVE
+2026-01,INV2052,Surat berharga yang dimiliki - Bank Lain,317.29,1,5.74,1.52,ACTIVE
+2026-01,INV2058,Surat berharga yang dimiliki - Pemerintah,333.64,1,5.46,1.52,ACTIVE
+2026-01,INV2060,Surat berharga yang dimiliki - Bank Indonesia,310.75,1,5.19,1.34,ACTIVE
+2026-01,INV2062,Penempatan dan Giro - Bank Indonesia,323.83,1,4.34,1.17,ACTIVE
+2026-01,INV2065,Penempatan dan Giro - Bank Indonesia,320.56,1,4.59,1.23,ACTIVE
+2026-02,INV2024,Surat berharga yang dimiliki - Pemerintah,331.01,1,5.68,1.57,ACTIVE
+2026-02,INV2025,Surat berharga yang dimiliki - Bank Indonesia,321.08,1,5.09,1.36,ACTIVE
+2026-02,INV2026,Surat berharga yang dimiliki - Bank Lain,314.46,1,5.96,1.56,ACTIVE
+2026-02,INV2027,Penempatan dan Giro - Bank Lain,337.64,1,4.62,1.3,ACTIVE
+2026-02,INV2029,Surat berharga yang dimiliki - Bank Lain,337.63,1,6.06,1.71,ACTIVE
+2026-02,INV2031,Surat berharga yang dimiliki - Pemerintah,327.7,1,5.47,1.49,ACTIVE
+2026-02,INV2032,Surat berharga yang dimiliki - Pemerintah,337.63,1,5.6,1.58,ACTIVE
+2026-02,INV2033,Penempatan dan Giro - Bank Indonesia,334.32,1,4.33,1.21,ACTIVE
+2026-02,INV2034,Surat berharga yang dimiliki - Bank Indonesia,337.63,1,4.89,1.38,ACTIVE
+2026-02,INV2035,Surat berharga yang dimiliki - Pemerintah,314.46,1,5.38,1.41,ACTIVE
+2026-02,INV2036,Surat berharga yang dimiliki - Bank Indonesia,337.63,1,5.25,1.48,ACTIVE
+2026-02,INV2037,Surat berharga yang dimiliki - Korporasi,317.77,1,6.75,1.79,ACTIVE
+2026-02,INV2038,Surat berharga yang dimiliki - Bank Indonesia,314.46,1,4.74,1.24,ACTIVE
+2026-02,INV2040,Surat berharga yang dimiliki - Bank Indonesia,337.63,1,5.31,1.49,ACTIVE
+2026-02,INV2044,Penempatan dan Giro - Bank Indonesia,324.39,1,3.93,1.06,ACTIVE
+2026-02,INV2045,Surat berharga yang dimiliki - Bank Indonesia,317.77,1,4.76,1.26,ACTIVE
+2026-02,INV2046,Penempatan dan Giro - Bank Indonesia,317.77,1,3.93,1.04,ACTIVE
+2026-02,INV2047,Surat berharga yang dimiliki - Bank Indonesia,337.63,1,5.18,1.46,ACTIVE
+2026-02,INV2048,Surat berharga yang dimiliki - Pemerintah,337.63,1,5.83,1.64,ACTIVE
+2026-02,INV2050,Surat berharga yang dimiliki - Bank Indonesia,337.63,1,5.02,1.41,ACTIVE
+2026-02,INV2051,Surat berharga yang dimiliki - Korporasi,337.63,1,7.1,2.0,ACTIVE
+2026-02,INV2052,Surat berharga yang dimiliki - Bank Lain,324.39,1,5.74,1.55,ACTIVE
+2026-02,INV2058,Surat berharga yang dimiliki - Pemerintah,337.63,1,5.46,1.54,ACTIVE
+2026-02,INV2060,Surat berharga yang dimiliki - Bank Indonesia,317.77,1,5.19,1.37,ACTIVE
+2026-02,INV2062,Penempatan dan Giro - Bank Indonesia,331.01,1,4.34,1.2,ACTIVE
+2026-02,INV2065,Penempatan dan Giro - Bank Indonesia,327.7,1,4.59,1.25,ACTIVE
+2026-03,INV2024,Surat berharga yang dimiliki - Pemerintah,364.59,1,5.68,1.73,ACTIVE
+2026-03,INV2025,Surat berharga yang dimiliki - Bank Indonesia,353.76,1,5.09,1.5,ACTIVE
+2026-03,INV2026,Surat berharga yang dimiliki - Bank Lain,346.54,1,5.96,1.72,ACTIVE
+2026-03,INV2027,Penempatan dan Giro - Bank Lain,368.1,1,4.62,1.42,ACTIVE
+2026-03,INV2029,Surat berharga yang dimiliki - Bank Lain,368.2,1,6.06,1.86,ACTIVE
+2026-03,INV2032,Surat berharga yang dimiliki - Pemerintah,368.2,1,5.6,1.72,ACTIVE
+2026-03,INV2033,Penempatan dan Giro - Bank Indonesia,368.2,1,4.33,1.33,ACTIVE
+2026-03,INV2034,Surat berharga yang dimiliki - Bank Indonesia,368.2,1,4.89,1.5,ACTIVE
+2026-03,INV2035,Surat berharga yang dimiliki - Pemerintah,346.54,1,5.38,1.55,ACTIVE
+2026-03,INV2036,Surat berharga yang dimiliki - Bank Indonesia,368.2,1,5.25,1.61,ACTIVE
+2026-03,INV2037,Surat berharga yang dimiliki - Korporasi,350.15,1,6.75,1.97,ACTIVE
+2026-03,INV2038,Surat berharga yang dimiliki - Bank Indonesia,346.54,1,4.74,1.37,ACTIVE
+2026-03,INV2040,Surat berharga yang dimiliki - Bank Indonesia,368.2,1,5.31,1.63,ACTIVE
+2026-03,INV2044,Penempatan dan Giro - Bank Indonesia,357.37,1,3.93,1.17,ACTIVE
+2026-03,INV2045,Surat berharga yang dimiliki - Bank Indonesia,350.15,1,4.76,1.39,ACTIVE
+2026-03,INV2046,Penempatan dan Giro - Bank Indonesia,350.15,1,3.93,1.15,ACTIVE
+2026-03,INV2047,Surat berharga yang dimiliki - Bank Indonesia,368.2,1,5.18,1.59,ACTIVE
+2026-03,INV2048,Surat berharga yang dimiliki - Pemerintah,368.2,1,5.83,1.79,ACTIVE
+2026-03,INV2050,Surat berharga yang dimiliki - Bank Indonesia,368.2,1,5.02,1.54,ACTIVE
+2026-03,INV2051,Surat berharga yang dimiliki - Korporasi,368.2,1,7.1,2.18,ACTIVE
+2026-03,INV2058,Surat berharga yang dimiliki - Pemerintah,368.2,1,5.46,1.68,ACTIVE
+2026-03,INV2060,Surat berharga yang dimiliki - Bank Indonesia,350.15,1,5.19,1.51,ACTIVE
+2026-03,INV2062,Penempatan dan Giro - Bank Indonesia,364.59,1,4.34,1.32,ACTIVE
+2026-03,INV2065,Penempatan dan Giro - Bank Indonesia,360.98,1,4.59,1.38,ACTIVE
+2026-04,INV2024,Surat berharga yang dimiliki - Pemerintah,443.0,1,5.68,2.1,ACTIVE
+2026-04,INV2025,Surat berharga yang dimiliki - Bank Indonesia,430.0,1,5.09,1.82,ACTIVE
+2026-04,INV2026,Surat berharga yang dimiliki - Bank Lain,421.32,1,5.96,2.09,ACTIVE
+2026-04,INV2027,Penempatan dan Giro - Bank Lain,443.04,1,4.62,1.71,ACTIVE
+2026-04,INV2032,Surat berharga yang dimiliki - Pemerintah,443.04,1,5.6,2.07,ACTIVE
+2026-04,INV2033,Penempatan dan Giro - Bank Indonesia,443.04,1,4.33,1.6,ACTIVE
+2026-04,INV2035,Surat berharga yang dimiliki - Pemerintah,421.32,1,5.38,1.89,ACTIVE
+2026-04,INV2037,Surat berharga yang dimiliki - Korporasi,425.66,1,6.75,2.39,ACTIVE
+2026-04,INV2038,Surat berharga yang dimiliki - Bank Indonesia,421.32,1,4.74,1.66,ACTIVE
+2026-04,INV2040,Surat berharga yang dimiliki - Bank Indonesia,443.04,1,5.31,1.96,ACTIVE
+2026-04,INV2044,Penempatan dan Giro - Bank Indonesia,434.35,1,3.93,1.42,ACTIVE
+2026-04,INV2045,Surat berharga yang dimiliki - Bank Indonesia,425.66,1,4.76,1.69,ACTIVE
+2026-04,INV2046,Penempatan dan Giro - Bank Indonesia,425.66,1,3.93,1.39,ACTIVE
+2026-04,INV2048,Surat berharga yang dimiliki - Pemerintah,443.04,1,5.83,2.15,ACTIVE
+2026-04,INV2050,Surat berharga yang dimiliki - Bank Indonesia,443.04,1,5.02,1.85,ACTIVE
+2026-04,INV2051,Surat berharga yang dimiliki - Korporasi,443.04,1,7.1,2.62,ACTIVE
+2026-04,INV2058,Surat berharga yang dimiliki - Pemerintah,443.04,1,5.46,2.02,ACTIVE
+2026-04,INV2060,Surat berharga yang dimiliki - Bank Indonesia,425.66,1,5.19,1.84,ACTIVE
+2026-04,INV2062,Penempatan dan Giro - Bank Indonesia,443.04,1,4.34,1.6,ACTIVE
+2026-04,INV2065,Penempatan dan Giro - Bank Indonesia,438.69,1,4.59,1.68,ACTIVE
+2026-05,INV2024,Surat berharga yang dimiliki - Pemerintah,438.79,1,5.68,2.08,ACTIVE
+2026-05,INV2025,Surat berharga yang dimiliki - Bank Indonesia,430.19,1,5.09,1.82,ACTIVE
+2026-05,INV2026,Surat berharga yang dimiliki - Bank Lain,421.59,1,5.96,2.09,ACTIVE
+2026-05,INV2027,Penempatan dan Giro - Bank Lain,438.8,1,4.62,1.69,ACTIVE
+2026-05,INV2032,Surat berharga yang dimiliki - Pemerintah,438.8,1,5.6,2.05,ACTIVE
+2026-05,INV2033,Penempatan dan Giro - Bank Indonesia,438.8,1,4.33,1.58,ACTIVE
+2026-05,INV2035,Surat berharga yang dimiliki - Pemerintah,421.59,1,5.38,1.89,ACTIVE
+2026-05,INV2037,Surat berharga yang dimiliki - Korporasi,425.89,1,6.75,2.4,ACTIVE
+2026-05,INV2038,Surat berharga yang dimiliki - Bank Indonesia,421.59,1,4.74,1.67,ACTIVE
+2026-05,INV2040,Surat berharga yang dimiliki - Bank Indonesia,438.8,1,5.31,1.94,ACTIVE
+2026-05,INV2044,Penempatan dan Giro - Bank Indonesia,434.5,1,3.93,1.42,ACTIVE
+2026-05,INV2045,Surat berharga yang dimiliki - Bank Indonesia,425.89,1,4.76,1.69,ACTIVE
+2026-05,INV2046,Penempatan dan Giro - Bank Indonesia,425.89,1,3.93,1.39,ACTIVE
+2026-05,INV2048,Surat berharga yang dimiliki - Pemerintah,438.8,1,5.83,2.13,ACTIVE
+2026-05,INV2050,Surat berharga yang dimiliki - Bank Indonesia,438.8,1,5.02,1.84,ACTIVE
+2026-05,INV2051,Surat berharga yang dimiliki - Korporasi,438.8,1,7.1,2.6,ACTIVE
+2026-05,INV2058,Surat berharga yang dimiliki - Pemerintah,438.8,1,5.46,2.0,ACTIVE
+2026-05,INV2060,Surat berharga yang dimiliki - Bank Indonesia,425.89,1,5.19,1.84,ACTIVE
+2026-05,INV2062,Penempatan dan Giro - Bank Indonesia,438.8,1,4.34,1.59,ACTIVE
+2026-05,INV2065,Penempatan dan Giro - Bank Indonesia,438.8,1,4.59,1.68,ACTIVE
+2026-06,INV2024,Surat berharga yang dimiliki - Pemerintah,478.66,1,5.68,2.27,ACTIVE
+2026-06,INV2025,Surat berharga yang dimiliki - Bank Indonesia,473.96,1,5.09,2.01,ACTIVE
+2026-06,INV2026,Surat berharga yang dimiliki - Bank Lain,464.57,1,5.96,2.31,ACTIVE
+2026-06,INV2027,Penempatan dan Giro - Bank Lain,478.65,1,4.62,1.84,ACTIVE
+2026-06,INV2032,Surat berharga yang dimiliki - Pemerintah,478.65,1,5.6,2.23,ACTIVE
+2026-06,INV2033,Penempatan dan Giro - Bank Indonesia,478.65,1,4.33,1.73,ACTIVE
+2026-06,INV2035,Surat berharga yang dimiliki - Pemerintah,464.57,1,5.38,2.08,ACTIVE
+2026-06,INV2038,Surat berharga yang dimiliki - Bank Indonesia,464.57,1,4.74,1.84,ACTIVE
+2026-06,INV2040,Surat berharga yang dimiliki - Bank Indonesia,478.65,1,5.31,2.12,ACTIVE
+2026-06,INV2044,Penempatan dan Giro - Bank Indonesia,478.65,1,3.93,1.57,ACTIVE
+2026-06,INV2046,Penempatan dan Giro - Bank Indonesia,469.26,1,3.93,1.54,ACTIVE
+2026-06,INV2048,Surat berharga yang dimiliki - Pemerintah,478.65,1,5.83,2.33,ACTIVE
+2026-06,INV2050,Surat berharga yang dimiliki - Bank Indonesia,478.65,1,5.02,2.0,ACTIVE
+2026-06,INV2051,Surat berharga yang dimiliki - Korporasi,478.65,1,7.1,2.83,ACTIVE
+2026-06,INV2058,Surat berharga yang dimiliki - Pemerintah,478.65,1,5.46,2.18,ACTIVE
+2026-06,INV2060,Surat berharga yang dimiliki - Bank Indonesia,469.26,1,5.19,2.03,ACTIVE
+2026-06,INV2062,Penempatan dan Giro - Bank Indonesia,478.65,1,4.34,1.73,ACTIVE
+2026-06,INV2065,Penempatan dan Giro - Bank Indonesia,478.65,1,4.59,1.83,ACTIVE
+2026-07,INV2024,Surat berharga yang dimiliki - Pemerintah,527.29,1,5.68,2.5,ACTIVE
+2026-07,INV2025,Surat berharga yang dimiliki - Bank Indonesia,527.26,1,5.09,2.24,ACTIVE
+2026-07,INV2026,Surat berharga yang dimiliki - Bank Lain,516.92,1,5.96,2.57,ACTIVE
+2026-07,INV2027,Penempatan dan Giro - Bank Lain,527.26,1,4.62,2.03,ACTIVE
+2026-07,INV2032,Surat berharga yang dimiliki - Pemerintah,527.26,1,5.6,2.46,ACTIVE
+2026-07,INV2033,Penempatan dan Giro - Bank Indonesia,527.26,1,4.33,1.9,ACTIVE
+2026-07,INV2035,Surat berharga yang dimiliki - Pemerintah,516.92,1,5.38,2.32,ACTIVE
+2026-07,INV2038,Surat berharga yang dimiliki - Bank Indonesia,516.92,1,4.74,2.04,ACTIVE
+2026-07,INV2040,Surat berharga yang dimiliki - Bank Indonesia,527.26,1,5.31,2.33,ACTIVE
+2026-07,INV2044,Penempatan dan Giro - Bank Indonesia,527.26,1,3.93,1.73,ACTIVE
+2026-07,INV2050,Surat berharga yang dimiliki - Bank Indonesia,527.26,1,5.02,2.21,ACTIVE
+2026-07,INV2051,Surat berharga yang dimiliki - Korporasi,527.26,1,7.1,3.12,ACTIVE
+2026-07,INV2058,Surat berharga yang dimiliki - Pemerintah,527.26,1,5.46,2.4,ACTIVE
+2026-07,INV2060,Surat berharga yang dimiliki - Bank Indonesia,522.09,1,5.19,2.26,ACTIVE
+2026-07,INV2062,Penempatan dan Giro - Bank Indonesia,527.26,1,4.34,1.91,ACTIVE
+2026-07,INV2065,Penempatan dan Giro - Bank Indonesia,527.26,1,4.59,2.02,ACTIVE
+2026-08,INV2024,Surat berharga yang dimiliki - Pemerintah,590.48,1,5.68,2.79,ACTIVE
+2026-08,INV2025,Surat berharga yang dimiliki - Bank Indonesia,590.53,1,5.09,2.5,ACTIVE
+2026-08,INV2026,Surat berharga yang dimiliki - Bank Lain,584.74,1,5.96,2.9,ACTIVE
+2026-08,INV2027,Penempatan dan Giro - Bank Lain,590.53,1,4.62,2.27,ACTIVE
+2026-08,INV2032,Surat berharga yang dimiliki - Pemerintah,590.53,1,5.6,2.76,ACTIVE
+2026-08,INV2033,Penempatan dan Giro - Bank Indonesia,590.53,1,4.33,2.13,ACTIVE
+2026-08,INV2035,Surat berharga yang dimiliki - Pemerintah,584.74,1,5.38,2.62,ACTIVE
+2026-08,INV2038,Surat berharga yang dimiliki - Bank Indonesia,584.74,1,4.74,2.31,ACTIVE
+2026-08,INV2044,Penempatan dan Giro - Bank Indonesia,590.53,1,3.93,1.93,ACTIVE
+2026-08,INV2050,Surat berharga yang dimiliki - Bank Indonesia,590.53,1,5.02,2.47,ACTIVE
+2026-08,INV2058,Surat berharga yang dimiliki - Pemerintah,590.53,1,5.46,2.69,ACTIVE
+2026-08,INV2060,Surat berharga yang dimiliki - Bank Indonesia,590.53,1,5.19,2.55,ACTIVE
+2026-08,INV2062,Penempatan dan Giro - Bank Indonesia,590.53,1,4.34,2.14,ACTIVE
+2026-08,INV2065,Penempatan dan Giro - Bank Indonesia,590.53,1,4.59,2.26,ACTIVE
+2026-09,INV2024,Surat berharga yang dimiliki - Pemerintah,626.15,1,5.68,2.96,ACTIVE
+2026-09,INV2025,Surat berharga yang dimiliki - Bank Indonesia,626.17,1,5.09,2.66,ACTIVE
+2026-09,INV2026,Surat berharga yang dimiliki - Bank Lain,626.17,1,5.96,3.11,ACTIVE
+2026-09,INV2032,Surat berharga yang dimiliki - Pemerintah,626.17,1,5.6,2.92,ACTIVE
+2026-09,INV2033,Penempatan dan Giro - Bank Indonesia,626.17,1,4.33,2.26,ACTIVE
+2026-09,INV2035,Surat berharga yang dimiliki - Pemerintah,626.17,1,5.38,2.81,ACTIVE
+2026-09,INV2038,Surat berharga yang dimiliki - Bank Indonesia,626.17,1,4.74,2.47,ACTIVE
+2026-09,INV2044,Penempatan dan Giro - Bank Indonesia,626.17,1,3.93,2.05,ACTIVE
+2026-09,INV2050,Surat berharga yang dimiliki - Bank Indonesia,626.17,1,5.02,2.62,ACTIVE
+2026-09,INV2058,Surat berharga yang dimiliki - Pemerintah,626.17,1,5.46,2.85,ACTIVE
+2026-09,INV2060,Surat berharga yang dimiliki - Bank Indonesia,626.17,1,5.19,2.71,ACTIVE
+2026-09,INV2062,Penempatan dan Giro - Bank Indonesia,626.17,1,4.34,2.26,ACTIVE
+2026-09,INV2065,Penempatan dan Giro - Bank Indonesia,626.17,1,4.59,2.4,ACTIVE

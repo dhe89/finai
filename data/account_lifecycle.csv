@@ -1,0 +1,437 @@
+record_type,record_no,product_type,start_period,close_period
+Loan,LN2024,Commercial - Modal Kerja,2024-01,2025-05
+Loan,LN2025,Commercial - Modal Kerja,2024-01,2026-09
+Loan,LN2026,Consumer - KPR Subsidi,2024-01,2025-07
+Loan,LN2027,Consumer - Multimanfaat,2024-01,2025-07
+Loan,LN2028,Commercial - Modal Kerja,2024-01,2025-05
+Loan,LN2029,Commercial - Konstruksi,2024-01,2025-10
+Loan,LN2030,Consumer - KPR Non Subsidi,2024-01,2025-01
+Loan,LN2031,Consumer - Multimanfaat,2024-01,2025-04
+Loan,LN2032,Commercial - Modal Kerja,2024-01,2025-01
+Loan,LN2033,Commercial - Investasi,2024-01,2026-09
+Loan,LN2034,Consumer - KPR Non Subsidi,2024-01,2025-11
+Loan,LN2035,Consumer - KPR Subsidi,2024-01,2026-08
+Loan,LN2036,Commercial - Konstruksi,2024-01,2026-08
+Loan,LN2037,Consumer - KPR Subsidi,2024-01,2026-09
+Loan,LN2038,Commercial - Konstruksi,2024-01,2025-05
+Loan,LN2039,Consumer - Non KPR,2024-01,2025-08
+Loan,LN2040,Consumer - Non KPR,2024-01,2026-06
+Loan,LN2041,Consumer - KPR Subsidi,2024-01,2025-01
+Loan,LN2042,Consumer - Multimanfaat,2024-01,2025-12
+Loan,LN2043,Commercial - Konstruksi,2024-01,2026-09
+Loan,LN2044,Commercial - Modal Kerja,2024-01,2026-09
+Loan,LN2045,Consumer - Non KPR,2024-01,2025-05
+Loan,LN2046,Commercial - Konstruksi,2024-01,2026-09
+Loan,LN2047,Consumer - KPR Non Subsidi,2024-01,2025-05
+Loan,LN2048,Consumer - KPR Non Subsidi,2024-01,2024-12
+Loan,LN2049,Consumer - KPR Non Subsidi,2024-01,2025-07
+Loan,LN2050,Consumer - KPR Subsidi,2024-01,2026-09
+Loan,LN2051,Consumer - KPR Subsidi,2024-01,2026-04
+Loan,LN2052,Commercial - Modal Kerja,2024-01,2025-05
+Loan,LN2053,Consumer - Non KPR,2024-01,2026-04
+Loan,LN2054,Consumer - Multimanfaat,2024-01,2026-06
+Loan,LN2055,Consumer - KPR Non Subsidi,2024-01,2026-09
+Loan,LN2056,Consumer - Non KPR,2024-01,2026-05
+Loan,LN2057,Commercial - Investasi,2024-01,2026-09
+Loan,LN2058,Consumer - KPR Non Subsidi,2024-01,2026-01
+Loan,LN2059,Consumer - KPR Subsidi,2024-01,2025-05
+Loan,LN2060,Consumer - Non KPR,2024-01,2026-01
+Loan,LN2061,Commercial - Investasi,2024-01,2026-09
+Loan,LN2062,Commercial - Investasi,2024-01,2025-02
+Loan,LN2063,Consumer - Non KPR,2024-01,2025-06
+Loan,LN2064,Consumer - KPR Non Subsidi,2024-01,2026-09
+Loan,LN2065,Commercial - Konstruksi,2024-01,2026-05
+Loan,LN2066,Consumer - KPR Subsidi,2024-01,2025-02
+Loan,LN2067,Commercial - Konstruksi,2024-01,2026-04
+Loan,LN2068,Consumer - Multimanfaat,2024-01,2026-09
+Loan,LN2069,Consumer - Multimanfaat,2024-01,2026-06
+Loan,LN2070,Consumer - Multimanfaat,2024-01,2026-04
+Loan,LN2071,Consumer - KPR Non Subsidi,2024-01,2025-08
+Loan,LN2072,Commercial - Modal Kerja,2024-01,2025-02
+Loan,LN2073,Consumer - KPR Subsidi,2024-01,2024-09
+Loan,LN2074,Consumer - KPR Non Subsidi,2024-01,2025-09
+Loan,LN2075,Commercial - Konstruksi,2024-01,2026-08
+Loan,LN2076,Consumer - KPR Subsidi,2024-01,2026-09
+Loan,LN2077,Consumer - KPR Non Subsidi,2024-01,2026-07
+Loan,LN2078,Consumer - Non KPR,2024-01,2025-08
+Loan,LN2079,Consumer - KPR Non Subsidi,2024-01,2024-12
+Loan,LN2080,Consumer - Non KPR,2024-01,2024-12
+Loan,LN2081,Consumer - KPR Subsidi,2024-01,2025-01
+Loan,LN2082,Consumer - KPR Non Subsidi,2024-01,2026-09
+Loan,LN2083,Commercial - Modal Kerja,2024-01,2026-09
+Loan,LN2084,Consumer - KPR Non Subsidi,2024-01,2026-07
+Loan,LN2085,Commercial - Investasi,2024-01,2025-05
+Loan,LN2086,Consumer - KPR Non Subsidi,2024-01,2026-09
+Loan,LN2087,Consumer - KPR Subsidi,2024-01,2024-07
+Loan,LN2088,Commercial - Konstruksi,2024-01,2025-11
+Loan,LN2089,Consumer - KPR Subsidi,2024-01,2025-10
+Loan,LN2090,Consumer - Non KPR,2024-01,2026-09
+Loan,LN2091,Commercial - Konstruksi,2024-01,2025-05
+Loan,LN2092,Consumer - KPR Non Subsidi,2024-01,2026-09
+Loan,LN2093,Consumer - Multimanfaat,2024-01,2025-08
+Loan,LN2094,Commercial - Investasi,2024-01,2025-05
+Loan,LN2095,Consumer - Non KPR,2024-01,2026-09
+Loan,LN2096,Commercial - Modal Kerja,2024-01,2025-09
+Loan,LN2097,Commercial - Modal Kerja,2024-01,2026-05
+Loan,LN2098,Commercial - Modal Kerja,2024-01,2026-09
+Loan,LN2099,Commercial - Investasi,2024-01,2025-09
+Loan,LN2100,Commercial - Modal Kerja,2024-01,2026-02
+Loan,LN2101,Commercial - Investasi,2024-01,2025-06
+Loan,LN2102,Commercial - Modal Kerja,2024-01,2026-07
+Loan,LN2103,Commercial - Modal Kerja,2024-01,2025-07
+Loan,LN2104,Commercial - Konstruksi,2024-01,2026-07
+Loan,LN2105,Consumer - KPR Subsidi,2024-01,2026-09
+Loan,LN2106,Commercial - Investasi,2024-01,2026-09
+Loan,LN2107,Consumer - KPR Subsidi,2024-01,2026-09
+Loan,LN2108,Consumer - KPR Subsidi,2024-01,2025-06
+Loan,LN2109,Commercial - Modal Kerja,2024-01,2026-02
+Loan,LN2110,Commercial - Investasi,2024-01,2026-05
+Loan,LN2111,Consumer - Non KPR,2024-01,2026-09
+Loan,LN2112,Commercial - Modal Kerja,2024-01,2025-08
+Loan,LN2113,Consumer - KPR Non Subsidi,2024-01,2026-09
+Loan,LN2114,Commercial - Modal Kerja,2024-01,2025-02
+Loan,LN2115,Consumer - KPR Subsidi,2024-01,2024-12
+Loan,LN2116,Commercial - Investasi,2024-01,2026-06
+Loan,LN2117,Commercial - Modal Kerja,2024-01,2026-09
+Loan,LN2118,Commercial - Modal Kerja,2024-01,2026-09
+Loan,LN2119,Consumer - Non KPR,2024-01,2024-12
+Loan,LN2120,Commercial - Investasi,2024-01,2026-09
+Loan,LN2121,Consumer - KPR Non Subsidi,2024-01,2026-06
+Loan,LN2122,Consumer - KPR Subsidi,2024-01,2024-12
+Loan,LN2123,Consumer - KPR Non Subsidi,2024-01,2026-09
+Loan,LN2124,Consumer - Non KPR,2024-01,2026-09
+Loan,LN2125,Commercial - Modal Kerja,2024-01,2026-09
+Loan,LN2126,Consumer - KPR Non Subsidi,2024-01,2026-03
+Loan,LN2127,Commercial - Modal Kerja,2024-01,2025-05
+Loan,LN2128,Commercial - Investasi,2024-01,2025-05
+Loan,LN2129,Consumer - KPR Non Subsidi,2024-01,2024-12
+Loan,LN2130,Commercial - Modal Kerja,2024-01,2025-03
+Loan,LN2131,Commercial - Investasi,2024-01,2026-09
+Loan,LN2132,Consumer - Non KPR,2024-01,2025-11
+Loan,LN2133,Consumer - Non KPR,2024-01,2026-01
+Loan,LN2134,Consumer - Non KPR,2024-01,2026-09
+Loan,LN2135,Commercial - Investasi,2024-01,2026-02
+Loan,LN2136,Commercial - Investasi,2024-01,2024-07
+Loan,LN2137,Consumer - Multimanfaat,2024-01,2026-09
+Loan,LN2138,Consumer - KPR Subsidi,2024-01,2025-06
+Loan,LN2139,Commercial - Investasi,2024-01,2026-05
+Loan,LN2140,Commercial - Modal Kerja,2024-01,2026-03
+Loan,LN2141,Commercial - Modal Kerja,2024-01,2026-02
+Loan,LN2142,Commercial - Modal Kerja,2024-01,2025-09
+Loan,LN2143,Consumer - KPR Non Subsidi,2024-01,2025-02
+Loan,LN2144,Consumer - KPR Subsidi,2024-04,2026-01
+Loan,LN2145,Consumer - KPR Subsidi,2024-08,2026-03
+Loan,LN2146,Consumer - KPR Subsidi,2024-04,2025-12
+Loan,LN2147,Consumer - KPR Non Subsidi,2024-01,2026-05
+Loan,LN2148,Consumer - KPR Subsidi,2024-01,2026-06
+Loan,LN2149,Consumer - KPR Non Subsidi,2024-08,2025-10
+Loan,LN2150,Consumer - KPR Subsidi,2024-03,2025-05
+Loan,LN2151,Consumer - KPR Non Subsidi,2024-04,2026-09
+Loan,LN2152,Commercial - Konstruksi,2024-05,2026-09
+Loan,LN2153,Consumer - KPR Subsidi,2024-04,2025-11
+Loan,LN2154,Consumer - KPR Subsidi,2024-08,2026-09
+Loan,LN2155,Commercial - Modal Kerja,2024-08,2025-09
+Loan,LN2156,Commercial - Modal Kerja,2024-04,2026-04
+Loan,LN2157,Consumer - KPR Non Subsidi,2024-03,2024-08
+Loan,LN2158,Consumer - KPR Non Subsidi,2024-02,2026-03
+Loan,LN2159,Consumer - Non KPR,2024-02,2026-08
+Loan,LN2160,Consumer - KPR Subsidi,2024-01,2026-09
+Loan,LN2161,Consumer - Non KPR,2024-08,2026-09
+Loan,LN2162,Commercial - Konstruksi,2024-08,2026-06
+Loan,LN2163,Consumer - KPR Non Subsidi,2024-08,2026-04
+Loan,LN2164,Consumer - KPR Subsidi,2024-05,2024-11
+Loan,LN2165,Commercial - Modal Kerja,2024-09,2026-09
+Loan,LN2166,Commercial - Modal Kerja,2024-08,2026-09
+Loan,LN2167,Consumer - KPR Non Subsidi,2024-08,2025-10
+Loan,LN2168,Consumer - KPR Non Subsidi,2024-01,2026-05
+Loan,LN2169,Commercial - Konstruksi,2024-03,2026-05
+Loan,LN2170,Consumer - Non KPR,2024-08,2026-02
+Loan,LN2171,Commercial - Modal Kerja,2024-03,2024-09
+Loan,LN2172,Commercial - Konstruksi,2024-09,2026-04
+Loan,LN2173,Commercial - Konstruksi,2024-08,2026-09
+Loan,LN2174,Consumer - Multimanfaat,2024-08,2026-09
+Loan,LN2175,Consumer - Multimanfaat,2024-04,2026-09
+Loan,LN2176,Commercial - Modal Kerja,2024-07,2026-06
+Loan,LN2177,Consumer - KPR Subsidi,2024-01,2025-04
+Loan,LN2178,Consumer - Non KPR,2024-09,2025-09
+Loan,LN2179,Consumer - KPR Subsidi,2024-05,2026-02
+Loan,LN2180,Commercial - Modal Kerja,2024-09,2026-08
+Loan,LN2181,Consumer - Non KPR,2024-09,2025-09
+Loan,LN2182,Consumer - KPR Non Subsidi,2024-02,2026-02
+Loan,LN2183,Consumer - KPR Subsidi,2024-05,2026-09
+Loan,LN2184,Consumer - Non KPR,2024-04,2026-07
+Loan,LN2185,Consumer - Multimanfaat,2024-07,2025-10
+Loan,LN2186,Consumer - Non KPR,2024-05,2026-06
+Loan,LN2187,Commercial - Modal Kerja,2024-03,2025-04
+Loan,LN2188,Commercial - Modal Kerja,2024-07,2026-09
+Loan,LN2189,Consumer - KPR Non Subsidi,2024-08,2025-10
+Loan,LN2190,Consumer - KPR Non Subsidi,2024-07,2026-02
+Loan,LN2191,Commercial - Konstruksi,2024-08,2026-09
+Loan,LN2192,Consumer - KPR Non Subsidi,2024-04,2025-01
+Loan,LN2193,Commercial - Modal Kerja,2024-01,2025-09
+Loan,LN2194,Consumer - KPR Subsidi,2024-05,2026-02
+Loan,LN2195,Commercial - Konstruksi,2024-09,2026-09
+Loan,LN2196,Consumer - Non KPR,2024-05,2026-09
+Loan,LN2197,Commercial - Modal Kerja,2024-04,2026-09
+Loan,LN2198,Commercial - Investasi,2024-09,2026-07
+Loan,LN2199,Consumer - KPR Subsidi,2024-06,2025-10
+Loan,LN2200,Consumer - KPR Subsidi,2024-04,2026-06
+Loan,LN2201,Consumer - KPR Non Subsidi,2024-02,2026-09
+Loan,LN2202,Consumer - KPR Subsidi,2024-01,2025-09
+Loan,LN2203,Consumer - KPR Non Subsidi,2024-06,2026-09
+Loan,LN2204,Commercial - Modal Kerja,2025-04,2026-09
+Loan,LN2205,Commercial - Konstruksi,2024-10,2026-09
+Loan,LN2206,Consumer - KPR Subsidi,2025-03,2026-06
+Loan,LN2207,Commercial - Investasi,2025-05,2026-06
+Loan,LN2208,Consumer - KPR Subsidi,2025-03,2026-09
+Loan,LN2209,Consumer - Multimanfaat,2025-07,2026-09
+Loan,LN2210,Commercial - Investasi,2025-07,2026-06
+Loan,LN2211,Consumer - Multimanfaat,2024-12,2026-02
+Loan,LN2212,Commercial - Investasi,2025-01,2026-09
+Loan,LN2213,Commercial - Modal Kerja,2025-06,2026-09
+Loan,LN2214,Consumer - Multimanfaat,2025-05,2026-09
+Loan,LN2215,Commercial - Konstruksi,2025-06,2026-09
+Loan,LN2216,Consumer - KPR Non Subsidi,2024-11,2026-09
+Loan,LN2217,Consumer - KPR Subsidi,2024-12,2026-07
+Loan,LN2218,Consumer - Multimanfaat,2025-02,2026-09
+Loan,LN2219,Consumer - KPR Subsidi,2025-06,2026-09
+Loan,LN2220,Commercial - Investasi,2025-04,2026-08
+Loan,LN2221,Consumer - KPR Non Subsidi,2024-12,2026-09
+Loan,LN2222,Consumer - KPR Subsidi,2025-03,2026-09
+Loan,LN2223,Commercial - Modal Kerja,2025-04,2026-09
+Loan,LN2224,Commercial - Konstruksi,2024-10,2026-09
+Loan,LN2225,Consumer - KPR Subsidi,2025-05,2026-09
+Loan,LN2226,Consumer - KPR Non Subsidi,2025-01,2026-09
+Loan,LN2227,Commercial - Modal Kerja,2025-06,2026-08
+Loan,LN2228,Consumer - KPR Subsidi,2025-02,2026-09
+Loan,LN2229,Consumer - KPR Non Subsidi,2024-12,2026-09
+Loan,LN2230,Consumer - KPR Non Subsidi,2025-03,2026-07
+Loan,LN2231,Consumer - KPR Subsidi,2024-10,2026-01
+Loan,LN2232,Commercial - Modal Kerja,2025-05,2026-09
+Loan,LN2233,Consumer - KPR Subsidi,2025-04,2026-06
+Loan,LN2234,Consumer - KPR Subsidi,2025-04,2025-09
+Loan,LN2235,Consumer - KPR Non Subsidi,2025-03,2026-05
+Loan,LN2236,Commercial - Modal Kerja,2025-06,2026-09
+Loan,LN2237,Commercial - Investasi,2024-10,2026-09
+Loan,LN2238,Consumer - Multimanfaat,2025-07,2026-09
+Loan,LN2239,Consumer - KPR Subsidi,2025-03,2026-07
+Loan,LN2240,Consumer - KPR Subsidi,2024-11,2026-05
+Loan,LN2241,Commercial - Modal Kerja,2025-01,2026-06
+Loan,LN2242,Consumer - Non KPR,2025-03,2026-09
+Loan,LN2243,Consumer - KPR Subsidi,2025-01,2026-05
+Investment,INV2024,Surat berharga yang dimiliki - Pemerintah,2025-04,2026-09
+Investment,INV2025,Surat berharga yang dimiliki - Bank Indonesia,2025-07,2026-09
+Investment,INV2026,Surat berharga yang dimiliki - Bank Lain,2025-09,2026-09
+Investment,INV2027,Penempatan dan Giro - Bank Lain,2024-09,2026-08
+Investment,INV2028,Surat berharga yang dimiliki - Bank Indonesia,2024-02,2025-06
+Investment,INV2029,Surat berharga yang dimiliki - Bank Lain,2024-03,2026-03
+Investment,INV2030,Surat berharga yang dimiliki - Korporasi,2024-02,2025-09
+Investment,INV2031,Surat berharga yang dimiliki - Pemerintah,2025-05,2026-02
+Investment,INV2032,Surat berharga yang dimiliki - Pemerintah,2024-11,2026-09
+Investment,INV2033,Penempatan dan Giro - Bank Indonesia,2025-03,2026-09
+Investment,INV2034,Surat berharga yang dimiliki - Bank Indonesia,2024-10,2026-03
+Investment,INV2035,Surat berharga yang dimiliki - Pemerintah,2025-09,2026-09
+Investment,INV2036,Surat berharga yang dimiliki - Bank Indonesia,2025-01,2026-03
+Investment,INV2037,Surat berharga yang dimiliki - Korporasi,2025-08,2026-05
+Investment,INV2038,Surat berharga yang dimiliki - Bank Indonesia,2025-09,2026-09
+Investment,INV2039,Surat berharga yang dimiliki - Pemerintah,2024-03,2025-05
+Investment,INV2040,Surat berharga yang dimiliki - Bank Indonesia,2024-05,2026-07
+Investment,INV2041,Surat berharga yang dimiliki - Korporasi,2025-05,2025-12
+Investment,INV2042,Surat berharga yang dimiliki - Bank Indonesia,2024-06,2025-05
+Investment,INV2043,Penempatan dan Giro - Bank Indonesia,2024-05,2025-02
+Investment,INV2044,Penempatan dan Giro - Bank Indonesia,2025-06,2026-09
+Investment,INV2045,Surat berharga yang dimiliki - Bank Indonesia,2025-08,2026-05
+Investment,INV2046,Penempatan dan Giro - Bank Indonesia,2025-08,2026-06
+Investment,INV2047,Surat berharga yang dimiliki - Bank Indonesia,2024-08,2026-03
+Investment,INV2048,Surat berharga yang dimiliki - Pemerintah,2024-08,2026-06
+Investment,INV2049,Surat berharga yang dimiliki - Pemerintah,2024-07,2025-11
+Investment,INV2050,Surat berharga yang dimiliki - Bank Indonesia,2024-10,2026-09
+Investment,INV2051,Surat berharga yang dimiliki - Korporasi,2024-07,2026-07
+Investment,INV2052,Surat berharga yang dimiliki - Bank Lain,2025-06,2026-02
+Investment,INV2053,Penempatan dan Giro - Bank Indonesia,2024-06,2025-07
+Investment,INV2054,Surat berharga yang dimiliki - Pemerintah,2024-03,2025-03
+Investment,INV2055,Surat berharga yang dimiliki - Korporasi,2025-02,2025-08
+Investment,INV2056,Penempatan dan Giro - Bank Indonesia,2024-08,2025-01
+Investment,INV2057,Surat berharga yang dimiliki - Pemerintah,2024-11,2025-08
+Investment,INV2058,Surat berharga yang dimiliki - Pemerintah,2024-05,2026-09
+Investment,INV2059,Penempatan dan Giro - Bank Indonesia,2024-03,2024-08
+Investment,INV2060,Surat berharga yang dimiliki - Bank Indonesia,2025-08,2026-09
+Investment,INV2061,Penempatan dan Giro - Bank Lain,2024-04,2024-10
+Investment,INV2062,Penempatan dan Giro - Bank Indonesia,2025-04,2026-09
+Investment,INV2063,Surat berharga yang dimiliki - Pemerintah,2024-05,2025-07
+Investment,INV2064,Penempatan dan Giro - Bank Lain,2025-02,2025-12
+Investment,INV2065,Penempatan dan Giro - Bank Indonesia,2025-05,2026-09
+Funding,AC02024,Tabungan Perorangan - Mudharabah,2026-01,2026-09
+Funding,AC02025,Giro Lembaga - Mudharabah,2024-02,2025-11
+Funding,AC02026,Tabungan Perorangan - Mudharabah,2025-10,2026-09
+Funding,AC02027,Tabungan Perorangan - Mudharabah,2026-06,2026-09
+Funding,AC02028,Tabungan Lembaga - Mudharabah,2026-06,2026-09
+Funding,AC02029,Deposito Perorangan - Mudharabah,2025-09,2026-09
+Funding,AC02030,Tabungan Perorangan - Wadiah,2025-05,2026-09
+Funding,AC02031,Giro Perorangan - Wadiah,2025-10,2026-09
+Funding,AC02032,Tabungan Perorangan - Wadiah,2026-05,2026-09
+Funding,AC02033,Tabungan Perorangan - Wadiah,2025-06,2026-09
+Funding,AC02034,Tabungan Lembaga - Mudharabah,2025-07,2026-09
+Funding,AC02035,Giro Lembaga - Wadiah,2026-05,2026-09
+Funding,AC02036,Giro Perorangan - Wadiah,2025-11,2026-09
+Funding,AC02037,Giro Perorangan - Wadiah,2026-02,2026-09
+Funding,AC02038,Deposito Lembaga - Mudharabah,2024-10,2026-05
+Funding,AC02039,Tabungan Perorangan - Mudharabah,2025-12,2026-09
+Funding,AC02040,Giro Perorangan - Mudharabah,2026-05,2026-09
+Funding,AC02041,Giro Perorangan - Mudharabah,2025-12,2026-09
+Funding,AC02042,Giro Perorangan - Mudharabah,2024-12,2026-09
+Funding,AC02043,Tabungan Lembaga - Mudharabah,2026-05,2026-09
+Funding,AC02044,Giro Lembaga - Wadiah,2024-09,2025-04
+Funding,AC02045,Tabungan Perorangan - Wadiah,2024-06,2026-09
+Funding,AC02046,Giro Lembaga - Wadiah,2025-08,2026-09
+Funding,AC02047,Giro Perorangan - Mudharabah,2025-01,2026-09
+Funding,AC02048,Tabungan Perorangan - Mudharabah,2025-12,2026-09
+Funding,AC02049,Giro Lembaga - Wadiah,2026-07,2026-09
+Funding,AC02050,Giro Perorangan - Wadiah,2025-09,2026-09
+Funding,AC02051,Giro Perorangan - Mudharabah,2024-12,2026-09
+Funding,AC02052,Deposito Perorangan - Mudharabah,2024-10,2026-09
+Funding,AC02053,Giro Lembaga - Wadiah,2025-07,2026-09
+Funding,AC02054,Giro Lembaga - Wadiah,2025-08,2026-04
+Funding,AC02055,Deposito Lembaga - Mudharabah,2024-10,2026-09
+Funding,AC02056,Tabungan Lembaga - Mudharabah,2024-02,2025-09
+Funding,AC02057,Giro Lembaga - Wadiah,2025-02,2026-08
+Funding,AC02058,Giro Lembaga - Wadiah,2025-08,2026-09
+Funding,AC02059,Giro Lembaga - Wadiah,2024-05,2024-11
+Funding,AC02060,Tabungan Perorangan - Wadiah,2025-10,2026-09
+Funding,AC02061,Deposito Lembaga - Mudharabah,2025-11,2026-09
+Funding,AC02062,Giro Perorangan - Mudharabah,2025-04,2026-09
+Funding,AC02063,Giro Perorangan - Wadiah,2025-07,2026-09
+Funding,AC02064,Giro Perorangan - Mudharabah,2025-09,2026-09
+Funding,AC02065,Deposito Lembaga - Mudharabah,2026-06,2026-09
+Funding,AC02066,Giro Lembaga - Mudharabah,2026-06,2026-09
+Funding,AC02067,Giro Lembaga - Wadiah,2026-07,2026-09
+Funding,AC02068,Tabungan Perorangan - Wadiah,2025-05,2026-09
+Funding,AC02069,Tabungan Perorangan - Mudharabah,2025-01,2026-09
+Funding,AC02070,Tabungan Perorangan - Wadiah,2025-06,2026-09
+Funding,AC02071,Tabungan Lembaga - Mudharabah,2025-10,2026-09
+Funding,AC02072,Tabungan Perorangan - Wadiah,2024-03,2026-04
+Funding,AC02073,Tabungan Perorangan - Wadiah,2024-10,2026-09
+Funding,AC02074,Giro Perorangan - Mudharabah,2025-08,2026-09
+Funding,AC02075,Tabungan Perorangan - Wadiah,2025-08,2026-09
+Funding,AC02076,Deposito Lembaga - Mudharabah,2025-08,2026-09
+Funding,AC02077,Deposito Lembaga - Mudharabah,2025-03,2026-09
+Funding,AC02078,Tabungan Perorangan - Mudharabah,2026-01,2026-09
+Funding,AC02079,Giro Perorangan - Mudharabah,2024-02,2026-09
+Funding,AC02080,Tabungan Lembaga - Wadiah,2026-03,2026-09
+Funding,AC02081,Giro Perorangan - Wadiah,2024-09,2026-09
+Funding,AC02082,Giro Lembaga - Mudharabah,2024-12,2026-09
+Funding,AC02083,Deposito Perorangan - Mudharabah,2025-05,2026-09
+Funding,AC02084,Giro Lembaga - Wadiah,2025-08,2026-09
+Funding,AC02085,Tabungan Perorangan - Wadiah,2026-07,2026-09
+Funding,AC02086,Tabungan Lembaga - Wadiah,2025-07,2026-09
+Funding,AC02087,Giro Lembaga - Mudharabah,2024-10,2026-05
+Funding,AC02088,Giro Lembaga - Mudharabah,2026-05,2026-09
+Funding,AC02089,Giro Lembaga - Wadiah,2025-06,2026-05
+Funding,AC02090,Giro Lembaga - Wadiah,2024-04,2026-09
+Funding,AC02091,Tabungan Lembaga - Wadiah,2024-07,2025-12
+Funding,AC02092,Giro Perorangan - Mudharabah,2026-07,2026-09
+Funding,AC02093,Giro Lembaga - Wadiah,2025-07,2026-09
+Funding,AC02094,Tabungan Lembaga - Wadiah,2024-03,2025-05
+Funding,AC02095,Deposito Lembaga - Mudharabah,2024-03,2026-09
+Funding,AC02096,Deposito Perorangan - Mudharabah,2025-07,2026-09
+Funding,AC02097,Deposito Perorangan - Mudharabah,2025-10,2026-09
+Funding,AC02098,Tabungan Perorangan - Wadiah,2024-09,2026-09
+Funding,AC02099,Giro Lembaga - Mudharabah,2026-06,2026-09
+Funding,AC02100,Giro Lembaga - Mudharabah,2025-07,2026-09
+Funding,AC02101,Tabungan Perorangan - Wadiah,2026-04,2026-09
+Funding,AC02102,Giro Lembaga - Wadiah,2024-09,2026-09
+Funding,AC02103,Giro Lembaga - Mudharabah,2026-05,2026-09
+Funding,AC02104,Giro Perorangan - Wadiah,2025-12,2026-09
+Funding,AC02105,Giro Lembaga - Wadiah,2026-02,2026-09
+Funding,AC02106,Deposito Lembaga - Mudharabah,2025-12,2026-09
+Funding,AC02107,Tabungan Perorangan - Wadiah,2025-12,2026-09
+Funding,AC02108,Tabungan Lembaga - Mudharabah,2025-04,2026-09
+Funding,AC02109,Deposito Perorangan - Mudharabah,2024-08,2025-02
+Funding,AC02110,Giro Lembaga - Wadiah,2024-10,2026-09
+Funding,AC02111,Tabungan Lembaga - Wadiah,2026-08,2026-09
+Funding,AC02112,Giro Perorangan - Wadiah,2024-09,2026-09
+Funding,AC02113,Tabungan Perorangan - Wadiah,2025-08,2026-09
+Funding,AC02114,Giro Lembaga - Wadiah,2024-05,2024-10
+Funding,AC02115,Tabungan Perorangan - Wadiah,2024-04,2026-09
+Funding,AC02116,Tabungan Lembaga - Wadiah,2026-03,2026-09
+Funding,AC02117,Giro Lembaga - Mudharabah,2024-06,2026-09
+Funding,AC02118,Giro Lembaga - Mudharabah,2024-09,2026-02
+Funding,AC02119,Tabungan Perorangan - Wadiah,2026-04,2026-09
+Funding,AC02120,Giro Lembaga - Mudharabah,2025-06,2026-09
+Funding,AC02121,Tabungan Perorangan - Mudharabah,2024-02,2026-08
+Funding,AC02122,Tabungan Perorangan - Wadiah,2024-04,2025-11
+Funding,AC02123,Giro Lembaga - Wadiah,2024-04,2026-09
+Funding,AC02124,Deposito Perorangan - Mudharabah,2025-09,2026-09
+Funding,AC02125,Deposito Lembaga - Mudharabah,2025-03,2026-09
+Funding,AC02126,Tabungan Perorangan - Mudharabah,2024-12,2026-09
+Funding,AC02127,Tabungan Perorangan - Mudharabah,2026-01,2026-09
+Funding,AC02128,Giro Lembaga - Wadiah,2026-07,2026-09
+Funding,AC02129,Tabungan Lembaga - Wadiah,2026-06,2026-09
+Funding,AC02130,Tabungan Perorangan - Mudharabah,2024-09,2026-09
+Funding,AC02131,Giro Perorangan - Wadiah,2026-05,2026-09
+Funding,AC02132,Giro Perorangan - Wadiah,2026-01,2026-09
+Funding,AC02133,Tabungan Lembaga - Wadiah,2025-02,2026-09
+Funding,AC02134,Deposito Lembaga - Mudharabah,2024-01,2025-05
+Funding,AC02135,Giro Perorangan - Mudharabah,2026-07,2026-09
+Funding,AC02136,Giro Lembaga - Mudharabah,2025-04,2026-09
+Funding,AC02137,Giro Lembaga - Mudharabah,2025-05,2026-09
+Funding,AC02138,Tabungan Lembaga - Mudharabah,2026-07,2026-09
+Funding,AC02139,Tabungan Perorangan - Wadiah,2025-03,2026-03
+Funding,AC02140,Tabungan Perorangan - Mudharabah,2026-03,2026-09
+Funding,AC02141,Tabungan Perorangan - Mudharabah,2025-04,2026-09
+Funding,AC02142,Deposito Lembaga - Mudharabah,2026-08,2026-09
+Funding,AC02143,Giro Perorangan - Mudharabah,2026-08,2026-09
+Funding,AC02144,Tabungan Perorangan - Mudharabah,2024-04,2024-09
+Funding,AC02145,Tabungan Lembaga - Mudharabah,2024-04,2026-09
+Funding,AC02146,Giro Perorangan - Wadiah,2024-10,2026-09
+Funding,AC02147,Tabungan Perorangan - Mudharabah,2026-07,2026-09
+Funding,AC02148,Tabungan Perorangan - Wadiah,2024-02,2026-09
+Funding,AC02149,Tabungan Lembaga - Wadiah,2024-12,2025-09
+Funding,AC02150,Giro Lembaga - Wadiah,2025-05,2026-09
+Funding,AC02151,Deposito Lembaga - Mudharabah,2026-06,2026-09
+Funding,AC02152,Giro Perorangan - Wadiah,2024-03,2026-09
+Funding,AC02153,Giro Perorangan - Wadiah,2024-01,2025-11
+Funding,AC02154,Tabungan Lembaga - Mudharabah,2024-07,2024-12
+Funding,AC02155,Tabungan Lembaga - Wadiah,2026-07,2026-09
+Funding,AC02156,Deposito Perorangan - Mudharabah,2024-03,2026-09
+Funding,AC02157,Giro Perorangan - Mudharabah,2026-02,2026-09
+Funding,AC02158,Deposito Perorangan - Mudharabah,2026-01,2026-09
+Funding,AC02159,Deposito Lembaga - Mudharabah,2024-06,2026-09
+Funding,AC02160,Giro Perorangan - Wadiah,2025-03,2026-09
+Funding,AC02161,Tabungan Perorangan - Mudharabah,2025-09,2026-09
+Funding,AC02162,Giro Lembaga - Wadiah,2026-01,2026-09
+Funding,AC02163,Giro Perorangan - Wadiah,2025-07,2026-09
+Funding,AC02164,Tabungan Lembaga - Wadiah,2024-10,2026-09
+Funding,AC02165,Giro Perorangan - Wadiah,2025-08,2026-09
+Funding,AC02166,Giro Perorangan - Wadiah,2026-04,2026-09
+Funding,AC02167,Giro Lembaga - Mudharabah,2024-06,2026-09
+Funding,AC02168,Tabungan Lembaga - Mudharabah,2025-04,2026-09
+Funding,AC02169,Giro Lembaga - Wadiah,2024-10,2025-05
+Funding,AC02170,Giro Lembaga - Wadiah,2024-05,2026-09
+Funding,AC02171,Tabungan Perorangan - Wadiah,2025-01,2026-09
+Funding,AC02172,Giro Lembaga - Mudharabah,2026-01,2026-09
+Funding,AC02173,Deposito Perorangan - Mudharabah,2024-09,2026-09
+Funding,OF02024,Pinjaman yang diterima,2024-06,2026-05
+Funding,OF02025,Surat Berharga Diterbitkan,2025-04,2026-09
+Funding,OF02026,Pinjaman yang diterima,2025-01,2026-09
+Funding,OF02027,Pinjaman yang diterima,2024-06,2026-09
+Funding,OF02028,Surat Berharga Diterbitkan,2024-07,2026-08
+Funding,OF02029,Pinjaman yang diterima,2025-02,2026-09
+Funding,OF02030,Pinjaman yang diterima,2024-05,2026-09
+Funding,OF02031,Pinjaman yang diterima,2025-04,2026-09
+Funding,OF02032,Surat Berharga Diterbitkan,2025-02,2026-09
+Funding,OF02033,Surat Berharga Diterbitkan,2024-03,2025-05
+Funding,OF02034,Pinjaman yang diterima,2024-02,2026-07
+Funding,OF02035,Pinjaman yang diterima,2024-11,2026-09
+Funding,OF02036,Pinjaman yang diterima,2024-08,2026-09
+Funding,OF02037,Surat Berharga Diterbitkan,2024-05,2026-03
+Funding,OF02038,Pinjaman yang diterima,2024-03,2025-05
+Funding,OF02039,Pinjaman yang diterima,2024-11,2026-09
+Funding,OF02040,Pinjaman yang diterima,2024-04,2026-05
+Funding,OF02041,Pinjaman yang diterima,2024-02,2026-09
+Funding,OF02042,Pinjaman yang diterima,2024-06,2026-09
+Funding,OF02043,Pinjaman yang diterima,2025-02,2026-09
+Funding,OF02044,Pinjaman yang diterima,2025-02,2026-09
+Funding,OF02045,Pinjaman yang diterima,2025-02,2026-09
+Funding,OF02046,Pinjaman yang diterima,2024-03,2026-08
+Funding,OF02047,Pinjaman yang diterima,2024-11,2026-04

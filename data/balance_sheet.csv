@@ -1,0 +1,463 @@
+period,statement,line_item,amount
+2024-01,Asset,Kas,10700.0
+2024-01,Asset,Penempatan,0.0
+2024-01,Asset,Kredit,43000.0
+2024-01,Asset,Aktiva Tetap,2300.0
+2024-01,Asset,Aset Lainnya,9000.0
+2024-01,Kewajiban,Giro,19435.61
+2024-01,Kewajiban,Tabungan,0.0
+2024-01,Kewajiban,Deposito,33564.39
+2024-01,Kewajiban,Pinjaman yang diterima,0.0
+2024-01,Kewajiban,Surat Berharga Diterbitkan,0.0
+2024-01,Kewajiban,Kewajiban Lainnya,1025.0
+2024-01,Ekuitas,Modal,6000.0
+2024-01,Ekuitas,Laba Tahun Lalu,4915.0
+2024-01,Ekuitas,Laba Tahun Berjalan,60.0
+2024-02,Asset,Kas,2069.4
+2024-02,Asset,Penempatan,9150.0
+2024-02,Asset,Kredit,43000.0
+2024-02,Asset,Aktiva Tetap,2300.0
+2024-02,Asset,Aset Lainnya,9000.0
+2024-02,Kewajiban,Giro,20574.02
+2024-02,Kewajiban,Tabungan,18725.91
+2024-02,Kewajiban,Deposito,14700.07
+2024-02,Kewajiban,Pinjaman yang diterima,3470.0
+2024-02,Kewajiban,Surat Berharga Diterbitkan,0.0
+2024-02,Kewajiban,Kewajiban Lainnya,1050.0
+2024-02,Ekuitas,Modal,6000.0
+2024-02,Ekuitas,Laba Tahun Lalu,879.4
+2024-02,Ekuitas,Laba Tahun Berjalan,120.0
+2024-03,Asset,Kas,2514.82
+2024-03,Asset,Penempatan,9259.81
+2024-03,Asset,Kredit,43000.0
+2024-03,Asset,Aktiva Tetap,2300.0
+2024-03,Asset,Aset Lainnya,9000.0
+2024-03,Kewajiban,Giro,17673.31
+2024-03,Kewajiban,Tabungan,24145.43
+2024-03,Kewajiban,Deposito,13181.26
+2024-03,Kewajiban,Pinjaman yang diterima,2583.27
+2024-03,Kewajiban,Surat Berharga Diterbitkan,856.73
+2024-03,Kewajiban,Kewajiban Lainnya,1075.0
+2024-03,Ekuitas,Modal,6000.0
+2024-03,Ekuitas,Laba Tahun Lalu,379.63
+2024-03,Ekuitas,Laba Tahun Berjalan,180.0
+2024-04,Asset,Kas,3011.94
+2024-04,Asset,Penempatan,9300.0
+2024-04,Asset,Kredit,43000.0
+2024-04,Asset,Aktiva Tetap,2300.0
+2024-04,Asset,Aset Lainnya,9000.0
+2024-04,Kewajiban,Giro,19591.17
+2024-04,Kewajiban,Tabungan,27434.88
+2024-04,Kewajiban,Deposito,8973.95
+2024-04,Kewajiban,Pinjaman yang diterima,2722.43
+2024-04,Kewajiban,Surat Berharga Diterbitkan,687.57
+2024-04,Kewajiban,Kewajiban Lainnya,1000.0
+2024-04,Ekuitas,Modal,6000.0
+2024-04,Ekuitas,Laba Tahun Lalu,-38.06
+2024-04,Ekuitas,Laba Tahun Berjalan,240.0
+2024-05,Asset,Kas,3607.35
+2024-05,Asset,Penempatan,9259.81
+2024-05,Asset,Kredit,43000.0
+2024-05,Asset,Aktiva Tetap,2300.0
+2024-05,Asset,Aset Lainnya,9000.0
+2024-05,Kewajiban,Giro,26005.75
+2024-05,Kewajiban,Tabungan,23355.92
+2024-05,Kewajiban,Deposito,7638.33
+2024-05,Kewajiban,Pinjaman yang diterima,2290.87
+2024-05,Kewajiban,Surat Berharga Diterbitkan,1089.13
+2024-05,Kewajiban,Kewajiban Lainnya,1025.0
+2024-05,Ekuitas,Modal,6000.0
+2024-05,Ekuitas,Laba Tahun Lalu,-537.84
+2024-05,Ekuitas,Laba Tahun Berjalan,300.0
+2024-06,Asset,Kas,4254.48
+2024-06,Asset,Penempatan,9150.0
+2024-06,Asset,Kredit,43000.0
+2024-06,Asset,Aktiva Tetap,2300.0
+2024-06,Asset,Aset Lainnya,9000.0
+2024-06,Kewajiban,Giro,23957.14
+2024-06,Kewajiban,Tabungan,23742.56
+2024-06,Kewajiban,Deposito,10300.3
+2024-06,Kewajiban,Pinjaman yang diterima,2568.83
+2024-06,Kewajiban,Surat Berharga Diterbitkan,781.17
+2024-06,Kewajiban,Kewajiban Lainnya,1050.0
+2024-06,Ekuitas,Modal,6000.0
+2024-06,Ekuitas,Laba Tahun Lalu,-1055.52
+2024-06,Ekuitas,Laba Tahun Berjalan,360.0
+2024-07,Asset,Kas,4959.7
+2024-07,Asset,Penempatan,9000.0
+2024-07,Asset,Kredit,43000.0
+2024-07,Asset,Aktiva Tetap,2300.0
+2024-07,Asset,Aset Lainnya,9000.0
+2024-07,Kewajiban,Giro,22076.15
+2024-07,Kewajiban,Tabungan,27432.85
+2024-07,Kewajiban,Deposito,9491.0
+2024-07,Kewajiban,Pinjaman yang diterima,2304.79
+2024-07,Kewajiban,Surat Berharga Diterbitkan,1015.21
+2024-07,Kewajiban,Kewajiban Lainnya,1075.0
+2024-07,Ekuitas,Modal,6000.0
+2024-07,Ekuitas,Laba Tahun Lalu,-1555.3
+2024-07,Ekuitas,Laba Tahun Berjalan,420.0
+2024-08,Asset,Kas,5664.93
+2024-08,Asset,Penempatan,8850.0
+2024-08,Asset,Kredit,43000.0
+2024-08,Asset,Aktiva Tetap,2300.0
+2024-08,Asset,Aset Lainnya,9000.0
+2024-08,Kewajiban,Giro,21138.97
+2024-08,Kewajiban,Tabungan,26269.97
+2024-08,Kewajiban,Deposito,12591.06
+2024-08,Kewajiban,Pinjaman yang diterima,2337.8
+2024-08,Kewajiban,Surat Berharga Diterbitkan,952.2
+2024-08,Kewajiban,Kewajiban Lainnya,1000.0
+2024-08,Ekuitas,Modal,6000.0
+2024-08,Ekuitas,Laba Tahun Lalu,-1955.07
+2024-08,Ekuitas,Laba Tahun Berjalan,480.0
+2024-09,Asset,Kas,6312.05
+2024-09,Asset,Penempatan,8740.19
+2024-09,Asset,Kredit,43000.0
+2024-09,Asset,Aktiva Tetap,2300.0
+2024-09,Asset,Aset Lainnya,9000.0
+2024-09,Kewajiban,Giro,27561.0
+2024-09,Kewajiban,Tabungan,21929.32
+2024-09,Kewajiban,Deposito,11509.68
+2024-09,Kewajiban,Pinjaman yang diterima,2316.45
+2024-09,Kewajiban,Surat Berharga Diterbitkan,943.55
+2024-09,Kewajiban,Kewajiban Lainnya,1025.0
+2024-09,Ekuitas,Modal,6000.0
+2024-09,Ekuitas,Laba Tahun Lalu,-2472.76
+2024-09,Ekuitas,Laba Tahun Berjalan,540.0
+2024-10,Asset,Kas,6907.46
+2024-10,Asset,Penempatan,8700.0
+2024-10,Asset,Kredit,43000.0
+2024-10,Asset,Aktiva Tetap,2300.0
+2024-10,Asset,Aset Lainnya,9000.0
+2024-10,Kewajiban,Giro,29576.43
+2024-10,Kewajiban,Tabungan,18832.18
+2024-10,Kewajiban,Deposito,13591.39
+2024-10,Kewajiban,Pinjaman yang diterima,2295.09
+2024-10,Kewajiban,Surat Berharga Diterbitkan,934.91
+2024-10,Kewajiban,Kewajiban Lainnya,1050.0
+2024-10,Ekuitas,Modal,6000.0
+2024-10,Ekuitas,Laba Tahun Lalu,-2972.54
+2024-10,Ekuitas,Laba Tahun Berjalan,600.0
+2024-11,Asset,Kas,7404.59
+2024-11,Asset,Penempatan,8740.19
+2024-11,Asset,Kredit,43000.0
+2024-11,Asset,Aktiva Tetap,2300.0
+2024-11,Asset,Aset Lainnya,9000.0
+2024-11,Kewajiban,Giro,29319.13
+2024-11,Kewajiban,Tabungan,19561.38
+2024-11,Kewajiban,Deposito,14119.49
+2024-11,Kewajiban,Pinjaman yang diterima,2410.88
+2024-11,Kewajiban,Surat Berharga Diterbitkan,789.12
+2024-11,Kewajiban,Kewajiban Lainnya,1075.0
+2024-11,Ekuitas,Modal,6000.0
+2024-11,Ekuitas,Laba Tahun Lalu,-3490.22
+2024-11,Ekuitas,Laba Tahun Berjalan,660.0
+2024-12,Asset,Kas,7850.0
+2024-12,Asset,Penempatan,8850.0
+2024-12,Asset,Kredit,43000.0
+2024-12,Asset,Aktiva Tetap,2300.0
+2024-12,Asset,Aset Lainnya,9000.0
+2024-12,Kewajiban,Giro,30950.83
+2024-12,Kewajiban,Tabungan,20292.85
+2024-12,Kewajiban,Deposito,12756.32
+2024-12,Kewajiban,Pinjaman yang diterima,2388.33
+2024-12,Kewajiban,Surat Berharga Diterbitkan,781.67
+2024-12,Kewajiban,Kewajiban Lainnya,1000.0
+2024-12,Ekuitas,Modal,6000.0
+2024-12,Ekuitas,Laba Tahun Lalu,-3890.0
+2024-12,Ekuitas,Laba Tahun Berjalan,720.0
+2025-01,Asset,Kas,1800.0
+2025-01,Asset,Penempatan,8700.0
+2025-01,Asset,Kredit,50000.0
+2025-01,Asset,Aktiva Tetap,2380.0
+2025-01,Asset,Aset Lainnya,8320.0
+2025-01,Kewajiban,Giro,31621.86
+2025-01,Kewajiban,Tabungan,20630.91
+2025-01,Kewajiban,Deposito,12247.23
+2025-01,Kewajiban,Pinjaman yang diterima,2203.0
+2025-01,Kewajiban,Surat Berharga Diterbitkan,697.0
+2025-01,Kewajiban,Kewajiban Lainnya,1025.0
+2025-01,Ekuitas,Modal,6000.0
+2025-01,Ekuitas,Laba Tahun Lalu,-3300.0
+2025-01,Ekuitas,Laba Tahun Berjalan,75.0
+2025-02,Asset,Kas,1800.0
+2025-02,Asset,Penempatan,8850.0
+2025-02,Asset,Kredit,50000.0
+2025-02,Asset,Aktiva Tetap,2380.0
+2025-02,Asset,Aset Lainnya,8656.23
+2025-02,Kewajiban,Giro,31308.03
+2025-02,Kewajiban,Tabungan,21598.0
+2025-02,Kewajiban,Deposito,11638.97
+2025-02,Kewajiban,Pinjaman yang diterima,2249.29
+2025-02,Kewajiban,Surat Berharga Diterbitkan,665.71
+2025-02,Kewajiban,Kewajiban Lainnya,1050.0
+2025-02,Ekuitas,Modal,6000.0
+2025-02,Ekuitas,Laba Tahun Lalu,-2973.77
+2025-02,Ekuitas,Laba Tahun Berjalan,150.0
+2025-03,Asset,Kas,1964.74
+2025-03,Asset,Penempatan,8959.81
+2025-03,Asset,Kredit,50000.0
+2025-03,Asset,Aktiva Tetap,2380.0
+2025-03,Asset,Aset Lainnya,8920.0
+2025-03,Kewajiban,Giro,32280.21
+2025-03,Kewajiban,Tabungan,21533.45
+2025-03,Kewajiban,Deposito,10776.34
+2025-03,Kewajiban,Pinjaman yang diterima,2260.25
+2025-03,Kewajiban,Surat Berharga Diterbitkan,669.75
+2025-03,Kewajiban,Kewajiban Lainnya,1075.0
+2025-03,Ekuitas,Modal,6000.0
+2025-03,Ekuitas,Laba Tahun Lalu,-2595.45
+2025-03,Ekuitas,Laba Tahun Berjalan,225.0
+2025-04,Asset,Kas,2445.51
+2025-04,Asset,Penempatan,9000.0
+2025-04,Asset,Kredit,50000.0
+2025-04,Asset,Aktiva Tetap,2380.0
+2025-04,Asset,Aset Lainnya,8920.0
+2025-04,Kewajiban,Giro,31952.71
+2025-04,Kewajiban,Tabungan,22553.58
+2025-04,Kewajiban,Deposito,10128.71
+2025-04,Kewajiban,Pinjaman yang diterima,2173.31
+2025-04,Kewajiban,Surat Berharga Diterbitkan,771.69
+2025-04,Kewajiban,Kewajiban Lainnya,1000.0
+2025-04,Ekuitas,Modal,6000.0
+2025-04,Ekuitas,Laba Tahun Lalu,-2134.49
+2025-04,Ekuitas,Laba Tahun Berjalan,300.0
+2025-05,Asset,Kas,3024.02
+2025-05,Asset,Penempatan,8959.81
+2025-05,Asset,Kredit,50000.0
+2025-05,Asset,Aktiva Tetap,2380.0
+2025-05,Asset,Aset Lainnya,8920.0
+2025-05,Kewajiban,Giro,31490.42
+2025-05,Kewajiban,Tabungan,22124.48
+2025-05,Kewajiban,Deposito,11065.1
+2025-05,Kewajiban,Pinjaman yang diterima,2183.87
+2025-05,Kewajiban,Surat Berharga Diterbitkan,776.13
+2025-05,Kewajiban,Kewajiban Lainnya,1025.0
+2025-05,Ekuitas,Modal,6000.0
+2025-05,Ekuitas,Laba Tahun Lalu,-1756.17
+2025-05,Ekuitas,Laba Tahun Berjalan,375.0
+2025-06,Asset,Kas,3654.79
+2025-06,Asset,Penempatan,8850.0
+2025-06,Asset,Kredit,50000.0
+2025-06,Asset,Aktiva Tetap,2380.0
+2025-06,Asset,Aset Lainnya,8920.0
+2025-06,Kewajiban,Giro,31978.4
+2025-06,Kewajiban,Tabungan,23516.3
+2025-06,Kewajiban,Deposito,9230.3
+2025-06,Kewajiban,Pinjaman yang diterima,2288.0
+2025-06,Kewajiban,Surat Berharga Diterbitkan,687.0
+2025-06,Kewajiban,Kewajiban Lainnya,1050.0
+2025-06,Ekuitas,Modal,6000.0
+2025-06,Ekuitas,Laba Tahun Lalu,-1395.21
+2025-06,Ekuitas,Laba Tahun Berjalan,450.0
+2025-07,Asset,Kas,4343.11
+2025-07,Asset,Penempatan,8700.0
+2025-07,Asset,Kredit,50000.0
+2025-07,Asset,Aktiva Tetap,2380.0
+2025-07,Asset,Aset Lainnya,8920.0
+2025-07,Kewajiban,Giro,32566.16
+2025-07,Kewajiban,Tabungan,23201.39
+2025-07,Kewajiban,Deposito,9002.45
+2025-07,Kewajiban,Pinjaman yang diterima,2298.49
+2025-07,Kewajiban,Surat Berharga Diterbitkan,691.51
+2025-07,Kewajiban,Kewajiban Lainnya,1075.0
+2025-07,Ekuitas,Modal,6000.0
+2025-07,Ekuitas,Laba Tahun Lalu,-1016.89
+2025-07,Ekuitas,Laba Tahun Berjalan,525.0
+2025-08,Asset,Kas,5031.44
+2025-08,Asset,Penempatan,8550.0
+2025-08,Asset,Kredit,50000.0
+2025-08,Asset,Aktiva Tetap,2380.0
+2025-08,Asset,Aset Lainnya,8920.0
+2025-08,Kewajiban,Giro,34890.22
+2025-08,Kewajiban,Tabungan,21508.17
+2025-08,Kewajiban,Deposito,8416.61
+2025-08,Kewajiban,Pinjaman yang diterima,2310.53
+2025-08,Kewajiban,Surat Berharga Diterbitkan,694.47
+2025-08,Kewajiban,Kewajiban Lainnya,1000.0
+2025-08,Ekuitas,Modal,6000.0
+2025-08,Ekuitas,Laba Tahun Lalu,-538.56
+2025-08,Ekuitas,Laba Tahun Berjalan,600.0
+2025-09,Asset,Kas,5662.21
+2025-09,Asset,Penempatan,8440.19
+2025-09,Asset,Kredit,50000.0
+2025-09,Asset,Aktiva Tetap,2380.0
+2025-09,Asset,Aset Lainnya,8920.0
+2025-09,Kewajiban,Giro,34191.85
+2025-09,Kewajiban,Tabungan,21490.22
+2025-09,Kewajiban,Deposito,9177.93
+2025-09,Kewajiban,Pinjaman yang diterima,2322.32
+2025-09,Kewajiban,Surat Berharga Diterbitkan,697.68
+2025-09,Kewajiban,Kewajiban Lainnya,1025.0
+2025-09,Ekuitas,Modal,6000.0
+2025-09,Ekuitas,Laba Tahun Lalu,-177.6
+2025-09,Ekuitas,Laba Tahun Berjalan,675.0
+2025-10,Asset,Kas,6240.72
+2025-10,Asset,Penempatan,8400.0
+2025-10,Asset,Kredit,50000.0
+2025-10,Asset,Aktiva Tetap,2380.0
+2025-10,Asset,Aset Lainnya,8920.0
+2025-10,Kewajiban,Giro,34423.7
+2025-10,Kewajiban,Tabungan,20213.88
+2025-10,Kewajiban,Deposito,10267.42
+2025-10,Kewajiban,Pinjaman yang diterima,2334.1
+2025-10,Kewajiban,Surat Berharga Diterbitkan,700.9
+2025-10,Kewajiban,Kewajiban Lainnya,1050.0
+2025-10,Ekuitas,Modal,6000.0
+2025-10,Ekuitas,Laba Tahun Lalu,200.72
+2025-10,Ekuitas,Laba Tahun Berjalan,750.0
+2025-11,Asset,Kas,6721.49
+2025-11,Asset,Penempatan,8440.19
+2025-11,Asset,Kredit,50000.0
+2025-11,Asset,Aktiva Tetap,2380.0
+2025-11,Asset,Aset Lainnya,8920.0
+2025-11,Kewajiban,Giro,34318.64
+2025-11,Kewajiban,Tabungan,19652.34
+2025-11,Kewajiban,Deposito,10979.02
+2025-11,Kewajiban,Pinjaman yang diterima,2345.88
+2025-11,Kewajiban,Surat Berharga Diterbitkan,704.12
+2025-11,Kewajiban,Kewajiban Lainnya,1075.0
+2025-11,Ekuitas,Modal,6000.0
+2025-11,Ekuitas,Laba Tahun Lalu,561.68
+2025-11,Ekuitas,Laba Tahun Berjalan,825.0
+2025-12,Asset,Kas,7150.0
+2025-12,Asset,Penempatan,8550.0
+2025-12,Asset,Kredit,50000.0
+2025-12,Asset,Aktiva Tetap,2380.0
+2025-12,Asset,Aset Lainnya,8920.0
+2025-12,Kewajiban,Giro,32385.26
+2025-12,Kewajiban,Tabungan,20985.87
+2025-12,Kewajiban,Deposito,11623.87
+2025-12,Kewajiban,Pinjaman yang diterima,2356.69
+2025-12,Kewajiban,Surat Berharga Diterbitkan,708.31
+2025-12,Kewajiban,Kewajiban Lainnya,1000.0
+2025-12,Ekuitas,Modal,6000.0
+2025-12,Ekuitas,Laba Tahun Lalu,1040.0
+2025-12,Ekuitas,Laba Tahun Berjalan,900.0
+2026-01,Asset,Kas,1800.0
+2026-01,Asset,Penempatan,8400.0
+2026-01,Asset,Kredit,57000.0
+2026-01,Asset,Aktiva Tetap,2460.0
+2026-01,Asset,Aset Lainnya,7740.0
+2026-01,Kewajiban,Giro,33041.26
+2026-01,Kewajiban,Tabungan,19953.33
+2026-01,Kewajiban,Deposito,12205.41
+2026-01,Kewajiban,Pinjaman yang diterima,2306.03
+2026-01,Kewajiban,Surat Berharga Diterbitkan,693.97
+2026-01,Kewajiban,Kewajiban Lainnya,1025.0
+2026-01,Ekuitas,Modal,6000.0
+2026-01,Ekuitas,Laba Tahun Lalu,2091.67
+2026-01,Ekuitas,Laba Tahun Berjalan,83.33
+2026-02,Asset,Kas,1800.0
+2026-02,Asset,Penempatan,8550.0
+2026-02,Asset,Kredit,57375.0
+2026-02,Asset,Aktiva Tetap,2460.0
+2026-02,Asset,Aset Lainnya,7515.83
+2026-02,Kewajiban,Giro,33995.49
+2026-02,Kewajiban,Tabungan,19348.22
+2026-02,Kewajiban,Deposito,11831.29
+2026-02,Kewajiban,Pinjaman yang diterima,2316.69
+2026-02,Kewajiban,Surat Berharga Diterbitkan,698.31
+2026-02,Kewajiban,Kewajiban Lainnya,1050.0
+2026-02,Ekuitas,Modal,6000.0
+2026-02,Ekuitas,Laba Tahun Lalu,2294.17
+2026-02,Ekuitas,Laba Tahun Berjalan,166.66
+2026-03,Asset,Kas,1800.0
+2026-03,Asset,Penempatan,8659.81
+2026-03,Asset,Kredit,57750.0
+2026-03,Asset,Aktiva Tetap,2460.0
+2026-03,Asset,Aset Lainnya,7364.07
+2026-03,Kewajiban,Giro,32545.43
+2026-03,Kewajiban,Tabungan,20925.27
+2026-03,Kewajiban,Deposito,11679.3
+2026-03,Kewajiban,Pinjaman yang diterima,2326.99
+2026-03,Kewajiban,Surat Berharga Diterbitkan,703.01
+2026-03,Kewajiban,Kewajiban Lainnya,1075.0
+2026-03,Ekuitas,Modal,6000.0
+2026-03,Ekuitas,Laba Tahun Lalu,2528.89
+2026-03,Ekuitas,Laba Tahun Berjalan,249.99
+2026-04,Asset,Kas,1800.0
+2026-04,Asset,Penempatan,8700.0
+2026-04,Asset,Kredit,58125.0
+2026-04,Asset,Aktiva Tetap,2460.0
+2026-04,Asset,Aset Lainnya,7271.2
+2026-04,Kewajiban,Giro,32288.61
+2026-04,Kewajiban,Tabungan,21421.46
+2026-04,Kewajiban,Deposito,11414.93
+2026-04,Kewajiban,Pinjaman yang diterima,2539.68
+2026-04,Kewajiban,Surat Berharga Diterbitkan,505.32
+2026-04,Kewajiban,Kewajiban Lainnya,1000.0
+2026-04,Ekuitas,Modal,6000.0
+2026-04,Ekuitas,Laba Tahun Lalu,2852.88
+2026-04,Ekuitas,Laba Tahun Berjalan,333.32
+2026-05,Asset,Kas,1800.0
+2026-05,Asset,Penempatan,8659.81
+2026-05,Asset,Kredit,58500.0
+2026-05,Asset,Aktiva Tetap,2460.0
+2026-05,Asset,Aset Lainnya,7269.45
+2026-05,Kewajiban,Giro,32775.12
+2026-05,Kewajiban,Tabungan,21395.41
+2026-05,Kewajiban,Deposito,10929.47
+2026-05,Kewajiban,Pinjaman yang diterima,2525.6
+2026-05,Kewajiban,Surat Berharga Diterbitkan,534.4
+2026-05,Kewajiban,Kewajiban Lainnya,1025.0
+2026-05,Ekuitas,Modal,6000.0
+2026-05,Ekuitas,Laba Tahun Lalu,3087.61
+2026-05,Ekuitas,Laba Tahun Berjalan,416.65
+2026-06,Asset,Kas,1800.0
+2026-06,Asset,Penempatan,8550.0
+2026-06,Asset,Kredit,58875.0
+2026-06,Asset,Aktiva Tetap,2460.0
+2026-06,Asset,Aset Lainnya,7326.57
+2026-06,Kewajiban,Giro,31946.29
+2026-06,Kewajiban,Tabungan,22064.91
+2026-06,Kewajiban,Deposito,11063.8
+2026-06,Kewajiban,Pinjaman yang diterima,2435.38
+2026-06,Kewajiban,Surat Berharga Diterbitkan,639.62
+2026-06,Kewajiban,Kewajiban Lainnya,1050.0
+2026-06,Ekuitas,Modal,6000.0
+2026-06,Ekuitas,Laba Tahun Lalu,3311.59
+2026-06,Ekuitas,Laba Tahun Berjalan,499.98
+2026-07,Asset,Kas,1800.0
+2026-07,Asset,Penempatan,8400.0
+2026-07,Asset,Kredit,59250.0
+2026-07,Asset,Aktiva Tetap,2460.0
+2026-07,Asset,Aset Lainnya,7434.63
+2026-07,Kewajiban,Giro,32801.6
+2026-07,Kewajiban,Tabungan,22008.54
+2026-07,Kewajiban,Deposito,10239.86
+2026-07,Kewajiban,Pinjaman yang diterima,2447.26
+2026-07,Kewajiban,Surat Berharga Diterbitkan,642.74
+2026-07,Kewajiban,Kewajiban Lainnya,1075.0
+2026-07,Ekuitas,Modal,6000.0
+2026-07,Ekuitas,Laba Tahun Lalu,3546.32
+2026-07,Ekuitas,Laba Tahun Berjalan,583.31
+2026-08,Asset,Kas,1800.0
+2026-08,Asset,Penempatan,8250.0
+2026-08,Asset,Kredit,59625.0
+2026-08,Asset,Aktiva Tetap,2460.0
+2026-08,Asset,Aset Lainnya,7542.69
+2026-08,Kewajiban,Giro,32672.75
+2026-08,Kewajiban,Tabungan,22189.77
+2026-08,Kewajiban,Deposito,10162.48
+2026-08,Kewajiban,Pinjaman yang diterima,2381.47
+2026-08,Kewajiban,Surat Berharga Diterbitkan,723.53
+2026-08,Kewajiban,Kewajiban Lainnya,1000.0
+2026-08,Ekuitas,Modal,6000.0
+2026-08,Ekuitas,Laba Tahun Lalu,3881.05
+2026-08,Ekuitas,Laba Tahun Berjalan,666.64
+2026-09,Asset,Kas,1800.0
+2026-09,Asset,Penempatan,8140.19
+2026-09,Asset,Kredit,60000.0
+2026-09,Asset,Aktiva Tetap,2460.0
+2026-09,Asset,Aset Lainnya,7599.81
+2026-09,Kewajiban,Giro,32446.94
+2026-09,Kewajiban,Tabungan,22286.64
+2026-09,Kewajiban,Deposito,10266.42
+2026-09,Kewajiban,Pinjaman yang diterima,2647.25
+2026-09,Kewajiban,Surat Berharga Diterbitkan,472.75
+2026-09,Kewajiban,Kewajiban Lainnya,1025.0
+2026-09,Ekuitas,Modal,6000.0
+2026-09,Ekuitas,Laba Tahun Lalu,4105.03
+2026-09,Ekuitas,Laba Tahun Berjalan,749.97
