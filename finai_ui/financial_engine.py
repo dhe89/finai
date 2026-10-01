@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from typing import Any
-import numpy as np
 import pandas as pd
 
 from finai_ui import data_service as ds
@@ -430,7 +429,7 @@ def build_evidence(question, period, plan):
     if plan and plan.get("correlation_analysis"):
         evidence["correlation_analysis"] = _correlations(primary, 18)
 
-    # Add focused line-item change analysis for the concepts the planner identified.
+    # Add focused line-item change analysis for the concepts likely relevant to the question.
     focus_text = " ".join(str(x) for x in (plan or {}).get("focus", []))
     dimensions = set((plan or {}).get("dimensions", []) or [])
     if previous and (
@@ -461,3 +460,209 @@ def build_evidence(question, period, plan):
     )[:40]
 
     return evidence
+
+# ---------------------------------------------------------------------------
+# Dynamic analytical tools
+# ---------------------------------------------------------------------------
+
+def _tool_income_drivers(period):
+    periods = ds.available_periods()
+    if period not in periods:
+        return {"available": False, "reason": "periode tidak tersedia"}
+    idx = periods.index(period)
+    previous = periods[idx - 1] if idx > 0 else None
+    yoy = f"{int(period[:4])-1:04d}-{period[5:7]}"
+    if yoy not in periods:
+        yoy = None
+    out = {
+        "period": period,
+        "mom": _top_contributors(period, previous) if previous else [],
+        "yoy": _group_changes(_group_statement(period, "income_statement"), _group_statement(yoy, "income_statement"))[:15] if yoy else [],
+        "interpretation_rule": "Beban naik memberi tekanan laba; pendapatan naik memberi dukungan. Ini adalah kontribusi perubahan, bukan bukti kausalitas tunggal.",
+    }
+    return out
+
+
+def _tool_balance_drivers(period):
+    periods = ds.available_periods()
+    idx = periods.index(period) if period in periods else -1
+    previous = periods[idx - 1] if idx > 0 else None
+    cur = _group_statement(period, "balance_sheet")
+    prev = _group_statement(previous, "balance_sheet") if previous else []
+    changes = _group_changes(cur, prev) if previous else []
+    by_statement = {}
+    for statement in ["Asset", "Kewajiban", "Ekuitas"]:
+        items = [x for x in changes if next((r["statement"] for r in cur if r["line_item"] == x["line_item"]), "") == statement]
+        by_statement[statement.lower()] = items[:15]
+    return {
+        "period": period,
+        "previous_period": previous,
+        "drivers": by_statement,
+    }
+
+
+def _tool_funding_analysis(period):
+    snap = _summary_snapshot(period)
+    values = {k: x["value"] for k, x in snap.items()}
+    total_assets = values.get("total_assets")
+    credit = values.get("total_credit")
+    dpk = values.get("total_dpk")
+    other = values.get("total_other_funding")
+    return {
+        "period": period,
+        "values": {
+            "total_assets": total_assets,
+            "total_credit": credit,
+            "total_dpk": dpk,
+            "total_other_funding": other,
+        },
+        "ratios": {
+            "credit_to_asset_percent": (credit / total_assets * 100) if total_assets else None,
+            "dpk_to_asset_percent": (dpk / total_assets * 100) if total_assets else None,
+            "credit_to_dpk_percent": (credit / dpk * 100) if dpk else None,
+            "credit_minus_dpk": (credit - dpk) if credit is not None and dpk is not None else None,
+            "credit_minus_customer_and_other_funding": (credit - dpk - (other or 0)) if credit is not None and dpk is not None else None,
+        },
+        "note": "Rasio/selisih menggambarkan struktur pendanaan pada periode tersebut; bukan bukti kecukupan likuiditas secara menyeluruh.",
+    }
+
+
+def _tool_trend(period, months=18):
+    return {
+        "periods": _trend(period, months),
+        "months_used": months,
+    }
+
+
+def _tool_target(period):
+    return {
+        "period": period,
+        "targets": _target_analysis(period),
+    }
+
+
+def _tool_product(period, kind):
+    data = _product_aggregation(period)
+    key = {
+        "loan_products": "loan_products",
+        "dpk_products": "dpk_products",
+        "investment_products": "investment_products",
+    }[kind]
+    rows = data.get(key, [])
+    enriched = []
+    for row in rows:
+        item = dict(row)
+        if kind == "loan_products":
+            outstanding = item.get("outstanding")
+            revenue = item.get("total_revenue")
+            item["revenue_to_outstanding_percent"] = (revenue / outstanding * 100) if outstanding else None
+            item["interpretation"] = "yield pendapatan indikatif, bukan laba produk"
+        elif kind == "dpk_products":
+            balance = item.get("balance")
+            cost = item.get("total_cost_bagi_hasil")
+            item["cost_to_balance_percent"] = (cost / balance * 100) if balance else None
+            item["interpretation"] = "cost rate indikatif, bukan total cost of funding yang disetahunkan"
+        elif kind == "investment_products":
+            amount = item.get("investment_amount")
+            revenue = item.get("total_revenue")
+            item["revenue_to_amount_percent"] = (revenue / amount * 100) if amount else None
+            item["interpretation"] = "yield pendapatan indikatif, bukan laba investasi"
+        enriched.append(item)
+    return {"period": period, "products": enriched}
+
+
+def _tool_correlation(period, months=18):
+    periods = ds.available_periods()
+    usable = [p for p in periods if p <= period][-months:] if period in periods else []
+    if len(usable) < 6:
+        return {"available": False, "reason": "Observasi time-series kurang dari 6 periode."}
+    result = _correlations(period, months)
+    result["available"] = True
+    return result
+
+
+def expand_evidence(evidence, request, period=None):
+    """Execute a bounded, auditable analytical tool requested by the AI.
+
+    The AI chooses *which* analysis is relevant; Python performs the actual
+    calculation. Unknown requests are ignored rather than interpreted loosely.
+    """
+    primary = ds.resolve_period(period or evidence.get("selected_period"))
+    if not primary:
+        return None
+    tools = {
+        "income_drivers": lambda: _tool_income_drivers(primary),
+        "balance_drivers": lambda: _tool_balance_drivers(primary),
+        "funding_analysis": lambda: _tool_funding_analysis(primary),
+        "trend": lambda: _tool_trend(primary, 18),
+        "target": lambda: _tool_target(primary),
+        "loan_products": lambda: _tool_product(primary, "loan_products"),
+        "dpk_products": lambda: _tool_product(primary, "dpk_products"),
+        "investment_products": lambda: _tool_product(primary, "investment_products"),
+        "correlation": lambda: _tool_correlation(primary, 18),
+    }
+    fn = tools.get(str(request))
+    if not fn:
+        return None
+    try:
+        return fn()
+    except Exception as exc:
+        return {"available": False, "error": str(exc)}
+
+
+def prepare_model_evidence(evidence):
+    """Create a compact, decision-oriented evidence view for the LLM.
+
+    The full evidence remains in memory for audit/verification. The model sees
+    only the most decision-relevant fields first; focused tools add detail when
+    the analyst requests it.
+    """
+    if not isinstance(evidence, dict):
+        return evidence
+
+    def compact_comparisons(raw):
+        out = {}
+        preferred = {"net_profit", "revenue", "operating_expense", "total_assets", "total_credit", "total_dpk", "npl_ratio", "ckpn"}
+        for relation, item in (raw or {}).items():
+            metrics = item.get("metrics", {}) if isinstance(item, dict) else {}
+            selected = {}
+            for key, value in metrics.items():
+                if key in preferred:
+                    selected[key] = value
+            if selected:
+                out[relation] = {"period": item.get("period"), "relation": item.get("relation"), "metrics": selected}
+        return out
+
+    trend = evidence.get("trend_12m") or []
+    trend_keys = {"net_profit", "revenue", "operating_expense", "total_assets", "total_credit", "total_dpk", "npl_ratio"}
+    compact_trend = [
+        {"period": row.get("period"), "metrics": {k: v for k, v in (row.get("metrics") or {}).items() if k in trend_keys}}
+        for row in trend
+    ]
+
+    products = {}
+    for key, rows in (evidence.get("product_data") or {}).items():
+        products[key] = rows[:5] if isinstance(rows, list) else rows
+
+    return {
+        "status": evidence.get("status"),
+        "question": evidence.get("question"),
+        "selected_period": evidence.get("selected_period"),
+        "unit": evidence.get("unit"),
+        "periods": evidence.get("periods"),
+        "current": evidence.get("current"),
+        "comparisons": compact_comparisons(evidence.get("comparisons")),
+        "target_analysis": evidence.get("target_analysis"),
+        "income_summary": evidence.get("income_summary"),
+        "financial_relationships": evidence.get("financial_relationships"),
+        "income_statement_changes_mom": (evidence.get("income_statement_changes_mom") or [])[:8],
+        "income_summary_changes_mom": evidence.get("income_summary_changes_mom"),
+        "financial_relationship_changes_mom": evidence.get("financial_relationship_changes_mom"),
+        "balance_sheet_changes_mom": evidence.get("balance_sheet_changes_mom"),
+        "income_summary_changes_yoy": evidence.get("income_summary_changes_yoy"),
+        "financial_relationship_changes_yoy": evidence.get("financial_relationship_changes_yoy"),
+        "trend_12m": compact_trend,
+        "product_data": products,
+        "data_capabilities": evidence.get("data_capabilities"),
+        "analysis_tools": evidence.get("analysis_tools", {}),
+    }
