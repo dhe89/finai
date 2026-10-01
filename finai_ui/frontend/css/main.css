@@ -129,81 +129,80 @@ button{font:inherit;cursor:pointer}
   #finai-root .left{top:var(--finai-top-offset,0px);height:var(--finai-vh,100dvh)}
   #finai-root .ai{inset:var(--finai-top-offset,0px) 0 0 0;width:100vw;height:var(--finai-vh,100dvh)}
 }
-
-
 /* ================================================================
-   FINAI TYPOGRAPHY PATCH — v1
-   Global readability improvement for all pages.
-   No layout/navigation/data logic is changed.
+   FINAI TYPOGRAPHY PATCH — v2
+   Typography only. Do not change layout, spacing, positioning,
+   dimensions, grid/flex behaviour, or responsive structure.
    ================================================================ */
-html, body, #finai-root {
+#finai-root,
+#finai-root button,
+#finai-root input,
+#finai-root textarea,
+#finai-root select {
   font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
-  font-size: 14px;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-/* Sidebar */
-#finai-root .brand { font-size: 21px; }
-#finai-root .nav-item { font-size: 15px; }
-#finai-root .nav-icon { font-size: 15px; }
-#finai-root .config { font-size: 10px; }
-#finai-root .config-pill { font-size: 10px; }
-#finai-root .status { font-size: 10px; }
+/* Sidebar text */
+#finai-root .brand { font-size: 20px; }
+#finai-root .nav-item { font-size: 14px; }
+#finai-root .nav-icon { font-size: 14px; }
+#finai-root .config { font-size: 9px; }
+#finai-root .config-pill { font-size: 9px; }
+#finai-root .status { font-size: 9px; }
 
-/* Shared page header */
-#finai-root .desktop-app-name { font-size: 14px; }
-#finai-root .eyebrow { font-size: 10px; letter-spacing: 2.1px; }
-#finai-root .title { font-size: 36px; line-height: 1.08; }
-#finai-root .subtitle { font-size: 13px; }
-#finai-root .period { font-size: 12px; padding: 11px 16px; }
+/* Page heading */
+#finai-root .desktop-app-name { font-size: 13px; }
+#finai-root .eyebrow { font-size: 9px; }
+#finai-root .title { font-size: 31px; }
+#finai-root .subtitle { font-size: 11px; }
+#finai-root .period { font-size: 10px; }
 
-/* KPI / metric cards */
-#finai-root .metric-label { font-size: 12px; }
-#finai-root .metric-value { font-size: 26px; }
-#finai-root .metric-change { font-size: 10px; }
+/* KPI cards */
+#finai-root .metric-label { font-size: 10px; }
+#finai-root .metric-value { font-size: 22px; }
+#finai-root .metric-change { font-size: 8px; }
 
-/* Tables — applies to every financial/report/detail table */
-#finai-root .table-head { padding: 17px 18px 13px; }
-#finai-root .table-title { font-size: 16px; }
-#finai-root .caption { font-size: 10px; }
-#finai-root .switcher { font-size: 10px; padding: 9px 13px; }
-#finai-root table { font-size: 11px; }
-#finai-root th { font-size: 11px; padding: 10px 13px; }
-#finai-root td { font-size: 11.5px; padding: 12px 13px; }
-#finai-root tr.section td { font-size: 10.5px; padding: 9px 13px; letter-spacing: 1.35px; }
+/* Tables */
+#finai-root .table-title { font-size: 14px; }
+#finai-root .caption { font-size: 8px; }
+#finai-root .switcher { font-size: 9px; }
+#finai-root table { font-size: 9px; }
+#finai-root th { font-size: 9px; }
+#finai-root td { font-size: 9px; }
+#finai-root tr.section td { font-size: 9px; }
 
-/* Bottom summary cards */
-#finai-root .small { padding: 17px; }
-#finai-root .small-title { font-size: 14px; }
-#finai-root .small .caption { font-size: 10px; }
-#finai-root .kpi { font-size: 11.5px; }
-#finai-root .kpi-value { font-size: 13px; }
+/* Summary cards */
+#finai-root .small-title { font-size: 12px; }
+#finai-root .small .caption { font-size: 8px; }
+#finai-root .kpi { font-size: 9px; }
+#finai-root .kpi-value { font-size: 11px; }
 
-/* Forms / settings / badges */
-#finai-root .setting-row { font-size: 12px; }
-#finai-root .badge { font-size: 10px; }
+/* Forms / settings */
+#finai-root .setting-row { font-size: 10px; }
+#finai-root .badge { font-size: 9px; }
 
-/* AI assistant */
-#finai-root .ai-title { font-size: 17px; }
-#finai-root .ai-status { font-size: 10px; }
-#finai-root .msgtext { font-size: 12px; line-height: 1.6; }
-#finai-root .bubble { font-size: 12px; line-height: 1.55; }
-#finai-root .chat-input { font-size: 12px; }
+/* AI Assistant */
+#finai-root .ai-title { font-size: 15px; }
+#finai-root .ai-status { font-size: 8px; }
+#finai-root .msgtext { font-size: 10.5px; }
+#finai-root .bubble { font-size: 10px; }
+#finai-root .chat-input { font-size: 10px; }
 
-/* Mobile readability: slightly tighter than desktop, but still comfortably readable */
+/* Mobile: font sizes only. No layout/spacing changes. */
 @media (max-width: 800px) {
-  #finai-root .title { font-size: 30px; }
-  #finai-root .subtitle { font-size: 12px; }
-  #finai-root .period { font-size: 11px; padding: 10px 13px; }
-  #finai-root .metric-label { font-size: 11px; }
-  #finai-root .metric-value { font-size: 23px; }
-  #finai-root .metric-change { font-size: 9.5px; }
-  #finai-root table { font-size: 11px; }
-  #finai-root th { font-size: 10.5px; }
-  #finai-root td { font-size: 11px; padding: 11px 10px; }
-  #finai-root tr.section td { font-size: 10px; }
-  #finai-root .small-title { font-size: 14px; }
-  #finai-root .kpi { font-size: 11.5px; }
-  #finai-root .kpi-value { font-size: 13px; }
+  #finai-root .title { font-size: 29px; }
+  #finai-root .subtitle { font-size: 11px; }
+  #finai-root .period { font-size: 10px; }
+  #finai-root .metric-label { font-size: 10px; }
+  #finai-root .metric-value { font-size: 20px; }
+  #finai-root .metric-change { font-size: 8px; }
+  #finai-root table { font-size: 9px; }
+  #finai-root th { font-size: 9px; }
+  #finai-root td { font-size: 9px; }
+  #finai-root tr.section td { font-size: 9px; }
+  #finai-root .small-title { font-size: 12px; }
+  #finai-root .kpi { font-size: 9px; }
+  #finai-root .kpi-value { font-size: 11px; }
 }
