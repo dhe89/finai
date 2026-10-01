@@ -12,17 +12,27 @@ export default function(component) {
   const qs = (selector) => root.querySelector(selector);
 
   function updateViewportOffset() {
+    const shellRect = shell.getBoundingClientRect();
     const nativeHeader = document.querySelector(
       'header[data-testid="stHeader"], [data-testid="stHeader"]'
     );
+    const mobile = shellRect.width <= 800;
 
-    const topOffset = nativeHeader
+    // Mobile is kept on the established baseline: its fixed layers are
+    // anchored to the native Streamlit header bottom.
+    // Desktop instead uses the real #finai-root top. Streamlit can leave a
+    // small content spacer after stHeader, so using stHeader.bottom there
+    // makes the AI overlay start above the sidebar/page shell.
+    const nativeHeaderBottom = nativeHeader
       ? Math.max(0, nativeHeader.getBoundingClientRect().bottom)
       : 0;
+    const topOffset = mobile
+      ? nativeHeaderBottom
+      : Math.max(0, shellRect.top);
 
     const viewportHeight = Math.max(320, window.innerHeight - topOffset);
 
-    // All mobile fixed layers use the same coordinate system.
+    // Sidebar/header/AI overlay all use the same top coordinate on desktop.
     shell.style.setProperty('--finai-top-offset', `${topOffset}px`);
     shell.style.setProperty('--finai-vh', `${viewportHeight}px`);
   }
