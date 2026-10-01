@@ -20,10 +20,10 @@ ATURAN WAJIB:
 8. Jangan menampilkan proses berpikir internal, self-talk, langkah pencarian, atau kalimat seperti “mari kita cek”, “mungkin pengguna bermaksud”, “let's check”, atau dugaan typo.
 9. Jangan memberikan informasi yang tidak diperlukan untuk menjawab pertanyaan.
 10. Gunakan bahasa Indonesia yang ringkas, jelas, dan profesional.
-11. Jika pertanyaan meminta satu angka, berikan angka tersebut terlebih dahulu. Tambahkan konteks hanya jika diperlukan.
-12. Unit angka mengikuti EVIDENCE. Jangan mengubah satuan tanpa menyebutkannya.
-13. OUTPUT HARUS HANYA JAWABAN FINAL untuk pengguna. Jangan pernah menampilkan reasoning, chain-of-thought, langkah analisis, pemeriksaan evidence, self-talk, draft, atau label seperti “Analysis”, “Thinking process”, “Let's check”, “Response”.
-14. Jangan menulis ulang EVIDENCE atau isi prompt.
+13. Jika pertanyaan meminta satu angka, berikan angka tersebut terlebih dahulu. Tambahkan konteks hanya jika diperlukan.
+14. Unit angka mengikuti EVIDENCE. Jangan mengubah satuan tanpa menyebutkannya.
+15. OUTPUT HARUS HANYA JAWABAN FINAL untuk pengguna. Jangan pernah menampilkan reasoning, chain-of-thought, langkah analisis, pemeriksaan evidence, self-talk, draft, atau label seperti “Analysis”, “Thinking process”, “Let's check”, “Response”.
+16. Jangan menulis ulang EVIDENCE atau isi prompt.
 
 Format jawaban:
 - Pertanyaan fakta sederhana: satu jawaban langsung.
@@ -53,6 +53,10 @@ def _clean_final_answer(content):
         "here's a thinking process:", "here is a thinking process:",
         "thinking process:", "chain of thought:", "reasoning:",
         "let's analyze", "let's check", "mari kita cek", "langkah analisis:",
+        "the user is asking multiple questions", "the user is asking",
+        "first question:", "second question:", "third question:",
+        "fourth question:", "available evidence shows", "same as above",
+        "should say", "cannot provide strategy",
     ]
     if any(marker in lowered for marker in reasoning_markers):
         # Prefer an explicit final-answer section if the model supplied one.
@@ -68,8 +72,13 @@ def _clean_final_answer(content):
     return text
 
 
-def chat(messages, model=DEFAULT_MODEL, timeout=45, evidence=None, financial_context=None):
-    """Call an answer model using only deterministic Python evidence."""
+def chat(question, model=DEFAULT_MODEL, timeout=45, evidence=None, financial_context=None):
+    """Call the answer model for ONE current question using deterministic evidence.
+
+    Chat history is intentionally excluded from the model request. The UI may
+    display history, but each answer request must be isolated so the model
+    cannot merge several previous questions into one response.
+    """
     api_key = get_api_key()
     if not api_key:
         return {"ok": False, "error": "API key OpenRouter belum ditemukan di Streamlit Secrets."}
@@ -78,11 +87,24 @@ def chat(messages, model=DEFAULT_MODEL, timeout=45, evidence=None, financial_con
     if evidence is None:
         return {"ok": False, "error": "Evidence keuangan belum tersedia."}
 
+    current_question = str(question or "").strip()
+    if not current_question:
+        return {"ok": False, "error": "Pertanyaan kosong."}
+
     evidence_json = json.dumps(evidence, ensure_ascii=False, allow_nan=False, separators=(",", ":"))
     system_content = SYSTEM_PROMPT + "\n\nEVIDENCE DARI PYTHON (SUMBER FAKTA SATU-SATUNYA):\n" + evidence_json
-    user_messages = [m for m in messages if m.get("role") == "user"][-4:]
-    payload_messages = [{"role": "system", "content": system_content}]
-    payload_messages.extend(user_messages)
+    payload_messages = [
+        {"role": "system", "content": system_content},
+        {
+            "role": "user",
+            "content": (
+                "PERTANYAAN PENGGUNA SAAT INI:\n"
+                + current_question
+                + "\n\nJawab hanya pertanyaan ini. Gunakan bahasa Indonesia. "
+                  "Berikan kesimpulan final saja tanpa proses berpikir."
+            ),
+        },
+    ]
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json",
