@@ -8,7 +8,7 @@ from finai_ui.ai.openrouter import chat as openrouter_chat
 from finai_ui.data_service import (
     LATEST_PERIOD,
     render_page,
-    build_financial_context,
+    build_financial_evidence,
     ensure_data_fresh,
     get_latest_period,
     available_periods,
@@ -197,10 +197,21 @@ if chat_event:
         st.session_state.ai_open = True
         st.session_state.chat_messages.append({"role": "user", "content": text})
 
-        response = openrouter_chat(st.session_state.chat_messages, financial_context=build_financial_context(st.session_state.period))
-        if response.get("ok"):
-            answer = response.get("content", "").strip()
+        evidence = build_financial_evidence(text, st.session_state.period)
+
+        # Validation happens before the LLM. Out-of-scope, ambiguous, or
+        # unavailable-data questions never reach OpenRouter.
+        if evidence.get("status") != "READY":
+            answer = evidence.get("message", "Data tidak cukup untuk menjawab pertanyaan.")
         else:
-            answer = "⚠️ " + response.get("error", "LLM belum dapat merespons saat ini.")
+            response = openrouter_chat(
+                st.session_state.chat_messages,
+                evidence=evidence,
+            )
+            if response.get("ok"):
+                answer = response.get("content", "").strip()
+            else:
+                answer = "⚠️ " + response.get("error", "LLM belum dapat merespons saat ini.")
+
         st.session_state.chat_messages.append({"role": "assistant", "content": answer})
         st.rerun()
