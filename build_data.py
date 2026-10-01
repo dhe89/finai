@@ -3,8 +3,29 @@ import pandas as pd
 import numpy as np
 import random, math, json
 
-random.seed(42)
-np.random.seed(42)
+# Range-based simulation: values are intentionally varied per generation so the
+# portfolio does not look like a fixed target snapshot.
+random.seed()
+np.random.seed()
+
+ASSET_2024_END = random.uniform(68_000, 72_500)
+ASSET_2025_END = random.uniform(74_000, 79_000)
+ASSET_2026_END = random.uniform(77_500, 82_500)
+CREDIT_2026_END = random.uniform(57_500, 62_500)
+DPK_2026_END = random.uniform(62_000, 68_000)
+CAPITAL_BASE = random.uniform(5_700, 6_300)
+PROFIT_TARGETS = {
+    2024: random.uniform(650, 820),
+    2025: random.uniform(820, 980),
+    2026: random.uniform(930, 1_070),
+}
+ASSET_2024_START = random.uniform(63_500, 66_500)
+ASSET_2025_START = None  # assigned after ASSET_2024_END
+ASSET_2026_START = None
+CREDIT_2026_JAN = random.uniform(56_500, 59_000)
+DPK_2026_JAN = random.uniform(64_500, 66_500)
+ASSET_2025_START = ASSET_2024_END + random.uniform(100, 900)
+ASSET_2026_START = ASSET_2025_END + random.uniform(100, 900)
 BASE = Path(__file__).resolve().parent
 DATA = BASE/'data'
 DATA.mkdir(exist_ok=True)
@@ -123,9 +144,12 @@ for i in range(other_n):
 def target_path(year, month):
     # anchors: Jan 2024 ~65T, Dec 2024 ~71T, Dec 2025 ~77T, Sep 2026 ~80T
     anchors={
-      pd.Timestamp('2024-01-31'):65000, pd.Timestamp('2024-12-31'):71000,
-      pd.Timestamp('2025-01-31'):71200, pd.Timestamp('2025-12-31'):77000,
-      pd.Timestamp('2026-01-31'):77400, pd.Timestamp('2026-09-30'):80000}
+      pd.Timestamp('2024-01-31'):ASSET_2024_START,
+      pd.Timestamp('2024-12-31'):ASSET_2024_END,
+      pd.Timestamp('2025-01-31'):ASSET_2025_START,
+      pd.Timestamp('2025-12-31'):ASSET_2025_END,
+      pd.Timestamp('2026-01-31'):ASSET_2026_START,
+      pd.Timestamp('2026-09-30'):ASSET_2026_END}
     # linear interpolation
     keys=sorted(anchors)
     for a,b in zip(keys[:-1],keys[1:]):
@@ -138,8 +162,10 @@ def loan_target(d):
     frac=(target_path(d.year,d)*0) # no-op
     # 75% of total assets in 2026, 70% 2024
     base=43000 + (d.year-2024)*7000
-    if d>=pd.Timestamp('2026-01-31'): base=57000 + (d.month-1)*(3000/8)
-    if d>pd.Timestamp('2026-09-30'): base=60000
+    if d>=pd.Timestamp('2026-01-31'):
+        jan_credit=CREDIT_2026_JAN
+        base=jan_credit + (d.month-1)*((CREDIT_2026_END-jan_credit)/8)
+    if d>pd.Timestamp('2026-09-30'): base=CREDIT_2026_END
     return min(base,60000)
 
 def inv_target(d):
@@ -148,7 +174,8 @@ def inv_target(d):
 def dpk_target(d):
     if d.year==2024: return 53000 + (d.month-1)*1000
     if d.year==2025: return 64500 + (d.month-1)*45
-    return 65200 + (d.month-1)*(-25)
+    jan_dpk=DPK_2026_JAN
+    return jan_dpk + (d.month-1)*((DPK_2026_END-jan_dpk)/8)
 
 def other_funding_target(d):
     if d.year==2024: return 3500 - (d.month-1)*30
@@ -212,7 +239,42 @@ def exact_monthly_total(df, period_col, value_col, target_func):
         if mask.any():
             idx=df.loc[mask,value_col].idxmax(); df.loc[idx,value_col]=round(float(df.loc[idx,value_col])+(target-current),2)
 
-exact_monthly_total(loans,'period','outstanding',loan_target)
+# Cap-aware monthly reconciliation for loans: preserve Outstanding <= Facility Amount
+for p in loans.period.unique():
+    mask=loans.period.eq(p)
+    target=float(loan_target(pd.Timestamp(p+'-01')+pd.offsets.MonthEnd(0)))
+    vals=loans.loc[mask,'outstanding'].to_numpy(float)
+    caps=loans.loc[mask,'facility_amount'].to_numpy(float)
+    for _ in range(50):
+        diff=target-vals.sum()
+        if abs(diff)<0.005: break
+        if diff>0:
+            free=caps-vals
+            idxs=[i for i,x in enumerate(free) if x>0.001]
+            if not idxs: break
+            share=free[idxs]/free[idxs].sum()*diff
+            vals[idxs]=np.minimum(caps[idxs], vals[idxs]+share)
+        else:
+            positive=np.where(vals>0.001)[0]
+            share=vals[positive]/vals[positive].sum()*(-diff)
+            vals[positive]=np.maximum(0, vals[positive]-share)
+    loans.loc[mask,'outstanding']=np.round(vals,2)
+# Reconcile any sub-cent rounding residual without violating facility caps
+for p in loans.period.unique():
+    mask=loans.period.eq(p)
+    target=float(loan_target(pd.Timestamp(p+'-01')+pd.offsets.MonthEnd(0)))
+    diff=round(target-float(loans.loc[mask,'outstanding'].sum()),2)
+    if abs(diff)>=0.01:
+        caps=loans.loc[mask,'facility_amount'].to_numpy(float)
+        vals=loans.loc[mask,'outstanding'].to_numpy(float)
+        order=np.argsort(-(caps-vals) if diff>0 else -vals)
+        for i in order:
+            room=(caps[i]-vals[i]) if diff>0 else vals[i]
+            adj=min(abs(diff),max(0,room))
+            vals[i]+=adj if diff>0 else -adj
+            diff=round(diff-(adj if diff>0 else -adj),2)
+            if abs(diff)<0.01: break
+        loans.loc[mask,'outstanding']=np.round(vals,2)
 exact_monthly_total(investments,'period','investment_amount',inv_target)
 exact_monthly_total(funding,'period','balance',dpk_target)
 exact_monthly_total(other,'period','balance',other_funding_target)
@@ -260,7 +322,7 @@ for d in periods:
     # Profit formula. Add a management income adjustment so annual 2026 approaches 1T.
     gross=total_rev - fund_cost - other_cost + rent + fee + other_income - operating_exp - ckpn
     # controlled adjustment: 2024 lower, 2025 medium, 2026 target 1T
-    target_month_profit={2024:720/12,2025:900/12,2026:1000/12}[d.year]
+    target_month_profit=PROFIT_TARGETS[d.year]/12
     adj=target_month_profit-gross
     # Put adjustment into Pendapatan Operasional Lainnya - Pendapatan Lainnya
     other_income += adj
@@ -280,7 +342,7 @@ for d in periods:
     # liabilities and equity
     other_liab=1000 + (d.month%4)*25
     equity=total_assets-dpk-other_f-other_liab
-    capital=6000
+    capital=CAPITAL_BASE
     prior_earnings=equity-capital-net_profit if d.month==12 else equity-capital-(sum([r[1] for r in []]))
     # Current year balance sheet current profit must equal current year's YTD net profit; retained prior = equity-capital-current_ytd.
     ytd=sum(r[0] for r in [])
@@ -339,7 +401,7 @@ for d in periods:
     target_rows.append({'period':p,'target_type':'Growth','metric':'Total DPK','target':round(dpk*1.005,2)})
     target_rows.append({'period':p,'target_type':'Funding','metric':'Total Other Funding','target':round(other_f*1.005,2)})
     target_rows.append({'period':p,'target_type':'Profitability','metric':'Total Revenue','target':round((total_rev+rent+fee+other_income)*1.01,2)})
-    target_rows.append({'period':p,'target_type':'Profitability','metric':'Net Profit','target':round({2024:720,2025:900,2026:1000}[d.year]/12,2)})
+    target_rows.append({'period':p,'target_type':'Profitability','metric':'Net Profit','target':round(PROFIT_TARGETS[d.year]/12,2)})
     target_rows.append({'period':p,'target_type':'Efficiency','metric':'Low Cost Funding %','target':round(min(82,low_cost+2.0),2)})
     target_rows.append({'period':p,'target_type':'Efficiency','metric':'Operating Expense','target':round(operating_exp*0.97,2)})
     target_rows.append({'period':p,'target_type':'Quality','metric':'NPL Ratio %','target':2.0})
