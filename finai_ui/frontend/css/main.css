@@ -498,3 +498,66 @@ button{font:inherit;cursor:pointer}
     z-index:1 !important;
   }
 }
+
+/* ================================================================
+   FINAI TYPOGRAPHY READABILITY PATCH
+   Typography only: no layout, spacing, colour, positioning, or
+   responsive geometry changes.
+   ================================================================ */
+html,body,#finai-root{
+  font-family:Inter,"Segoe UI",Arial,sans-serif;
+}
+
+/* Navigation / sidebar */
+.nav-item{font-size:15px}
+.nav-icon{font-size:15px}
+.brand,.mobile-brand{font-size:21px}
+.config{font-size:10px}
+.config-pill{font-size:10px}
+.status{font-size:10px}
+
+/* Page headings */
+.desktop-app-name{font-size:14px}
+.eyebrow{font-size:10px}
+.title{font-size:34px}
+.subtitle{font-size:12px}
+.period,.period-select{font-size:11px}
+.period-picker{font-size:11px}
+.period-chevron{font-size:12px}
+
+/* KPI cards */
+.metric-label{font-size:11px}
+.metric-value{font-size:24px}
+.metric-change{font-size:9px}
+
+/* Tables / financial statements */
+.table-title{font-size:15px}
+.caption{font-size:9px}
+.switcher{font-size:10px}
+table{font-size:10px}
+th{font-size:10px}
+td{font-size:10px}
+tr.section td{font-size:10px}
+
+/* Summary cards */
+.small-title{font-size:13px}
+.kpi{font-size:10px}
+.kpi-value{font-size:12px}
+
+/* Forms / settings */
+.setting-row{font-size:11px}
+.badge{font-size:10px}
+
+/* AI assistant */
+.ai-title{font-size:16px}
+.ai-status{font-size:9px}
+.msgtext{font-size:12px}
+.bubble{font-size:11px}
+.chat-input{font-size:12px}
+
+/* Mobile typography only. Geometry remains unchanged. */
+@media(max-width:800px){
+  #finai-root > .left .sidebar-mobile-brand{font-size:21px !important}
+  #finai-root > .mobile-head .mobile-brand-text{font-size:21px !important}
+  .period-select{font-size:11px}
+}
