@@ -696,6 +696,12 @@ def _has_financial_term(text):
     text = _normalise_text(text)
     if any(term in text for term in _FINANCIAL_TERMS):
         return True
+    # Common natural-language financial requests that are not a metric name.
+    if any(term in text for term in [
+        "kinerja keuangan", "kondisi keuangan", "kondisi kinerja",
+        "ringkasan kinerja", "performa keuangan", "posisi keuangan",
+    ]):
+        return True
     # Treat every statement/target line item in the actual CSV as financial
     # vocabulary, so questions such as “berapa kas?” or “berapa modal?” are
     # not incorrectly blocked as out-of-scope.
@@ -892,7 +898,48 @@ def _direct_answer(question, evidence):
     return None
 
 
-def build_financial_evidence(question, selected_period=None):
+
+def _statement_detail_evidence(period, dimension, metric=None, focus="none"):
+    """Return deterministic statement detail for semantic BREAKDOWN requests."""
+    if dimension == "income_statement_lines":
+        df = _period_records(IS, period)
+        if df.empty:
+            return []
+        if metric == "interest_income":
+            mask = df.line_item.astype(str).str.startswith("Pendapatan Bunga")
+        elif metric == "interest_expense":
+            mask = df.line_item.astype(str).str.startswith("Beban Bunga")
+        elif metric == "other_operating_income":
+            mask = df.line_item.astype(str).str.startswith("Pendapatan Operasional Lainnya") | df.line_item.astype(str).eq("Pendapatan Investasi")
+        elif metric == "other_operating_expense":
+            mask = df.line_item.astype(str).str.startswith("Beban Operasional Lainnya")
+        elif focus == "income":
+            mask = df.line_item.astype(str).str.startswith("Pendapatan Bunga") | df.line_item.astype(str).str.startswith("Pendapatan Operasional Lainnya") | df.line_item.astype(str).eq("Pendapatan Investasi")
+        elif focus == "expense":
+            mask = df.line_item.astype(str).str.startswith("Beban Bunga") | df.line_item.astype(str).str.startswith("Beban Operasional Lainnya")
+        else:
+            mask = ~df.line_item.astype(str).eq("Laba Bersih")
+        return df.loc[mask, ["line_item", "amount"]].sort_values("amount", ascending=False).to_dict("records")
+
+    if dimension == "balance_sheet_lines":
+        df = _period_records(BS, period)
+        if df.empty:
+            return []
+        if focus in {"asset", "liability", "equity"}:
+            statement_map = {"asset": "Asset", "liability": "Liability", "equity": "Equity"}
+            df = df[df.statement.astype(str).eq(statement_map[focus])]
+        return df[["statement", "line_item", "amount"]].sort_values("amount", ascending=False).to_dict("records")
+
+    return []
+
+
+def _intent_metrics(intent):
+    if not intent:
+        return []
+    metric = intent.get("metric")
+    return [metric] if metric and metric not in {"unknown", "overview"} else []
+
+def build_financial_evidence(question, selected_period=None, intent=None):
     """Validate a question and build deterministic evidence from CSV data.
 
     Returns a small structured object consumed by the LLM. It intentionally
@@ -904,13 +951,32 @@ def build_financial_evidence(question, selected_period=None):
     if not q:
         return {"status": "AMBIGUOUS", "message": "Pertanyaan belum diisi."}
 
+    # Semantic routing is preferred. The router sees only the user question,
+    # never financial data. Python remains the source of truth for all facts.
+    if intent and intent.get("scope") == "META":
+        return {
+            "status": "META",
+            "message": "Saya FinAI, asisten Financial Intelligence yang menjawab pertanyaan berdasarkan data keuangan yang tersedia di aplikasi.",
+        }
+    if intent and intent.get("scope") == "OUT_OF_SCOPE":
+        return {
+            "status": "OUT_OF_SCOPE",
+            "message": "Pertanyaan berada di luar cakupan FinAI. FinAI hanya menjawab berdasarkan data dan informasi keuangan yang tersedia.",
+        }
+    if intent and intent.get("scope") == "AMBIGUOUS":
+        return {
+            "status": "AMBIGUOUS",
+            "message": "Pertanyaan masih ambigu. Mohon sebutkan informasi atau metrik yang ingin dianalisis serta periodenya jika diperlukan.",
+        }
+
     if _is_assistant_meta(q):
         return {
             "status": "META",
             "message": "Saya FinAI, asisten Financial Intelligence yang menjawab pertanyaan berdasarkan data keuangan yang tersedia di aplikasi.",
         }
 
-    if _is_out_of_scope(q):
+    # Fallback only when semantic routing is unavailable.
+    if intent is None and _is_out_of_scope(q):
         return {
             "status": "OUT_OF_SCOPE",
             "message": "Pertanyaan berada di luar cakupan FinAI. FinAI hanya menjawab berdasarkan data dan informasi keuangan yang tersedia.",
@@ -933,7 +999,9 @@ def build_financial_evidence(question, selected_period=None):
     if not primary:
         return {"status": "NO_DATA", "message": "Periode data belum tersedia."}
 
-    metrics = _detect_metrics(q)
+    metrics = _intent_metrics(intent) if intent and intent.get("scope") == "FINANCIAL" else _detect_metrics(q)
+    if intent and intent.get("scope") == "FINANCIAL" and intent.get("metric") == "overview":
+        metrics = []
     # A specific financial metric that is not present in the supported evidence
     # model must fail closed rather than being guessed by the LLM.
     unsupported_metrics = [
@@ -949,16 +1017,19 @@ def build_financial_evidence(question, selected_period=None):
 
     # A broad dashboard request is allowed; a vague question without a
     # recognizable financial subject is not passed to the LLM.
-    broad_terms = ["kinerja keuangan", "overview", "ringkasan", "dashboard", "kondisi keuangan"]
+    broad_terms = ["kinerja keuangan", "overview", "ringkasan", "dashboard", "kondisi keuangan", "kondisi kinerja", "kinerja"]
     statement_hint = bool(_statement_line_evidence(q, primary, []))
-    if not metrics and not statement_hint and not any(x in q for x in broad_terms):
+    semantic_known = bool(intent and intent.get("scope") == "FINANCIAL" and intent.get("intent") != "UNKNOWN")
+    if not metrics and not statement_hint and not any(x in q for x in broad_terms) and not semantic_known:
         return {
             "status": "AMBIGUOUS",
             "message": "Pertanyaan masih ambigu. Sebutkan metrik atau informasi yang ingin dilihat, misalnya laba, aset, kredit, DPK, pendapatan, CKPN, NPL, atau target.",
         }
 
     comparison = _comparison_periods(q, primary)
-    overview_requested = not metrics and any(x in q for x in broad_terms)
+    if intent and intent.get("scope") == "FINANCIAL" and intent.get("intent") in {"COMPARISON", "TREND", "DIAGNOSIS"} and not comparison:
+        comparison = [prev_period(primary)] if prev_period(primary) else []
+    overview_requested = bool(intent and intent.get("intent") == "OVERVIEW") or (not metrics and any(x in q for x in broad_terms))
     evidence = {
         "source": "CSV simulation data via Python",
         "selected_period": primary,
@@ -990,6 +1061,14 @@ def build_financial_evidence(question, selected_period=None):
     statement_lines = _statement_line_evidence(q, primary, comparison)
     if statement_lines:
         evidence["statement_lines"] = statement_lines
+
+    # Semantic BREAKDOWN requests receive exact child rows from CSV. The user
+    # does not need to use a pre-registered keyword for Python to understand the
+    # question; the semantic router maps it to a controlled dimension/metric.
+    if intent and intent.get("intent") == "BREAKDOWN":
+        detail = _statement_detail_evidence(primary, intent.get("dimension"), intent.get("metric"), intent.get("focus", "none"))
+        if detail:
+            evidence["statement_detail"] = detail
 
     # P&L grouped evidence is supplied whenever the question concerns profit,
     # revenue, expense, income statement, or diagnosis of a profit movement.
@@ -1061,6 +1140,7 @@ def build_financial_evidence(question, selected_period=None):
                 "message": f"Data pembanding untuk periode {format_period_id(primary)} tidak tersedia.",
             }
 
+    evidence["intent"] = intent or {"source": "LOCAL_RULE"}
     evidence["status"] = "READY"
     direct = _direct_answer(q, evidence)
     if direct:
