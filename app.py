@@ -4,7 +4,7 @@ import json
 import re
 import streamlit as st
 
-from finai_ui.ai.orchestrator import run_financial_analysis
+from finai_ui.ai.llm_router import chat as llm_chat
 from finai_ui.data_service import (
     LATEST_PERIOD,
     render_page,
@@ -196,15 +196,10 @@ if chat_event:
         st.session_state.ai_open = True
         st.session_state.chat_messages.append({"role": "user", "content": text})
 
-        # Financial Analyst architecture:
-        # User question -> semantic director -> Python analytics tools ->
-        # bounded drill-down loop -> synthesis -> deterministic verifier.
-        # Chat history is rendered in the UI only; it is never sent as prior
-        # questions to the analyst.
-        result = run_financial_analysis(
-            text,
-            selected_period=st.session_state.period,
-        )
-        answer = result.get("answer", "Data belum cukup untuk menjawab pertanyaan.")
+        response = llm_chat(st.session_state.chat_messages, selected_period=st.session_state.period)
+        if response.get("ok"):
+            answer = response.get("content", "").strip()
+        else:
+            answer = "⚠️ " + response.get("error", "LLM belum dapat merespons saat ini.")
         st.session_state.chat_messages.append({"role": "assistant", "content": answer})
         st.rerun()
