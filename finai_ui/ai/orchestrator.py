@@ -15,13 +15,13 @@ from finai_ui import data_service as ds
 
 META_PHRASES = [
     "perkenalkan dirimu", "perkenalkan diri", "siapa kamu", "siapa anda",
-    "apa itu finai", "apa itu fin ai",
+    "apa itu finai", "apa itu fin ai", "hai", "halo", "hi", "selamat pagi", "selamat siang", "selamat sore", "selamat malam",
 ]
 
 
 def _meta(question):
     q = " ".join(str(question or "").lower().split())
-    return any(x in q for x in META_PHRASES)
+    return q in META_PHRASES or any(q.startswith(x + " ") for x in META_PHRASES if x in {"perkenalkan dirimu", "perkenalkan diri", "siapa kamu", "siapa anda", "apa itu finai", "apa itu fin ai"})
 
 
 def _apply_requested_tools(evidence, requests, period, used):
@@ -89,6 +89,7 @@ def run_financial_analysis(question, selected_period=None, model=DEFAULT_MODEL):
                 "evidence": evidence,
                 "model_used": False,
                 "warning": director.get("error", "LLM director unavailable"),
+                "llm_error_code": director.get("error_code"),
             }
 
         analysis = director.get("analysis", {})
@@ -123,6 +124,7 @@ def run_financial_analysis(question, selected_period=None, model=DEFAULT_MODEL):
                     "findings": findings,
                     "model_used": False,
                     "warning": next_director.get("error", "LLM planner unavailable"),
+                    "llm_error_code": next_director.get("error_code"),
                 }
             analysis = next_director.get("analysis", {})
             findings.extend(analysis.get("findings", []) or [])
@@ -137,6 +139,7 @@ def run_financial_analysis(question, selected_period=None, model=DEFAULT_MODEL):
                 "findings": findings,
                 "model_used": False,
                 "warning": final.get("error", "LLM synthesis unavailable"),
+                "llm_error_code": final.get("error_code"),
             }
 
         answer = final.get("content", "").strip()
