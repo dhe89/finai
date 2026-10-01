@@ -128,11 +128,21 @@ export default function(component) {
 
   function bindNavigation() {
     const periodSelect = qs('#periodSelect');
-    if (periodSelect && periodSelect.dataset.finaiPeriodBound !== '1') {
-      periodSelect.dataset.finaiPeriodBound = '1';
-      periodSelect.addEventListener('change', () => {
-        setTriggerValue('period', periodSelect.value);
-      });
+    if (periodSelect) {
+      // Python is the source of truth after each rerun. Sync the visible
+      // selection without recreating the event listener.
+      const serverPeriod = data && data.period ? String(data.period) : '';
+      if (serverPeriod && periodSelect.value !== serverPeriod) {
+        periodSelect.value = serverPeriod;
+      }
+
+      if (periodSelect.dataset.finaiPeriodBound !== '1') {
+        periodSelect.dataset.finaiPeriodBound = '1';
+        periodSelect.addEventListener('change', () => {
+          const value = periodSelect.value;
+          if (value) setStateValue('period', value);
+        });
+      }
     }
 
     root.querySelectorAll('.nav-item[data-page]').forEach(item => {
@@ -141,7 +151,7 @@ export default function(component) {
 
       const go = () => {
         closeDrawer();
-        setTriggerValue('navigate', item.dataset.page);
+        setStateValue('navigate', item.dataset.page);
       };
 
       item.addEventListener('click', go);
