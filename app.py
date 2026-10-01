@@ -5,6 +5,7 @@ import re
 import streamlit as st
 
 from finai_ui.ai.openrouter import chat as openrouter_chat
+from finai_ui.ai.intent import classify_question
 from finai_ui.data_service import (
     LATEST_PERIOD,
     render_page,
@@ -197,10 +198,14 @@ if chat_event:
         st.session_state.ai_open = True
         st.session_state.chat_messages.append({"role": "user", "content": text})
 
-        evidence = build_financial_evidence(text, st.session_state.period)
+        # Step 1: semantic routing. This call receives only the question and
+        # returns a controlled intent; it never sees financial data.
+        intent = classify_question(text)
+        evidence = build_financial_evidence(text, st.session_state.period, intent=intent)
 
-        # Validation happens before the LLM. Out-of-scope, ambiguous, or
-        # unavailable-data questions never reach OpenRouter.
+        # Step 2: Python validates the intent against the actual CSV and builds
+        # deterministic evidence. Out-of-scope, ambiguous, or unavailable-data
+        # questions never reach the answer model.
         if evidence.get("status") != "READY":
             answer = evidence.get("message", "Data tidak cukup untuk menjawab pertanyaan.")
         elif evidence.get("direct_answer"):
