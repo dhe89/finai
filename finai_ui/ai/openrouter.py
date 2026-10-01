@@ -87,10 +87,12 @@ def chat(messages, model=DEFAULT_MODEL, timeout=45, evidence=None, financial_con
     evidence_json = json.dumps(evidence, ensure_ascii=False, allow_nan=False, separators=(",", ":"))
     system_content = SYSTEM_PROMPT + "\n\nEVIDENCE DARI PYTHON (SUMBER FAKTA SATU-SATUNYA):\n" + evidence_json
 
-    # Keep a small conversation window for follow-up questions. Previous
-    # assistant messages are explicitly treated as non-authoritative by prompt.
+    # Only user messages are sent as conversational context. Previous assistant
+    # answers are deliberately excluded so an old hallucination/reasoning leak
+    # can never become input for a later answer.
+    user_messages = [m for m in messages if m.get("role") == "user"][-6:]
     payload_messages = [{"role": "system", "content": system_content}]
-    payload_messages.extend(messages[-8:])
+    payload_messages.extend(user_messages)
 
     headers = {
         "Authorization": f"Bearer {api_key}",
