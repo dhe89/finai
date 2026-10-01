@@ -1,60 +1,59 @@
-# FinAI UI Prototype — Reset Baseline
+# FinAI — Simulation Data Baseline
 
-This is a clean reset from the original pure-Python FinAI prototype.
+FinAI adalah prototype financial intelligence untuk simulasi bank syariah. **Baseline UI desktop/mobile tidak diubah** pada pekerjaan data ini; perubahan difokuskan pada konten, dataset, rendering halaman, dan evidence AI.
 
-## Structure
-- `app.py` — Streamlit host/router
-- `finai_ui/frontend/index.html` — master HTML shell
-- `finai_ui/frontend/css/main.css` — visual baseline
-- `finai_ui/frontend/js/app.js` — UI state + dummy AI chat
-- `finai_ui/frontend/layout/` — reusable fragments
-- `finai_ui/frontend/pages/` — multipage HTML views
+## Struktur
 
-## Pages
-- Dashboard Kinerja
-- Laporan Keuangan
-- Rincian Data
-- Setting Parameter
+- `app.py` — Streamlit host/router dan event bridge.
+- `finai_ui/data_service.py` — loader, agregasi, rendering konten, dan evidence context.
+- `finai_ui/frontend/` — shell UI, CSS, JS, layout dan page assets. Dipertahankan dari baseline UI.
+- `data/` — dataset simulasi dan hasil audit pembentukan data.
 
-## AI
-The assistant is a local JavaScript simulation:
-- type a message
-- press Enter or Send
-- the user bubble appears
-- a dummy AI response appears shortly afterward
-- no API key or external AI service is needed
+## Profil simulasi
+
+Semua nominal menggunakan **Rp miliar**.
+
+- Modal: Rp6.000 miliar (Rp6 triliun)
+- Target aset September 2026: Rp80.000 miliar
+- Target kredit September 2026: Rp60.000 miliar
+- Target DPK September 2026: Rp65.000 miliar
+- Target laba bersih tahunan 2026: Rp1.000 miliar
+- Coverage data: Januari 2024 sampai September 2026
+
+## Dataset
+
+- `monthly_summary.csv` — KPI bulanan dashboard.
+- `balance_sheet.csv` — laporan posisi neraca.
+- `income_statement.csv` — laporan laba rugi.
+- `monthly_targets.csv` — target bulanan growth, profitability, efficiency dan quality.
+- `loan_detail.csv` — rincian kredit bulanan.
+- `investment_detail.csv` — rincian investasi bulanan.
+- `dpk_detail.csv` — rincian rekening DPK bulanan.
+- `other_funding_detail.csv` — rincian dana lainnya bulanan.
+- `account_lifecycle.csv` — master lifecycle account.
+- `account_status_monthly.csv` — status NEW/ACTIVE/CLOSED/NOT_STARTED per bulan.
+- `audit_checks.csv` — hasil cross-check pembentukan data.
+
+## Konsistensi
+
+Data dibentuk dengan hubungan berikut:
+
+1. Detail kredit = posisi Kredit di neraca.
+2. Detail investasi = posisi Penempatan di neraca.
+3. Detail DPK = Giro + Tabungan + Deposito di neraca.
+4. Aset = Kewajiban + Ekuitas setiap bulan.
+5. Laba Tahun Berjalan di neraca = akumulasi Laba Bersih tahun berjalan sampai bulan tersebut.
+6. Pendapatan/beban produk berasal dari detail produk.
+7. Lifecycle account mencakup account baru, account aktif dan account yang ditutup.
+8. `audit_checks.csv` dibuat pada saat pembentukan data; seluruh check harus PASS sebelum dataset dipakai aplikasi.
+
+## AI Evidence
+
+Saat chat AI dipanggil, aplikasi mengirimkan context terstruktur yang berisi KPI periode aktif, perbandingan bulan sebelumnya, neraca, laba rugi, target, serta agregasi produk. System prompt menginstruksikan AI untuk menggunakan evidence tersebut sebagai sumber fakta dan tidak mengarang angka.
 
 ## Run
+
 ```bash
 pip install -r requirements.txt
 streamlit run app.py
 ```
-
-The original prototype's visual baseline is retained: green/lime palette, typography, cards, tables, sidebar geometry, AI overlay, and transition timings.
-
-## Baseline v1 — Mobile Layer Architecture
-
-`finai-main-4.zip` is the new baseline for subsequent work.
-
-The shell hierarchy is intentionally flat:
-- mobile header
-- sidebar
-- page content
-- mobile backdrop
-- AI overlay
-
-The sidebar is a permanent sibling of the page content. JavaScript no longer
-re-parents the sidebar between containers.
-
-Mobile layer order:
-1. Sidebar
-2. Shadow/backdrop
-3. FinAI mobile header
-4. Page content
-
-The sidebar and backdrop share the same top/bottom boundary. The FinAI header
-uses the same top boundary and has a 74px visual height. The native Streamlit
-toolbar/header remains outside this component.
-
-The mobile hamburger and AI buttons are icon-only, without circular button
-containers.

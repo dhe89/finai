@@ -5,18 +5,14 @@ import re
 import streamlit as st
 
 from finai_ui.ai.openrouter import chat as openrouter_chat
+from finai_ui.data_service import LATEST_PERIOD, render_page, build_financial_context
 
 st.set_page_config(page_title="FinAI", layout="wide", initial_sidebar_state="collapsed")
 
 BASE_DIR = Path(__file__).resolve().parent
 FRONTEND = BASE_DIR / "finai_ui" / "frontend"
 
-PAGE_MAP = {
-    "kinerja": FRONTEND / "pages" / "kinerja.html",
-    "financial_report": FRONTEND / "pages" / "financial_report.html",
-    "data_detail": FRONTEND / "pages" / "data_detail.html",
-    "setting": FRONTEND / "pages" / "setting.html",
-}
+PAGE_MAP = {"kinerja", "financial_report", "data_detail", "setting"}
 
 # ------------------------------------------------------------------
 # SERVER STATE
@@ -25,6 +21,7 @@ st.session_state.setdefault("chat_messages", [])
 st.session_state.setdefault("ai_open", False)
 st.session_state.setdefault("last_chat_trigger", None)
 st.session_state.setdefault("page", "kinerja")
+st.session_state.setdefault("period", LATEST_PERIOD)
 
 # ------------------------------------------------------------------
 # CUSTOM COMPONENT V2
@@ -85,7 +82,7 @@ js = (FRONTEND / "js" / "app.js").read_text(encoding="utf-8")
 
 page = st.session_state.page
 sidebar = mark_active(sidebar, page)
-page_content = PAGE_MAP[page].read_text(encoding="utf-8")
+page_content = render_page(page, st.session_state.period)
 ai_chat = ai_chat.replace("{{CHAT_MESSAGES}}", render_chat_messages())
 
 # Keep the shell hierarchy deliberately flat.
@@ -169,7 +166,7 @@ if chat_event:
         st.session_state.ai_open = True
         st.session_state.chat_messages.append({"role": "user", "content": text})
 
-        response = openrouter_chat(st.session_state.chat_messages)
+        response = openrouter_chat(st.session_state.chat_messages, financial_context=build_financial_context(st.session_state.period))
         if response.get("ok"):
             answer = response.get("content", "").strip()
         else:
