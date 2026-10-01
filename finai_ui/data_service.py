@@ -7,20 +7,73 @@ DATA_DIR = BASE_DIR / "data"
 FRONTEND_DIR = BASE_DIR / "finai_ui" / "frontend"
 PAGES_DIR = FRONTEND_DIR / "pages"
 
-SUMMARY = pd.read_csv(DATA_DIR / "monthly_summary.csv")
-BS = pd.read_csv(DATA_DIR / "balance_sheet.csv")
-IS = pd.read_csv(DATA_DIR / "income_statement.csv")
-TARGETS = pd.read_csv(DATA_DIR / "monthly_targets.csv")
-LOANS = pd.read_csv(DATA_DIR / "loan_detail.csv")
-INVESTMENTS = pd.read_csv(DATA_DIR / "investment_detail.csv")
-DPK = pd.read_csv(DATA_DIR / "dpk_detail.csv")
-OTHER = pd.read_csv(DATA_DIR / "other_funding_detail.csv")
-AUDIT = pd.read_csv(DATA_DIR / "audit_checks.csv")
+_DATA_FILES = {
+    "SUMMARY": DATA_DIR / "monthly_summary.csv",
+    "BS": DATA_DIR / "balance_sheet.csv",
+    "IS": DATA_DIR / "income_statement.csv",
+    "TARGETS": DATA_DIR / "monthly_targets.csv",
+    "LOANS": DATA_DIR / "loan_detail.csv",
+    "INVESTMENTS": DATA_DIR / "investment_detail.csv",
+    "DPK": DATA_DIR / "dpk_detail.csv",
+    "OTHER": DATA_DIR / "other_funding_detail.csv",
+    "AUDIT": DATA_DIR / "audit_checks.csv",
+}
+
+
+def _read_data_files():
+    return {name: pd.read_csv(path) for name, path in _DATA_FILES.items()}
+
+
+def _data_mtimes():
+    return {name: path.stat().st_mtime_ns for name, path in _DATA_FILES.items()}
+
+
+_data = _read_data_files()
+_data_mtimes_snapshot = _data_mtimes()
+SUMMARY = _data["SUMMARY"]
+BS = _data["BS"]
+IS = _data["IS"]
+TARGETS = _data["TARGETS"]
+LOANS = _data["LOANS"]
+INVESTMENTS = _data["INVESTMENTS"]
+DPK = _data["DPK"]
+OTHER = _data["OTHER"]
+AUDIT = _data["AUDIT"]
 
 PERIODS = SUMMARY["period"].tolist()
 LATEST_PERIOD = PERIODS[-1]
 START_PERIOD = PERIODS[0]
 UNIT = "Rp miliar"
+
+
+def ensure_data_fresh():
+    """Reload simulation CSVs when GitHub/Streamlit provides a newer file.
+
+    This avoids requiring a manual Streamlit reboot just because the CSV dataset
+    changed. If no file changed, the already-loaded DataFrames are reused.
+    """
+    global _data_mtimes_snapshot, SUMMARY, BS, IS, TARGETS, LOANS, INVESTMENTS, DPK, OTHER, AUDIT
+    global PERIODS, LATEST_PERIOD, START_PERIOD
+
+    current_mtimes = _data_mtimes()
+    if current_mtimes == _data_mtimes_snapshot:
+        return False
+
+    refreshed = _read_data_files()
+    SUMMARY = refreshed["SUMMARY"]
+    BS = refreshed["BS"]
+    IS = refreshed["IS"]
+    TARGETS = refreshed["TARGETS"]
+    LOANS = refreshed["LOANS"]
+    INVESTMENTS = refreshed["INVESTMENTS"]
+    DPK = refreshed["DPK"]
+    OTHER = refreshed["OTHER"]
+    AUDIT = refreshed["AUDIT"]
+    PERIODS = SUMMARY["period"].tolist()
+    LATEST_PERIOD = PERIODS[-1]
+    START_PERIOD = PERIODS[0]
+    _data_mtimes_snapshot = current_mtimes
+    return True
 
 
 def fmt(v, d=1):
@@ -309,6 +362,7 @@ def render_setting(p=LATEST_PERIOD):
 
 
 def render_page(page, p=LATEST_PERIOD):
+    ensure_data_fresh()
     renderers = {
         "kinerja": render_kinerja,
         "financial_report": render_financial_report,
@@ -319,6 +373,7 @@ def render_page(page, p=LATEST_PERIOD):
 
 
 def build_financial_context(p=LATEST_PERIOD):
+    ensure_data_fresh()
     s = srow(p)
     pp = prev_period(p)
     keys = [
