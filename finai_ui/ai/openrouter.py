@@ -1,4 +1,5 @@
 import json
+import re
 import requests
 import streamlit as st
 
@@ -128,11 +129,19 @@ def complete_json(system_prompt, user_prompt, model=DEFAULT_MODEL, timeout=45,
     if not response.get("ok"):
         return response
 
-    parsed = extract_json(response.get("content", ""))
-    if parsed is None:
+    try:
+        parsed = extract_json(response.get("content", ""))
+    except Exception as exc:
         return {
             "ok": False,
-            "error": "Model planner tidak mengembalikan JSON yang valid.",
+            "error": f"Gagal membaca JSON planner: {exc}",
+            "raw": response.get("content", ""),
+            "model": response.get("model"),
+        }
+    if not isinstance(parsed, dict):
+        return {
+            "ok": False,
+            "error": "Model planner tidak mengembalikan object JSON.",
             "raw": response.get("content", ""),
             "model": response.get("model"),
         }
