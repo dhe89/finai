@@ -5,7 +5,14 @@ import re
 import streamlit as st
 
 from finai_ui.ai.openrouter import chat as openrouter_chat
-from finai_ui.data_service import LATEST_PERIOD, render_page, build_financial_context
+from finai_ui.data_service import (
+    LATEST_PERIOD,
+    render_page,
+    build_financial_context,
+    ensure_data_fresh,
+    get_latest_period,
+    available_periods,
+)
 
 st.set_page_config(page_title="FinAI", layout="wide", initial_sidebar_state="collapsed")
 
@@ -17,11 +24,16 @@ PAGE_MAP = {"kinerja", "financial_report", "data_detail", "setting"}
 # ------------------------------------------------------------------
 # SERVER STATE
 # ------------------------------------------------------------------
+ensure_data_fresh()
+latest_period = get_latest_period() or LATEST_PERIOD
+available = available_periods()
+
 st.session_state.setdefault("chat_messages", [])
 st.session_state.setdefault("ai_open", False)
 st.session_state.setdefault("last_chat_trigger", None)
 st.session_state.setdefault("page", "kinerja")
-st.session_state.setdefault("period", LATEST_PERIOD)
+if st.session_state.get("period") not in available:
+    st.session_state["period"] = latest_period
 
 # ------------------------------------------------------------------
 # CUSTOM COMPONENT V2
@@ -129,6 +141,15 @@ result = finai_component(
 # ------------------------------------------------------------------
 # EVENTS FROM BROWSER
 # ------------------------------------------------------------------
+period_event = getattr(result, "period", None)
+
+if period_event is not None:
+    selected_period = str(period_event)
+    if selected_period in available_periods():
+        st.session_state.period = selected_period
+        st.session_state.ai_open = False
+        st.rerun()
+
 nav_event = getattr(result, "navigate", None)
 ai_event = getattr(result, "ai", None)
 chat_event = getattr(result, "chat", None)
