@@ -122,54 +122,54 @@ finai_component = components_v2.component(
     isolate_styles=True,
 )
 
+# ------------------------------------------------------------------
+# COMPONENT STATE CALLBACKS
+# ------------------------------------------------------------------
+# Period and navigation represent persistent UI state. They must not be
+# one-shot triggers because the selected period remains active while the user
+# changes pages and makes further selections. Streamlit Components V2 executes
+# these callbacks during the rerun caused by setStateValue().
+def _on_period_change():
+    component_state = st.session_state.get("finai_shell")
+    selected = getattr(component_state, "period", None) if component_state else None
+    if selected is not None and str(selected) in available:
+        st.session_state.period = str(selected)
+        st.session_state.ai_open = False
+
+
+def _on_navigate_change():
+    component_state = st.session_state.get("finai_shell")
+    target = getattr(component_state, "navigate", None) if component_state else None
+    if target is not None and str(target) in PAGE_MAP:
+        st.session_state.page = str(target)
+        st.session_state.ai_open = False
+
+
 result = finai_component(
     key="finai_shell",
     data={
         "page": page,
-        # The selected reporting period is persistent component state.
-        # It must survive reruns caused by navigation and other triggers.
         "period": st.session_state.period,
         "ai_open": bool(st.session_state.ai_open),
         "messages": messages,
         "mobile": False,
     },
-    # Period is stateful; navigation/AI/chat remain one-shot triggers.
-    default={"period": st.session_state.period},
+    default={
+        "period": st.session_state.period,
+        "navigate": st.session_state.page,
+    },
     width="stretch",
     height="content",
-    on_period_change=lambda: None,
-    on_navigate_change=lambda: None,
+    on_period_change=_on_period_change,
+    on_navigate_change=_on_navigate_change,
     on_ai_change=lambda: None,
     on_chat_change=lambda: None,
 )
 
-# ------------------------------------------------------------------
-# EVENTS FROM BROWSER
-# ------------------------------------------------------------------
-# Period is a persistent component state (setStateValue), so it remains
-# available after every rerun. Only rerun when the selected period actually
-# differs from Python session state; otherwise the current rerun continues
-# normally and navigation remains available.
-period_state = getattr(result, "period", None)
-if period_state is not None:
-    selected_period = str(period_state)
-    if selected_period in available_periods() and selected_period != st.session_state.period:
-        st.session_state.period = selected_period
-        st.session_state.ai_open = False
-        st.rerun()
-
-# Navigation remains a one-shot trigger. Unlike period state, it must not be
-# stored as persistent component state because every click should be a new event.
-nav_event = getattr(result, "navigate", None)
+# AI/chat remain one-shot actions. Period/navigation are handled exclusively
+# by their state callbacks above.
 ai_event = getattr(result, "ai", None)
 chat_event = getattr(result, "chat", None)
-
-if nav_event:
-    target = str(nav_event)
-    if target in PAGE_MAP:
-        st.session_state.page = target
-        st.session_state.ai_open = False
-        st.rerun()
 
 if ai_event:
     value = ai_event
