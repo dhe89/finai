@@ -127,6 +127,14 @@ export default function(component) {
   }
 
   function bindNavigation() {
+    const periodSelect = qs('#periodSelect');
+    if (periodSelect && periodSelect.dataset.finaiPeriodBound !== '1') {
+      periodSelect.dataset.finaiPeriodBound = '1';
+      periodSelect.addEventListener('change', () => {
+        setTriggerValue('period', periodSelect.value);
+      });
+    }
+
     root.querySelectorAll('.nav-item[data-page]').forEach(item => {
       if (item.dataset.finaiBound === '1') return;
       item.dataset.finaiBound = '1';
