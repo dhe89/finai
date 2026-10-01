@@ -129,8 +129,8 @@ export default function(component) {
   function bindNavigation() {
     const periodSelect = qs('#periodSelect');
     if (periodSelect) {
-      // Python is the source of truth for the active period. Synchronise the
-      // visible selector after reruns without recreating its listener.
+      // Python is the source of truth after each rerun. Sync the visible
+      // selection without recreating the event listener.
       const serverPeriod = data && data.period ? String(data.period) : '';
       if (serverPeriod && periodSelect.value !== serverPeriod) {
         periodSelect.value = serverPeriod;
@@ -151,7 +151,7 @@ export default function(component) {
 
       const go = () => {
         closeDrawer();
-        setTriggerValue('navigate', item.dataset.page);
+        setStateValue('navigate', item.dataset.page);
       };
 
       item.addEventListener('click', go);
