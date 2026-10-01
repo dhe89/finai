@@ -386,26 +386,99 @@ def render_financial_report(p=None):
     refresh_csv_data()
     p = resolve_period(p)
     pp = prev_period(p)
-    current_is = IS[IS.period.eq(p)]
-    previous_is = dict(zip(IS[IS.period.eq(pp)].line_item, IS[IS.period.eq(pp)].amount))
 
-    income_rows = []
-    for _, row in current_is.iterrows():
-        income_rows.append(
-            f'<tr><td>{esc(row.line_item)}</td><td>{fmt(previous_is.get(row.line_item))}</td>'
-            f'<td>{fmt(row.amount)}</td></tr>'
-        )
-
+    # --------------------------------------------------------------
+    # Balance Sheet: left panel, grouped as Asset / Kewajiban / Ekuitas
+    # with parent totals calculated from their child line items.
+    # --------------------------------------------------------------
     current_bs = BS[BS.period.eq(p)]
     previous_bs = dict(zip(BS[BS.period.eq(pp)].line_item, BS[BS.period.eq(pp)].amount))
+
+    bs_groups = [
+        ("ASSET", "Asset"),
+        ("KEWAJIBAN", "Kewajiban"),
+        ("EKUITAS", "Ekuitas"),
+    ]
     balance_rows = []
-    for statement in ["Asset", "Kewajiban", "Ekuitas"]:
-        balance_rows.append(f'<tr class="section"><td colspan="3">{statement.upper()}</td></tr>')
-        for _, row in current_bs[current_bs.statement.eq(statement)].iterrows():
+    bs_totals = {}
+
+    for label, statement in bs_groups:
+        group = current_bs[current_bs.statement.eq(statement)]
+        prev_group = BS[(BS.period.eq(pp)) & (BS.statement.eq(statement))]
+        current_total = float(group.amount.sum()) if not group.empty else 0.0
+        previous_total = float(prev_group.amount.sum()) if not prev_group.empty else 0.0
+        bs_totals[statement] = (previous_total, current_total)
+
+        # Parent row carries the subtotal; do not repeat it below the children.
+        balance_rows.append(
+            f'<tr class="section parent-total"><td>{label}</td>'
+            f'<td>{fmt(previous_total)}</td><td>{fmt(current_total)}</td></tr>'
+        )
+        for _, row in group.iterrows():
             balance_rows.append(
                 f'<tr><td>{esc(row.line_item)}</td><td>{fmt(previous_bs.get(row.line_item))}</td>'
                 f'<td>{fmt(row.amount)}</td></tr>'
             )
+
+    # --------------------------------------------------------------
+    # Income Statement: right panel, grouped as requested.
+    # Pendapatan Investasi is presented under Pendapatan Operasional
+    # Lainnya so that every income/expense component participates in
+    # the requested profit formula:
+    # Pendapatan Bunga - Beban Bunga + Pendapatan Operasional Lainnya
+    # - Beban Operasional Lainnya.
+    # --------------------------------------------------------------
+    current_is = IS[IS.period.eq(p)]
+    previous_is = dict(zip(IS[IS.period.eq(pp)].line_item, IS[IS.period.eq(pp)].amount))
+
+    income_groups = [
+        ("PENDAPATAN BUNGA", lambda x: x.startswith("Pendapatan Bunga")),
+        ("BEBAN BUNGA", lambda x: x.startswith("Beban Bunga")),
+        (
+            "PENDAPATAN OPERASIONAL LAINNYA",
+            lambda x: x.startswith("Pendapatan Operasional Lainnya") or x == "Pendapatan Investasi",
+        ),
+        ("BEBAN OPERASIONAL LAINNYA", lambda x: x.startswith("Beban Operasional Lainnya")),
+    ]
+
+    income_rows = []
+    income_totals = {}
+    for label, matcher in income_groups:
+        group = current_is[current_is.line_item.map(matcher)]
+        prev_group = IS[IS.period.eq(pp) & IS.line_item.map(matcher)]
+        current_total = float(group.amount.sum()) if not group.empty else 0.0
+        previous_total = float(prev_group.amount.sum()) if not prev_group.empty else 0.0
+        income_totals[label] = (previous_total, current_total)
+
+        # Parent row carries the subtotal; do not repeat it below the children.
+        income_rows.append(
+            f'<tr class="section parent-total"><td>{label}</td>'
+            f'<td>{fmt(previous_total)}</td><td>{fmt(current_total)}</td></tr>'
+        )
+        for _, row in group.iterrows():
+            income_rows.append(
+                f'<tr><td>{esc(row.line_item)}</td><td>{fmt(previous_is.get(row.line_item))}</td>'
+                f'<td>{fmt(row.amount)}</td></tr>'
+            )
+
+    # Profit is explicitly derived from the four grouped totals.
+    previous_profit = (
+        income_totals["PENDAPATAN BUNGA"][0]
+        - income_totals["BEBAN BUNGA"][0]
+        + income_totals["PENDAPATAN OPERASIONAL LAINNYA"][0]
+        - income_totals["BEBAN OPERASIONAL LAINNYA"][0]
+    )
+    current_profit = (
+        income_totals["PENDAPATAN BUNGA"][1]
+        - income_totals["BEBAN BUNGA"][1]
+        + income_totals["PENDAPATAN OPERASIONAL LAINNYA"][1]
+        - income_totals["BEBAN OPERASIONAL LAINNYA"][1]
+    )
+    # Profit is itself the parent subtotal for the LABA RUGI group.
+    income_rows.append(
+        f'<tr class="section parent-total profit-total"><td>LABA RUGI</td>'
+        f'<td>{fmt(previous_profit)}</td><td>{fmt(current_profit)}</td></tr>'
+    )
 
     audit_status = "PASS" if (AUDIT.status == "PASS").all() else "CHECK"
     template = load_template("financial_report.html")
