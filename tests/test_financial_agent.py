@@ -31,9 +31,24 @@ class FinancialAgentTests(unittest.TestCase):
             result = expand_evidence(self.evidence, tool, self.period)
             self.assertIsNotNone(result, tool)
 
+    def test_model_evidence_is_reasonably_small(self):
+        payload = json.dumps(prepare_model_evidence(self.evidence), ensure_ascii=False)
+        self.assertLess(len(payload), 30000)
+
+    def test_monthly_profit_flow_is_distinguished_from_cumulative(self):
+        tool = self.evidence["analysis_tools"]["income_drivers"]
+        self.assertAlmostEqual(tool["monthly_flow"]["net_profit"]["current_flow"], 81.26, places=2)
+        self.assertAlmostEqual(tool["monthly_flow"]["net_profit"]["change"]["percent"], 4.38, places=2)
+
     def test_fallback_does_not_answer_unrelated_metric(self):
         answer = fallback_answer(self.evidence, question="Berapa laba September 2026?")
         self.assertIn("778.85", answer)
+
+    def test_analytical_fallback_contains_real_findings(self):
+        answer = fallback_answer(self.evidence, question="Kenapa laba September meningkat?", analytical=True)
+        self.assertIn("81.26", answer)
+        self.assertIn("4.38%", answer)
+        self.assertIn("CKPN", answer)
 
 
 if __name__ == "__main__":
