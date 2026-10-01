@@ -1,8 +1,6 @@
-# FinAI Data Flow
+# FinAI Data & AI Flow
 
-This prototype uses one source of truth for both web content and AI evidence.
-
-## Runtime flow
+## Runtime
 
 ```text
 /data/*.csv
@@ -10,35 +8,52 @@ This prototype uses one source of truth for both web content and AI evidence.
      v
 finai_ui/data_service.py
      |
-     +--------------------+---------------------+
-     |                    |                     |
-     v                    v                     v
-HTML page templates     Dashboard/Reports    AI evidence context
-     |
-     v
-Streamlit Components V2
-     |
-     v
-Browser
+     +------------------------------+
+     |                              |
+     v                              v
+Web pages                    Financial Intelligence Engine
+                                   |
+                                   v
+                            Analysis Evidence
+                                   |
+                                   v
+                         AI Financial Analyst
+                                   |
+                                   v
+                              Verifier
+                                   |
+                                   v
+                              Final Answer
 ```
 
-## Page templates
+## AI request flow
 
-- `frontend/pages/kinerja.html`
-- `frontend/pages/financial_report.html`
-- `frontend/pages/data_detail.html`
-- `frontend/pages/setting.html`
+```text
+Question
+  |
+  v
+Semantic Planner
+  |  understands goal/focus/comparisons/dimensions
+  v
+Python Financial Intelligence Engine
+  |  retrieves and calculates facts
+  |  MoM / YoY / year-start / target / trend
+  |  P&L drivers / balance-sheet drivers
+  |  product aggregation / relationships
+  |  optional correlation
+  v
+Evidence Package
+  |
+  v
+AI Analyst
+  |  interprets evidence
+  |  explains drivers and implications
+  |  distinguishes fact vs consideration
+  v
+Deterministic Verifier
+  |
+  v
+User-facing conclusion
+```
 
-These files intentionally contain placeholders such as `{{METRIC_CARDS}}` and `{{INCOME_STATEMENT_ROWS}}`, not hard-coded simulation figures.
-
-## Data service
-
-`finai_ui/data_service.py` is responsible for:
-
-1. Loading CSV files.
-2. Selecting the reporting period.
-3. Aggregating product detail.
-4. Rendering the page templates.
-5. Building the financial evidence context used by the AI.
-
-This prevents the dashboard, reports, detail pages and AI from maintaining separate copies of the same financial numbers.
+Chat history is intentionally not sent to the analyst as prior user turns. Each request is isolated to the current question + its evidence package.

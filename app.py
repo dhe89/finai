@@ -4,12 +4,10 @@ import json
 import re
 import streamlit as st
 
-from finai_ui.ai.openrouter import chat as openrouter_chat
-from finai_ui.ai.intent import classify_question
+from finai_ui.ai.orchestrator import run_financial_analysis
 from finai_ui.data_service import (
     LATEST_PERIOD,
     render_page,
-    build_financial_evidence,
     ensure_data_fresh,
     get_latest_period,
     available_periods,
@@ -198,36 +196,15 @@ if chat_event:
         st.session_state.ai_open = True
         st.session_state.chat_messages.append({"role": "user", "content": text})
 
-        # Step 1: semantic routing. This call receives only the question and
-        # returns a controlled intent; it never sees financial data.
-        intent = classify_question(text)
-        evidence = build_financial_evidence(text, st.session_state.period, intent=intent)
-
-        # Step 2: Python validates the intent against the actual CSV and builds
-        # deterministic evidence. Out-of-scope, ambiguous, or unavailable-data
-        # questions never reach the answer model.
-        if evidence.get("status") != "READY":
-            answer = evidence.get("message", "Data tidak cukup untuk menjawab pertanyaan.")
-        elif evidence.get("direct_answer"):
-            # Exact one-number lookups are answered by Python directly. This
-            # prevents an LLM from adding reasoning, guessing, or changing the
-            # value even when the evidence is already definitive.
-            answer = evidence["direct_answer"]
-        else:
-            # IMPORTANT: send ONLY the current question to the answer model.
-            # The chat history is rendered in the UI, but it must not be sent
-            # as multiple user turns because that can make the LLM answer
-            # several previous questions as one combined request.
-            response = openrouter_chat(
-                text,
-                evidence=evidence,
-            )
-            if response.get("ok"):
-                answer = response.get("content", "").strip()
-            elif evidence.get("fallback_answer"):
-                answer = evidence["fallback_answer"]
-            else:
-                answer = "⚠️ " + response.get("error", "LLM belum dapat merespons saat ini.")
-
+        # New architecture:
+        # User question -> semantic analysis planner -> Python financial engine
+        # -> deep analyst -> deterministic verifier -> final answer.
+        # Chat history is rendered in the UI only; it is never sent as prior
+        # questions to the analyst.
+        result = run_financial_analysis(
+            text,
+            selected_period=st.session_state.period,
+        )
+        answer = result.get("answer", "Data belum cukup untuk menjawab pertanyaan.")
         st.session_state.chat_messages.append({"role": "assistant", "content": answer})
         st.rerun()

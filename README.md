@@ -1,4 +1,4 @@
-# FinAI — Simulation Data Baseline
+# FinAI — Financial Intelligence Analyst
 
 FinAI adalah prototype financial intelligence untuk simulasi bank syariah. **Baseline UI desktop/mobile tidak diubah** pada pekerjaan data ini; perubahan difokuskan pada konten, dataset, rendering halaman, dan evidence AI.
 
@@ -47,9 +47,41 @@ Data dibentuk dengan hubungan berikut:
 7. Lifecycle account mencakup account baru, account aktif dan account yang ditutup.
 8. `audit_checks.csv` dibuat pada saat pembentukan data; seluruh check harus PASS sebelum dataset dipakai aplikasi.
 
-## AI Evidence
+## AI Architecture
 
-Saat chat AI dipanggil, aplikasi mengirimkan context terstruktur yang berisi KPI periode aktif, perbandingan bulan sebelumnya, neraca, laba rugi, target, serta agregasi produk. System prompt menginstruksikan AI untuk menggunakan evidence tersebut sebagai sumber fakta dan tidak mengarang angka.
+FinAI menggunakan arsitektur **Financial Analyst**, bukan intent/dictionary router.
+
+Alur runtime:
+
+```text
+User Question
+     ↓
+Semantic Analysis Planner (LLM)
+     ↓
+Financial Intelligence Engine (Python)
+     ↓
+MoM / YoY / Year-start / Target / Trend / Driver / Relationship / Drill-down
+     ↓
+AI Financial Analyst (LLM)
+     ↓
+Deterministic Verifier
+     ↓
+Final Answer
+```
+
+Planner memahami pertanyaan secara semantik dan menentukan data/analisis yang dibutuhkan. Planner tidak menentukan daftar intent tetap. Python menjadi source of truth untuk angka, perhitungan, perubahan, kontribusi dan hubungan data. Analyst kemudian menjelaskan temuan, memberi konteks dan pertimbangan tanpa mengubah fakta. Verifier mencegah kebocoran reasoning dan angka yang tidak ditemukan di evidence.
+
+### Prinsip
+
+- Tidak ada ketergantungan pada `intent.py` atau dictionary intent.
+- Pertanyaan baru dapat dipahami secara semantik oleh planner.
+- Python melakukan perhitungan dan menyediakan evidence yang dapat diaudit.
+- Analyst boleh melakukan interpretasi dan memberikan pertimbangan, tetapi asumsi harus diberi penanda dan tidak boleh disajikan sebagai fakta.
+- Korelasi tidak dianggap sebagai kausalitas.
+- Chat history hanya untuk UI; tidak dikirim sebagai rangkaian pertanyaan lama ke analyst.
+- Reasoning internal tidak ditampilkan kepada user.
+- Jika model gagal, aplikasi menggunakan fallback deterministic yang aman.
+
 
 ## Run
 
