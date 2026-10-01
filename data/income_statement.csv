@@ -14,12 +14,12 @@ period,line_item,amount
 2024-01,Beban Bunga - Surat Berharga Diterbitkan,0.0
 2024-01,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-01,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,55.0
-2024-01,Pendapatan Operasional Lainnya - Pendapatan Lainnya,196.73
+2024-01,Pendapatan Operasional Lainnya - Pendapatan Lainnya,200.95
 2024-01,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-01,Beban Operasional Lainnya - Beban CKPN,196.15
 2024-01,Beban Operasional Lainnya - Beban Administrasi,258.0
 2024-01,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-01,Laba Bersih,63.49
+2024-01,Laba Bersih,67.71
 2024-02,Pendapatan Bunga - KPR Subsidi,42.19
 2024-02,Pendapatan Bunga - KPR Non Subsidi,71.85
 2024-02,Pendapatan Bunga - Non KPR,29.42
@@ -35,12 +35,12 @@ period,line_item,amount
 2024-02,Beban Bunga - Surat Berharga Diterbitkan,13.41
 2024-02,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-02,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,57.5
-2024-02,Pendapatan Operasional Lainnya - Pendapatan Lainnya,245.71
+2024-02,Pendapatan Operasional Lainnya - Pendapatan Lainnya,252.17
 2024-02,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-02,Beban Operasional Lainnya - Beban CKPN,206.9
 2024-02,Beban Operasional Lainnya - Beban Administrasi,261.6
 2024-02,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-02,Laba Bersih,63.49
+2024-02,Laba Bersih,69.95
 2024-03,Pendapatan Bunga - KPR Subsidi,43.17
 2024-03,Pendapatan Bunga - KPR Non Subsidi,68.4
 2024-03,Pendapatan Bunga - Non KPR,30.46
@@ -56,12 +56,12 @@ period,line_item,amount
 2024-03,Beban Bunga - Surat Berharga Diterbitkan,7.23
 2024-03,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-03,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,59.33
-2024-03,Pendapatan Operasional Lainnya - Pendapatan Lainnya,265.27
+2024-03,Pendapatan Operasional Lainnya - Pendapatan Lainnya,266.31
 2024-03,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-03,Beban Operasional Lainnya - Beban CKPN,217.65
 2024-03,Beban Operasional Lainnya - Beban Administrasi,263.43
 2024-03,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-03,Laba Bersih,63.49
+2024-03,Laba Bersih,64.53
 2024-04,Pendapatan Bunga - KPR Subsidi,40.8
 2024-04,Pendapatan Bunga - KPR Non Subsidi,76.33
 2024-04,Pendapatan Bunga - Non KPR,28.78
@@ -77,12 +77,12 @@ period,line_item,amount
 2024-04,Beban Bunga - Surat Berharga Diterbitkan,4.3
 2024-04,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-04,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,60.0
-2024-04,Pendapatan Operasional Lainnya - Pendapatan Lainnya,269.33
+2024-04,Pendapatan Operasional Lainnya - Pendapatan Lainnya,271.67
 2024-04,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-04,Beban Operasional Lainnya - Beban CKPN,225.52
 2024-04,Beban Operasional Lainnya - Beban Administrasi,263.0
 2024-04,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-04,Laba Bersih,63.49
+2024-04,Laba Bersih,65.83
 2024-05,Pendapatan Bunga - KPR Subsidi,44.2
 2024-05,Pendapatan Bunga - KPR Non Subsidi,72.77
 2024-05,Pendapatan Bunga - Non KPR,28.5
@@ -98,12 +98,12 @@ period,line_item,amount
 2024-05,Beban Bunga - Surat Berharga Diterbitkan,3.27
 2024-05,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-05,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,59.33
-2024-05,Pendapatan Operasional Lainnya - Pendapatan Lainnya,281.03
+2024-05,Pendapatan Operasional Lainnya - Pendapatan Lainnya,286.63
 2024-05,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-05,Beban Operasional Lainnya - Beban CKPN,228.4
 2024-05,Beban Operasional Lainnya - Beban Administrasi,260.43
 2024-05,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-05,Laba Bersih,63.49
+2024-05,Laba Bersih,69.09
 2024-06,Pendapatan Bunga - KPR Subsidi,43.0
 2024-06,Pendapatan Bunga - KPR Non Subsidi,75.45
 2024-06,Pendapatan Bunga - Non KPR,27.71
@@ -119,12 +119,12 @@ period,line_item,amount
 2024-06,Beban Bunga - Surat Berharga Diterbitkan,6.0
 2024-06,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-06,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,57.5
-2024-06,Pendapatan Operasional Lainnya - Pendapatan Lainnya,279.92
+2024-06,Pendapatan Operasional Lainnya - Pendapatan Lainnya,280.14
 2024-06,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-06,Beban Operasional Lainnya - Beban CKPN,225.52
 2024-06,Beban Operasional Lainnya - Beban Administrasi,256.4
 2024-06,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-06,Laba Bersih,63.49
+2024-06,Laba Bersih,63.71
 2024-07,Pendapatan Bunga - KPR Subsidi,42.39
 2024-07,Pendapatan Bunga - KPR Non Subsidi,72.31
 2024-07,Pendapatan Bunga - Non KPR,28.9
@@ -140,12 +140,12 @@ period,line_item,amount
 2024-07,Beban Bunga - Surat Berharga Diterbitkan,5.95
 2024-07,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-07,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,55.0
-2024-07,Pendapatan Operasional Lainnya - Pendapatan Lainnya,272.23
+2024-07,Pendapatan Operasional Lainnya - Pendapatan Lainnya,271.32
 2024-07,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-07,Beban Operasional Lainnya - Beban CKPN,217.65
 2024-07,Beban Operasional Lainnya - Beban Administrasi,252.0
 2024-07,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-07,Laba Bersih,63.49
+2024-07,Laba Bersih,62.58
 2024-08,Pendapatan Bunga - KPR Subsidi,41.95
 2024-08,Pendapatan Bunga - KPR Non Subsidi,72.32
 2024-08,Pendapatan Bunga - Non KPR,26.69
@@ -161,12 +161,12 @@ period,line_item,amount
 2024-08,Beban Bunga - Surat Berharga Diterbitkan,6.75
 2024-08,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-08,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,52.5
-2024-08,Pendapatan Operasional Lainnya - Pendapatan Lainnya,253.08
+2024-08,Pendapatan Operasional Lainnya - Pendapatan Lainnya,252.04
 2024-08,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-08,Beban Operasional Lainnya - Beban CKPN,206.9
 2024-08,Beban Operasional Lainnya - Beban Administrasi,248.4
 2024-08,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-08,Laba Bersih,63.49
+2024-08,Laba Bersih,62.45
 2024-09,Pendapatan Bunga - KPR Subsidi,41.65
 2024-09,Pendapatan Bunga - KPR Non Subsidi,70.27
 2024-09,Pendapatan Bunga - Non KPR,28.36
@@ -182,12 +182,12 @@ period,line_item,amount
 2024-09,Beban Bunga - Surat Berharga Diterbitkan,6.31
 2024-09,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-09,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,50.67
-2024-09,Pendapatan Operasional Lainnya - Pendapatan Lainnya,241.37
+2024-09,Pendapatan Operasional Lainnya - Pendapatan Lainnya,236.64
 2024-09,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-09,Beban Operasional Lainnya - Beban CKPN,196.15
 2024-09,Beban Operasional Lainnya - Beban Administrasi,246.57
 2024-09,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-09,Laba Bersih,63.49
+2024-09,Laba Bersih,58.76
 2024-10,Pendapatan Bunga - KPR Subsidi,41.4
 2024-10,Pendapatan Bunga - KPR Non Subsidi,71.43
 2024-10,Pendapatan Bunga - Non KPR,26.26
@@ -203,12 +203,12 @@ period,line_item,amount
 2024-10,Beban Bunga - Surat Berharga Diterbitkan,7.1
 2024-10,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-10,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,50.0
-2024-10,Pendapatan Operasional Lainnya - Pendapatan Lainnya,234.52
+2024-10,Pendapatan Operasional Lainnya - Pendapatan Lainnya,222.66
 2024-10,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-10,Beban Operasional Lainnya - Beban CKPN,188.28
 2024-10,Beban Operasional Lainnya - Beban Administrasi,247.0
 2024-10,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-10,Laba Bersih,63.49
+2024-10,Laba Bersih,51.63
 2024-11,Pendapatan Bunga - KPR Subsidi,41.09
 2024-11,Pendapatan Bunga - KPR Non Subsidi,73.88
 2024-11,Pendapatan Bunga - Non KPR,26.43
@@ -224,12 +224,12 @@ period,line_item,amount
 2024-11,Beban Bunga - Surat Berharga Diterbitkan,7.04
 2024-11,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-11,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,50.67
-2024-11,Pendapatan Operasional Lainnya - Pendapatan Lainnya,233.45
+2024-11,Pendapatan Operasional Lainnya - Pendapatan Lainnya,228.52
 2024-11,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-11,Beban Operasional Lainnya - Beban CKPN,185.4
 2024-11,Beban Operasional Lainnya - Beban Administrasi,249.57
 2024-11,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-11,Laba Bersih,63.49
+2024-11,Laba Bersih,58.56
 2024-12,Pendapatan Bunga - KPR Subsidi,41.0
 2024-12,Pendapatan Bunga - KPR Non Subsidi,71.95
 2024-12,Pendapatan Bunga - Non KPR,25.82
@@ -245,12 +245,12 @@ period,line_item,amount
 2024-12,Beban Bunga - Surat Berharga Diterbitkan,7.25
 2024-12,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2024-12,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,52.5
-2024-12,Pendapatan Operasional Lainnya - Pendapatan Lainnya,241.61
+2024-12,Pendapatan Operasional Lainnya - Pendapatan Lainnya,245.2
 2024-12,Beban Operasional Lainnya - Beban Bonus,20.0
 2024-12,Beban Operasional Lainnya - Beban CKPN,188.28
 2024-12,Beban Operasional Lainnya - Beban Administrasi,253.6
 2024-12,Beban Operasional Lainnya - Beban Lainnya,12.0
-2024-12,Laba Bersih,63.49
+2024-12,Laba Bersih,67.08
 2025-01,Pendapatan Bunga - KPR Subsidi,45.52
 2025-01,Pendapatan Bunga - KPR Non Subsidi,82.61
 2025-01,Pendapatan Bunga - Non KPR,29.82
@@ -266,12 +266,12 @@ period,line_item,amount
 2025-01,Beban Bunga - Surat Berharga Diterbitkan,7.1
 2025-01,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-01,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,55.0
-2025-01,Pendapatan Operasional Lainnya - Pendapatan Lainnya,248.25
+2025-01,Pendapatan Operasional Lainnya - Pendapatan Lainnya,251.46
 2025-01,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-01,Beban Operasional Lainnya - Beban CKPN,232.5
 2025-01,Beban Operasional Lainnya - Beban Administrasi,258.0
 2025-01,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-01,Laba Bersih,76.33
+2025-01,Laba Bersih,79.54
 2025-02,Pendapatan Bunga - KPR Subsidi,45.55
 2025-02,Pendapatan Bunga - KPR Non Subsidi,82.61
 2025-02,Pendapatan Bunga - Non KPR,29.83
@@ -287,12 +287,12 @@ period,line_item,amount
 2025-02,Beban Bunga - Surat Berharga Diterbitkan,6.92
 2025-02,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-02,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,57.5
-2025-02,Pendapatan Operasional Lainnya - Pendapatan Lainnya,260.9
+2025-02,Pendapatan Operasional Lainnya - Pendapatan Lainnya,266.51
 2025-02,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-02,Beban Operasional Lainnya - Beban CKPN,245.0
 2025-02,Beban Operasional Lainnya - Beban Administrasi,261.6
 2025-02,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-02,Laba Bersih,76.33
+2025-02,Laba Bersih,81.94
 2025-03,Pendapatan Bunga - KPR Subsidi,43.36
 2025-03,Pendapatan Bunga - KPR Non Subsidi,84.15
 2025-03,Pendapatan Bunga - Non KPR,30.49
@@ -308,12 +308,12 @@ period,line_item,amount
 2025-03,Beban Bunga - Surat Berharga Diterbitkan,6.59
 2025-03,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-03,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,59.33
-2025-03,Pendapatan Operasional Lainnya - Pendapatan Lainnya,272.39
+2025-03,Pendapatan Operasional Lainnya - Pendapatan Lainnya,276.39
 2025-03,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-03,Beban Operasional Lainnya - Beban CKPN,257.5
 2025-03,Beban Operasional Lainnya - Beban Administrasi,263.43
 2025-03,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-03,Laba Bersih,76.33
+2025-03,Laba Bersih,80.33
 2025-04,Pendapatan Bunga - KPR Subsidi,47.3
 2025-04,Pendapatan Bunga - KPR Non Subsidi,84.6
 2025-04,Pendapatan Bunga - Non KPR,27.89
@@ -329,12 +329,12 @@ period,line_item,amount
 2025-04,Beban Bunga - Surat Berharga Diterbitkan,5.84
 2025-04,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-04,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,60.0
-2025-04,Pendapatan Operasional Lainnya - Pendapatan Lainnya,283.68
+2025-04,Pendapatan Operasional Lainnya - Pendapatan Lainnya,285.27
 2025-04,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-04,Beban Operasional Lainnya - Beban CKPN,266.65
 2025-04,Beban Operasional Lainnya - Beban Administrasi,263.0
 2025-04,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-04,Laba Bersih,76.33
+2025-04,Laba Bersih,77.92
 2025-05,Pendapatan Bunga - KPR Subsidi,47.39
 2025-05,Pendapatan Bunga - KPR Non Subsidi,82.28
 2025-05,Pendapatan Bunga - Non KPR,25.32
@@ -350,12 +350,12 @@ period,line_item,amount
 2025-05,Beban Bunga - Surat Berharga Diterbitkan,5.87
 2025-05,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-05,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,59.33
-2025-05,Pendapatan Operasional Lainnya - Pendapatan Lainnya,283.08
+2025-05,Pendapatan Operasional Lainnya - Pendapatan Lainnya,291.82
 2025-05,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-05,Beban Operasional Lainnya - Beban CKPN,270.0
 2025-05,Beban Operasional Lainnya - Beban Administrasi,260.43
 2025-05,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-05,Laba Bersih,76.33
+2025-05,Laba Bersih,85.07
 2025-06,Pendapatan Bunga - KPR Subsidi,47.29
 2025-06,Pendapatan Bunga - KPR Non Subsidi,79.71
 2025-06,Pendapatan Bunga - Non KPR,28.38
@@ -371,12 +371,12 @@ period,line_item,amount
 2025-06,Beban Bunga - Surat Berharga Diterbitkan,5.92
 2025-06,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-06,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,57.5
-2025-06,Pendapatan Operasional Lainnya - Pendapatan Lainnya,277.67
+2025-06,Pendapatan Operasional Lainnya - Pendapatan Lainnya,279.74
 2025-06,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-06,Beban Operasional Lainnya - Beban CKPN,266.65
 2025-06,Beban Operasional Lainnya - Beban Administrasi,256.4
 2025-06,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-06,Laba Bersih,76.33
+2025-06,Laba Bersih,78.4
 2025-07,Pendapatan Bunga - KPR Subsidi,49.16
 2025-07,Pendapatan Bunga - KPR Non Subsidi,79.15
 2025-07,Pendapatan Bunga - Non KPR,30.88
@@ -392,12 +392,12 @@ period,line_item,amount
 2025-07,Beban Bunga - Surat Berharga Diterbitkan,5.97
 2025-07,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-07,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,55.0
-2025-07,Pendapatan Operasional Lainnya - Pendapatan Lainnya,267.58
+2025-07,Pendapatan Operasional Lainnya - Pendapatan Lainnya,269.94
 2025-07,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-07,Beban Operasional Lainnya - Beban CKPN,257.5
 2025-07,Beban Operasional Lainnya - Beban Administrasi,252.0
 2025-07,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-07,Laba Bersih,76.33
+2025-07,Laba Bersih,78.69
 2025-08,Pendapatan Bunga - KPR Subsidi,51.02
 2025-08,Pendapatan Bunga - KPR Non Subsidi,80.63
 2025-08,Pendapatan Bunga - Non KPR,32.07
@@ -413,12 +413,12 @@ period,line_item,amount
 2025-08,Beban Bunga - Surat Berharga Diterbitkan,6.0
 2025-08,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-08,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,52.5
-2025-08,Pendapatan Operasional Lainnya - Pendapatan Lainnya,257.28
+2025-08,Pendapatan Operasional Lainnya - Pendapatan Lainnya,252.55
 2025-08,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-08,Beban Operasional Lainnya - Beban CKPN,245.0
 2025-08,Beban Operasional Lainnya - Beban Administrasi,248.4
 2025-08,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-08,Laba Bersih,76.33
+2025-08,Laba Bersih,71.6
 2025-09,Pendapatan Bunga - KPR Subsidi,50.24
 2025-09,Pendapatan Bunga - KPR Non Subsidi,81.38
 2025-09,Pendapatan Bunga - Non KPR,32.87
@@ -434,12 +434,12 @@ period,line_item,amount
 2025-09,Beban Bunga - Surat Berharga Diterbitkan,6.02
 2025-09,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-09,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,50.67
-2025-09,Pendapatan Operasional Lainnya - Pendapatan Lainnya,249.85
+2025-09,Pendapatan Operasional Lainnya - Pendapatan Lainnya,243.53
 2025-09,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-09,Beban Operasional Lainnya - Beban CKPN,232.5
 2025-09,Beban Operasional Lainnya - Beban Administrasi,246.57
 2025-09,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-09,Laba Bersih,76.33
+2025-09,Laba Bersih,70.01
 2025-10,Pendapatan Bunga - KPR Subsidi,48.68
 2025-10,Pendapatan Bunga - KPR Non Subsidi,82.1
 2025-10,Pendapatan Bunga - Non KPR,34.59
@@ -455,12 +455,12 @@ period,line_item,amount
 2025-10,Beban Bunga - Surat Berharga Diterbitkan,6.07
 2025-10,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-10,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,50.0
-2025-10,Pendapatan Operasional Lainnya - Pendapatan Lainnya,242.99
+2025-10,Pendapatan Operasional Lainnya - Pendapatan Lainnya,229.8
 2025-10,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-10,Beban Operasional Lainnya - Beban CKPN,223.35
 2025-10,Beban Operasional Lainnya - Beban Administrasi,247.0
 2025-10,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-10,Laba Bersih,76.33
+2025-10,Laba Bersih,63.14
 2025-11,Pendapatan Bunga - KPR Subsidi,49.53
 2025-11,Pendapatan Bunga - KPR Non Subsidi,79.76
 2025-11,Pendapatan Bunga - Non KPR,36.67
@@ -476,12 +476,12 @@ period,line_item,amount
 2025-11,Beban Bunga - Surat Berharga Diterbitkan,6.82
 2025-11,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-11,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,50.67
-2025-11,Pendapatan Operasional Lainnya - Pendapatan Lainnya,238.49
+2025-11,Pendapatan Operasional Lainnya - Pendapatan Lainnya,233.79
 2025-11,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-11,Beban Operasional Lainnya - Beban CKPN,220.0
 2025-11,Beban Operasional Lainnya - Beban Administrasi,249.57
 2025-11,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-11,Laba Bersih,76.33
+2025-11,Laba Bersih,71.63
 2025-12,Pendapatan Bunga - KPR Subsidi,48.45
 2025-12,Pendapatan Bunga - KPR Non Subsidi,80.65
 2025-12,Pendapatan Bunga - Non KPR,36.26
@@ -497,12 +497,12 @@ period,line_item,amount
 2025-12,Beban Bunga - Surat Berharga Diterbitkan,6.85
 2025-12,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2025-12,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,52.5
-2025-12,Pendapatan Operasional Lainnya - Pendapatan Lainnya,245.69
+2025-12,Pendapatan Operasional Lainnya - Pendapatan Lainnya,247.05
 2025-12,Beban Operasional Lainnya - Beban Bonus,20.0
 2025-12,Beban Operasional Lainnya - Beban CKPN,223.35
 2025-12,Beban Operasional Lainnya - Beban Administrasi,253.6
 2025-12,Beban Operasional Lainnya - Beban Lainnya,12.0
-2025-12,Laba Bersih,76.33
+2025-12,Laba Bersih,77.69
 2026-01,Pendapatan Bunga - KPR Subsidi,56.07
 2026-01,Pendapatan Bunga - KPR Non Subsidi,95.52
 2026-01,Pendapatan Bunga - Non KPR,42.97
@@ -518,12 +518,12 @@ period,line_item,amount
 2026-01,Beban Bunga - Surat Berharga Diterbitkan,6.71
 2026-01,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2026-01,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,55.0
-2026-01,Pendapatan Operasional Lainnya - Pendapatan Lainnya,230.96
+2026-01,Pendapatan Operasional Lainnya - Pendapatan Lainnya,240.06
 2026-01,Beban Operasional Lainnya - Beban Bonus,20.0
 2026-01,Beban Operasional Lainnya - Beban CKPN,252.91
 2026-01,Beban Operasional Lainnya - Beban Administrasi,258.0
 2026-01,Beban Operasional Lainnya - Beban Lainnya,12.0
-2026-01,Laba Bersih,86.54
+2026-01,Laba Bersih,95.64
 2026-02,Pendapatan Bunga - KPR Subsidi,58.03
 2026-02,Pendapatan Bunga - KPR Non Subsidi,86.27
 2026-02,Pendapatan Bunga - Non KPR,45.94
@@ -539,12 +539,12 @@ period,line_item,amount
 2026-02,Beban Bunga - Surat Berharga Diterbitkan,7.16
 2026-02,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2026-02,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,57.5
-2026-02,Pendapatan Operasional Lainnya - Pendapatan Lainnya,248.22
+2026-02,Pendapatan Operasional Lainnya - Pendapatan Lainnya,248.86
 2026-02,Beban Operasional Lainnya - Beban Bonus,20.0
 2026-02,Beban Operasional Lainnya - Beban CKPN,268.06
 2026-02,Beban Operasional Lainnya - Beban Administrasi,261.6
 2026-02,Beban Operasional Lainnya - Beban Lainnya,12.0
-2026-02,Laba Bersih,86.54
+2026-02,Laba Bersih,87.18
 2026-03,Pendapatan Bunga - KPR Subsidi,57.61
 2026-03,Pendapatan Bunga - KPR Non Subsidi,88.46
 2026-03,Pendapatan Bunga - Non KPR,47.15
@@ -560,12 +560,12 @@ period,line_item,amount
 2026-03,Beban Bunga - Surat Berharga Diterbitkan,7.61
 2026-03,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2026-03,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,59.33
-2026-03,Pendapatan Operasional Lainnya - Pendapatan Lainnya,261.22
+2026-03,Pendapatan Operasional Lainnya - Pendapatan Lainnya,257.51
 2026-03,Beban Operasional Lainnya - Beban Bonus,20.0
 2026-03,Beban Operasional Lainnya - Beban CKPN,283.32
 2026-03,Beban Operasional Lainnya - Beban Administrasi,263.43
 2026-03,Beban Operasional Lainnya - Beban Lainnya,12.0
-2026-03,Laba Bersih,86.54
+2026-03,Laba Bersih,82.83
 2026-04,Pendapatan Bunga - KPR Subsidi,61.12
 2026-04,Pendapatan Bunga - KPR Non Subsidi,88.23
 2026-04,Pendapatan Bunga - Non KPR,50.01
@@ -581,12 +581,12 @@ period,line_item,amount
 2026-04,Beban Bunga - Surat Berharga Diterbitkan,7.78
 2026-04,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2026-04,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,60.0
-2026-04,Pendapatan Operasional Lainnya - Pendapatan Lainnya,269.53
+2026-04,Pendapatan Operasional Lainnya - Pendapatan Lainnya,271.67
 2026-04,Beban Operasional Lainnya - Beban Bonus,20.0
 2026-04,Beban Operasional Lainnya - Beban CKPN,294.76
 2026-04,Beban Operasional Lainnya - Beban Administrasi,263.0
 2026-04,Beban Operasional Lainnya - Beban Lainnya,12.0
-2026-04,Laba Bersih,86.54
+2026-04,Laba Bersih,88.68
 2026-05,Pendapatan Bunga - KPR Subsidi,63.58
 2026-05,Pendapatan Bunga - KPR Non Subsidi,87.82
 2026-05,Pendapatan Bunga - Non KPR,52.03
@@ -602,12 +602,12 @@ period,line_item,amount
 2026-05,Beban Bunga - Surat Berharga Diterbitkan,7.82
 2026-05,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2026-05,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,59.33
-2026-05,Pendapatan Operasional Lainnya - Pendapatan Lainnya,271.65
+2026-05,Pendapatan Operasional Lainnya - Pendapatan Lainnya,272.83
 2026-05,Beban Operasional Lainnya - Beban Bonus,20.0
 2026-05,Beban Operasional Lainnya - Beban CKPN,299.48
 2026-05,Beban Operasional Lainnya - Beban Administrasi,260.43
 2026-05,Beban Operasional Lainnya - Beban Lainnya,12.0
-2026-05,Laba Bersih,86.54
+2026-05,Laba Bersih,87.72
 2026-06,Pendapatan Bunga - KPR Subsidi,66.97
 2026-06,Pendapatan Bunga - KPR Non Subsidi,82.42
 2026-06,Pendapatan Bunga - Non KPR,50.01
@@ -623,12 +623,12 @@ period,line_item,amount
 2026-06,Beban Bunga - Surat Berharga Diterbitkan,7.94
 2026-06,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2026-06,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,57.5
-2026-06,Pendapatan Operasional Lainnya - Pendapatan Lainnya,270.12
+2026-06,Pendapatan Operasional Lainnya - Pendapatan Lainnya,274.9
 2026-06,Beban Operasional Lainnya - Beban Bonus,20.0
 2026-06,Beban Operasional Lainnya - Beban CKPN,296.34
 2026-06,Beban Operasional Lainnya - Beban Administrasi,256.4
 2026-06,Beban Operasional Lainnya - Beban Lainnya,12.0
-2026-06,Laba Bersih,86.54
+2026-06,Laba Bersih,91.32
 2026-07,Pendapatan Bunga - KPR Subsidi,67.16
 2026-07,Pendapatan Bunga - KPR Non Subsidi,80.83
 2026-07,Pendapatan Bunga - Non KPR,52.58
@@ -644,12 +644,12 @@ period,line_item,amount
 2026-07,Beban Bunga - Surat Berharga Diterbitkan,7.38
 2026-07,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2026-07,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,55.0
-2026-07,Pendapatan Operasional Lainnya - Pendapatan Lainnya,258.82
+2026-07,Pendapatan Operasional Lainnya - Pendapatan Lainnya,258.66
 2026-07,Beban Operasional Lainnya - Beban Bonus,20.0
 2026-07,Beban Operasional Lainnya - Beban CKPN,286.32
 2026-07,Beban Operasional Lainnya - Beban Administrasi,252.0
 2026-07,Beban Operasional Lainnya - Beban Lainnya,12.0
-2026-07,Laba Bersih,86.54
+2026-07,Laba Bersih,86.38
 2026-08,Pendapatan Bunga - KPR Subsidi,67.57
 2026-08,Pendapatan Bunga - KPR Non Subsidi,88.69
 2026-08,Pendapatan Bunga - Non KPR,50.42
@@ -665,12 +665,12 @@ period,line_item,amount
 2026-08,Beban Bunga - Surat Berharga Diterbitkan,6.73
 2026-08,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2026-08,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,52.5
-2026-08,Pendapatan Operasional Lainnya - Pendapatan Lainnya,242.66
+2026-08,Pendapatan Operasional Lainnya - Pendapatan Lainnya,233.97
 2026-08,Beban Operasional Lainnya - Beban Bonus,20.0
 2026-08,Beban Operasional Lainnya - Beban CKPN,272.27
 2026-08,Beban Operasional Lainnya - Beban Administrasi,248.4
 2026-08,Beban Operasional Lainnya - Beban Lainnya,12.0
-2026-08,Laba Bersih,86.54
+2026-08,Laba Bersih,77.85
 2026-09,Pendapatan Bunga - KPR Subsidi,68.72
 2026-09,Pendapatan Bunga - KPR Non Subsidi,91.0
 2026-09,Pendapatan Bunga - Non KPR,28.48
@@ -686,9 +686,9 @@ period,line_item,amount
 2026-09,Beban Bunga - Surat Berharga Diterbitkan,6.75
 2026-09,Pendapatan Operasional Lainnya - Pendapatan Sewa,18.0
 2026-09,Pendapatan Operasional Lainnya - Fee Based Pendapatan Operasional Lainnya,50.67
-2026-09,Pendapatan Operasional Lainnya - Pendapatan Lainnya,231.12
+2026-09,Pendapatan Operasional Lainnya - Pendapatan Lainnya,225.84
 2026-09,Beban Operasional Lainnya - Beban Bonus,20.0
 2026-09,Beban Operasional Lainnya - Beban CKPN,258.12
 2026-09,Beban Operasional Lainnya - Beban Administrasi,246.57
 2026-09,Beban Operasional Lainnya - Beban Lainnya,12.0
-2026-09,Laba Bersih,86.54
+2026-09,Laba Bersih,81.26
