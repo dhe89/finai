@@ -134,14 +134,14 @@ def complete_json(system_prompt, user_prompt, model=DEFAULT_MODEL, timeout=45,
     except Exception as exc:
         return {
             "ok": False,
-            "error": f"Gagal membaca JSON planner: {exc}",
+            "error": f"Gagal membaca JSON terstruktur: {exc}",
             "raw": response.get("content", ""),
             "model": response.get("model"),
         }
     if not isinstance(parsed, dict):
         return {
             "ok": False,
-            "error": "Model planner tidak mengembalikan object JSON.",
+            "error": "Model tidak mengembalikan object JSON.",
             "raw": response.get("content", ""),
             "model": response.get("model"),
         }

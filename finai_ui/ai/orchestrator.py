@@ -1,10 +1,9 @@
-from .planner import plan_question
-from .analyst import analyze
+"""FinAI orchestration: semantic analysis -> Python tools -> synthesis -> verification."""
+from .analyst import inspect, synthesize
 from .verifier import verify_answer, fallback_answer
 from .openrouter import DEFAULT_MODEL
-from finai_ui.financial_engine import build_evidence
+from finai_ui.financial_engine import build_evidence, expand_evidence
 from finai_ui import data_service as ds
-
 
 META_PHRASES = [
     "perkenalkan dirimu", "perkenalkan diri", "siapa kamu", "siapa anda",
@@ -16,6 +15,16 @@ def _meta(question):
     q = " ".join(str(question or "").lower().split())
     return any(x in q for x in META_PHRASES)
 
+
+def _generic_analysis_context():
+    return {
+        "scope": "FINANCIAL",
+        "need_more_evidence": True,
+        "requests": ["income_drivers", "balance_drivers", "trend"],
+        "focus_metrics": [],
+        "findings": [],
+        "answer_direction": "Analisis berdasarkan evidence yang tersedia.",
+    }
 
 
 def run_financial_analysis(question, selected_period=None, model=DEFAULT_MODEL):
@@ -32,50 +41,54 @@ def run_financial_analysis(question, selected_period=None, model=DEFAULT_MODEL):
 
     try:
         period = ds.resolve_period(selected_period)
-        plan_result = plan_question(question, period, model=model)
-
-        # Planner remains the semantic gate. If it fails, do not fabricate an
-        # analysis; return a clean user-facing message instead of leaving the
-        # UI in the optimistic typing state because of an uncaught exception.
-        if not plan_result.get("ok"):
-            return {
-                "ok": True,
-                "answer": "FinAI belum dapat menyusun rencana analisis untuk pertanyaan tersebut. Silakan coba lagi beberapa saat kemudian.",
-                "stage": "planner_error",
-                "error": plan_result.get("error"),
-            }
-
-        plan = plan_result["plan"]
-        scope = str(plan.get("scope", "FINANCIAL")).upper()
-        if scope == "META":
-            return {
-                "ok": True,
-                "answer": "Saya FinAI, asisten Financial Intelligence untuk membantu menganalisis data keuangan yang tersedia di aplikasi.",
-                "stage": "meta",
-            }
-        if scope == "OUT_OF_SCOPE":
-            return {
-                "ok": True,
-                "answer": "Pertanyaan tersebut berada di luar cakupan FinAI. Saya fokus pada analisis data dan informasi keuangan yang tersedia di aplikasi.",
-                "stage": "scope",
-            }
-        if scope == "AMBIGUOUS":
-            return {
-                "ok": True,
-                "answer": "Pertanyaannya belum cukup jelas untuk dianalisis. Silakan jelaskan fokus yang ingin dianalisis, misalnya kinerja laba, aset, kredit, pendanaan, kualitas aset, atau target.",
-                "stage": "clarification",
-            }
-
-        evidence = build_evidence(question, period, plan)
+        # Planner is deliberately removed from the critical path. The first
+        # evidence package is broad and the analyst can request focused tools.
+        evidence = build_evidence(question, period, plan=None)
         if evidence.get("status") != "READY":
-            return {
-                "ok": True,
-                "answer": evidence.get("message", "Data yang diperlukan belum tersedia."),
-                "stage": "data",
-                "plan": plan,
-            }
+            return {"ok": True, "answer": evidence.get("message", "Data yang diperlukan belum tersedia."), "stage": "data"}
 
-        analysis = analyze(question, evidence, plan, model=model)
+        findings = []
+        seen_requests = set()
+        scope = "FINANCIAL"
+
+        # Agent loop: inspect -> tool call -> inspect. Bounded to avoid latency/cost explosion.
+        for iteration in range(3):
+            director = inspect(question, evidence, context=findings, model=model)
+            if director.get("ok"):
+                analysis = director.get("analysis", {})
+                scope = str(analysis.get("scope", "FINANCIAL")).upper()
+                findings.extend(analysis.get("findings", []))
+                requests = [r for r in analysis.get("requests", []) if r not in seen_requests]
+            else:
+                # If the semantic director fails, continue with a deterministic
+                # analytical default instead of blocking the user.
+                analysis = _generic_analysis_context()
+                requests = [r for r in analysis["requests"] if r not in seen_requests]
+
+            if scope == "META":
+                return {"ok": True, "answer": "Saya FinAI, asisten Financial Intelligence untuk membantu menganalisis data keuangan yang tersedia di aplikasi.", "stage": "meta"}
+            if scope == "OUT_OF_SCOPE":
+                return {"ok": True, "answer": "Pertanyaan tersebut berada di luar cakupan FinAI. Saya fokus pada analisis data dan informasi keuangan yang tersedia di aplikasi.", "stage": "scope"}
+            if scope == "AMBIGUOUS":
+                # Only clarify if the director is confident that no useful
+                # financial interpretation is possible.
+                if not findings:
+                    return {"ok": True, "answer": "Pertanyaannya belum cukup jelas untuk dianalisis. Silakan jelaskan fokus atau metrik yang ingin dianalisis.", "stage": "clarification"}
+
+            if not requests or iteration == 2:
+                break
+
+            for request in requests[:3]:
+                seen_requests.add(request)
+                expanded = expand_evidence(evidence, request, period)
+                if expanded:
+                    evidence.setdefault("analysis_tools", {})[request] = expanded
+
+            # If no tool added anything, stop the loop.
+            if not requests:
+                break
+
+        analysis = synthesize(question, evidence, findings, model=model)
         if analysis.get("ok"):
             answer = analysis.get("content", "").strip()
             checked = verify_answer(question, answer, evidence)
@@ -83,29 +96,25 @@ def run_financial_analysis(question, selected_period=None, model=DEFAULT_MODEL):
                 return {
                     "ok": True,
                     "answer": answer,
-                    "stage": "analyst",
-                    "plan": plan,
+                    "stage": "analyst_agent",
                     "evidence": evidence,
+                    "findings": findings,
+                    "iterations": min(3, len(seen_requests) + 1),
                     "model": analysis.get("model"),
                 }
 
-        # Never expose planner/model internals to the user.
-        fallback = fallback_answer(evidence)
+        fallback = fallback_answer(evidence, question=question)
         return {
             "ok": True,
             "answer": fallback,
             "stage": "fallback",
-            "plan": plan,
             "evidence": evidence,
+            "findings": findings,
             "warning": analysis.get("error") if isinstance(analysis, dict) else None,
         }
     except Exception:
-        # The exception is intentionally not surfaced to the user. The Streamlit
-        # log still contains the traceback, while the chat receives a clean
-        # response instead of remaining on the optimistic typing indicator.
         return {
             "ok": True,
             "answer": "Terjadi kendala saat memproses analisis. Silakan coba lagi.",
             "stage": "runtime_error",
         }
-
