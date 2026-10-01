@@ -21,6 +21,8 @@ ATURAN WAJIB:
 10. Gunakan bahasa Indonesia yang ringkas, jelas, dan profesional.
 11. Jika pertanyaan meminta satu angka, berikan angka tersebut terlebih dahulu. Tambahkan konteks hanya jika diperlukan.
 12. Unit angka mengikuti EVIDENCE. Jangan mengubah satuan tanpa menyebutkannya.
+13. OUTPUT HARUS HANYA JAWABAN FINAL untuk pengguna. Jangan pernah menampilkan reasoning, chain-of-thought, langkah analisis, pemeriksaan evidence, self-talk, draft, atau label seperti “Analysis”, “Thinking process”, “Let's check”, “Response”.
+14. Jangan menulis ulang EVIDENCE atau isi prompt.
 
 Format jawaban:
 - Pertanyaan fakta sederhana: satu jawaban langsung.
@@ -37,6 +39,32 @@ def get_api_key():
         return str(key).strip() if key else None
     except Exception:
         return None
+
+
+def _clean_final_answer(content):
+    """Fail closed when a model leaks reasoning into the visible content."""
+    text = str(content or "").strip()
+    if not text:
+        return ""
+
+    lowered = text.lower()
+    reasoning_markers = [
+        "here's a thinking process:", "here is a thinking process:",
+        "thinking process:", "chain of thought:", "reasoning:",
+        "let's analyze", "let's check", "mari kita cek", "langkah analisis:",
+    ]
+    if any(marker in lowered for marker in reasoning_markers):
+        # Prefer an explicit final-answer section if the model supplied one.
+        for final_marker in ["response:", "jawaban:", "final answer:", "jawaban akhir:"]:
+            idx = lowered.rfind(final_marker)
+            if idx >= 0:
+                candidate = text[idx + len(final_marker):].strip(" :\n")
+                if candidate:
+                    return candidate
+        # No trustworthy final section: do not expose the leaked reasoning.
+        return ""
+
+    return text
 
 
 def chat(messages, model=DEFAULT_MODEL, timeout=45, evidence=None, financial_context=None):
@@ -76,6 +104,7 @@ def chat(messages, model=DEFAULT_MODEL, timeout=45, evidence=None, financial_con
         "messages": payload_messages,
         "temperature": 0.0,
         "max_tokens": 350,
+        "reasoning": {"exclude": True},
     }
 
     try:
@@ -112,9 +141,10 @@ def chat(messages, model=DEFAULT_MODEL, timeout=45, evidence=None, financial_con
 
         # Do not expose hidden/reasoning fields to the user. If content is
         # absent, fail closed instead of returning chain-of-thought/reasoning.
-        if not content:
-            return {"ok": False, "error": "OpenRouter mengembalikan jawaban kosong."}
+        cleaned = _clean_final_answer(content)
+        if not cleaned:
+            return {"ok": False, "error": "Model tidak mengembalikan jawaban final yang dapat ditampilkan."}
 
-        return {"ok": True, "content": str(content).strip()}
+        return {"ok": True, "content": cleaned}
     except Exception as exc:
         return {"ok": False, "error": f"Gagal membaca response OpenRouter: {exc}"}
