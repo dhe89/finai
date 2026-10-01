@@ -7,8 +7,9 @@ DEFAULT_MODEL = "openrouter/free"
 SYSTEM_PROMPT = (
     "You are FinAI, a Financial Intelligence Assistant. "
     "Answer clearly and concisely in Indonesian unless the user uses another language. "
-    "For this connectivity test, answer the user's question directly. "
-    "Do not claim access to financial data that has not been supplied."
+    "Use only the supplied financial context. Do not invent figures. "
+    "Distinguish facts from interpretation. If data is insufficient, say so. "
+    "Keep answers practical and suitable for management-level financial analysis."
 )
 
 
@@ -22,13 +23,20 @@ def get_api_key():
         return None
 
 
-def chat(messages, model=DEFAULT_MODEL, timeout=45):
-    """Call OpenRouter server-side; the API key is never sent to browser JS."""
+def chat(messages, model=DEFAULT_MODEL, timeout=45, financial_context=None):
+    """Call OpenRouter server-side and optionally include the selected period's financial context.
+
+    The financial_context argument is optional to preserve compatibility with older callers.
+    """
     api_key = get_api_key()
     if not api_key:
         return {"ok": False, "error": "API key OpenRouter belum ditemukan di Streamlit Secrets."}
 
-    payload_messages = [{"role": "system", "content": SYSTEM_PROMPT}]
+    system_content = SYSTEM_PROMPT
+    if financial_context:
+        system_content += "\n\nFINANCIAL CONTEXT FOR THE SELECTED PERIOD:\n" + str(financial_context)
+
+    payload_messages = [{"role": "system", "content": system_content}]
     payload_messages.extend(messages[-12:])
 
     headers = {
