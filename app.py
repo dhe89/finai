@@ -20,6 +20,13 @@ FRONTEND = BASE_DIR / "finai_ui" / "frontend"
 
 PAGE_MAP = {"kinerja", "financial_report", "data_detail", "setting"}
 
+LLM_PROVIDER_LABELS = {
+    "gemini": "Google Gemini",
+    "groq": "Groq",
+    "openrouter": "OpenRouter",
+    "LLM Router": "LLM Router",
+}
+
 # ------------------------------------------------------------------
 # SERVER STATE
 # ------------------------------------------------------------------
@@ -81,7 +88,32 @@ def render_chat_messages() -> str:
         if role == "user":
             blocks.append(f'<div class="msg user"><div class="bubble">{content}</div></div>')
         elif role == "assistant":
-            blocks.append(f'<div class="msg"><div class="bot">✦</div><div class="msgtext">{content}</div></div>')
+            meta = message.get("meta") or {}
+            provider_raw = str(meta.get("provider", ""))
+            provider = html.escape(LLM_PROVIDER_LABELS.get(provider_raw, provider_raw))
+            model = html.escape(str(meta.get("model", "")))
+            latency_ms = meta.get("latency_ms")
+            attempt = meta.get("attempt")
+            fallback = bool(meta.get("fallback"))
+
+            meta_parts = []
+            if provider and model:
+                meta_parts.append(f"{provider} · {model}")
+            elif provider:
+                meta_parts.append(provider)
+            if isinstance(latency_ms, (int, float)):
+                meta_parts.append(f"{latency_ms / 1000:.1f}s")
+            if fallback and isinstance(attempt, int):
+                meta_parts.append(f"Fallback #{attempt}")
+
+            metadata_html = (
+                f'<div class="ai-meta">{" · ".join(meta_parts)}</div>'
+                if meta_parts else ""
+            )
+            blocks.append(
+                f'<div class="msg"><div class="bot">✦</div>'
+                f'<div class="msgtext">{content}{metadata_html}</div></div>'
+            )
     return "".join(blocks)
 
 
@@ -199,7 +231,22 @@ if chat_event:
         response = llm_chat(st.session_state.chat_messages, selected_period=st.session_state.period)
         if response.get("ok"):
             answer = response.get("content", "").strip()
+            st.session_state.chat_messages.append({
+                "role": "assistant",
+                "content": answer,
+                "meta": {
+                    "provider": response.get("provider"),
+                    "model": response.get("model"),
+                    "latency_ms": response.get("latency_ms"),
+                    "attempt": response.get("attempt"),
+                    "fallback": response.get("fallback", False),
+                },
+            })
         else:
             answer = "⚠️ " + response.get("error", "LLM belum dapat merespons saat ini.")
-        st.session_state.chat_messages.append({"role": "assistant", "content": answer})
+            st.session_state.chat_messages.append({
+                "role": "assistant",
+                "content": answer,
+                "meta": {"provider": "LLM Router", "model": "Tidak ada provider yang berhasil"},
+            })
         st.rerun()
