@@ -203,6 +203,11 @@ if chat_event:
         # unavailable-data questions never reach OpenRouter.
         if evidence.get("status") != "READY":
             answer = evidence.get("message", "Data tidak cukup untuk menjawab pertanyaan.")
+        elif evidence.get("direct_answer"):
+            # Exact one-number lookups are answered by Python directly. This
+            # prevents an LLM from adding reasoning, guessing, or changing the
+            # value even when the evidence is already definitive.
+            answer = evidence["direct_answer"]
         else:
             response = openrouter_chat(
                 st.session_state.chat_messages,
