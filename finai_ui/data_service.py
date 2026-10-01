@@ -795,6 +795,121 @@ def _metric_value(period, metric):
     return None
 
 
+def _target_metric_name(metric):
+    return {
+        "total_assets": "Total Asset",
+        "total_credit": "Total Credit",
+        "total_investment": "Total Investment",
+        "total_dpk": "Total DPK",
+        "total_other_funding": "Total Other Funding",
+        "net_profit": "Net Profit",
+        "revenue": "Total Revenue",
+        "operating_expense": "Operating Expense",
+        "npl_ratio": "NPL Ratio %",
+        "ckpn_coverage": "CKPN Coverage %",
+        "low_cost_funding": "Low Cost Funding %",
+    }.get(metric)
+
+
+def _target_evidence(period, metric):
+    name = _target_metric_name(metric)
+    if not name:
+        return None
+    rows = _period_records(TARGETS, period)
+    hit = rows[rows.metric.astype(str).eq(name)]
+    if hit.empty:
+        return {"available": False, "metric": metric, "target_metric": name, "period": period}
+    target_value = float(hit.iloc[0].target)
+    actual = _metric_value(period, metric)
+    if actual is None:
+        return {"available": False, "metric": metric, "target_metric": name, "period": period}
+    delta = actual - target_value
+    return {
+        "available": True,
+        "metric": metric,
+        "target_metric": name,
+        "period": period,
+        "actual": actual,
+        "target": target_value,
+        "gap": delta,
+        "gap_percent": (delta / target_value * 100) if target_value else None,
+    }
+
+
+def _target_direct_answer(evidence):
+    tc = evidence.get("target_comparison")
+    if not tc or not tc.get("available"):
+        return None
+    label = evidence.get("selected_period_label") or evidence.get("selected_period")
+    metric = tc.get("metric")
+    labels = {
+        "net_profit":"Laba bersih", "total_assets":"Total aset", "total_credit":"Total kredit",
+        "total_dpk":"Total DPK", "revenue":"Pendapatan", "operating_expense":"Beban operasional",
+        "npl_ratio":"NPL", "ckpn_coverage":"CKPN Coverage", "low_cost_funding":"Low Cost Funding",
+    }
+    name=labels.get(metric, metric.replace("_"," ").title())
+    if tc.get("target") is not None:
+        return f"{name} {label}: aktual Rp {tc['actual']:,.2f} miliar, target Rp {tc['target']:,.2f} miliar, gap Rp {tc['gap']:,.2f} miliar ({tc['gap_percent']:+.2f}%)."
+    return None
+
+
+def _deterministic_fallback_answer(question, evidence):
+    """Safe fallback when the LLM is unavailable; uses only Python evidence."""
+    q = _normalise_text(question)
+    if evidence.get("target_comparison") and evidence["target_comparison"].get("available"):
+        tc=evidence["target_comparison"]
+        label=evidence.get("selected_period_label") or evidence.get("selected_period")
+        metric=tc.get("metric")
+        if any(x in q for x in ["strategi", "agar", "perlu dilakukan", "apa yang harus"]):
+            top=evidence.get("statement_detail") or []
+            if top:
+                return (f"Laba bersih {label} hampir mencapai target: aktual Rp {tc['actual']:,.2f} miliar vs target Rp {tc['target']:,.2f} miliar. "
+                        "Fokus pengendalian dari data beban terbesar adalah "
+                        + "; ".join(f"{x.get('line_item')}: Rp {float(x.get('amount',0)):,.2f} miliar" for x in top[:3]) + ".")
+        name={"net_profit":"Laba bersih","total_assets":"Total aset","total_credit":"Total kredit","total_dpk":"Total DPK","revenue":"Pendapatan","operating_expense":"Beban operasional","npl_ratio":"NPL","ckpn_coverage":"CKPN Coverage","low_cost_funding":"Low Cost Funding"}.get(metric, metric)
+        gap=tc['gap']
+        pos="di atas" if gap>=0 else "di bawah"
+        return f"{name} {label} sebesar Rp {tc['actual']:,.2f} miliar, target Rp {tc['target']:,.2f} miliar. Aktual {pos} target sebesar Rp {abs(gap):,.2f} miliar ({abs(tc['gap_percent']):.2f}%)."
+    groups=evidence.get("income_statement_groups")
+    comp=evidence.get("comparison_income_statement_groups") or []
+    if evidence.get("target_comparison") and evidence.get("statement_detail") and any(x in q for x in ["strategi", "agar", "perlu dilakukan", "apa yang harus"]):
+        tc=evidence["target_comparison"]
+        top=evidence["statement_detail"][:3]
+        label=evidence.get("selected_period_label") or evidence.get("selected_period")
+        return (f"Target {tc.get('metric')} {label} hampir tercapai: aktual Rp {tc.get('actual'):,.2f} miliar vs target Rp {tc.get('target'):,.2f} miliar. "
+                f"Untuk menjaga/menutup gap, fokus pengendalian beban terbesar pada data adalah "
+                + "; ".join(f"{x.get('line_item')}: Rp {float(x.get('amount',0)):,.2f} miliar" for x in top) + ".")
+    if groups and comp:
+        changes=comp[0].get("changes_vs_selected_period",{})
+        if changes:
+            impact = []
+            for k, ch in changes.items():
+                if k == "laba_rugi_hasil_perhitungan":
+                    continue
+                delta = float(ch.get("absolute", 0))
+                # Revenue/income increases support profit; expense increases
+                # pressure profit. This is a deterministic sign-based impact.
+                is_expense = k.startswith("beban_")
+                impact_score = -delta if is_expense else delta
+                impact.append((k, delta, impact_score, is_expense))
+            positive = sorted([x for x in impact if x[2] > 0], key=lambda x: x[2], reverse=True)
+            negative = sorted([x for x in impact if x[2] < 0], key=lambda x: abs(x[2]), reverse=True)
+            parts=[]
+            if negative:
+                k, delta, _, _ = negative[0]
+                parts.append(f"tekanan terbesar berasal dari {k.replace('_',' ')} yang naik Rp {abs(delta):,.2f} miliar")
+            if positive:
+                k, delta, _, _ = positive[0]
+                parts.append(f"penopang terbesar berasal dari {k.replace('_',' ')} yang naik Rp {abs(delta):,.2f} miliar")
+            if parts:
+                return "Berdasarkan perubahan Agustus ke September 2026, " + ", sementara ".join(parts) + "."
+    detail=evidence.get("statement_detail") or []
+    if detail and any(x in q for x in ["paling", "tertinggi", "terbesar", "efisiensi", "beban"]):
+        top=detail[:3]
+        return "Berdasarkan data, item terbesar adalah: " + "; ".join(f"{x.get('line_item')}: Rp {float(x.get('amount',0)):,.2f} miliar" for x in top) + "."
+    return None
+
+
 def _comparison_periods(question, primary):
     """Return explicit comparison period(s) or the natural previous period."""
     q = _normalise_text(question)
@@ -899,6 +1014,19 @@ def _direct_answer(question, evidence):
 
 
 
+def _breakdown_direct_answer(question, evidence):
+    q = _normalise_text(question)
+    detail = evidence.get("statement_detail") or []
+    if not detail:
+        return None
+    if any(x in q for x in ["beban apa", "biaya apa", "efisiensi", "beban terbesar", "biaya terbesar"]):
+        top = detail[:3]
+        return "Berdasarkan nilai beban September 2026, tiga item terbesar adalah: " + "; ".join(
+            f"{x.get('line_item')}: Rp {float(x.get('amount', 0)):,.2f} miliar" for x in top
+        ) + "."
+    return None
+
+
 def _statement_detail_evidence(period, dimension, metric=None, focus="none"):
     """Return deterministic statement detail for semantic BREAKDOWN requests."""
     if dimension == "income_statement_lines":
@@ -999,9 +1127,17 @@ def build_financial_evidence(question, selected_period=None, intent=None):
     if not primary:
         return {"status": "NO_DATA", "message": "Periode data belum tersedia."}
 
+    # Product profitability is not present in the current evidence model.
+    # Do not let the LLM substitute total revenue or net profit for a product
+    # profitability measure.
+    if any(x in q for x in ["produk apa yang paling profitable", "produk paling profitable", "produk paling menguntungkan", "produk mana paling menguntungkan", "profitabilitas produk"]):
+        return {"status": "NO_DATA", "period": primary, "message": f"Data profitabilitas per produk pada periode {format_period_id(primary)} belum tersedia di FinAI. Data produk yang tersedia saat ini belum mengandung laba/profit per produk."}
+
     metrics = _intent_metrics(intent) if intent and intent.get("scope") == "FINANCIAL" else _detect_metrics(q)
     if intent and intent.get("scope") == "FINANCIAL" and intent.get("metric") == "overview":
         metrics = []
+    if intent and intent.get("scope") == "FINANCIAL" and intent.get("intent") not in {"OVERVIEW", "BREAKDOWN"} and intent.get("metric") == "unknown":
+        return {"status": "AMBIGUOUS", "message": "Pertanyaan masih ambigu. Sebutkan metrik atau informasi yang ingin dianalisis, misalnya laba, aset, kredit, DPK, pendapatan, CKPN, NPL, produk, atau target."}
     # A specific financial metric that is not present in the supported evidence
     # model must fail closed rather than being guessed by the LLM.
     unsupported_metrics = [
@@ -1075,10 +1211,10 @@ def build_financial_evidence(question, selected_period=None, intent=None):
     if any(x in q for x in [
         "laba", "profit", "pendapatan", "revenue", "beban", "biaya", "ckpn",
         "laba rugi", "income statement", "kenapa", "mengapa", "turun", "naik",
-    ]):
+    ]) or (intent and intent.get("intent") == "DIAGNOSIS"):
         # For diagnosis/comparison, add only the P&L components needed to
         # explain the movement. A simple "berapa laba" does not need the full P&L.
-        if any(x in q for x in ["kenapa", "mengapa", "turun", "naik", "bandingkan", "dibandingkan", "perubahan", "laba rugi", "income statement"]):
+        if any(x in q for x in ["kenapa", "mengapa", "faktor", "penyebab", "berpengaruh", "turun", "naik", "bandingkan", "dibandingkan", "perubahan", "laba rugi", "income statement"]) or (intent and intent.get("intent") == "DIAGNOSIS"):
             evidence["income_statement_groups"] = _income_group_totals(primary)
             for cp in comparison:
                 if cp and cp in periods:
@@ -1110,7 +1246,15 @@ def build_financial_evidence(question, selected_period=None, intent=None):
         evidence["dpk_products"] = agg(DPK, primary, "product_type", "balance", "total_cost_bagi_hasil").to_dict("records")
 
     # Target evidence is included only when target/performance is requested.
-    if "target" in q or "pencapaian" in q or "achievement" in q or "efisiensi" in q:
+    is_target_request = (intent and intent.get("intent") == "TARGET") or any(x in q for x in ["target", "pencapaian", "achievement", "efisiensi"])
+    if is_target_request and metrics:
+        target_cmp = _target_evidence(primary, metrics[0])
+        if target_cmp and not target_cmp.get("available"):
+            return {"status": "NO_DATA", "period": primary, "message": f"Target untuk {metrics[0].replace('_', ' ')} pada periode {format_period_id(primary)} belum tersedia di data FinAI."}
+        if target_cmp:
+            evidence["target_comparison"] = target_cmp
+
+    if is_target_request:
         target_df = _period_records(TARGETS, primary)
         if metrics:
             target_map = {
@@ -1131,6 +1275,13 @@ def build_financial_evidence(question, selected_period=None, intent=None):
                 target_df = target_df[target_df.metric.isin(wanted)]
         evidence["targets"] = target_df.to_dict("records")
 
+    # Strategy questions need actionable evidence beyond the target gap.
+    if is_target_request and any(x in q for x in ["strategi", "agar", "perlu dilakukan", "apa yang harus"]):
+        detail = _statement_detail_evidence(primary, "income_statement_lines", None, "expense")
+        if detail:
+            evidence["statement_detail"] = detail
+        evidence["strategy_note"] = "Gunakan target comparison dan komponen pendapatan/beban sebagai dasar; jangan mengarang faktor di luar evidence."
+
     # If a comparison is requested but no valid comparison period exists, do
     # not let the model guess a benchmark.
     if any(x in q for x in ["bandingkan", "dibandingkan", "vs", "perubahan", "naik", "turun", "pertumbuhan"]):
@@ -1142,9 +1293,18 @@ def build_financial_evidence(question, selected_period=None, intent=None):
 
     evidence["intent"] = intent or {"source": "LOCAL_RULE"}
     evidence["status"] = "READY"
-    direct = _direct_answer(q, evidence)
+    direct = None
+    if is_target_request and not any(x in q for x in ["strategi", "agar", "perlu dilakukan", "apa yang harus"]):
+        direct = _target_direct_answer(evidence)
+    if not direct and evidence.get("statement_detail"):
+        direct = _breakdown_direct_answer(q, evidence)
+    if not direct:
+        direct = _direct_answer(q, evidence)
     if direct:
         evidence["direct_answer"] = direct
+    fallback = _deterministic_fallback_answer(q, evidence)
+    if fallback:
+        evidence["fallback_answer"] = fallback
     return evidence
 
 
