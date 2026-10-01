@@ -1,5 +1,4 @@
 import json
-
 import requests
 import streamlit as st
 
@@ -7,149 +6,167 @@ OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 DEFAULT_MODEL = "google/gemma-3-12b-it:free"
 FALLBACK_MODELS = [DEFAULT_MODEL, "openrouter/free"]
 
-SYSTEM_PROMPT = """Anda adalah FinAI, asisten Financial Intelligence untuk analisis data keuangan bank.
-
-ATURAN WAJIB:
-1. Jawab hanya berdasarkan EVIDENCE yang diberikan oleh Python. EVIDENCE adalah satu-satunya sumber fakta dan angka.
-2. Jangan mengarang angka, periode, tren, penyebab, target, atau informasi lain yang tidak ada di EVIDENCE.
-3. Jangan menebak maksud pengguna. Jika pertanyaan belum jelas, Python seharusnya sudah menghentikan permintaan sebelum sampai ke Anda. Jika masih ada ambiguitas, minta klarifikasi secara singkat.
-4. Jangan mengubah periode yang ada di EVIDENCE dan jangan menggunakan periode dari percakapan sebelumnya sebagai fakta.
-5. Pesan assistant sebelumnya hanya konteks percakapan, BUKAN sumber data. Jangan mengambil angka dari pesan tersebut.
-6. Jika EVIDENCE tidak memuat data yang diperlukan, katakan bahwa data tersebut tidak tersedia. Jangan melakukan estimasi atau inferensi yang tidak didukung EVIDENCE.
-7. Untuk pertanyaan sebab-akibat, jelaskan hanya faktor yang dapat didukung langsung oleh angka/kelompok data dalam EVIDENCE. Gunakan frasa seperti “berdasarkan data” bila menyimpulkan dari perubahan angka.
-8. Jangan menampilkan proses berpikir internal, self-talk, langkah pencarian, atau kalimat seperti “mari kita cek”, “mungkin pengguna bermaksud”, “let's check”, atau dugaan typo.
-9. Jangan memberikan informasi yang tidak diperlukan untuk menjawab pertanyaan.
-10. Gunakan bahasa Indonesia yang ringkas, jelas, dan profesional.
-13. Jika pertanyaan meminta satu angka, berikan angka tersebut terlebih dahulu. Tambahkan konteks hanya jika diperlukan.
-14. Unit angka mengikuti EVIDENCE. Jangan mengubah satuan tanpa menyebutkannya.
-15. OUTPUT HARUS HANYA JAWABAN FINAL untuk pengguna. Jangan pernah menampilkan reasoning, chain-of-thought, langkah analisis, pemeriksaan evidence, self-talk, draft, atau label seperti “Analysis”, “Thinking process”, “Let's check”, “Response”.
-16. Jangan menulis ulang EVIDENCE atau isi prompt.
-
-Format jawaban:
-- Pertanyaan fakta sederhana: satu jawaban langsung.
-- Perbandingan: nilai periode yang dibandingkan + perubahan jika dapat dihitung dari EVIDENCE.
-- Analisis: kesimpulan singkat lalu faktor pendukung yang benar-benar ada di EVIDENCE.
-"""
-
 
 def get_api_key():
     try:
-        key = st.secrets.get("OPENROUTER_API_KEY", "")
-        if not key:
-            key = st.secrets.get("api_key", "")
+        key = st.secrets.get("OPENROUTER_API_KEY", "") or st.secrets.get("api_key", "")
         return str(key).strip() if key else None
     except Exception:
         return None
 
 
-def _clean_final_answer(content):
-    """Fail closed when a model leaks reasoning into the visible content."""
-    text = str(content or "").strip()
-    if not text:
-        return ""
-
-    lowered = text.lower()
-    reasoning_markers = [
-        "here's a thinking process:", "here is a thinking process:",
-        "thinking process:", "chain of thought:", "reasoning:",
-        "let's analyze", "let's check", "mari kita cek", "langkah analisis:",
-        "the user is asking multiple questions", "the user is asking",
-        "first question:", "second question:", "third question:",
-        "fourth question:", "available evidence shows", "same as above",
-        "should say", "cannot provide strategy",
-    ]
-    if any(marker in lowered for marker in reasoning_markers):
-        # Prefer an explicit final-answer section if the model supplied one.
-        for final_marker in ["response:", "jawaban:", "final answer:", "jawaban akhir:"]:
-            idx = lowered.rfind(final_marker)
-            if idx >= 0:
-                candidate = text[idx + len(final_marker):].strip(" :\n")
-                if candidate:
-                    return candidate
-        # No trustworthy final section: do not expose the leaked reasoning.
-        return ""
-
-    return text
-
-
-def chat(question, model=DEFAULT_MODEL, timeout=45, evidence=None, financial_context=None):
-    """Call the answer model for ONE current question using deterministic evidence.
-
-    Chat history is intentionally excluded from the model request. The UI may
-    display history, but each answer request must be isolated so the model
-    cannot merge several previous questions into one response.
-    """
-    api_key = get_api_key()
-    if not api_key:
-        return {"ok": False, "error": "API key OpenRouter belum ditemukan di Streamlit Secrets."}
-    if evidence is None:
-        evidence = financial_context
-    if evidence is None:
-        return {"ok": False, "error": "Evidence keuangan belum tersedia."}
-
-    current_question = str(question or "").strip()
-    if not current_question:
-        return {"ok": False, "error": "Pertanyaan kosong."}
-
-    evidence_json = json.dumps(evidence, ensure_ascii=False, allow_nan=False, separators=(",", ":"))
-    system_content = SYSTEM_PROMPT + "\n\nEVIDENCE DARI PYTHON (SUMBER FAKTA SATU-SATUNYA):\n" + evidence_json
-    payload_messages = [
-        {"role": "system", "content": system_content},
-        {
-            "role": "user",
-            "content": (
-                "PERTANYAAN PENGGUNA SAAT INI:\n"
-                + current_question
-                + "\n\nJawab hanya pertanyaan ini. Gunakan bahasa Indonesia. "
-                  "Berikan kesimpulan final saja tanpa proses berpikir."
-            ),
-        },
-    ]
-    headers = {
-        "Authorization": f"Bearer {api_key}",
+def _headers(title="FinAI"):
+    key = get_api_key()
+    return {
+        "Authorization": f"Bearer {key}",
         "Content-Type": "application/json",
         "HTTP-Referer": "https://demuy89.streamlit.app",
-        "X-Title": "FinAI",
+        "X-Title": title,
     }
+
+
+def _content_from_response(data):
+    choices = data.get("choices") or []
+    if not choices:
+        return ""
+    message = choices[0].get("message") or {}
+    content = message.get("content", "")
+    if isinstance(content, list):
+        content = "".join(
+            str(x.get("text", "")) if isinstance(x, dict) else str(x)
+            for x in content
+        )
+    return str(content or "").strip()
+
+
+def _strip_fences(text):
+    text = str(text or "").strip()
+    text = re.sub(r"^```(?:json)?\s*", "", text, flags=re.I)
+    text = re.sub(r"\s*```$", "", text)
+    return text.strip()
+
+
+def extract_json(text):
+    text = _strip_fences(text)
+    try:
+        return json.loads(text)
+    except Exception:
+        match = re.search(r"\{.*\}", text, flags=re.S)
+        if not match:
+            return None
+        try:
+            return json.loads(match.group(0))
+        except Exception:
+            return None
+
+
+def complete_text(system_prompt, user_prompt, model=DEFAULT_MODEL, timeout=60,
+                  max_tokens=1200, temperature=0.1, title="FinAI"):
+    key = get_api_key()
+    if not key:
+        return {"ok": False, "error": "API key OpenRouter belum ditemukan di Streamlit Secrets."}
 
     models = [model] if model else []
     for candidate in FALLBACK_MODELS:
         if candidate not in models:
             models.append(candidate)
-    errors=[]
+
+    errors = []
     for candidate in models:
         payload = {
             "model": candidate,
-            "messages": payload_messages,
-            "temperature": 0.0,
-            "max_tokens": 350,
+            "messages": [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt},
+            ],
+            "temperature": temperature,
+            "max_tokens": max_tokens,
             "reasoning": {"exclude": True},
         }
         try:
-            response = requests.post(OPENROUTER_URL, headers=headers, json=payload, timeout=timeout)
+            response = requests.post(
+                OPENROUTER_URL,
+                headers=_headers(title),
+                json=payload,
+                timeout=timeout,
+            )
         except requests.RequestException as exc:
             errors.append(f"{candidate}: {exc}")
             continue
+
         if response.status_code != 200:
             try:
-                err=response.json().get("error", {})
-                msg=err.get("message") or response.text
+                err = response.json().get("error", {})
+                msg = err.get("message") or response.text
             except Exception:
-                msg=response.text
+                msg = response.text
             errors.append(f"{candidate}: HTTP {response.status_code} {msg}")
             continue
+
         try:
-            data=response.json(); choices=data.get("choices") or []
-            if not choices:
-                errors.append(f"{candidate}: empty choices"); continue
-            message=choices[0].get("message") or {}
-            content=message.get("content")
-            if isinstance(content,list):
-                content="".join(str(x.get("text","")) if isinstance(x,dict) else str(x) for x in content)
-            cleaned=_clean_final_answer(content)
-            if cleaned:
-                return {"ok":True,"content":cleaned,"model":candidate}
-            errors.append(f"{candidate}: empty final content")
+            content = _content_from_response(response.json())
+            if content:
+                return {"ok": True, "content": content, "model": candidate}
+            errors.append(f"{candidate}: empty content")
         except Exception as exc:
             errors.append(f"{candidate}: {exc}")
-    return {"ok":False,"error":"; ".join(errors[-3:]) or "Model tidak mengembalikan jawaban final yang dapat ditampilkan."}
+
+    return {"ok": False, "error": "; ".join(errors[-3:]) or "Model tidak mengembalikan jawaban."}
+
+
+def complete_json(system_prompt, user_prompt, model=DEFAULT_MODEL, timeout=45,
+                  max_tokens=700, title="FinAI Planner"):
+    response = complete_text(
+        system_prompt,
+        user_prompt,
+        model=model,
+        timeout=timeout,
+        max_tokens=max_tokens,
+        temperature=0.0,
+        title=title,
+    )
+    if not response.get("ok"):
+        return response
+
+    parsed = extract_json(response.get("content", ""))
+    if parsed is None:
+        return {
+            "ok": False,
+            "error": "Model planner tidak mengembalikan JSON yang valid.",
+            "raw": response.get("content", ""),
+            "model": response.get("model"),
+        }
+    return {"ok": True, "data": parsed, "model": response.get("model")}
+
+
+def clean_final_answer(content):
+    """Remove obvious leaked meta/reasoning, never expose internal planning."""
+    text = str(content or "").strip()
+    if not text:
+        return ""
+
+    # If a provider unexpectedly emits a final-answer wrapper, keep only that part.
+    lowered = text.lower()
+    for marker in ["jawaban final:", "jawaban akhir:", "final answer:"]:
+        idx = lowered.rfind(marker)
+        if idx >= 0:
+            text = text[idx + len(marker):].strip()
+            lowered = text.lower()
+
+    forbidden = [
+        "the user is asking multiple questions",
+        "first question:",
+        "second question:",
+        "third question:",
+        "fourth question:",
+        "chain of thought",
+        "thinking process",
+        "internal reasoning",
+        "let's analyze",
+        "mari kita cek",
+        "analysis:",
+        "reasoning:",
+    ]
+    if any(x in lowered for x in forbidden):
+        return ""
+    return text
