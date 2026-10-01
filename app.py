@@ -112,29 +112,46 @@ def render_chat_messages() -> str:
             )
 
             attempts = meta.get("attempts") or []
+            # Full provider history is visible for testing. Include the final
+            # successful provider as the last attempt.
+            attempt_history = list(attempts)
+            if provider_raw and provider_raw != "LLM Router":
+                attempt_history.append({
+                    "provider": provider_raw,
+                    "model": model,
+                    "status": "success",
+                    "latency_ms": latency_ms,
+                    "reason": "Provider berhasil menghasilkan jawaban.",
+                })
             diagnostic_html = ""
-            if attempts:
+            if attempt_history:
                 rows = []
-                for idx, attempt_info in enumerate(attempts, start=1):
+                for idx, attempt_info in enumerate(attempt_history, start=1):
                     p_raw = str(attempt_info.get("provider", ""))
                     p_label = html.escape(LLM_PROVIDER_LABELS.get(p_raw, p_raw))
                     m_label = html.escape(str(attempt_info.get("model", "")))
-                    status = html.escape(str(attempt_info.get("status", "")))
+                    status_raw = str(attempt_info.get("status", ""))
                     reason = html.escape(str(attempt_info.get("reason", "Provider gagal.")))
                     elapsed = attempt_info.get("latency_ms")
                     elapsed_text = f"{elapsed / 1000:.1f}s" if isinstance(elapsed, (int, float)) else "-"
+                    if status_raw == "success":
+                        icon, status_label, status_class = "✅", "Berhasil", "ok"
+                    elif status_raw == "missing_key":
+                        icon, status_label, status_class = "⏭️", "Tidak dicoba", ""
+                    else:
+                        icon, status_label, status_class = "❌", status_raw, ""
                     rows.append(
                         f'<div class="ai-attempt"><b>#{idx} {p_label}</b> · {m_label}'
-                        f'<br><span class="ai-attempt-status">❌ {status} · {elapsed_text}</span>'
+                        f'<br><span class="ai-attempt-status {status_class}">{icon} {html.escape(status_label)} · {elapsed_text}</span>'
                         f'<br><span class="ai-attempt-reason">{reason}</span></div>'
                     )
                 diagnostic_html = (
-                    '<details class="ai-diagnostics"><summary>🔎 Lihat percobaan provider</summary>'
+                    '<details class="ai-diagnostics"><summary>🔎 Riwayat percobaan LLM</summary>'
                     + "".join(rows) + '</details>'
                 )
             blocks.append(
                 f'<div class="msg"><div class="bot">✦</div>'
-                f'<div class="msgtext">{content}{metadata_html}</div></div>'
+                f'<div class="msgtext">{content}{metadata_html}{diagnostic_html}</div></div>'
             )
     return "".join(blocks)
 
@@ -270,6 +287,10 @@ if chat_event:
             st.session_state.chat_messages.append({
                 "role": "assistant",
                 "content": answer,
-                "meta": {"provider": "LLM Router", "model": "Tidak ada provider yang berhasil"},
+                "meta": {
+                    "provider": "LLM Router",
+                    "model": "Tidak ada provider yang berhasil",
+                    "attempts": response.get("attempts", []),
+                },
             })
         st.rerun()
