@@ -110,6 +110,28 @@ def render_chat_messages() -> str:
                 f'<div class="ai-meta">{" · ".join(meta_parts)}</div>'
                 if meta_parts else ""
             )
+
+            attempts = meta.get("attempts") or []
+            diagnostic_html = ""
+            if attempts:
+                rows = []
+                for idx, attempt_info in enumerate(attempts, start=1):
+                    p_raw = str(attempt_info.get("provider", ""))
+                    p_label = html.escape(LLM_PROVIDER_LABELS.get(p_raw, p_raw))
+                    m_label = html.escape(str(attempt_info.get("model", "")))
+                    status = html.escape(str(attempt_info.get("status", "")))
+                    reason = html.escape(str(attempt_info.get("reason", "Provider gagal.")))
+                    elapsed = attempt_info.get("latency_ms")
+                    elapsed_text = f"{elapsed / 1000:.1f}s" if isinstance(elapsed, (int, float)) else "-"
+                    rows.append(
+                        f'<div class="ai-attempt"><b>#{idx} {p_label}</b> · {m_label}'
+                        f'<br><span class="ai-attempt-status">❌ {status} · {elapsed_text}</span>'
+                        f'<br><span class="ai-attempt-reason">{reason}</span></div>'
+                    )
+                diagnostic_html = (
+                    '<details class="ai-diagnostics"><summary>🔎 Lihat percobaan provider</summary>'
+                    + "".join(rows) + '</details>'
+                )
             blocks.append(
                 f'<div class="msg"><div class="bot">✦</div>'
                 f'<div class="msgtext">{content}{metadata_html}</div></div>'
@@ -240,6 +262,7 @@ if chat_event:
                     "latency_ms": response.get("latency_ms"),
                     "attempt": response.get("attempt"),
                     "fallback": response.get("fallback", False),
+                    "attempts": response.get("attempts", []),
                 },
             })
         else:
