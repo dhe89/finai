@@ -170,7 +170,7 @@ def _groq_models(api_key: str) -> list[str]:
         if mid and "whisper" not in mid.lower() and "tts" not in mid.lower():
             models.append(mid)
     # Stable, explicit fallback first when it exists.
-    preferred = "openai/gpt-oss-20b"
+    preferred = "qwen/qwen3.6-27b"
     models.sort(key=lambda x: (0 if x == preferred else 1, x))
     return models[:MAX_MODELS_PER_PROVIDER]
 
