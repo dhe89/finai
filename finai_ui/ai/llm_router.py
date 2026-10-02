@@ -13,8 +13,8 @@ from typing import Any
 import requests
 from .financial_context import build_analysis_context
 
-DEFAULT_PROVIDER_ORDER = ["gemini", "groq", "openrouter"]
-DEFAULT_MODELS = {"gemini": "", "groq": "", "openrouter": ""}
+DEFAULT_PROVIDER_ORDER = ["openrouter", "gemini", "groq"]
+DEFAULT_MODELS = {"openrouter": "","gemini": "", "groq": ""}
 DISCOVERY_TIMEOUT = 15
 MAX_MODELS_PER_PROVIDER = 8
 RETRYABLE_STATUSES = {408, 429, 500, 502, 503, 504}
