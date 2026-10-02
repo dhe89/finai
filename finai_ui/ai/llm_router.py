@@ -22,6 +22,8 @@ import requests
 
 from .evidence_catalog import EVIDENCE_CATALOG
 from .evidence_engine import build_catalog_context, execute_evidence_plan
+from .financial_knowledge import knowledge_for_llm
+from .intelligence_layer import normalize_scope, attach_scope_to_requests
 
 DEFAULT_PROVIDER_ORDER = ["groq", "openrouter", "gemini"]
 DEFAULT_MODELS = {"groq": "", "openrouter": "", "gemini": ""}
@@ -30,44 +32,45 @@ MAX_MODELS_PER_PROVIDER = 8
 RETRYABLE_STATUSES = {408, 429, 500, 502, 503, 504}
 
 PLANNER_SYSTEM_PROMPT = """Anda adalah Evidence Planner untuk FinAI.
-Tugas Anda BUKAN menjawab pertanyaan pengguna dan BUKAN menghitung angka.
-Anda hanya menerjemahkan pertanyaan menjadi daftar evidence yang perlu diminta
-ke Python berdasarkan KAMUS EVIDENCE yang diberikan.
+Tugas Anda adalah menerjemahkan pertanyaan pengguna menjadi SEMANTIC PLAN dan daftar evidence yang harus diminta ke Python. Anda tidak menjawab pertanyaan dan tidak menghitung angka.
 
-ATURAN KERAS:
-1. Jangan mengarang evidence ID. Hanya gunakan ID yang ada di kamus.
-2. Minta evidence seminimal mungkin tetapi cukup untuk menjawab pertanyaan.
-3. Pilih comparison yang memang dibutuhkan: mom, yoy, ytd, target, trend.
-4. Jika pertanyaan menyebut produk/driver, minta detail produk terkait.
-5. Jika pertanyaan tentang laba, pertimbangkan income_statement; jika tentang aset/funding,
-   pertimbangkan balance_sheet dan produk funding; jika tentang kualitas kredit,
-   pertimbangkan summary_kpi dan loan_products.
-6. Jika pertanyaan membutuhkan hubungan antar komponen, minta komponen sumbernya,
-   bukan seluruh dataset.
-7. Period harus YYYY-MM jika disebut. Jika tidak disebut, gunakan periode aktif.
-8. Output HARUS JSON valid saja, tanpa markdown dan tanpa penjelasan.
+PRIORITAS UTAMA:
+1. Pahami objek pertanyaan, periode, scope waktu, dan jenis analisis sebelum memilih evidence.
+2. Jika pengguna meminta rentang/perkembangan/trend dari A sampai B, WAJIB meminta SEMUA periode bulanan di antara A dan B. Endpoint saja tidak cukup.
+3. Jika pengguna meminta "kenapa", "mengapa", "driver", atau "penyebab", minta metric utama DAN komponen/driver yang dapat menguji penjelasan tersebut. Jangan menyimpulkan sebab hanya dari korelasi.
+4. Gunakan definisi, hubungan, dan forbidden_inferences dalam financial knowledge.
+5. Untuk target, pastikan actual dan target berada pada periode yang comparable.
+6. Gunakan evidence seminimal mungkin tetapi lengkap untuk pertanyaan. Untuk diagnosis, lebih baik evidence bertahap daripada menebak.
+7. Hanya gunakan evidence ID yang ada di katalog.
+8. Output JSON valid saja.
+
+SCOPE TYPE:
+POINT = satu periode; COMPARISON = dua/perbandingan; RANGE = seluruh periode dalam interval; TREND = pola lintas periode; YTD = perkembangan/akumulasi tahun berjalan; DIAGNOSIS = mencari driver; TARGET_ANALYSIS = actual vs target; SCENARIO = analisis asumsi.
+
+Untuk RANGE/TREND/YTD, isi scope.include_all_periods=true, start_period, end_period, granularity=MONTHLY.
 
 Schema:
-{"requests":[{"id":"summary_kpi","period":"2026-09","comparisons":["mom","yoy"],"fields":[],"lines":[],"products":[]}]}
+{
+  "scope": {"scope_type":"RANGE","start_period":"2026-01","end_period":"2026-09","granularity":"MONTHLY","include_all_periods":true,"analysis":["TREND","MOM","TURNING_POINT"]},
+  "requests": [{"id":"summary_kpi","period":"2026-09","start_period":"2026-01","end_period":"2026-09","granularity":"MONTHLY","include_all_periods":true,"comparisons":["trend"],"fields":[],"lines":[],"products":[]} ]
+}
 """
 
 ANALYST_SYSTEM_PROMPT = """Anda adalah FinAI, Financial Intelligence Assistant untuk analisis keuangan.
 
-Python telah memilih dan menghitung evidence berdasarkan permintaan planner. Evidence
-tersebut adalah satu-satunya sumber fakta dan angka untuk jawaban.
+Python adalah sumber kebenaran untuk angka, periode, dan perhitungan. Financial Knowledge adalah sumber definisi dan batas interpretasi. Evidence yang dikirim adalah satu-satunya dasar faktual.
 
 ATURAN KERAS:
-1. Jangan mengarang angka, periode, produk, atau fakta yang tidak ada di evidence.
-2. Bedakan FAKTA, INTERPRETASI, ASUMSI/IMPLIKASI, dan KETERBATASAN bila relevan.
-3. Hasil perhitungan Python adalah fakta turunan yang boleh digunakan.
-4. Jangan menyatakan sebab-akibat sebagai fakta jika evidence hanya menunjukkan perubahan/korelasi.
-5. Jika evidence tidak cukup untuk memastikan sesuatu, katakan apa yang belum dapat dipastikan.
-6. Jangan meminta user memberikan data yang sebenarnya tersedia di evidence.
-7. Jawab pertanyaan aktif saja; jangan mengulang seluruh evidence.
-8. Untuk pertanyaan "kenapa", fokus pada driver yang paling material yang benar-benar terlihat.
-9. Untuk pertanyaan perbandingan, gunakan periode/comparison yang tersedia dan jangan mengarang YoY/YTD.
-10. Bahasa Indonesia, profesional tetapi natural. Tidak perlu menyebut proses internal atau chain-of-thought.
-11. Jika diminta estimasi/skenario, nyatakan asumsi secara eksplisit dan jangan menyebut hasil estimasi sebagai fakta aktual.
+1. Jangan mengarang angka, periode, produk, formula, atau fakta.
+2. Bedakan FAKTA, PERHITUNGAN, INTERPRETASI, ASUMSI/IMPLIKASI, dan KETERBATASAN bila relevan.
+3. Observasi perubahan tidak otomatis membuktikan sebab-akibat. Gunakan bahasa seperti "sejalan dengan", "berkorelasi", atau "belum dapat dipastikan" bila driver belum terbukti.
+4. Patuhi forbidden_inferences dari Financial Knowledge. Contoh: CKPN bukan pendapatan non-bunga; NPL turun tidak otomatis berarti seluruh risiko gagal bayar turun; laba naik tidak otomatis berarti efisiensi membaik.
+5. Untuk pertanyaan range/trend, analisis SELURUH periode yang tersedia dalam range, bukan hanya awal dan akhir. Gunakan pola bulanan, perubahan, turning point, highest/lowest bila tersedia.
+6. Jangan membandingkan periode yang tidak comparable, misalnya actual bulanan dengan target full-year atau YTD dengan target bulanan.
+7. Jika evidence tidak lengkap, sebutkan periode/data yang hilang dan jangan menutup gap dengan asumsi tak terukur.
+8. Untuk pertanyaan "kenapa", fokus pada driver material yang benar-benar didukung evidence. Jika belum cukup, katakan bahwa penyebab belum dapat dipastikan.
+9. Untuk estimasi/skenario, pisahkan hasil estimasi dari fakta aktual dan nyatakan asumsi terukur.
+10. Bahasa Indonesia, profesional tetapi natural. Jangan menyebut chain-of-thought atau proses internal secara mentah.
 """
 
 
@@ -288,63 +291,84 @@ def _extract_json(text: str) -> dict[str, Any] | None:
 
 def _validate_plan(plan: dict[str, Any]) -> dict[str, Any]:
     valid = []
+    raw_scope = plan.get("scope") if isinstance(plan, dict) else {}
     for req in plan.get("requests", []) if isinstance(plan.get("requests"), list) else []:
         if not isinstance(req, dict): continue
         eid = str(req.get("id", "")).strip()
         if eid not in EVIDENCE_CATALOG: continue
-        comparisons = [str(x) for x in req.get("comparisons", []) if str(x) in {"mom", "yoy", "ytd", "target", "trend"}]
-        clean = {"id": eid, "comparisons": comparisons[:5]}
-        for field in ("period", "fields", "lines", "products"):
+        comparisons = [str(x).lower() for x in req.get("comparisons", []) if str(x).lower() in {"mom", "yoy", "ytd", "target", "trend"}]
+        clean = {"id": eid, "comparisons": list(dict.fromkeys(comparisons))[:5]}
+        for field in ("period", "start_period", "end_period", "granularity"):
             value = req.get(field)
-            if field == "period" and value:
-                clean[field] = str(value)
-            elif field != "period" and isinstance(value, list):
-                clean[field] = [str(x) for x in value[:40]]
+            if value: clean[field] = str(value)
+        clean["include_all_periods"] = bool(req.get("include_all_periods", False))
+        for field in ("fields", "lines", "products"):
+            value = req.get(field)
+            if isinstance(value, list): clean[field] = [str(x) for x in value[:60]]
         valid.append(clean)
-    # De-duplicate evidence IDs to keep evidence compact.
-    unique = []
-    seen = set()
-    for req in valid:
-        key = req["id"]
-        if key not in seen:
-            seen.add(key); unique.append(req)
-    return {"requests": unique[:8]}
+    out = {"scope": raw_scope if isinstance(raw_scope, dict) else {}, "requests": valid[:10]}
+    return normalize_scope(out, None)
 
 
-def _heuristic_plan(question: str) -> dict[str, Any]:
-    """Safety-net planner used only when an LLM cannot produce a plan."""
+def _heuristic_plan(question: str, selected_period: str | None = None) -> dict[str, Any]:
+    """Conservative fallback. It selects evidence only; it never creates facts."""
     q = question.lower()
+    period = selected_period
     req = [{"id": "summary_kpi", "comparisons": ["mom", "yoy"]}]
-    if any(x in q for x in ("laba", "revenue", "pendapatan", "beban", "ckpn", "profit", "margin")):
-        req.append({"id": "income_statement", "comparisons": ["mom", "yoy"]})
+    scope_type = "POINT"
+    analysis = ["SNAPSHOT"]
+    # Detect common range language without hard-coding specific questions.
+    import re as _re
+    years = _re.findall(r"(20\d{2})", q)
+    months = {"januari":"01","februari":"02","maret":"03","april":"04","mei":"05","juni":"06","juli":"07","agustus":"08","september":"09","oktober":"10","november":"11","desember":"12"}
+    found = [(months[m], y) for m in months for y in years if m in q]
+    if any(x in q for x in ("sepanjang", "dari awal", "perkembangan", "trend", "tren", "januari sampai", "hingga")) and len(found) >= 2:
+        found = sorted(set(found), key=lambda z: (z[1], z[0]))
+        start_p, end_p = f"{found[0][1]}-{found[0][0]}", f"{found[-1][1]}-{found[-1][0]}"
+        scope_type, analysis = "RANGE", ["TREND", "MOM", "TURNING_POINT"]
+    else:
+        start_p = end_p = period
+    if any(x in q for x in ("laba", "profit", "revenue", "pendapatan", "beban", "ckpn")):
+        req.append({"id": "income_statement", "comparisons": ["mom", "yoy", "trend"] if scope_type == "RANGE" else ["mom", "yoy"]})
     if any(x in q for x in ("aset", "neraca", "liabilitas", "modal", "funding", "dpk")):
-        req.append({"id": "balance_sheet", "comparisons": ["mom", "yoy"]})
+        req.append({"id": "balance_sheet", "comparisons": ["mom", "yoy", "trend"] if scope_type == "RANGE" else ["mom", "yoy"]})
     if any(x in q for x in ("kredit", "loan", "npl", "produk", "kpr", "konstruksi", "modal kerja")):
-        req.append({"id": "loan_products", "comparisons": ["mom", "yoy"]})
+        req.append({"id": "loan_products", "comparisons": ["mom", "yoy", "trend"] if scope_type == "RANGE" else ["mom", "yoy"]})
     if any(x in q for x in ("dpk", "deposito", "tabungan", "giro", "cost of fund", "funding")):
-        req.append({"id": "dpk_products", "comparisons": ["mom", "yoy"]})
-    if any(x in q for x in ("target", "rkap", "achievement")):
-        req.append({"id": "targets", "comparisons": ["target"]})
-    return _validate_plan({"requests": req})
+        req.append({"id": "dpk_products", "comparisons": ["mom", "yoy", "trend"] if scope_type == "RANGE" else ["mom", "yoy"]})
+    if any(x in q for x in ("target", "rkap", "achievement", "pencapaian")):
+        req.append({"id": "targets", "comparisons": ["target", "trend"]})
+        scope_type = "TARGET_ANALYSIS" if scope_type == "POINT" else scope_type
+        analysis.append("TARGET_GAP")
+    plan = {"scope": {"scope_type": scope_type, "start_period": start_p, "end_period": end_p, "granularity": "MONTHLY", "include_all_periods": scope_type == "RANGE", "analysis": analysis}, "requests": req}
+    return normalize_scope(_validate_plan(plan), selected_period)
 
 
 def _attempt_record(provider: str, model: str | None, status: Any, category: str, error: str | None, latency: float, stage: str, retry: int = 0):
     return {"provider": provider, "model": model, "status": status, "category": category, "error": error, "latency": round(latency, 2), "stage": stage, "retry": retry}
 
 
-def _plan_messages(messages: list[dict[str, Any]], catalog: dict[str, Any]) -> list[dict[str, str]]:
+def _plan_messages(messages: list[dict[str, Any]], catalog: dict[str, Any], selected_period: str | None = None) -> list[dict[str, str]]:
     question = next((str(m.get("content", "")) for m in reversed(messages) if m.get("role") == "user"), "")
+    context = {"catalog": catalog, "active_period": selected_period, "knowledge": knowledge_for_llm()}
     return [
         {"role": "system", "content": PLANNER_SYSTEM_PROMPT},
-        {"role": "user", "content": "KAMUS EVIDENCE (metadata saja):\n" + json.dumps(catalog, ensure_ascii=False, separators=(",", ":")) + "\n\nPERTANYAAN USER:\n" + question},
+        {"role": "user", "content": "FINAI PLANNING CONTEXT (metadata + semantic knowledge):\n" + json.dumps(context, ensure_ascii=False, separators=(",", ":")) + "\n\nPERTANYAAN USER:\n" + question},
     ]
+
+
+def _followup_plan_messages(question: str, plan: dict[str, Any], evidence: dict[str, Any], catalog: dict[str, Any]) -> list[dict[str, str]]:
+    prompt = PLANNER_SYSTEM_PROMPT + "\n\nAnda sekarang melakukan EVIDENCE SUFFICIENCY CHECK. Evidence berikut adalah hasil Python. Jika sudah cukup, output requests=[] dan keep=true. Jika belum cukup, minta evidence tambahan yang benar-benar diperlukan. Jangan mengubah fakta.\n"
+    payload = {"question": question, "current_plan": plan, "evidence": evidence, "catalog": catalog, "knowledge": knowledge_for_llm()}
+    return [{"role": "system", "content": prompt}, {"role": "user", "content": json.dumps(payload, ensure_ascii=False, separators=(",", ":"))}]
 
 
 def _analyst_messages(messages: list[dict[str, Any]], plan: dict[str, Any], evidence: dict[str, Any]) -> list[dict[str, str]]:
     history = _recent_history(messages, 6)
     payload = "VALIDATED EVIDENCE REQUEST PLAN:\n" + json.dumps(plan, ensure_ascii=False, separators=(",", ":"))
+    payload += "\n\nFINANCIAL KNOWLEDGE / INTERPRETATION GUARDRAILS:\n" + json.dumps(knowledge_for_llm(), ensure_ascii=False, separators=(",", ":"))
     payload += "\n\nFINANCIAL EVIDENCE FROM PYTHON:\n" + json.dumps(evidence, ensure_ascii=False, separators=(",", ":"))
-    payload += "\n\nJawab pertanyaan user berdasarkan evidence di atas."
+    payload += "\n\nJawab pertanyaan user berdasarkan evidence. Untuk range, analisis semua periode yang dikirim."
     return [{"role": "system", "content": ANALYST_SYSTEM_PROMPT}, *history, {"role": "user", "content": payload}]
 
 
@@ -352,6 +376,7 @@ def chat(messages: list[dict[str, Any]], selected_period: str | None = None, tim
     question = next((str(item.get("content", "")).strip() for item in reversed(messages) if item.get("role") == "user"), "")
     catalog = build_catalog_context()
     attempts: list[dict[str, Any]] = []
+    max_rounds = 3
 
     for provider in _provider_order():
         key = _api_key(provider)
@@ -371,14 +396,15 @@ def chat(messages: list[dict[str, Any]], selected_period: str | None = None, tim
             continue
 
         for model in models:
-            # Stage 1: planner. One retry only for temporary failures.
             plan = None
             retry_index = 0
             while True:
                 started = time.perf_counter()
                 try:
-                    planner_raw = _call(provider, key, model, _plan_messages(messages, catalog), timeout, 700)
+                    planner_raw = _call(provider, key, model, _plan_messages(messages, catalog, selected_period), timeout, 900)
                     plan = _validate_plan(_extract_json(planner_raw) or {})
+                    plan = normalize_scope(plan, selected_period)
+                    plan = attach_scope_to_requests(plan)
                     if not plan["requests"]:
                         raise ProviderError(provider, 200, "Planner returned no valid evidence requests.")
                     attempts.append(_attempt_record(provider, model, 200, "planner_success", None, time.perf_counter()-started, "planner", retry_index))
@@ -389,54 +415,79 @@ def chat(messages: list[dict[str, Any]], selected_period: str | None = None, tim
                         retry_index += 1; time.sleep(_retry_delay(exc.status_code, retry_index)); continue
                     break
                 except requests.RequestException as exc:
-                    attempts.append(_attempt_record(provider, model, "network_error", "network_error", str(exc)[:500], time.perf_counter()-started, "planner"))
-                    break
+                    attempts.append(_attempt_record(provider, model, "network_error", "network_error", str(exc)[:500], time.perf_counter()-started, "planner")); break
                 except Exception as exc:
-                    attempts.append(_attempt_record(provider, model, "planner_error", "planner_error", str(exc)[:500], time.perf_counter()-started, "planner"))
-                    break
+                    attempts.append(_attempt_record(provider, model, "planner_error", "planner_error", str(exc)[:500], time.perf_counter()-started, "planner")); break
 
             planner_source = "LLM"
             if not plan:
-                # Keep the app useful while making the fallback explicit. This does
-                # not fabricate facts; it only chooses a minimal evidence set.
-                plan = _heuristic_plan(question)
+                plan = _heuristic_plan(question, selected_period)
                 planner_source = "HEURISTIC_FALLBACK"
 
+            # Iterative evidence loop. The first planner sees metadata only; follow-up
+            # planners see the returned evidence so they can identify missing drivers.
             evidence = execute_evidence_plan(plan, selected_period)
+            round_no = 1
+            while round_no < max_rounds and evidence.get("status") == "OK":
+                scope = plan.get("scope") or {}
+                # For a range, Python coverage is the primary sufficiency signal.
+                incomplete = any(not x.get("complete", True) for x in (evidence.get("coverage", {}).get("coverage", {}) or {}).values())
+                if scope.get("include_all_periods") and incomplete:
+                    # Re-execute with normalized range requests; do not let the LLM shrink the range.
+                    plan = attach_scope_to_requests(normalize_scope(plan, selected_period))
+                    evidence = execute_evidence_plan(plan, selected_period)
+                    if not any(not x.get("complete", True) for x in (evidence.get("coverage", {}).get("coverage", {}) or {}).values()):
+                        break
+                # Ask the planner whether more evidence is needed. This is deliberately
+                # limited to two follow-up rounds to avoid loops/cost explosions.
+                started = time.perf_counter()
+                try:
+                    follow_raw = _call(provider, key, model, _followup_plan_messages(question, plan, evidence, catalog), timeout, 900)
+                    follow = _validate_plan(_extract_json(follow_raw) or {})
+                    follow = normalize_scope(follow, selected_period)
+                    follow = attach_scope_to_requests(follow)
+                    attempts.append(_attempt_record(provider, model, 200, "evidence_check_success", None, time.perf_counter()-started, f"evidence_check_{round_no}"))
+                    if not follow.get("requests"):
+                        break
+                    # Keep the original scope authoritative for range questions.
+                    if (plan.get("scope") or {}).get("include_all_periods"):
+                        follow["scope"] = plan["scope"]
+                        follow = attach_scope_to_requests(follow)
+                    plan["requests"] = plan.get("requests", []) + follow.get("requests", [])
+                    # Deduplicate by evidence id + scope so extra requests add only new evidence.
+                    merged = []
+                    seen = set()
+                    for r in plan["requests"]:
+                        key_id = (r.get("id"), r.get("start_period"), r.get("end_period"), tuple(r.get("comparisons", [])))
+                        if key_id not in seen:
+                            seen.add(key_id); merged.append(r)
+                    plan["requests"] = merged[:10]
+                    evidence = execute_evidence_plan(plan, selected_period)
+                    round_no += 1
+                except (ProviderError, requests.RequestException, Exception) as exc:
+                    detail = getattr(exc, "detail", str(exc))
+                    status = getattr(exc, "status_code", "evidence_check_error")
+                    attempts.append(_attempt_record(provider, model, status, _error_category(status if isinstance(status, int) else None, str(detail)), str(detail)[:500], time.perf_counter()-started, f"evidence_check_{round_no}"))
+                    break
+
             if evidence.get("status") != "OK":
                 attempts.append(_attempt_record(provider, model, "no_evidence", "no_evidence", "Planner tidak menghasilkan evidence yang dapat dieksekusi.", 0, "evidence"))
                 continue
 
-            # Stage 2: final analyst. Numbers come exclusively from Python.
             started = time.perf_counter()
             try:
-                answer = _call(provider, key, model, _analyst_messages(messages, plan, evidence), timeout, 1600)
+                answer = _call(provider, key, model, _analyst_messages(messages, plan, evidence), timeout, 2200)
                 attempts.append(_attempt_record(provider, model, 200, "success", None, time.perf_counter()-started, "analyst"))
-                return {
-                    "ok": True,
-                    "content": answer,
-                    "provider": provider,
-                    "model": model,
-                    "period": evidence.get("period"),
-                    "planner_source": planner_source,
-                    "plan": plan,
-                    "evidence_request_count": len(evidence.get("requested", [])),
-                    "attempts": attempts,
-                }
+                return {"ok": True, "content": answer, "provider": provider, "model": model,
+                        "period": evidence.get("period"), "planner_source": planner_source,
+                        "plan": plan, "evidence_request_count": len(evidence.get("requested", [])),
+                        "evidence_rounds": round_no, "attempts": attempts}
             except ProviderError as exc:
-                attempts.append(_attempt_record(provider, model, exc.status_code, _error_category(exc.status_code, exc.detail), exc.detail[:1000], time.perf_counter()-started, "analyst"))
-                # Move to the next model/provider rather than repeating a quota failure.
-                continue
+                attempts.append(_attempt_record(provider, model, exc.status_code, _error_category(exc.status_code, exc.detail), exc.detail[:1000], time.perf_counter()-started, "analyst")); continue
             except requests.RequestException as exc:
-                attempts.append(_attempt_record(provider, model, "network_error", "network_error", str(exc)[:500], time.perf_counter()-started, "analyst"))
-                continue
+                attempts.append(_attempt_record(provider, model, "network_error", "network_error", str(exc)[:500], time.perf_counter()-started, "analyst")); continue
             except Exception as exc:
-                attempts.append(_attempt_record(provider, model, "unexpected_error", "unexpected_error", str(exc)[:500], time.perf_counter()-started, "analyst"))
-                continue
+                attempts.append(_attempt_record(provider, model, "unexpected_error", "unexpected_error", str(exc)[:500], time.perf_counter()-started, "analyst")); continue
 
-    return {
-        "ok": False,
-        "error": "Semua provider/model LLM gagal menyelesaikan dua tahap planner → evidence → analyst. FinAI tidak menggantinya dengan jawaban Python agar tidak menghasilkan analisis palsu.",
-        "provider": None,
-        "attempts": attempts,
-    }
+    return {"ok": False, "error": "Semua provider/model LLM gagal menyelesaikan planner → evidence → evidence-check → analyst. FinAI tidak menggantinya dengan jawaban Python agar tidak menghasilkan analisis palsu.", "provider": None, "attempts": attempts}
+

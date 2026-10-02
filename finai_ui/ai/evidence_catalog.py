@@ -7,6 +7,7 @@ perform. It intentionally contains no financial values.
 from __future__ import annotations
 
 from typing import Any
+from .financial_knowledge import knowledge_for_llm
 
 COMPARISONS = {
     "mom": "Month-over-month: periode aktif dibanding bulan sebelumnya.",
@@ -123,10 +124,32 @@ def catalog_for_llm(periods: list[str], latest_period: str | None) -> dict[str, 
         "comparisons": COMPARISONS,
         "relationships": RELATIONSHIPS,
         "formulas": FORMULAS,
+        "knowledge": knowledge_for_llm(),
+        "scope_schema": {
+            "scope_type": ["POINT", "COMPARISON", "RANGE", "TREND", "YTD", "DIAGNOSIS", "TARGET_ANALYSIS", "SCENARIO"],
+            "granularity": ["MONTHLY", "PERIOD"],
+            "include_all_periods": "Must be true for RANGE/TREND/YTD questions. Retrieve every available period between start_period and end_period.",
+            "analysis": ["SNAPSHOT", "MOM", "YOY", "YTD", "TREND", "DRIVER_ANALYSIS", "TARGET_GAP", "TARGET_HISTORY", "TURNING_POINT", "HIGHEST_LOWEST", "CONTRIBUTION", "SCENARIO"],
+        },
+        "request_schema": {
+            "id": "valid evidence ID",
+            "period": "primary/end period YYYY-MM",
+            "start_period": "YYYY-MM when range is required",
+            "end_period": "YYYY-MM when range is required",
+            "granularity": "MONTHLY or PERIOD",
+            "include_all_periods": "boolean",
+            "comparisons": "subset of mom,yoy,ytd,target,trend",
+            "fields": "optional list",
+            "lines": "optional list",
+            "products": "optional list"
+        },
         "rules": [
             "Planner may request only evidence IDs listed in evidence.",
-            "Planner should request the minimum evidence needed to answer the question.",
-            "Planner may request multiple comparison modes for the same evidence.",
+            "Planner must identify scope before selecting evidence.",
+            "For RANGE/TREND/YTD, include_all_periods must be true and start_period/end_period must be populated.",
+            "Endpoints are not a substitute for a requested range.",
+            "Use the financial knowledge definitions and forbidden inferences before selecting drivers.",
+            "When the question asks why/how/driver, request component evidence before causal interpretation.",
             "Python is authoritative for numbers and calculations; LLM never invents values.",
         ],
     }
