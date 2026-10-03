@@ -4,19 +4,32 @@
 @media(max-width:800px){#finai-root,#finai-root > .app,#finai-root > .app .main{overflow-y:visible !important;overflow-x:hidden !important}}
 
 /* Detail/data readability only; titles and menus are unchanged. */
-.page-content{font-size:14px;line-height:1.6}
-.page-content p,.page-content li,.page-content label,.page-content .caption,.page-content .setting-row,.page-content .setting-label,.page-content .setting-value{font-size:13px;line-height:1.6}
-.page-content table,.page-content th,.page-content td{font-size:12px}
-.page-content .metric-label{font-size:12px}.page-content .metric-change{font-size:10px}
+.main .page-content{font-size:14px;line-height:1.6}
+.main .page-content p,.main .page-content li,.main .page-content label,.main .page-content .caption,.main .page-content .setting-row,.main .page-content .setting-label,.main .page-content .setting-value{font-size:13px;line-height:1.6}
+.main .data-wrap table{font-size:13px}
+.main .data-wrap th,.main .data-wrap td{font-size:13px;line-height:1.5}
+.main .metric-label{font-size:12px}.main .metric-change{font-size:10px}
 
-/* Keep financial tables compact on narrow screens so values remain visible. */
+/* Financial tables: use the available card width instead of the old 680px
+   minimum. This keeps values close to their labels, especially on mobile. */
+.main .data-wrap{width:100%;overflow-x:auto}
+.main .data-wrap table{width:100%;min-width:0 !important;table-layout:fixed;border-collapse:collapse}
+.main .data-wrap th,.main .data-wrap td{padding:10px 12px;white-space:normal;overflow-wrap:anywhere;vertical-align:middle}
+.main .data-wrap th:first-child,.main .data-wrap td:first-child{width:55%;text-align:left}
+.main .data-wrap th:not(:first-child),.main .data-wrap td:not(:first-child){width:22.5%;text-align:right;white-space:nowrap;overflow-wrap:normal}
+.main .data-wrap tr.section td{font-size:12px;padding:10px 12px}
+.main .data-wrap tr.section.parent-total td:not(:first-child){text-align:right;white-space:nowrap}
+
 @media(max-width:800px){
-  .page-content .data-wrap{width:100%;overflow-x:hidden}
-  .page-content .data-wrap table{width:100%;min-width:0 !important;table-layout:fixed}
-  .page-content .data-wrap th,.page-content .data-wrap td{padding:10px 8px;font-size:12px;line-height:1.45;white-space:normal;overflow-wrap:anywhere}
-  .page-content .data-wrap th:first-child,.page-content .data-wrap td:first-child{width:55%;text-align:left}
-  .page-content .data-wrap th:not(:first-child),.page-content .data-wrap td:not(:first-child){width:22.5%;text-align:right;white-space:nowrap;overflow-wrap:normal}
-  .page-content .data-wrap tr.section td{font-size:11px;padding:9px 8px}
+  /* Do not let the global table min-width:680px create the large empty gap
+     seen between Keterangan and the numeric columns. */
+  .main .data-wrap{overflow-x:hidden}
+  .main .data-wrap table{width:100%;min-width:0 !important;table-layout:fixed}
+  .main .data-wrap th,.main .data-wrap td{padding:11px 10px;font-size:13px;line-height:1.5}
+  .main .data-wrap th:first-child,.main .data-wrap td:first-child{width:55%;text-align:left}
+  .main .data-wrap th:not(:first-child),.main .data-wrap td:not(:first-child){width:22.5%;text-align:right;white-space:nowrap}
+  .main .data-wrap tr.section td{font-size:12px;padding:10px 10px;letter-spacing:1.4px}
+  .main .data-wrap tr.section.parent-total td:not(:first-child){white-space:nowrap}
 }
 
 /* Clean presentation for rendered LLM Markdown. */
