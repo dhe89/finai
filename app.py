@@ -78,7 +78,7 @@ def render_chat_messages() -> str:
         <div class="msg welcome">
           <div class="bot">✦</div>
           <div class="msgtext"><b>Hi there! 👋</b><br>
-            <span class="muted">I'm your Financial AI Assistant.<br>How can I help you today?</span>
+            <span class="muted">I'm PETA, your Financial AI Assistant.<br>How can I help you today?</span>
           </div>
         </div>
         """
