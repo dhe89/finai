@@ -21,7 +21,6 @@
 .main .data-wrap tr.section.parent-total td:not(:first-child){text-align:right;white-space:nowrap}
 
 @media(max-width:800px){
-  /* Keep simple 2-3 column financial tables compact on mobile. */
   .main .data-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
   .main .data-wrap table{width:100%;min-width:0 !important;table-layout:fixed}
   .main .data-wrap th,.main .data-wrap td{padding:11px 10px;font-size:13px;line-height:1.5}
@@ -30,21 +29,95 @@
   .main .data-wrap tr.section td{font-size:12px;padding:10px 10px;letter-spacing:1.4px}
   .main .data-wrap tr.section.parent-total td:not(:first-child){white-space:nowrap}
 
-  /* Six-column Overview: don't squeeze columns until headers/values overlap.
-     A controlled horizontal scroll is preferable to stacked/overlapping text. */
-  .performance-page .data-wrap{overflow-x:auto;overflow-y:hidden;touch-action:pan-x pan-y}
-  .performance-page .data-wrap table{width:680px;min-width:680px !important;table-layout:fixed}
-  .performance-page .data-wrap th,.performance-page .data-wrap td{padding:11px 10px;font-size:13px;white-space:nowrap;overflow-wrap:normal}
-  .performance-page .data-wrap th:first-child,.performance-page .data-wrap td:first-child{width:220px;text-align:left;white-space:normal;overflow-wrap:anywhere}
-  .performance-page .data-wrap th:not(:first-child),.performance-page .data-wrap td:not(:first-child){width:auto;text-align:right;white-space:nowrap}
+  /* Overview has six columns. Keep each column readable and let the whole
+     table swipe horizontally instead of squeezing/overlapping headers. */
+  #finai-root .main.performance-page .data-wrap{
+    display:block !important;
+    width:100% !important;
+    max-width:100% !important;
+    overflow-x:scroll !important;
+    overflow-y:hidden !important;
+    -webkit-overflow-scrolling:touch;
+    touch-action:pan-x pan-y;
+  }
+  #finai-root .main.performance-page .data-wrap table{
+    display:table !important;
+    width:680px !important;
+    min-width:680px !important;
+    max-width:none !important;
+    table-layout:fixed !important;
+  }
+  #finai-root .main.performance-page .data-wrap th,
+  #finai-root .main.performance-page .data-wrap td{
+    box-sizing:border-box !important;
+    padding:11px 10px !important;
+    font-size:13px !important;
+    line-height:1.5 !important;
+    white-space:nowrap !important;
+    overflow-wrap:normal !important;
+  }
+  #finai-root .main.performance-page .data-wrap th:first-child,
+  #finai-root .main.performance-page .data-wrap td:first-child{
+    width:220px !important;
+    min-width:220px !important;
+    max-width:220px !important;
+    text-align:left !important;
+    white-space:normal !important;
+    overflow-wrap:anywhere !important;
+  }
+  #finai-root .main.performance-page .data-wrap th:not(:first-child),
+  #finai-root .main.performance-page .data-wrap td:not(:first-child){
+    width:92px !important;
+    min-width:92px !important;
+    max-width:92px !important;
+    text-align:right !important;
+    white-space:nowrap !important;
+  }
 
-  /* Product/detail tables: keep the label close to its values while allowing
-     the complete table to slide horizontally when the phone is too narrow. */
-  .data-detail-page .data-wrap{overflow-x:auto;overflow-y:hidden;touch-action:pan-x pan-y}
-  .data-detail-page .data-wrap table{width:520px;min-width:520px !important;table-layout:fixed}
-  .data-detail-page .data-wrap th,.data-detail-page .data-wrap td{padding:11px 10px;font-size:13px;white-space:nowrap;overflow-wrap:normal}
-  .data-detail-page .data-wrap th:first-child,.data-detail-page .data-wrap td:first-child{width:260px;text-align:left;white-space:normal;overflow-wrap:anywhere}
-  .data-detail-page .data-wrap th:not(:first-child),.data-detail-page .data-wrap td:not(:first-child){width:130px;text-align:right;white-space:nowrap}
+  /* Product/detail tables have three columns. Keep the label/value relationship
+     compact, but preserve a real horizontal scroll area on narrow phones. */
+  #finai-root .main.data-detail-page .data-wrap{
+    display:block !important;
+    width:100% !important;
+    max-width:100% !important;
+    overflow-x:scroll !important;
+    overflow-y:hidden !important;
+    -webkit-overflow-scrolling:touch;
+    touch-action:pan-x pan-y;
+  }
+  #finai-root .main.data-detail-page .data-wrap table{
+    display:table !important;
+    width:520px !important;
+    min-width:520px !important;
+    max-width:none !important;
+    table-layout:fixed !important;
+  }
+  #finai-root .main.data-detail-page .data-wrap th,
+  #finai-root .main.data-detail-page .data-wrap td{
+    box-sizing:border-box !important;
+    padding:11px 10px !important;
+    font-size:13px !important;
+    line-height:1.5 !important;
+    white-space:nowrap !important;
+    overflow-wrap:normal !important;
+  }
+  #finai-root .main.data-detail-page .data-wrap th:first-child,
+  #finai-root .main.data-detail-page .data-wrap td:first-child{
+    width:260px !important;
+    min-width:260px !important;
+    max-width:260px !important;
+    text-align:left !important;
+    white-space:normal !important;
+    overflow-wrap:anywhere !important;
+  }
+  #finai-root .main.data-detail-page .data-wrap th:not(:first-child),
+  #finai-root .main.data-detail-page .data-wrap td:not(:first-child){
+    width:130px !important;
+    min-width:130px !important;
+    max-width:130px !important;
+    text-align:right !important;
+    white-space:nowrap !important;
+  }
 }
 
 /* Clean presentation for rendered LLM Markdown. */
