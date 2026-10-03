@@ -5,6 +5,7 @@ import re
 import streamlit as st
 
 from finai_ui.ai.llm_router import chat as llm_chat
+from finai_ui.ai.test_logger import read_log_bytes
 from finai_ui.data_service import (
     LATEST_PERIOD,
     render_page,
@@ -191,6 +192,22 @@ finai_component = components_v2.component(
     js=js,
     isolate_styles=True,
 )
+
+# Optional test-log download. Disabled by default so the existing UI remains unchanged.
+try:
+    _log_download_enabled = str(st.secrets.get("FINAI_ENABLE_TEST_LOG_DOWNLOAD", "")).lower() in {"1", "true", "yes", "on"}
+except Exception:
+    _log_download_enabled = False
+if _log_download_enabled:
+    with st.expander("Testing · LLM Log", expanded=False):
+        st.download_button(
+            "Download finai_llm_test.jsonl",
+            data=read_log_bytes(),
+            file_name="finai_llm_test.jsonl",
+            mime="application/json",
+            disabled=not bool(read_log_bytes()),
+            key="download_finai_llm_test_log",
+        )
 
 # ------------------------------------------------------------------
 # COMPONENT STATE CALLBACKS
