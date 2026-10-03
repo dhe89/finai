@@ -26,7 +26,12 @@ from .financial_knowledge import knowledge_for_llm
 from .intelligence_layer import normalize_scope, attach_scope_to_requests
 from .test_logger import append_chat_log
 
-DEFAULT_PROVIDER_ORDER = ["groq", "openrouter", "gemini"]
+DEFAULT_PROVIDER_ORDER = ["groq", "gemini", "openrouter"]
+
+# Explicitly excluded model. It has been observed returning reasoning/thinking
+# without a usable final answer during FinAI testing. Keep the exclusion narrow
+# so other OpenRouter models remain available when explicitly configured.
+EXCLUDED_MODELS = {"apodex/apodex-1.1-mini:free"}
 DEFAULT_MODELS = {"groq": "", "openrouter": "", "gemini": ""}
 DISCOVERY_TIMEOUT = 15
 MAX_MODELS_PER_PROVIDER = 8
@@ -134,10 +139,12 @@ def _retry_delay(status: int | None, attempt: int) -> float:
 
 
 def _openrouter_models(api_key: str) -> list[str]:
+    configured = _configured_model("openrouter")
+    if configured and configured.strip().lower() in {x.lower() for x in EXCLUDED_MODELS}:
+        return []
     r = requests.get("https://openrouter.ai/api/v1/models", headers={"Authorization": f"Bearer {api_key}"}, timeout=DISCOVERY_TIMEOUT)
     if r.status_code != 200:
         raise ProviderError("openrouter", r.status_code, r.text[:1000])
-    configured = _configured_model("openrouter")
     if configured:
         return [configured]
     models = []
@@ -148,7 +155,7 @@ def _openrouter_models(api_key: str) -> list[str]:
             free = float(pricing.get("prompt", 1)) == 0 and float(pricing.get("completion", 1)) == 0
         except (TypeError, ValueError):
             free = False
-        if mid and free:
+        if mid and free and mid.lower() not in {x.lower() for x in EXCLUDED_MODELS}:
             models.append(mid)
     return models[:MAX_MODELS_PER_PROVIDER]
 
@@ -200,15 +207,31 @@ def _discover_models(provider: str, api_key: str) -> list[str]:
     return _openrouter_models(api_key)
 
 
+def _strip_thinking_blocks(text: str) -> str:
+    """Remove explicit thinking blocks while preserving the final answer."""
+    value = str(text or "")
+    # Common formats emitted by reasoning models. Do not display internal
+    # reasoning in the chat; only the final content is allowed through.
+    value = re.sub(r"<think>.*?</think>", "", value, flags=re.I | re.S)
+    value = re.sub(r"<analysis>.*?</analysis>", "", value, flags=re.I | re.S)
+    value = re.sub(r"^\s*(?:thinking|reasoning|analysis)\s*:\s*", "", value, flags=re.I)
+    return value.strip()
+
+
 def _extract_openai_content(data: dict[str, Any]) -> str | None:
     choices = data.get("choices") or []
-    if not choices: return None
+    if not choices:
+        return None
     message = choices[0].get("message") or {}
     content = message.get("content")
     if isinstance(content, list):
         content = "".join(str(part.get("text", "")) if isinstance(part, dict) else str(part) for part in content)
-    if not content: content = message.get("reasoning") or choices[0].get("text")
-    return str(content).strip() if content else None
+    # IMPORTANT: never fall back to message.reasoning. Reasoning is not the
+    # final answer and must not be displayed or used as the analyst response.
+    if not content:
+        return None
+    content = _strip_thinking_blocks(str(content))
+    return content or None
 
 
 def _call_openai_compatible(provider: str, api_key: str, model: str, messages: list[dict[str, str]], timeout: int, max_tokens: int) -> str:
@@ -219,6 +242,11 @@ def _call_openai_compatible(provider: str, api_key: str, model: str, messages: l
         url = "https://openrouter.ai/api/v1/chat/completions"
         headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json", "HTTP-Referer": "https://finai-tes.streamlit.app", "X-Title": "FinAI"}
     payload = {"model": model, "messages": messages, "temperature": 0.2, "max_tokens": max_tokens}
+    if provider == "openrouter":
+        # Explicitly disable provider-side reasoning where supported. The
+        # response parser also rejects reasoning-only responses as a second
+        # safety layer.
+        payload["reasoning"] = {"enabled": False}
     response = requests.post(url, headers=headers, json=payload, timeout=timeout)
     if response.status_code != 200:
         raise ProviderError(provider, response.status_code, response.text[:1000])
@@ -228,7 +256,7 @@ def _call_openai_compatible(provider: str, api_key: str, model: str, messages: l
         raise ProviderError(provider, response.status_code, f"Invalid JSON: {exc}") from exc
     content = _extract_openai_content(data)
     if not content:
-        raise ProviderError(provider, response.status_code, "Response tidak berisi content.")
+        raise ProviderError(provider, response.status_code, "Response tidak berisi final content (reasoning-only/empty response ditolak).")
     return content
 
 
