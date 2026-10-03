@@ -136,3 +136,12 @@
 .msgtext .ai-answer th{background:#f1f6f3;color:#52635c;font-weight:800;text-align:left;white-space:nowrap}
 .msgtext .ai-answer th,.msgtext .ai-answer td{padding:7px 8px;border-bottom:1px solid #e9eeec;text-align:left;vertical-align:top}.msgtext .ai-answer tr:last-child td{border-bottom:0}
 .msgtext .ai-answer hr{border:0;border-top:1px solid #e6ece9;margin:12px 0}
+
+/* Chat readability and visual consistency. User question and normal AI answer
+   text now use the same base size. AI answers are presented in a separate,
+   lightly tinted bubble so the conversation is easier to scan. */
+.msgtext{font-size:12.5px;line-height:1.65}
+.bubble{font-size:12.5px;line-height:1.65}
+.msg:not(.user) .msgtext{background:#f5f8f6;border:1px solid #e2e9e5;border-radius:14px 14px 14px 4px;padding:10px 12px;color:#43514c;box-shadow:0 3px 10px #1e413707;max-width:305px}
+.msg:not(.user) .msgtext .ai-answer{font-size:12.5px;line-height:1.65}
+.msg.user .bubble{background:#f0f6df;border-color:#e1eacb;color:#42513e}
