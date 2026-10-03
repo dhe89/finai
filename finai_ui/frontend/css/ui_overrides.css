@@ -145,3 +145,76 @@
 .msg:not(.user) .msgtext{background:#f5f8f6;border:1px solid #e2e9e5;border-radius:14px 14px 14px 4px;padding:10px 12px;color:#43514c;box-shadow:0 3px 10px #1e413707;max-width:305px}
 .msg:not(.user) .msgtext .ai-answer{font-size:12.5px;line-height:1.65}
 .msg.user .bubble{background:#f0f6df;border-color:#e1eacb;color:#42513e}
+
+/* Desktop wide-table behaviour: never squeeze multiple columns into the
+   card until their text overlaps. Wide tables get a horizontal scroll area.
+   Narrow three-column tables remain compact and use the available width. */
+@media(min-width:801px){
+  #finai-root .main .data-wrap{
+    width:100% !important;
+    max-width:100% !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-gutter:stable;
+  }
+
+  /* Overview: six columns need a real minimum width on desktop as well as
+     mobile. Values stay close to their labels without overlapping headers. */
+  #finai-root .main.performance-page .data-wrap table{
+    width:760px !important;
+    min-width:760px !important;
+    max-width:none !important;
+    table-layout:fixed !important;
+  }
+  #finai-root .main.performance-page .data-wrap th,
+  #finai-root .main.performance-page .data-wrap td{
+    box-sizing:border-box !important;
+    white-space:nowrap !important;
+    overflow-wrap:normal !important;
+  }
+  #finai-root .main.performance-page .data-wrap th:first-child,
+  #finai-root .main.performance-page .data-wrap td:first-child{
+    width:240px !important;
+    min-width:240px !important;
+    max-width:240px !important;
+    text-align:left !important;
+    white-space:normal !important;
+  }
+  #finai-root .main.performance-page .data-wrap th:not(:first-child),
+  #finai-root .main.performance-page .data-wrap td:not(:first-child){
+    width:104px !important;
+    min-width:104px !important;
+    max-width:104px !important;
+    text-align:right !important;
+  }
+
+  /* Rincian Data contains long detail tables (loan/investment/DPK/etc.).
+     Summary tables remain fluid; only tables with many columns become wide. */
+  #finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)){
+    width:980px !important;
+    min-width:980px !important;
+    max-width:none !important;
+    table-layout:fixed !important;
+  }
+  #finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) th,
+  #finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) td{
+    box-sizing:border-box !important;
+    white-space:nowrap !important;
+    overflow-wrap:normal !important;
+  }
+  #finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) th:first-child,
+  #finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) td:first-child{
+    width:150px !important;
+    min-width:150px !important;
+    max-width:150px !important;
+    text-align:left !important;
+  }
+  #finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) th:not(:first-child),
+  #finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) td:not(:first-child){
+    width:118px !important;
+    min-width:118px !important;
+    max-width:118px !important;
+    text-align:right !important;
+  }
+}
