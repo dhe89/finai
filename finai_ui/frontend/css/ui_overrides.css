@@ -1,123 +1,42 @@
 /* FinAI UI-only refinements. Existing layout/function styles remain unchanged. */
-#finai-root > .app{overflow-y:auto !important;overflow-x:hidden !important;-webkit-overflow-scrolling:touch;scrollbar-gutter:stable}
-#finai-root > .app .main{overflow:visible !important;min-height:100%}
-@media(max-width:800px){#finai-root,#finai-root > .app,#finai-root > .app .main{overflow-y:visible !important;overflow-x:hidden !important}}
+#finai-root > .app{overflow-y:auto!important;overflow-x:hidden!important;-webkit-overflow-scrolling:touch;scrollbar-gutter:stable}
+#finai-root > .app .main{overflow:visible!important;min-height:100%}
+@media(max-width:800px){#finai-root,#finai-root>.app,#finai-root>.app .main{overflow-y:visible!important;overflow-x:hidden!important}}
 
-/* Detail/data readability only; titles and menus are unchanged. */
+/* Detail/data readability. */
 .main .page-content{font-size:14px;line-height:1.6}
 .main .page-content p,.main .page-content li,.main .page-content label,.main .page-content .caption,.main .page-content .setting-row,.main .page-content .setting-label,.main .page-content .setting-value{font-size:13px;line-height:1.6}
-.main .data-wrap table{font-size:13px}
-.main .data-wrap th,.main .data-wrap td{font-size:13px;line-height:1.5}
-.main .metric-label{font-size:12px}.main .metric-change{font-size:10px}
-
-/* Financial tables: use the available card width instead of the old 680px
-   minimum. This keeps values close to their labels, especially on mobile. */
 .main .data-wrap{width:100%;overflow-x:auto}
-.main .data-wrap table{width:100%;min-width:0 !important;table-layout:fixed;border-collapse:collapse}
-.main .data-wrap th,.main .data-wrap td{padding:10px 12px;white-space:normal;overflow-wrap:anywhere;vertical-align:middle}
+.main .data-wrap table{width:100%;min-width:0!important;table-layout:fixed;border-collapse:collapse;font-size:13px}
+.main .data-wrap th,.main .data-wrap td{font-size:13px;line-height:1.5;padding:10px 12px;white-space:normal;overflow-wrap:anywhere;vertical-align:middle}
 .main .data-wrap th:first-child,.main .data-wrap td:first-child{width:55%;text-align:left}
 .main .data-wrap th:not(:first-child),.main .data-wrap td:not(:first-child){width:22.5%;text-align:right;white-space:nowrap;overflow-wrap:normal}
 .main .data-wrap tr.section td{font-size:12px;padding:10px 12px}
 .main .data-wrap tr.section.parent-total td:not(:first-child){text-align:right;white-space:nowrap}
+.main .metric-label{font-size:12px}.main .metric-change{font-size:10px}
 
 @media(max-width:800px){
   .main .data-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .main .data-wrap table{width:100%;min-width:0 !important;table-layout:fixed}
+  .main .data-wrap table{width:100%;min-width:0!important;table-layout:fixed}
   .main .data-wrap th,.main .data-wrap td{padding:11px 10px;font-size:13px;line-height:1.5}
   .main .data-wrap th:first-child,.main .data-wrap td:first-child{width:55%;text-align:left}
   .main .data-wrap th:not(:first-child),.main .data-wrap td:not(:first-child){width:22.5%;text-align:right;white-space:nowrap}
-  .main .data-wrap tr.section td{font-size:12px;padding:10px 10px;letter-spacing:1.4px}
+  .main .data-wrap tr.section td{font-size:12px;padding:10px;letter-spacing:1.4px}
   .main .data-wrap tr.section.parent-total td:not(:first-child){white-space:nowrap}
 
-  /* Overview has six columns. Keep each column readable and let the whole
-     table swipe horizontally instead of squeezing/overlapping headers. */
-  #finai-root .main.performance-page .data-wrap{
-    display:block !important;
-    width:100% !important;
-    max-width:100% !important;
-    overflow-x:scroll !important;
-    overflow-y:hidden !important;
-    -webkit-overflow-scrolling:touch;
-    touch-action:pan-x pan-y;
-  }
-  #finai-root .main.performance-page .data-wrap table{
-    display:table !important;
-    width:680px !important;
-    min-width:680px !important;
-    max-width:none !important;
-    table-layout:fixed !important;
-  }
-  #finai-root .main.performance-page .data-wrap th,
-  #finai-root .main.performance-page .data-wrap td{
-    box-sizing:border-box !important;
-    padding:11px 10px !important;
-    font-size:13px !important;
-    line-height:1.5 !important;
-    white-space:nowrap !important;
-    overflow-wrap:normal !important;
-  }
-  #finai-root .main.performance-page .data-wrap th:first-child,
-  #finai-root .main.performance-page .data-wrap td:first-child{
-    width:220px !important;
-    min-width:220px !important;
-    max-width:220px !important;
-    text-align:left !important;
-    white-space:normal !important;
-    overflow-wrap:anywhere !important;
-  }
-  #finai-root .main.performance-page .data-wrap th:not(:first-child),
-  #finai-root .main.performance-page .data-wrap td:not(:first-child){
-    width:92px !important;
-    min-width:92px !important;
-    max-width:92px !important;
-    text-align:right !important;
-    white-space:nowrap !important;
-  }
+  /* Overview: readable fixed-width table with horizontal swipe on narrow screens. */
+  #finai-root .main.performance-page .data-wrap{display:block!important;width:100%!important;max-width:100%!important;overflow-x:scroll!important;overflow-y:hidden!important;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y}
+  #finai-root .main.performance-page .data-wrap table{display:table!important;width:680px!important;min-width:680px!important;max-width:none!important;table-layout:fixed!important}
+  #finai-root .main.performance-page .data-wrap th,#finai-root .main.performance-page .data-wrap td{box-sizing:border-box!important;padding:11px 10px!important;font-size:13px!important;line-height:1.5!important;white-space:nowrap!important;overflow-wrap:normal!important}
+  #finai-root .main.performance-page .data-wrap th:first-child,#finai-root .main.performance-page .data-wrap td:first-child{width:220px!important;min-width:220px!important;max-width:220px!important;text-align:left!important;white-space:normal!important;overflow-wrap:anywhere!important}
+  #finai-root .main.performance-page .data-wrap th:not(:first-child),#finai-root .main.performance-page .data-wrap td:not(:first-child){width:92px!important;min-width:92px!important;max-width:92px!important;text-align:right!important;white-space:nowrap!important}
 
-  /* Product/detail tables have three columns. Keep the label/value relationship
-     compact, but preserve a real horizontal scroll area on narrow phones. */
-  #finai-root .main.data-detail-page .data-wrap{
-    display:block !important;
-    width:100% !important;
-    max-width:100% !important;
-    overflow-x:scroll !important;
-    overflow-y:hidden !important;
-    -webkit-overflow-scrolling:touch;
-    touch-action:pan-x pan-y;
-  }
-  #finai-root .main.data-detail-page .data-wrap table{
-    display:table !important;
-    width:520px !important;
-    min-width:520px !important;
-    max-width:none !important;
-    table-layout:fixed !important;
-  }
-  #finai-root .main.data-detail-page .data-wrap th,
-  #finai-root .main.data-detail-page .data-wrap td{
-    box-sizing:border-box !important;
-    padding:11px 10px !important;
-    font-size:13px !important;
-    line-height:1.5 !important;
-    white-space:nowrap !important;
-    overflow-wrap:normal !important;
-  }
-  #finai-root .main.data-detail-page .data-wrap th:first-child,
-  #finai-root .main.data-detail-page .data-wrap td:first-child{
-    width:260px !important;
-    min-width:260px !important;
-    max-width:260px !important;
-    text-align:left !important;
-    white-space:normal !important;
-    overflow-wrap:anywhere !important;
-  }
-  #finai-root .main.data-detail-page .data-wrap th:not(:first-child),
-  #finai-root .main.data-detail-page .data-wrap td:not(:first-child){
-    width:130px !important;
-    min-width:130px !important;
-    max-width:130px !important;
-    text-align:right !important;
-    white-space:nowrap !important;
-  }
+  /* Product/detail tables: compact labels and real horizontal swipe when needed. */
+  #finai-root .main.data-detail-page .data-wrap{display:block!important;width:100%!important;max-width:100%!important;overflow-x:scroll!important;overflow-y:hidden!important;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y}
+  #finai-root .main.data-detail-page .data-wrap table{display:table!important;width:520px!important;min-width:520px!important;max-width:none!important;table-layout:fixed!important}
+  #finai-root .main.data-detail-page .data-wrap th,#finai-root .main.data-detail-page .data-wrap td{box-sizing:border-box!important;padding:11px 10px!important;font-size:13px!important;line-height:1.5!important;white-space:nowrap!important;overflow-wrap:normal!important}
+  #finai-root .main.data-detail-page .data-wrap th:first-child,#finai-root .main.data-detail-page .data-wrap td:first-child{width:260px!important;min-width:260px!important;max-width:260px!important;text-align:left!important;white-space:normal!important;overflow-wrap:anywhere!important}
+  #finai-root .main.data-detail-page .data-wrap th:not(:first-child),#finai-root .main.data-detail-page .data-wrap td:not(:first-child){width:130px!important;min-width:130px!important;max-width:130px!important;text-align:right!important;white-space:nowrap!important}
 }
 
 /* Clean presentation for rendered LLM Markdown. */
@@ -125,96 +44,33 @@
 .msgtext .ai-answer h1,.msgtext .ai-answer h2,.msgtext .ai-answer h3,.msgtext .ai-answer h4{color:#26332f;line-height:1.3;margin:14px 0 6px;font-weight:800}
 .msgtext .ai-answer h1{font-size:16px}.msgtext .ai-answer h2{font-size:14px}.msgtext .ai-answer h3{font-size:13px}.msgtext .ai-answer h4{font-size:12.5px}
 .msgtext .ai-answer h1:first-child,.msgtext .ai-answer h2:first-child,.msgtext .ai-answer h3:first-child,.msgtext .ai-answer h4:first-child{margin-top:0}
-.msgtext .ai-answer p{margin:7px 0}.msgtext .ai-answer ul,.msgtext .ai-answer ol{margin:7px 0 9px;padding-left:21px}.msgtext .ai-answer li{margin:3px 0}
-.msgtext .ai-answer strong{color:#26332f;font-weight:800}.msgtext .ai-answer em{color:#596762}
+.msgtext .ai-answer p{margin:7px 0}.msgtext .ai-answer ul,.msgtext .ai-answer ol{margin:7px 0 9px;padding-left:21px}.msgtext .ai-answer li{margin:3px 0}.msgtext .ai-answer strong{color:#26332f;font-weight:800}.msgtext .ai-answer em{color:#596762}
 .msgtext .ai-answer code{background:#f1f4f2;border:1px solid #e4e9e6;border-radius:5px;padding:1px 4px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em}
 .msgtext .ai-answer pre{margin:9px 0;padding:9px 10px;overflow-x:auto;background:#f5f7f6;border:1px solid #e4e9e6;border-radius:8px}.msgtext .ai-answer pre code{padding:0;border:0;background:transparent}
-.msgtext .ai-answer blockquote{margin:8px 0;padding:7px 10px;border-left:3px solid #b7f51d;background:#f6f8f7;color:#66736e;border-radius:0 8px 8px 0}
-.msgtext .ai-answer a{color:#08735d;text-decoration:none}.msgtext .ai-answer a:hover{text-decoration:underline}
-.msgtext .ai-answer .ai-table-wrap{width:100%;overflow-x:auto;margin:9px 0;border:1px solid #e6ece9;border-radius:9px}
-.msgtext .ai-answer table{width:100%;min-width:100%;border-collapse:collapse;font-size:11px;background:#fff}
-.msgtext .ai-answer th{background:#f1f6f3;color:#52635c;font-weight:800;text-align:left;white-space:nowrap}
-.msgtext .ai-answer th,.msgtext .ai-answer td{padding:7px 8px;border-bottom:1px solid #e9eeec;text-align:left;vertical-align:top}.msgtext .ai-answer tr:last-child td{border-bottom:0}
-.msgtext .ai-answer hr{border:0;border-top:1px solid #e6ece9;margin:12px 0}
+.msgtext .ai-answer blockquote{margin:8px 0;padding:7px 10px;border-left:3px solid #b7f51d;background:#f6f8f7;color:#66736e;border-radius:0 8px 8px 0}.msgtext .ai-answer a{color:#08735d;text-decoration:none}.msgtext .ai-answer a:hover{text-decoration:underline}
+.msgtext .ai-answer .ai-table-wrap{width:100%;overflow-x:auto;margin:9px 0;border:1px solid #e6ece9;border-radius:9px}.msgtext .ai-answer table{width:100%;min-width:100%;border-collapse:collapse;font-size:11px;background:#fff}.msgtext .ai-answer th{background:#f1f6f3;color:#52635c;font-weight:800;text-align:left;white-space:nowrap}.msgtext .ai-answer th,.msgtext .ai-answer td{padding:7px 8px;border-bottom:1px solid #e9eeec;text-align:left;vertical-align:top}.msgtext .ai-answer tr:last-child td{border-bottom:0}.msgtext .ai-answer hr{border:0;border-top:1px solid #e6ece9;margin:12px 0}
 
-/* Chat readability and visual consistency. User question and normal AI answer
-   text now use the same base size. AI answers are presented in a separate,
-   lightly tinted bubble so the conversation is easier to scan. */
-.msgtext{font-size:12.5px;line-height:1.65}
-.bubble{font-size:12.5px;line-height:1.65}
-.msg:not(.user) .msgtext{background:#f5f8f6;border:1px solid #e2e9e5;border-radius:14px 14px 14px 4px;padding:10px 12px;color:#43514c;box-shadow:0 3px 10px #1e413707;max-width:305px}
-.msg:not(.user) .msgtext .ai-answer{font-size:12.5px;line-height:1.65}
-.msg.user .bubble{background:#f0f6df;border-color:#e1eacb;color:#42513e}
+/* Chat readability and visual consistency. */
+.msgtext,.bubble{font-size:12.5px;line-height:1.65}
+.msg:not(.user) .msgtext{background:#f5f8f6;border:1px solid #e2e9e5;border-radius:14px 14px 14px 4px;padding:10px 12px;color:#43514c;box-shadow:0 3px 10px #1e413707;max-width:305px}.msg:not(.user) .msgtext .ai-answer{font-size:12.5px;line-height:1.65}.msg.user .bubble{background:#f0f6df;border-color:#e1eacb;color:#42513e}
 
-/* Desktop wide-table behaviour: never squeeze multiple columns into the
-   card until their text overlaps. Wide tables get a horizontal scroll area.
-   Narrow three-column tables remain compact and use the available width. */
+/* Desktop: tables fill the available card on wide screens, but keep a readable
+   minimum so narrower desktop screens can scroll horizontally instead of
+   squeezing/overlapping columns. */
 @media(min-width:801px){
-  #finai-root .main .data-wrap{
-    width:100% !important;
-    max-width:100% !important;
-    overflow-x:auto !important;
-    overflow-y:hidden !important;
-    -webkit-overflow-scrolling:touch;
-    scrollbar-gutter:stable;
-  }
+  #finai-root .main .data-wrap{width:100%!important;max-width:100%!important;overflow-x:auto!important;overflow-y:hidden!important;-webkit-overflow-scrolling:touch;scrollbar-gutter:stable}
 
-  /* Overview: six columns need a real minimum width on desktop as well as
-     mobile. Values stay close to their labels without overlapping headers. */
-  #finai-root .main.performance-page .data-wrap table{
-    width:760px !important;
-    min-width:760px !important;
-    max-width:none !important;
-    table-layout:fixed !important;
-  }
-  #finai-root .main.performance-page .data-wrap th,
-  #finai-root .main.performance-page .data-wrap td{
-    box-sizing:border-box !important;
-    white-space:nowrap !important;
-    overflow-wrap:normal !important;
-  }
-  #finai-root .main.performance-page .data-wrap th:first-child,
-  #finai-root .main.performance-page .data-wrap td:first-child{
-    width:240px !important;
-    min-width:240px !important;
-    max-width:240px !important;
-    text-align:left !important;
-    white-space:normal !important;
-  }
-  #finai-root .main.performance-page .data-wrap th:not(:first-child),
-  #finai-root .main.performance-page .data-wrap td:not(:first-child){
-    width:104px !important;
-    min-width:104px !important;
-    max-width:104px !important;
-    text-align:right !important;
-  }
+  /* Overview: six columns. width:100% fills wide cards; min-width preserves
+     the horizontal-scroll behaviour on smaller desktop viewports. */
+  #finai-root .main.performance-page .data-wrap table{width:100%!important;min-width:760px!important;max-width:none!important;table-layout:fixed!important}
+  #finai-root .main.performance-page .data-wrap th,#finai-root .main.performance-page .data-wrap td{box-sizing:border-box!important;white-space:nowrap!important;overflow-wrap:normal!important}
+  #finai-root .main.performance-page .data-wrap th:first-child,#finai-root .main.performance-page .data-wrap td:first-child{width:32%!important;min-width:240px!important;max-width:none!important;text-align:left!important;white-space:normal!important}
+  #finai-root .main.performance-page .data-wrap th:not(:first-child),#finai-root .main.performance-page .data-wrap td:not(:first-child){width:13.6%!important;min-width:104px!important;max-width:none!important;text-align:right!important}
 
-  /* Rincian Data contains long detail tables (loan/investment/DPK/etc.).
-     Summary tables remain fluid; only tables with many columns become wide. */
-  #finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)){
-    width:980px !important;
-    min-width:980px !important;
-    max-width:none !important;
-    table-layout:fixed !important;
-  }
-  #finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) th,
-  #finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) td{
-    box-sizing:border-box !important;
-    white-space:nowrap !important;
-    overflow-wrap:normal !important;
-  }
-  #finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) th:first-child,
-  #finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) td:first-child{
-    width:150px !important;
-    min-width:150px !important;
-    max-width:150px !important;
-    text-align:left !important;
-  }
-  #finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) th:not(:first-child),
-  #finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) td:not(:first-child){
-    width:118px !important;
-    min-width:118px !important;
-    max-width:118px !important;
-    text-align:right !important;
-  }
+  /* Rincian Data: only long multi-column tables become wide. They fill the
+     card when there is room and retain a 980px minimum on narrower desktops. */
+  #finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)){width:100%!important;min-width:980px!important;max-width:none!important;table-layout:fixed!important}
+  #finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) th,#finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) td{box-sizing:border-box!important;white-space:nowrap!important;overflow-wrap:normal!important}
+  #finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) th:first-child,#finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) td:first-child{width:15%!important;min-width:150px!important;max-width:none!important;text-align:left!important}
+  #finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) th:not(:first-child),#finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) td:not(:first-child){width:12.142857%!important;min-width:118px!important;max-width:none!important;text-align:right!important}
 }
