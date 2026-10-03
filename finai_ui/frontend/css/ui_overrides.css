@@ -4,10 +4,20 @@
 @media(max-width:800px){#finai-root,#finai-root > .app,#finai-root > .app .main{overflow-y:visible !important;overflow-x:hidden !important}}
 
 /* Detail/data readability only; titles and menus are unchanged. */
-.page-content{font-size:13px;line-height:1.6}
-.page-content p,.page-content li,.page-content label,.page-content .caption,.page-content .setting-row,.page-content .setting-label,.page-content .setting-value{font-size:12px;line-height:1.6}
-.page-content table,.page-content th,.page-content td{font-size:11px}
-.page-content .metric-label{font-size:11px}.page-content .metric-change{font-size:9px}
+.page-content{font-size:14px;line-height:1.6}
+.page-content p,.page-content li,.page-content label,.page-content .caption,.page-content .setting-row,.page-content .setting-label,.page-content .setting-value{font-size:13px;line-height:1.6}
+.page-content table,.page-content th,.page-content td{font-size:12px}
+.page-content .metric-label{font-size:12px}.page-content .metric-change{font-size:10px}
+
+/* Keep financial tables compact on narrow screens so values remain visible. */
+@media(max-width:800px){
+  .page-content .data-wrap{width:100%;overflow-x:hidden}
+  .page-content .data-wrap table{width:100%;min-width:0 !important;table-layout:fixed}
+  .page-content .data-wrap th,.page-content .data-wrap td{padding:10px 8px;font-size:12px;line-height:1.45;white-space:normal;overflow-wrap:anywhere}
+  .page-content .data-wrap th:first-child,.page-content .data-wrap td:first-child{width:55%;text-align:left}
+  .page-content .data-wrap th:not(:first-child),.page-content .data-wrap td:not(:first-child){width:22.5%;text-align:right;white-space:nowrap;overflow-wrap:normal}
+  .page-content .data-wrap tr.section td{font-size:11px;padding:9px 8px}
+}
 
 /* Clean presentation for rendered LLM Markdown. */
 .msgtext .ai-answer{font-size:12.5px;line-height:1.65;color:#43514c;max-width:100%;overflow-wrap:anywhere;word-break:normal}
