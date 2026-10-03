@@ -28,10 +28,10 @@ from .test_logger import append_chat_log
 
 DEFAULT_PROVIDER_ORDER = ["groq", "gemini", "openrouter"]
 
-# Explicitly excluded model. It has been observed returning reasoning/thinking
-# without a usable final answer during FinAI testing. Keep the exclusion narrow
-# so other OpenRouter models remain available when explicitly configured.
-EXCLUDED_MODELS = {"---apodex/apodex-1.1-mini:free"}
+# Explicitly excluded model based on repeated poor-quality FinAI test results.
+# Keep OpenRouter enabled for other configured/discovered models.
+# Apodex remains available for the separate reasoning-disabled test.
+EXCLUDED_MODELS = {"allam-2-7b"}
 DEFAULT_MODELS = {"groq": "", "openrouter": "", "gemini": ""}
 DISCOVERY_TIMEOUT = 15
 MAX_MODELS_PER_PROVIDER = 8
@@ -528,4 +528,3 @@ def chat(messages: list[dict[str, Any]], selected_period: str | None = None, tim
     result = {"ok": False, "error": "Semua provider/model LLM gagal menyelesaikan planner → evidence → evidence-check → analyst. FinAI tidak menggantinya dengan jawaban Python agar tidak menghasilkan analisis palsu.", "provider": None, "attempts": attempts, "plan": None, "evidence_requested": [], "evidence_sent_to_analyst": None, "evidence_rounds": 0}
     append_chat_log(question=question, selected_period=selected_period, response=result)
     return result
-
