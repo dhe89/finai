@@ -79,7 +79,6 @@ period,target_type,metric,target
 2024-08,Growth,Total Asset,69301.92
 2024-08,Growth,Total Credit,43430.0
 2024-08,Growth,Total Investment,8938.5
-2024-08,Growth,Total DPK,60300.0
 2024-08,Funding,Total Other Funding,3306.45
 2024-08,Profitability,Total Revenue,5358.04
 2024-08,Profitability,Net Profit,507.92
@@ -321,7 +320,6 @@ period,target_type,metric,target
 2026-06,Growth,Total Asset,78099.46
 2026-06,Growth,Total Credit,59407.71
 2026-06,Growth,Total Investment,8635.5
-2026-06,Growth,Total DPK,65197.25
 2026-06,Funding,Total Other Funding,3090.37
 2026-06,Profitability,Total Revenue,4649.5
 2026-06,Profitability,Net Profit,519.24
@@ -362,3 +360,36 @@ period,target_type,metric,target
 2026-09,Efficiency,Operating Expense,2519.9
 2026-09,Quality,NPL Ratio %,2.0
 2026-09,Quality,CKPN Coverage %,110.0
+2026-10,Growth,Total Asset,79400.4
+2026-10,Growth,Total Credit,60218.18
+2026-10,Growth,Total Investment,8112.16
+2026-10,Growth,Total DPK,64960.03
+2026-10,Funding,Total Other Funding,3150.75
+2026-10,Profitability,Total Revenue,7723.12
+2026-10,Profitability,Net Profit,876.22
+2026-10,Efficiency,Low Cost Funding %,76.52
+2026-10,Efficiency,Operating Expense,2822.56
+2026-10,Quality,NPL Ratio %,2.0
+2026-10,Quality,CKPN Coverage %,110.0
+2026-11,Growth,Total Asset,79722.58
+2026-11,Growth,Total Credit,60422.0
+2026-11,Growth,Total Investment,8004.18
+2026-11,Growth,Total DPK,64900.83
+2026-11,Funding,Total Other Funding,3165.98
+2026-11,Profitability,Total Revenue,8640.43
+2026-11,Profitability,Net Profit,985.74
+2026-11,Efficiency,Low Cost Funding %,77.61
+2026-11,Efficiency,Operating Expense,3161.58
+2026-11,Quality,NPL Ratio %,2.0
+2026-11,Quality,CKPN Coverage %,110.0
+2026-12,Growth,Total Asset,80046.06
+2026-12,Growth,Total Credit,60626.51
+2026-12,Growth,Total Investment,7897.64
+2026-12,Growth,Total DPK,64841.68
+2026-12,Funding,Total Other Funding,3181.28
+2026-12,Profitability,Total Revenue,9666.7
+2026-12,Profitability,Net Profit,1108.96
+2026-12,Efficiency,Low Cost Funding %,78.71
+2026-12,Efficiency,Operating Expense,3541.32
+2026-12,Quality,NPL Ratio %,2.0
+2026-12,Quality,CKPN Coverage %,110.0
