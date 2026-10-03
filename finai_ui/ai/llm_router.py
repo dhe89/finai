@@ -31,7 +31,7 @@ DEFAULT_PROVIDER_ORDER = ["groq", "gemini", "openrouter"]
 # Explicitly excluded model. It has been observed returning reasoning/thinking
 # without a usable final answer during FinAI testing. Keep the exclusion narrow
 # so other OpenRouter models remain available when explicitly configured.
-EXCLUDED_MODELS = {"apodex/apodex-1.1-mini:free"}
+EXCLUDED_MODELS = {"---apodex/apodex-1.1-mini:free"}
 DEFAULT_MODELS = {"groq": "", "openrouter": "", "gemini": ""}
 DISCOVERY_TIMEOUT = 15
 MAX_MODELS_PER_PROVIDER = 8
