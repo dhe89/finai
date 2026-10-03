@@ -5,6 +5,7 @@ import re
 import streamlit as st
 
 from finai_ui.ai.llm_router import chat as llm_chat
+from finai_ui.ai.markdown_renderer import render_markdown
 from finai_ui.ai.test_logger import read_log_bytes
 from finai_ui.data_service import (
     LATEST_PERIOD,
@@ -45,9 +46,6 @@ if st.session_state.get("period") not in available:
 # ------------------------------------------------------------------
 # CUSTOM COMPONENT V2
 # ------------------------------------------------------------------
-# Streamlit Components V2 run in the main app DOM (not an iframe) and provide
-# a supported JS -> Python event channel. This replaces the fragile URL/query
-# transport used by the previous prototype.
 try:
     import streamlit.components.v2 as components_v2
 except ImportError as exc:
@@ -62,8 +60,6 @@ def mark_active(source_html: str, active_page: str) -> str:
         active = f'data-page="{active_page}"' in attrs
         return '<div class="nav-item' + (" active" if active else "") + '"' + attrs + ">"
 
-    # Important: the closing quote of class is outside the optional `active`
-    # token. The previous regex missed every item, leaving Dashboard active.
     return re.sub(
         r'<div class="nav-item(?: active)?"(\s+data-page="[^"]+"\s+tabindex="0")>',
         repl,
@@ -85,8 +81,9 @@ def render_chat_messages() -> str:
     blocks = []
     for message in st.session_state.chat_messages[-30:]:
         role = message.get("role")
-        content = html.escape(str(message.get("content", ""))).replace("\n", "<br>")
+        raw_content = str(message.get("content", ""))
         if role == "user":
+            content = html.escape(raw_content).replace("\n", "<br>")
             blocks.append(f'<div class="msg user"><div class="bubble">{content}</div></div>')
         elif role == "assistant":
             meta = message.get("meta") or {}
@@ -113,8 +110,6 @@ def render_chat_messages() -> str:
             )
 
             attempts = meta.get("attempts") or []
-            # Full provider history is visible for testing. Include the final
-            # successful provider as the last attempt.
             attempt_history = list(attempts)
             if provider_raw and provider_raw != "LLM Router":
                 attempt_history.append({
@@ -150,9 +145,12 @@ def render_chat_messages() -> str:
                     '<details class="ai-diagnostics"><summary>🔎 Riwayat percobaan LLM</summary>'
                     + "".join(rows) + '</details>'
                 )
+
+            # Presentation-only Markdown rendering. The answer text/evidence is unchanged.
+            content = render_markdown(raw_content)
             blocks.append(
                 f'<div class="msg"><div class="bot">✦</div>'
-                f'<div class="msgtext">{content}{metadata_html}{diagnostic_html}</div></div>'
+                f'<div class="msgtext"><div class="ai-answer">{content}</div>{metadata_html}{diagnostic_html}</div></div>'
             )
     return "".join(blocks)
 
@@ -168,10 +166,6 @@ sidebar = mark_active(sidebar, page)
 page_content = render_page(page, st.session_state.period)
 ai_chat = ai_chat.replace("{{CHAT_MESSAGES}}", render_chat_messages())
 
-# Keep the shell hierarchy deliberately flat.
-# Desktop: root grid = sidebar + page content.
-# Mobile: sidebar/backdrop/header become fixed siblings, which removes the
-# stacking-context problem caused by moving the drawer in/out of #app.
 html_content = f"""<div id="finai-root">
   {header}
   {sidebar}
@@ -181,7 +175,6 @@ html_content = f"""<div id="finai-root">
   <div id="mobileOverlay" class="mobile-overlay" aria-hidden="true"></div>
   {ai_chat}
 </div>"""
-
 
 messages = st.session_state.chat_messages[-30:]
 
@@ -212,10 +205,6 @@ if _log_download_enabled:
 # ------------------------------------------------------------------
 # COMPONENT STATE CALLBACKS
 # ------------------------------------------------------------------
-# Period and navigation represent persistent UI state. They must not be
-# one-shot triggers because the selected period remains active while the user
-# changes pages and makes further selections. Streamlit Components V2 executes
-# these callbacks during the rerun caused by setStateValue().
 def _on_period_change():
     component_state = st.session_state.get("finai_shell")
     selected = getattr(component_state, "period", None) if component_state else None
@@ -253,8 +242,7 @@ result = finai_component(
     on_chat_change=lambda: None,
 )
 
-# AI/chat remain one-shot actions. Period/navigation are handled exclusively
-# by their state callbacks above.
+# AI/chat remain one-shot actions. Period/navigation are handled exclusively by their state callbacks above.
 ai_event = getattr(result, "ai", None)
 chat_event = getattr(result, "chat", None)
 
