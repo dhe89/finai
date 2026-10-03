@@ -24,6 +24,7 @@ from .evidence_catalog import EVIDENCE_CATALOG
 from .evidence_engine import build_catalog_context, execute_evidence_plan
 from .financial_knowledge import knowledge_for_llm
 from .intelligence_layer import normalize_scope, attach_scope_to_requests
+from .test_logger import append_chat_log
 
 DEFAULT_PROVIDER_ORDER = ["groq", "openrouter", "gemini"]
 DEFAULT_MODELS = {"groq": "", "openrouter": "", "gemini": ""}
@@ -428,6 +429,7 @@ def chat(messages: list[dict[str, Any]], selected_period: str | None = None, tim
             # planners see the returned evidence so they can identify missing drivers.
             evidence = execute_evidence_plan(plan, selected_period)
             round_no = 1
+            evidence_history = [evidence]
             while round_no < max_rounds and evidence.get("status") == "OK":
                 scope = plan.get("scope") or {}
                 # For a range, Python coverage is the primary sufficiency signal.
@@ -436,6 +438,7 @@ def chat(messages: list[dict[str, Any]], selected_period: str | None = None, tim
                     # Re-execute with normalized range requests; do not let the LLM shrink the range.
                     plan = attach_scope_to_requests(normalize_scope(plan, selected_period))
                     evidence = execute_evidence_plan(plan, selected_period)
+                    evidence_history.append(evidence)
                     if not any(not x.get("complete", True) for x in (evidence.get("coverage", {}).get("coverage", {}) or {}).values()):
                         break
                 # Ask the planner whether more evidence is needed. This is deliberately
@@ -478,10 +481,15 @@ def chat(messages: list[dict[str, Any]], selected_period: str | None = None, tim
             try:
                 answer = _call(provider, key, model, _analyst_messages(messages, plan, evidence), timeout, 2200)
                 attempts.append(_attempt_record(provider, model, 200, "success", None, time.perf_counter()-started, "analyst"))
-                return {"ok": True, "content": answer, "provider": provider, "model": model,
+                result = {"ok": True, "content": answer, "provider": provider, "model": model,
                         "period": evidence.get("period"), "planner_source": planner_source,
                         "plan": plan, "evidence_request_count": len(evidence.get("requested", [])),
-                        "evidence_rounds": round_no, "attempts": attempts}
+                        "evidence_rounds": round_no, "attempts": attempts,
+                        "evidence_requested": evidence.get("requested", []),
+                        "evidence_sent_to_analyst": evidence,
+                        "evidence_history": evidence_history}
+                append_chat_log(question=question, selected_period=selected_period, response=result)
+                return result
             except ProviderError as exc:
                 attempts.append(_attempt_record(provider, model, exc.status_code, _error_category(exc.status_code, exc.detail), exc.detail[:1000], time.perf_counter()-started, "analyst")); continue
             except requests.RequestException as exc:
@@ -489,5 +497,7 @@ def chat(messages: list[dict[str, Any]], selected_period: str | None = None, tim
             except Exception as exc:
                 attempts.append(_attempt_record(provider, model, "unexpected_error", "unexpected_error", str(exc)[:500], time.perf_counter()-started, "analyst")); continue
 
-    return {"ok": False, "error": "Semua provider/model LLM gagal menyelesaikan planner → evidence → evidence-check → analyst. FinAI tidak menggantinya dengan jawaban Python agar tidak menghasilkan analisis palsu.", "provider": None, "attempts": attempts}
+    result = {"ok": False, "error": "Semua provider/model LLM gagal menyelesaikan planner → evidence → evidence-check → analyst. FinAI tidak menggantinya dengan jawaban Python agar tidak menghasilkan analisis palsu.", "provider": None, "attempts": attempts, "plan": None, "evidence_requested": [], "evidence_sent_to_analyst": None, "evidence_rounds": 0}
+    append_chat_log(question=question, selected_period=selected_period, response=result)
+    return result
 
