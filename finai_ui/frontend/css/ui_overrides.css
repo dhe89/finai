@@ -21,15 +21,30 @@
 .main .data-wrap tr.section.parent-total td:not(:first-child){text-align:right;white-space:nowrap}
 
 @media(max-width:800px){
-  /* Do not let the global table min-width:680px create the large empty gap
-     seen between Keterangan and the numeric columns. */
-  .main .data-wrap{overflow-x:hidden}
+  /* Keep simple 2-3 column financial tables compact on mobile. */
+  .main .data-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
   .main .data-wrap table{width:100%;min-width:0 !important;table-layout:fixed}
   .main .data-wrap th,.main .data-wrap td{padding:11px 10px;font-size:13px;line-height:1.5}
   .main .data-wrap th:first-child,.main .data-wrap td:first-child{width:55%;text-align:left}
   .main .data-wrap th:not(:first-child),.main .data-wrap td:not(:first-child){width:22.5%;text-align:right;white-space:nowrap}
   .main .data-wrap tr.section td{font-size:12px;padding:10px 10px;letter-spacing:1.4px}
   .main .data-wrap tr.section.parent-total td:not(:first-child){white-space:nowrap}
+
+  /* Six-column Overview: don't squeeze columns until headers/values overlap.
+     A controlled horizontal scroll is preferable to stacked/overlapping text. */
+  .performance-page .data-wrap{overflow-x:auto;overflow-y:hidden;touch-action:pan-x pan-y}
+  .performance-page .data-wrap table{width:680px;min-width:680px !important;table-layout:fixed}
+  .performance-page .data-wrap th,.performance-page .data-wrap td{padding:11px 10px;font-size:13px;white-space:nowrap;overflow-wrap:normal}
+  .performance-page .data-wrap th:first-child,.performance-page .data-wrap td:first-child{width:220px;text-align:left;white-space:normal;overflow-wrap:anywhere}
+  .performance-page .data-wrap th:not(:first-child),.performance-page .data-wrap td:not(:first-child){width:auto;text-align:right;white-space:nowrap}
+
+  /* Product/detail tables: keep the label close to its values while allowing
+     the complete table to slide horizontally when the phone is too narrow. */
+  .data-detail-page .data-wrap{overflow-x:auto;overflow-y:hidden;touch-action:pan-x pan-y}
+  .data-detail-page .data-wrap table{width:520px;min-width:520px !important;table-layout:fixed}
+  .data-detail-page .data-wrap th,.data-detail-page .data-wrap td{padding:11px 10px;font-size:13px;white-space:nowrap;overflow-wrap:normal}
+  .data-detail-page .data-wrap th:first-child,.data-detail-page .data-wrap td:first-child{width:260px;text-align:left;white-space:normal;overflow-wrap:anywhere}
+  .data-detail-page .data-wrap th:not(:first-child),.data-detail-page .data-wrap td:not(:first-child){width:130px;text-align:right;white-space:nowrap}
 }
 
 /* Clean presentation for rendered LLM Markdown. */
