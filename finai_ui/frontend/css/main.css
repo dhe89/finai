@@ -102,7 +102,7 @@ tr.profit-total td{font-weight:900;background:#f0f6df;color:#35423e}
 .ai-foot{padding:10px 14px 14px;border-top:1px solid #edf0ef;background:#fff}
 .ai-foot-row{display:flex;gap:7px;align-items:flex-end;padding:5px;background:#f5f7f6;border:1px solid #e0e6e3;border-radius:14px;transition:border-color .18s ease,box-shadow .18s ease}
 .ai-foot-row:focus-within{border-color:#c8d5cf;box-shadow:0 0 0 3px #b7f51d18}
-.chat-input{display:block;width:100%;min-height:34px;max-height:110px;resize:none;background:transparent;border:0;border-radius:9px;padding:7px 8px;color:#53605b;font-size:10px;font-family:inherit;outline:none}
+.chat-input{display:block;width:100%;min-height:34px;max-height:110px;resize:none;background:transparent;border:0;border-radius:9px;padding:7px 8px;color:#53605b;font-size:12px;font-family:inherit;outline:none}
 .chat-input::placeholder{color:#a6afab}
 .chat-input:focus{border:0;box-shadow:none}
 .send{width:34px;height:34px;min-width:34px;border:0;border-radius:50%;padding:0;background:var(--lime);color:#25410d;font-size:12px;font-weight:900;display:grid;place-items:center;transition:transform .15s ease,opacity .15s ease,background .15s ease}
