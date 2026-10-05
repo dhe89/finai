@@ -18,7 +18,7 @@
       <div class="notification-menu"><div class="notification-title">Notifications</div><div class="notification-item"><span class="notification-text">Data tanggal 30 Sept tersedia</span><span class="notification-time">3m ago</span></div><div class="notification-item"><span class="notification-text">Maintenance sedang berlangsung</span><span class="notification-time">yesterday</span></div></div>
     </details>
     <details class="topnav-user">
-      <summary class="topnav-profile" aria-label="User profile" title="User profile"><span class="profile-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" fill="currentColor"/><path d="M5.8 19.2c.7-3.2 2.9-5.1 6.2-5.1" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="profile-chevron" aria-hidden="true">⌄</span></summary>
+      <summary class="topnav-profile" aria-label="User profile" title="User profile"><span class="profile-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" fill="currentColor"/><path d="M5.8 19.2c.7-3.2 2.9-5.1 6.2-5.1s5.5 1.9 6.2 5.1" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="profile-chevron" aria-hidden="true">⌄</span></summary>
       <div class="profile-menu"><div class="profile-greeting">Hai, Dede Yusup</div><div class="menu-divider"></div><button class="menu-item" type="button">Profile</button><button class="menu-item" type="button">Setting</button><div class="menu-divider"></div><button class="menu-item logout" type="button">Logout</button><div class="menu-divider"></div></div>
     </details>
   </div>
@@ -33,8 +33,26 @@
       <div class="notification-menu"><div class="notification-title">Notifications</div><div class="notification-item"><span class="notification-text">Data tanggal 30 Sept tersedia</span><span class="notification-time">3m ago</span></div><div class="notification-item"><span class="notification-text">Maintenance sedang berlangsung</span><span class="notification-time">yesterday</span></div></div>
     </details>
     <details class="mobile-user">
-      <summary class="mobile-profile" aria-label="User profile" title="User profile"><span class="profile-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" fill="currentColor"/><path d="M5.8 19.2c.7-3.2 2.9-5.1 6.2-5.1" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span></summary>
+      <summary class="mobile-profile" aria-label="User profile" title="User profile"><span class="profile-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" fill="currentColor"/><path d="M5.8 19.2c.7-3.2 2.9-5.1 6.2-5.1s5.5 1.9 6.2 5.1" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span></summary>
       <div class="profile-menu"><div class="profile-greeting">Hai, Dede Yusup</div><div class="menu-divider"></div><button class="menu-item" type="button">Profile</button><button class="menu-item" type="button">Setting</button><div class="menu-divider"></div><button class="menu-item logout" type="button">Logout</button><div class="menu-divider"></div></div>
     </details>
   </div>
 </div>
+
+<script>
+(function(){
+  function closeAll(except){
+    document.querySelectorAll('.topnav-actions details[open], .mobile-user-actions details[open]').forEach(function(d){
+      if(d !== except) d.removeAttribute('open');
+    });
+  }
+  document.addEventListener('click', function(e){
+    var detail = e.target.closest('details');
+    if(!detail || !detail.matches('.topnav-actions details, .mobile-user-actions details')) closeAll(null);
+    else if(e.target.closest('.menu-item')) closeAll(null);
+  });
+  document.addEventListener('toggle', function(e){
+    if(e.target.matches('.topnav-actions details, .mobile-user-actions details') && e.target.open) closeAll(e.target);
+  });
+})();
+</script>
