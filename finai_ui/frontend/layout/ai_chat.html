@@ -10,6 +10,24 @@
     z-index: 1500 !important;
   }
 
+  /* Desktop launcher stays inside the FinAI shell and sits above the
+     vertical midpoint, while remaining below the page/header area. */
+  #finai-root > #floatingAI {
+    position: absolute !important;
+    right: 24px !important;
+    top: 35% !important;
+    bottom: auto !important;
+    transform: translateY(-50%) !important;
+  }
+
+  #finai-root > #floatingAI:hover {
+    transform: translateY(calc(-50% - 1px)) !important;
+  }
+
+  #finai-root > #floatingAI:active {
+    transform: translateY(-50%) scale(.97) !important;
+  }
+
   /* Floating launcher is available only while the assistant is closed. */
   #finai-root > .ai:not(.closed) ~ #floatingAI {
     display: none !important;
@@ -18,6 +36,24 @@
   @media (max-width: 800px) {
     #finai-root > .ai {
       width: min(410px, 100%) !important;
+    }
+
+    /* Mobile must remain viewport-fixed so it does not disappear while the
+       page content is scrolled. */
+    #finai-root > #floatingAI {
+      position: fixed !important;
+      right: 16px !important;
+      top: auto !important;
+      bottom: 80px !important;
+      transform: none !important;
+    }
+
+    #finai-root > #floatingAI:hover {
+      transform: translateY(-1px) !important;
+    }
+
+    #finai-root > #floatingAI:active {
+      transform: scale(.97) !important;
     }
   }
 </style>
