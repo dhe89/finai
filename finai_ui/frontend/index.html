@@ -6,9 +6,9 @@
 <style>{{CSS}}</style>
 <style>
 @media(max-width:800px){
-  /* Mobile AI: keep the PETA top navigation visible above the chat. */
-  #app > #ai{
-    top:var(--finai-ai-top,calc(var(--finai-top-offset,0px) + 74px)) !important;
+  /* Mobile only: AI starts below the fixed PETA top navigation. */
+  #finai-root > .ai{
+    top:calc(var(--finai-top-offset,0px) + 74px) !important;
     bottom:0 !important;
     height:auto !important;
   }
