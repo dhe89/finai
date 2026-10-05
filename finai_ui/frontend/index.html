@@ -4,6 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <style>{{CSS}}</style>
+<style>
+@media(max-width:800px){
+  /* Mobile AI: keep the PETA top navigation visible above the chat. */
+  #app > #ai{
+    top:var(--finai-ai-top,calc(var(--finai-top-offset,0px) + 74px)) !important;
+    bottom:0 !important;
+    height:auto !important;
+  }
+}
+</style>
 </head>
 <body>
 <div id="app" class="app">
