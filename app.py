@@ -270,6 +270,7 @@ def _handle_chat_submit():
 finai_component(
     key="finai_shell",
     width="stretch",
+    height="content",
     on_period_change=_handle_period_change,
     on_navigate_change=_handle_navigation_change,
     on_ai_open_change=_handle_ai_open_change,
