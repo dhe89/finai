@@ -64,13 +64,24 @@
     background: var(--bg) !important;
   }
 
+  /*
+     The shell itself stays fixed, but the page content must own the vertical
+     scroll. Without this, .app's overflow:hidden clips long dashboard pages.
+     Keep the scroll container inside the content track so sidebar/header/AI
+     geometry is unchanged.
+  */
   #finai-root > .app > .main {
     width: 100% !important;
     max-width: none !important;
     min-width: 0 !important;
+    height: 100% !important;
+    min-height: 0 !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
     box-sizing: border-box !important;
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
   }
 
   /* Header owns the full content track, immediately beside the sidebar. */
