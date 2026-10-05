@@ -78,6 +78,7 @@ def render_markdown(text: str) -> str:
     paragraph: list[str] = []
     list_type: str | None = None
     list_items: list[str] = []
+    list_start = 1
     in_code = False
     code_lines: list[str] = []
 
@@ -90,12 +91,16 @@ def render_markdown(text: str) -> str:
             paragraph = []
 
     def flush_list() -> None:
-        nonlocal list_type, list_items
+        nonlocal list_type, list_items, list_start
         if list_items:
-            tag = list_type or "ul"
-            out.append(f"<{tag}>" + "".join(f"<li>{item}</li>" for item in list_items) + f"</{tag}>")
+            if list_type == "ol":
+                start_attr = f' start="{list_start}"' if list_start != 1 else ""
+                out.append(f"<ol{start_attr}>" + "".join(f"<li>{item}</li>" for item in list_items) + "</ol>")
+            else:
+                out.append("<ul>" + "".join(f"<li>{item}</li>" for item in list_items) + "</ul>")
         list_type = None
         list_items = []
+        list_start = 1
 
     def flush_code() -> None:
         nonlocal code_lines
@@ -137,7 +142,6 @@ def render_markdown(text: str) -> str:
 
         if not stripped:
             flush_paragraph()
-            flush_list()
             i += 1
             continue
 
@@ -188,7 +192,11 @@ def render_markdown(text: str) -> str:
             flush_paragraph()
             if list_type not in (None, "ol"):
                 flush_list()
-            list_type = "ol"
+            if list_type is None:
+                list_type = "ol"
+                match = _ORDERED_RE.match(raw)
+                number_match = re.match(r"^\s*(\d+)[.)]", raw)
+                list_start = int(number_match.group(1)) if number_match else 1
             list_items.append(_inline(ordered.group(1)))
             i += 1
             continue
