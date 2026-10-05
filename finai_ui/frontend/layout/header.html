@@ -1,3 +1,83 @@
+<style>
+/* PETA TOP NAV — outside sidebar, inside the FinAI component shell. */
+.desktop-topnav{
+  position:absolute;
+  top:0;
+  left:250px;
+  right:0;
+  height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:0 28px;
+  background:#fff;
+  border-bottom:1px solid #edf0ef;
+  box-shadow:0 3px 12px rgba(0,0,0,.035);
+  z-index:1800;
+}
+.topnav-search{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  min-width:190px;
+  color:#9aa49f;
+  font-size:12px;
+}
+.topnav-search-icon{font-size:20px;line-height:1;color:#65716c;transform:rotate(-20deg)}
+.topnav-search-placeholder{color:#9ba5a1}
+.topnav-actions{display:flex;align-items:center;gap:10px}
+.topnav-icon,.topnav-profile,.mobile-top-icon,.mobile-profile{
+  border:0;background:transparent;color:#53605b;cursor:pointer;
+}
+.topnav-icon{
+  position:relative;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:22px;
+}
+.topnav-icon:hover,.topnav-profile:hover{background:#f4f7f5}
+.notification-badge{
+  position:absolute;top:3px;right:2px;min-width:16px;height:16px;padding:0 4px;border-radius:9px;
+  display:grid;place-items:center;background:#b7f51d;color:#005642;font-size:8px;font-weight:900;border:2px solid #fff;
+}
+.topnav-profile{height:46px;display:flex;align-items:center;gap:9px;padding:4px 9px 4px 5px;border-radius:12px;text-align:left}
+.profile-avatar{
+  width:34px;height:34px;min-width:34px;border-radius:50%;display:grid;place-items:center;
+  background:#eaf5cf;color:#005642;font-size:10px;font-weight:900;letter-spacing:.3px;
+}
+.profile-copy{display:flex;flex-direction:column;gap:2px;min-width:112px}
+.profile-name{font-size:11px;font-weight:800;color:#35423e;line-height:1.2}
+.profile-role{font-size:8px;color:#9aa49f;line-height:1.2}
+.profile-chevron{font-size:15px;color:#87938e;margin-left:3px}
+
+/* Desktop content begins below the top navigation; sidebar remains independent. */
+@media(min-width:801px){
+  #finai-root > .app .main{padding-top:84px}
+  #finai-root.desktop-collapsed > .desktop-topnav{left:72px}
+}
+
+/* Mobile top navigation keeps the existing hamburger + centered PETA brand,
+   adding notification and profile controls without changing the AI launcher. */
+@media(max-width:800px){
+  .desktop-topnav{display:none!important}
+  #finai-root > .mobile-head{
+    display:flex!important;
+    justify-content:center!important;
+    padding:0 104px!important;
+  }
+  #finai-root > .mobile-head .mobile-menu{left:18px!important}
+  .mobile-user-actions{
+    position:absolute;right:12px;top:14px;height:46px;display:flex;align-items:center;gap:2px;
+  }
+  .mobile-top-icon,.mobile-profile{
+    position:relative;width:38px!important;height:42px!important;border-radius:10px!important;
+    display:grid!important;place-items:center!important;color:#65716c!important;font-size:20px!important;
+    background:transparent!important;
+  }
+  .mobile-top-icon:hover,.mobile-profile:hover{background:#f4f7f5!important}
+  .mobile-profile .profile-avatar{width:30px;height:30px;min-width:30px;font-size:9px}
+  .mobile-top-icon .notification-badge{top:4px;right:0;min-width:15px;height:15px;font-size:7px}
+}
+</style>
+
 <div class="desktop-topnav" aria-label="Application top navigation">
   <div class="topnav-search" aria-label="Search">
     <span class="topnav-search-icon" aria-hidden="true">⌕</span>
