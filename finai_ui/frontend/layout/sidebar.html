@@ -1,37 +1,57 @@
 <style id="finai-mobile-sidebar-logo-fix">
 @media(max-width:800px){
+  #finai-root > .left{
+    top:0!important;
+  }
   #finai-root > .left .sidebar-mobile-brand{
     display:flex!important;
-    position:absolute!important;
+    position:relative!important;
     top:18px!important;
-    left:16px!important;
-    right:16px!important;
-    width:auto!important;
+    left:auto!important;
+    right:auto!important;
+    width:100%!important;
     height:42px!important;
     min-height:42px!important;
-    margin:0!important;
+    margin:4px 2px 30px!important;
     padding:0!important;
     z-index:50!important;
     visibility:visible!important;
     opacity:1!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    gap:10px!important;
+    overflow:visible!important;
+    transform:none!important;
   }
   #finai-root > .left .sidebar-mobile-brand .sidebar-logo-mark{
     display:grid!important;
+    position:relative!important;
+    z-index:51!important;
     visibility:visible!important;
     opacity:1!important;
     width:30px!important;
     height:30px!important;
     min-width:30px!important;
     min-height:30px!important;
+    border-radius:9px!important;
+    background:#b7f51d!important;
+    color:#005642!important;
     flex:0 0 30px!important;
+    place-items:center!important;
+    font-weight:900!important;
+    line-height:1!important;
   }
   #finai-root > .left .sidebar-mobile-brand > span:last-child{
     display:block!important;
     visibility:visible!important;
     opacity:1!important;
+    color:#fff!important;
+    font-size:20px!important;
+    font-weight:800!important;
+    line-height:1!important;
   }
   #finai-root > .left .nav{
-    padding-top:66px!important;
+    padding-top:0!important;
   }
 }
 </style>
