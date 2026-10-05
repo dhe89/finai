@@ -218,101 +218,60 @@ if _log_download_enabled:
 # COMPONENT STATE CALLBACKS
 # ------------------------------------------------------------------
 # Period and navigation represent persistent UI state. They must not be
-# one-shot triggers because the selected period remains active while the user
-# changes pages and makes further selections. Streamlit Components V2 executes
-# these callbacks during the rerun caused by setStateValue().
-def _on_period_change():
-    component_state = st.session_state.get("finai_shell")
-    selected = getattr(component_state, "period", None) if component_state else None
-    if selected is not None and str(selected) in available:
-        st.session_state.period = str(selected)
-        st.session_state.ai_open = False
+# encoded in URLs because the app runs as a single component surface.
+def _handle_period_change():
+    value = getattr(finai_component, "period", None)
+    if value and value in available:
+        st.session_state["period"] = value
 
 
-def _on_navigate_change():
-    component_state = st.session_state.get("finai_shell")
-    target = getattr(component_state, "navigate", None) if component_state else None
-    if target is not None and str(target) in PAGE_MAP:
-        st.session_state.page = str(target)
-        st.session_state.ai_open = False
+def _handle_navigation_change():
+    value = getattr(finai_component, "navigate", None)
+    if value in PAGE_MAP:
+        st.session_state["page"] = value
 
 
-result = finai_component(
+def _handle_ai_open_change():
+    value = getattr(finai_component, "ai_open", None)
+    if value is not None:
+        st.session_state["ai_open"] = bool(value)
+
+
+def _handle_chat_submit():
+    trigger = getattr(finai_component, "chat_submit", None)
+    if not trigger or trigger == st.session_state.get("last_chat_trigger"):
+        return
+    st.session_state["last_chat_trigger"] = trigger
+    payload = trigger if isinstance(trigger, dict) else {"message": str(trigger)}
+    message = str(payload.get("message", "")).strip()
+    if not message:
+        return
+
+    try:
+        with st.spinner("PETA sedang menganalisis..."):
+            answer, meta = llm_chat(message, context=payload.get("context"))
+    except Exception as exc:
+        answer = f"Maaf, analisis belum dapat diproses. Detail: {exc}"
+        meta = {"provider": "LLM Router", "model": "", "latency_ms": None, "fallback": False}
+
+    st.session_state.chat_messages.append({
+        "role": "user",
+        "content": message,
+        "meta": {},
+    })
+    st.session_state.chat_messages.append({
+        "role": "assistant",
+        "content": answer,
+        "meta": meta or {},
+    })
+    st.session_state["ai_open"] = True
+
+
+finai_component(
     key="finai_shell",
-    data={
-        "page": page,
-        "period": st.session_state.period,
-        "ai_open": bool(st.session_state.ai_open),
-        "messages": messages,
-        "mobile": False,
-    },
-    default={
-        "period": st.session_state.period,
-        "navigate": st.session_state.page,
-    },
     width="stretch",
-    height="content",
-    on_period_change=_on_period_change,
-    on_navigate_change=_on_navigate_change,
-    on_ai_change=lambda: None,
-    on_chat_change=lambda: None,
+    on_period_change=_handle_period_change,
+    on_navigate_change=_handle_navigation_change,
+    on_ai_open_change=_handle_ai_open_change,
+    on_chat_submit_change=_handle_chat_submit,
 )
-
-# AI/chat remain one-shot actions. Period/navigation are handled exclusively
-# by their state callbacks above.
-ai_event = getattr(result, "ai", None)
-chat_event = getattr(result, "chat", None)
-
-if ai_event:
-    value = ai_event
-    if isinstance(value, dict):
-        action = value.get("action")
-    else:
-        action = str(value)
-    if action == "open":
-        st.session_state.ai_open = True
-        st.rerun()
-    elif action == "close":
-        st.session_state.ai_open = False
-        st.rerun()
-
-if chat_event:
-    if isinstance(chat_event, dict):
-        text = str(chat_event.get("text", "")).strip()
-        nonce = str(chat_event.get("nonce", ""))
-    else:
-        text = str(chat_event).strip()
-        nonce = ""
-
-    if text and nonce != st.session_state.last_chat_trigger:
-        st.session_state.last_chat_trigger = nonce
-        st.session_state.ai_open = True
-        st.session_state.chat_messages.append({"role": "user", "content": text})
-
-        response = llm_chat(st.session_state.chat_messages, selected_period=st.session_state.period)
-        if response.get("ok"):
-            answer = response.get("content", "").strip()
-            st.session_state.chat_messages.append({
-                "role": "assistant",
-                "content": answer,
-                "meta": {
-                    "provider": response.get("provider"),
-                    "model": response.get("model"),
-                    "latency_ms": response.get("latency_ms"),
-                    "attempt": response.get("attempt"),
-                    "fallback": response.get("fallback", False),
-                    "attempts": response.get("attempts", []),
-                },
-            })
-        else:
-            answer = "⚠️ " + response.get("error", "LLM belum dapat merespons saat ini.")
-            st.session_state.chat_messages.append({
-                "role": "assistant",
-                "content": answer,
-                "meta": {
-                    "provider": "LLM Router",
-                    "model": "Tidak ada provider yang berhasil",
-                    "attempts": response.get("attempts", []),
-                },
-            })
-        st.rerun()
