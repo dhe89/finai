@@ -20,6 +20,41 @@
   #finai-root > .left .sidebar-mobile-brand{display:flex!important;visibility:visible!important;opacity:1!important}
   #finai-root > .left .sidebar-mobile-brand .brand-mark{width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;border-radius:11px!important;background:#b7f51d!important;color:#005642!important;display:grid!important;place-items:center!important;font-weight:900!important;line-height:1!important;flex:none!important;visibility:visible!important;opacity:1!important}
 }
+
+/* ================================================================
+   CANVAS GEOMETRY FIX
+   The sidebar is a sibling of #app and is absolutely positioned. Therefore
+   #app must NOT keep the old two-column grid: with only one child, that grid
+   creates an unused track on the right. The main content owns the full app
+   canvas and reserves only the actual sidebar width on desktop.
+   ================================================================ */
+#finai-root > .app{
+  display:block!important;
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+  grid-template-columns:none!important;
+  overflow-x:hidden!important;
+}
+#finai-root > .app > .main{
+  width:calc(100% - 250px)!important;
+  max-width:none!important;
+  min-width:0!important;
+  margin-left:250px!important;
+}
+@media(min-width:801px){
+  #finai-root.desktop-collapsed > .app > .main{
+    width:calc(100% - 72px)!important;
+    margin-left:72px!important;
+  }
+}
+@media(max-width:800px){
+  #finai-root > .app > .main{
+    width:100%!important;
+    max-width:none!important;
+    margin-left:0!important;
+  }
+}
 </style>
 
 <div class="desktop-topnav" aria-label="Application top navigation">
