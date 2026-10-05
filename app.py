@@ -255,7 +255,10 @@ result = finai_component(
         "navigate": st.session_state.page,
     },
     width="stretch",
-    height="content",
+    # Match the original stable prototype's sizing model: the component
+    # receives the full Streamlit canvas instead of negotiating a content
+    # height. This keeps the shell geometry in one coordinate system.
+    height="stretch",
     on_period_change=_on_period_change,
     on_navigate_change=_on_navigate_change,
     on_ai_change=lambda: None,
