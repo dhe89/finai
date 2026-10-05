@@ -1,6 +1,26 @@
-<button id="floatingAI" class="floating-ai" aria-label="Open AI Assistant" title="Open AI Assistant" type="button">
-  <span class="floating-ai-icon">✦</span>
-</button>
+<style>
+  /* PETA chat belongs to the FinAI main container, not the browser viewport. */
+  #finai-root > .ai {
+    position: absolute !important;
+    top: var(--finai-ai-top, 0px) !important;
+    right: 0 !important;
+    bottom: auto !important;
+    height: var(--finai-ai-height, 100%) !important;
+    max-height: var(--finai-ai-height, 100%) !important;
+    z-index: 1500 !important;
+  }
+
+  /* Floating launcher is available only while the assistant is closed. */
+  #finai-root > .ai:not(.closed) ~ #floatingAI {
+    display: none !important;
+  }
+
+  @media (max-width: 800px) {
+    #finai-root > .ai {
+      width: min(410px, 100%) !important;
+    }
+  }
+</style>
 
 <aside id="ai" class="ai closed" aria-hidden="true">
   <div class="ai-head">
@@ -20,3 +40,7 @@
     </div>
   </div>
 </aside>
+
+<button id="floatingAI" class="floating-ai" aria-label="Open AI Assistant" title="Open AI Assistant" type="button">
+  <span class="floating-ai-icon">✦</span>
+</button>
