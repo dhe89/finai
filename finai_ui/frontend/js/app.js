@@ -13,7 +13,7 @@ export default function(component) {
   function updateViewportOffset() {
     const shellRect = shell.getBoundingClientRect();
     const appRect = app.getBoundingClientRect();
-    const mobile = shellRect.width <= 800;
+    const mobile = window.innerWidth <= 800;
     const header = qs('.mobile-head');
     const shellTop = Math.max(0, appRect.top - shellRect.top);
     const appHeight = Math.max(320, appRect.height);
@@ -30,9 +30,7 @@ export default function(component) {
   }
 
   function isMobile() {
-    return shell && typeof shell.getBoundingClientRect === 'function'
-      ? shell.getBoundingClientRect().width <= 800
-      : window.matchMedia('(max-width: 800px)').matches;
+    return window.innerWidth <= 800;
   }
 
   function applyResponsiveMode() {
@@ -115,10 +113,6 @@ export default function(component) {
   function bindHeaderDropdowns() {
     if (shell.dataset.finaiHeaderDropdownsBound === '1') return;
     shell.dataset.finaiHeaderDropdownsBound = '1';
-
-    // Native <details> toggling is used for reliable open/close state. Any
-    // click outside the currently open menu closes it immediately. Clicking
-    // the other header button switches menus instead of leaving both open.
     document.addEventListener('pointerdown', event => {
       const target = event.target;
       const insideShell = shell.contains(target);
@@ -134,13 +128,11 @@ export default function(component) {
       }
       if (open && open !== detail) open.removeAttribute('open');
     }, true);
-
     root.addEventListener('click', event => {
       if (event.target.closest('.nav-item, #mobileMenu, #leftToggle, #mobileOverlay, #desktopAI, #mobileAI, #floatingAI, #aiClose')) {
         closeHeaderDropdowns();
       }
     }, true);
-
     root.addEventListener('toggle', event => {
       if (!event.target.matches('.topnav-actions details, .mobile-user-actions details') || !event.target.open) return;
       root.querySelectorAll('.topnav-actions details[open], .mobile-user-actions details[open]').forEach(d => {
