@@ -38,28 +38,3 @@
     </details>
   </div>
 </div>
-
-<script>
-(function(){
-  var selector = '.topnav-actions details, .mobile-user-actions details';
-  function closeAll(except){
-    document.querySelectorAll(selector + '[open]').forEach(function(d){
-      if(d !== except) d.removeAttribute('open');
-    });
-  }
-  // Capture phase is intentional: it runs before Streamlit/other page handlers and before a click can trigger a rerun.
-  document.addEventListener('pointerdown', function(e){
-    var detail = e.target.closest('details');
-    if(!detail || !detail.matches(selector)) closeAll(null);
-    else if(e.target.closest('.menu-item')) closeAll(null);
-    else closeAll(detail);
-  }, true);
-  document.addEventListener('click', function(e){
-    var detail = e.target.closest('details');
-    if(!detail || !detail.matches(selector) || e.target.closest('.menu-item')) closeAll(null);
-  }, true);
-  document.addEventListener('toggle', function(e){
-    if(e.target.matches(selector) && e.target.open) closeAll(e.target);
-  });
-})();
-</script>
