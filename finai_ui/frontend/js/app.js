@@ -226,7 +226,8 @@ export default function(component) {
 
       const desktopAI = event.target.closest('#desktopAI');
       const mobileAI = event.target.closest('#mobileAI');
-      if ((desktopAI || mobileAI) && root.contains(desktopAI || mobileAI)) {
+      const floatingAI = event.target.closest('#floatingAI');
+      if ((desktopAI || mobileAI || floatingAI) && root.contains(desktopAI || mobileAI || floatingAI)) {
         event.preventDefault();
         setTriggerValue('ai', {action:'open'});
         return;
