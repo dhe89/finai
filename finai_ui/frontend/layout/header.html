@@ -4,7 +4,7 @@
 .topnav-search{display:flex;align-items:center;gap:9px;min-width:190px;color:#9aa49f;font-size:12px}.topnav-search-icon{font-size:20px;line-height:1;color:#65716c;transform:rotate(-20deg)}.topnav-search-placeholder{color:#9ba5a1}
 .topnav-actions{display:flex;align-items:center;gap:8px}.topnav-icon,.topnav-profile,.mobile-top-icon,.mobile-profile{border:0;background:transparent;color:#53605b;cursor:pointer;font:inherit}.topnav-icon{position:relative;width:40px;height:40px;border-radius:10px;display:grid;place-items:center}.topnav-icon:hover,.topnav-profile:hover,.mobile-top-icon:hover,.mobile-profile:hover{background:#f4f7f5}.notification-icon{width:19px;height:19px;display:block;color:#53605b}
 .notification-badge{position:absolute;top:3px;right:2px;min-width:16px;height:16px;padding:0 4px;border-radius:9px;display:grid;place-items:center;background:#b7f51d;color:#005642;font-size:8px;font-weight:900;border:2px solid #fff}
-.topnav-profile{position:relative;height:46px;display:flex;align-items:center;gap:8px;padding:4px 8px;border-radius:12px}.profile-avatar{width:34px;height:34px;min-width:34px;border-radius:50%;display:grid;place-items:center;background:#eaf5cf;color:#005642}.profile-avatar svg{width:19px;height:19px;display:block}.profile-chevron{font-size:15px;color:#87938e;margin-left:2px}
+.topnav-profile{position:relative;height:46px;display:flex;align-items:center;padding:4px 8px;border-radius:12px}.profile-avatar{width:34px;height:34px;min-width:34px;border-radius:50%;display:grid;place-items:center;background:#eaf5cf;color:#005642}.profile-avatar svg{width:19px;height:19px;display:block}
 .profile-menu,.notification-menu{position:absolute;right:0;top:calc(100% + 8px);background:#fff;border:1px solid #e4ebe7;border-radius:13px;box-shadow:0 14px 35px rgba(0,54,42,.14);overflow:hidden}.profile-menu{width:190px;padding:7px;z-index:2100}.profile-greeting{padding:10px 11px 9px;font-size:11px;font-weight:800;color:#35423e}.menu-divider{height:1px;background:#edf0ef;margin:3px 0}.menu-item{display:flex;align-items:center;width:100%;min-height:34px;padding:0 10px;border:0;background:transparent;border-radius:8px;color:#52605b;font-size:10px;text-align:left}.menu-item:hover{background:#f4f7f5;color:#005642}.menu-item.logout{color:#8b5555}.notification-menu{width:290px;padding:8px;z-index:2100}.notification-title{padding:7px 9px 9px;font-size:11px;font-weight:800;color:#35423e}.notification-item{display:flex;justify-content:space-between;gap:14px;padding:10px 9px;border-radius:9px}.notification-item:hover{background:#f7f9f8}.notification-text{font-size:10px;color:#52605b;line-height:1.4}.notification-time{font-size:8px;color:#9aa49f;white-space:nowrap;padding-top:1px}.topnav-actions details,.mobile-user-actions details{position:relative}details>summary{list-style:none}details>summary::-webkit-details-marker{display:none}
 @media(min-width:801px){#finai-root>.app .main{padding-top:84px}#finai-root.desktop-collapsed>.desktop-topnav{left:72px}}
 @media(max-width:800px){.desktop-topnav{display:none!important}#finai-root>.mobile-head{display:flex!important;justify-content:center!important;padding:0 104px!important}#finai-root>.mobile-head .mobile-menu{left:18px!important}.mobile-user-actions{position:absolute;right:10px;top:14px;height:46px;display:flex;align-items:center;gap:2px}.mobile-top-icon,.mobile-profile{position:relative;width:38px!important;height:42px!important;border-radius:10px!important;display:grid!important;place-items:center!important;color:#65716c!important;background:transparent!important}.mobile-top-icon .notification-icon{width:19px;height:19px}.mobile-profile .profile-avatar{width:30px;height:30px;min-width:30px}.mobile-profile .profile-avatar svg{width:17px;height:17px}.mobile-top-icon .notification-badge{top:4px;right:0;min-width:15px;height:15px;font-size:7px}.mobile-user-actions .profile-menu{right:0;top:calc(100% + 7px);width:180px}.mobile-user-actions .notification-menu{right:0;top:calc(100% + 7px);width:275px;max-width:calc(100vw - 24px)}}
@@ -18,7 +18,7 @@
       <div class="notification-menu"><div class="notification-title">Notifications</div><div class="notification-item"><span class="notification-text">Data tanggal 30 Sept tersedia</span><span class="notification-time">3m ago</span></div><div class="notification-item"><span class="notification-text">Maintenance sedang berlangsung</span><span class="notification-time">yesterday</span></div></div>
     </details>
     <details class="topnav-user">
-      <summary class="topnav-profile" aria-label="User profile" title="User profile"><span class="profile-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" fill="currentColor"/><path d="M5.8 19.2c.7-3.2 2.9-5.1 6.2-5.1s5.5 1.9 6.2 5.1" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="profile-chevron" aria-hidden="true">⌄</span></summary>
+      <summary class="topnav-profile" aria-label="User profile" title="User profile"><span class="profile-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" fill="currentColor"/><path d="M5.8 19.2c.7-3.2 2.9-5.1 6.2-5.1s5.5 1.9 6.2 5.1" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span></summary>
       <div class="profile-menu"><div class="profile-greeting">Hai, Dede Yusup</div><div class="menu-divider"></div><button class="menu-item" type="button">Profile</button><button class="menu-item" type="button">Setting</button><div class="menu-divider"></div><button class="menu-item logout" type="button">Logout</button><div class="menu-divider"></div></div>
     </details>
   </div>
@@ -41,18 +41,25 @@
 
 <script>
 (function(){
+  var selector = '.topnav-actions details, .mobile-user-actions details';
   function closeAll(except){
-    document.querySelectorAll('.topnav-actions details[open], .mobile-user-actions details[open]').forEach(function(d){
+    document.querySelectorAll(selector + '[open]').forEach(function(d){
       if(d !== except) d.removeAttribute('open');
     });
   }
+  // Capture phase is intentional: it runs before Streamlit/other page handlers and before a click can trigger a rerun.
+  document.addEventListener('pointerdown', function(e){
+    var detail = e.target.closest('details');
+    if(!detail || !detail.matches(selector)) closeAll(null);
+    else if(e.target.closest('.menu-item')) closeAll(null);
+    else closeAll(detail);
+  }, true);
   document.addEventListener('click', function(e){
     var detail = e.target.closest('details');
-    if(!detail || !detail.matches('.topnav-actions details, .mobile-user-actions details')) closeAll(null);
-    else if(e.target.closest('.menu-item')) closeAll(null);
-  });
+    if(!detail || !detail.matches(selector) || e.target.closest('.menu-item')) closeAll(null);
+  }, true);
   document.addEventListener('toggle', function(e){
-    if(e.target.matches('.topnav-actions details, .mobile-user-actions details') && e.target.open) closeAll(e.target);
+    if(e.target.matches(selector) && e.target.open) closeAll(e.target);
   });
 })();
 </script>
