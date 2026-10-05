@@ -10,22 +10,30 @@
     z-index: 1500 !important;
   }
 
-  /* Desktop launcher stays inside the FinAI shell and sits above the
-     vertical midpoint, while remaining below the page/header area. */
+  /* Single AI launcher. Desktop stays inside the FinAI shell and is raised
+     above the previous position while remaining below the header area. */
   #finai-root > #floatingAI {
     position: absolute !important;
     right: 24px !important;
-    top: 35% !important;
+    top: 30% !important;
     bottom: auto !important;
     transform: translateY(-50%) !important;
+    background: #b7f51d !important;
+    color: #005642 !important;
   }
 
   #finai-root > #floatingAI:hover {
     transform: translateY(calc(-50% - 1px)) !important;
+    background: #005642 !important;
+    color: #b7f51d !important;
   }
 
   #finai-root > #floatingAI:active {
     transform: translateY(-50%) scale(.97) !important;
+  }
+
+  #finai-root > #floatingAI .floating-ai-icon {
+    color: currentColor !important;
   }
 
   /* Floating launcher is available only while the assistant is closed. */
@@ -38,22 +46,26 @@
       width: min(410px, 100%) !important;
     }
 
-    /* Mobile must remain viewport-fixed so it does not disappear while the
-       page content is scrolled. */
+    /* Mobile remains viewport-fixed, but is raised to the same visual zone
+       requested for desktop rather than sitting close to the bottom edge. */
     #finai-root > #floatingAI {
       position: fixed !important;
       right: 16px !important;
-      top: auto !important;
-      bottom: 80px !important;
-      transform: none !important;
+      top: 62% !important;
+      bottom: auto !important;
+      transform: translateY(-50%) !important;
+      background: #b7f51d !important;
+      color: #005642 !important;
     }
 
     #finai-root > #floatingAI:hover {
-      transform: translateY(-1px) !important;
+      transform: translateY(calc(-50% - 1px)) !important;
+      background: #005642 !important;
+      color: #b7f51d !important;
     }
 
     #finai-root > #floatingAI:active {
-      transform: scale(.97) !important;
+      transform: translateY(-50%) scale(.97) !important;
     }
   }
 </style>
