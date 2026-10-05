@@ -9,7 +9,7 @@ from typing import Iterable
 _TABLE_SEPARATOR_RE = re.compile(r"^\s*\|?\s*:?-{3,}:?\s*(?:\|\s*:?-{3,}:?\s*)+\|?\s*$")
 _HEADING_RE = re.compile(r"^\s*(#{1,4})\s+(.*?)\s*$")
 _BULLET_RE = re.compile(r"^\s*[-*+]\s+(.*?)\s*$")
-_ORDERED_RE = re.compile(r"^\s*\d+[.)]\s+(.*?)\s*$")
+_ORDERED_RE = re.compile(r"^\s*(\d+)[.)]\s+(.*?)\s*$")
 _QUOTE_RE = re.compile(r"^\s*>\s?(.*?)\s*$")
 
 
@@ -108,6 +108,12 @@ def render_markdown(text: str) -> str:
         out.append(f"<pre><code>{code}</code></pre>")
         code_lines = []
 
+    def next_nonblank(start: int) -> str:
+        j = start
+        while j < len(lines) and not lines[j].strip():
+            j += 1
+        return lines[j] if j < len(lines) else ""
+
     i = 0
     while i < len(lines):
         raw = lines[i]
@@ -142,6 +148,17 @@ def render_markdown(text: str) -> str:
 
         if not stripped:
             flush_paragraph()
+            # Markdown commonly separates ordered-list items with blank lines.
+            # Keep the current list open only when the next meaningful line is
+            # another item of the same list type; otherwise close it here.
+            if list_type == "ol":
+                nxt = next_nonblank(i + 1)
+                if not _ORDERED_RE.match(nxt):
+                    flush_list()
+            elif list_type == "ul":
+                nxt = next_nonblank(i + 1)
+                if not _BULLET_RE.match(nxt):
+                    flush_list()
             i += 1
             continue
 
@@ -194,13 +211,14 @@ def render_markdown(text: str) -> str:
                 flush_list()
             if list_type is None:
                 list_type = "ol"
-                match = _ORDERED_RE.match(raw)
-                number_match = re.match(r"^\s*(\d+)[.)]", raw)
-                list_start = int(number_match.group(1)) if number_match else 1
-            list_items.append(_inline(ordered.group(1)))
+                list_start = int(ordered.group(1))
+            list_items.append(_inline(ordered.group(2)))
             i += 1
             continue
 
+        # A normal paragraph terminates any active list.
+        if list_type is not None:
+            flush_list()
         paragraph.append(stripped)
         i += 1
 
