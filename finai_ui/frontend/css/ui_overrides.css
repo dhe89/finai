@@ -59,46 +59,27 @@
    squeezing/overlapping columns. */
 @media(min-width:801px){
   #finai-root .main .data-wrap{width:100%!important;max-width:100%!important;overflow-x:auto!important;overflow-y:hidden!important;-webkit-overflow-scrolling:touch;scrollbar-gutter:stable}
-
-  /* Overview: six columns. width:100% fills wide cards; min-width preserves
-     the horizontal-scroll behaviour on smaller desktop viewports. */
   #finai-root .main.performance-page .data-wrap table{width:100%!important;min-width:760px!important;max-width:none!important;table-layout:fixed!important}
   #finai-root .main.performance-page .data-wrap th,#finai-root .main.performance-page .data-wrap td{box-sizing:border-box!important;white-space:nowrap!important;overflow-wrap:normal!important}
   #finai-root .main.performance-page .data-wrap th:first-child,#finai-root .main.performance-page .data-wrap td:first-child{width:32%!important;min-width:240px!important;max-width:none!important;text-align:left!important;white-space:normal!important}
   #finai-root .main.performance-page .data-wrap th:not(:first-child),#finai-root .main.performance-page .data-wrap td:not(:first-child){width:13.6%!important;min-width:104px!important;max-width:none!important;text-align:right!important}
-
-  /* Rincian Data: only long multi-column tables become wide. They fill the
-     card when there is room and retain a 980px minimum on narrower desktops. */
   #finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)){width:100%!important;min-width:980px!important;max-width:none!important;table-layout:fixed!important}
   #finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) th,#finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) td{box-sizing:border-box!important;white-space:nowrap!important;overflow-wrap:normal!important}
   #finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) th:first-child,#finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) td:first-child{width:15%!important;min-width:150px!important;max-width:none!important;text-align:left!important}
   #finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) th:not(:first-child),#finai-root .main.data-detail-page .data-wrap table:has(th:nth-child(6)) td:not(:first-child){width:12.142857%!important;min-width:118px!important;max-width:none!important;text-align:right!important}
 }
 
-/* Overview bottom cards and Setting Parameter cards: bring secondary content
-   in line with the readable 13px detail/data typography without touching the
-   primary page title/menu sizing or any layout/function behaviour. */
-.main.performance-page .bottom .small-title,
-.main.performance-page .bottom .caption{font-size:13px!important;line-height:1.5!important}
+/* Overview bottom cards and Setting Parameter cards: bring secondary content in line with the readable 13px detail/data typography without touching the primary page title/menu sizing or any layout/function behaviour. */
+.main.performance-page .bottom .small-title,.main.performance-page .bottom .caption{font-size:13px!important;line-height:1.5!important}
 .main.performance-page .bottom .kpi{font-size:13px!important;line-height:1.5!important;margin-top:15px}
-.main.performance-page .bottom .kpi-label{font-size:13px!important;line-height:1.5!important}
-.main.performance-page .bottom .kpi-value{font-size:14px!important;line-height:1.4!important}
+.main.performance-page .bottom .kpi-label{font-size:13px!important;line-height:1.5!important}.main.performance-page .bottom .kpi-value{font-size:14px!important;line-height:1.4!important}
+.main .form-grid .card.small .small-title,.main > .card.small .small-title{font-size:14px!important;line-height:1.4!important}
+.main .form-grid .card.small .caption,.main > .card.small .caption{font-size:11px!important;line-height:1.5!important}
+.main .form-grid .card.small .setting-row,.main > .card.small .setting-row{font-size:13px!important;line-height:1.5!important}
+.main .form-grid .card.small .setting-label,.main .form-grid .card.small .setting-value,.main > .card.small .setting-label,.main > .card.small .setting-value{font-size:13px!important;line-height:1.5!important}
+.main .form-grid .card.small .badge,.main > .card.small .badge{font-size:11px!important;line-height:1.3!important}
 
-.main .form-grid .card.small .small-title,
-.main > .card.small .small-title{font-size:14px!important;line-height:1.4!important}
-.main .form-grid .card.small .caption,
-.main > .card.small .caption{font-size:11px!important;line-height:1.5!important}
-.main .form-grid .card.small .setting-row,
-.main > .card.small .setting-row{font-size:13px!important;line-height:1.5!important}
-.main .form-grid .card.small .setting-label,
-.main .form-grid .card.small .setting-value,
-.main > .card.small .setting-label,
-.main > .card.small .setting-value{font-size:13px!important;line-height:1.5!important}
-.main .form-grid .card.small .badge,
-.main > .card.small .badge{font-size:11px!important;line-height:1.3!important}
-
-/* Floating AI assistant trigger. Keep it anchored to the FinAI shell rather
-   than the browser viewport, so it stays inside the app container/header area. */
+/* Floating AI assistant trigger. */
 #finai-root{position:relative}
 .floating-ai{position:absolute;right:14px;top:14px;bottom:auto;width:30px;height:30px;border:1px solid rgba(0,86,66,.12);border-radius:7px;background:var(--lime);color:var(--green);display:grid;place-items:center;z-index:1200;box-shadow:0 7px 16px rgba(0,86,66,.18),0 2px 6px rgba(0,0,0,.07);transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
 .floating-ai:hover{transform:translateY(-1px);background:#c6fa43;box-shadow:0 9px 20px rgba(0,86,66,.22),0 3px 8px rgba(0,0,0,.09)}
@@ -106,13 +87,14 @@
 .floating-ai-icon{font-size:15px;font-weight:900;line-height:1;color:var(--green)}
 .floating-ai:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
 
-/* Keep the AI drawer and its close button below the native Streamlit header. */
-@media(min-width:801px){
-  #finai-root > .ai{top:44px!important;height:calc(100dvh - 44px)!important;max-height:calc(100dvh - 44px)!important}
-}
+/* PETA chat is positioned relative to #finai-root by inline layout variables,
+   not fixed to the browser viewport. The native Streamlit header is therefore
+   never covered by the drawer. */
+#finai-root > .ai{position:absolute!important;right:0!important;top:var(--finai-ai-top,0px)!important;height:var(--finai-ai-height,100%)!important;max-height:var(--finai-ai-height,100%)!important;bottom:auto!important;z-index:1500!important}
+#finai-root > .ai:not(.closed) ~ #floatingAI{display:none!important}
 
 @media(max-width:800px){
-  #finai-root > .ai{top:var(--finai-top-offset,0px)!important;height:calc(100dvh - var(--finai-top-offset,0px))!important;max-height:calc(100dvh - var(--finai-top-offset,0px))!important}
+  #finai-root > .ai{width:min(410px,100%)!important}
   .floating-ai{right:14px;top:14px;width:30px;height:30px;border-radius:7px}
   .floating-ai-icon{font-size:15px}
 }
