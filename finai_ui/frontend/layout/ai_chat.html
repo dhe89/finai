@@ -67,6 +67,51 @@
     #finai-root > #floatingAI:active {
       transform: translateY(-50%) scale(.97) !important;
     }
+
+    /* MOBILE AI CHAT — keep the FinAI top navigation visible.
+       app.js already calculates --finai-ai-top / --finai-ai-height from the
+       actual mobile header height, so the chat starts immediately below it.
+       The header remains above the chat while chatBody scrolls independently. */
+    #finai-root > .ai {
+      position: fixed !important;
+      top: var(--finai-ai-top, calc(var(--finai-top-offset, 0px) + 74px)) !important;
+      right: 0 !important;
+      bottom: auto !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: var(--finai-ai-height, calc(var(--finai-vh, 100dvh) - 74px)) !important;
+      max-height: var(--finai-ai-height, calc(var(--finai-vh, 100dvh) - 74px)) !important;
+      min-height: 0 !important;
+      z-index: 1900 !important;
+      border: 0 !important;
+      box-shadow: none !important;
+    }
+
+    #finai-root > .mobile-head {
+      z-index: 2000 !important;
+    }
+
+    #finai-root > .ai .ai-head {
+      min-height: 72px !important;
+      flex:none !important;
+      padding: 18px 18px 15px !important;
+      position: relative !important;
+      z-index: 1 !important;
+    }
+
+    #finai-root > .ai .ai-body {
+      min-height: 0 !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+
+    #finai-root > .ai .ai-close {
+      position: relative !important;
+      top: auto !important;
+      right: auto !important;
+      z-index: 1 !important;
+    }
   }
 </style>
 
