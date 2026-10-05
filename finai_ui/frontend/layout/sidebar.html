@@ -56,6 +56,14 @@
   #finai-root > .left .nav{
     padding-top:0!important;
   }
+
+  /* Final mobile drawer positioning: align the sidebar's top edge with
+     the bottom of Streamlit's native header so the brand is not hidden behind it. */
+  #finai-root#finai-root > .left{
+    top:var(--finai-top-offset,0px)!important;
+    height:var(--finai-vh,calc(100dvh - var(--finai-top-offset,0px)))!important;
+    max-height:var(--finai-vh,calc(100dvh - var(--finai-top-offset,0px)))!important;
+  }
 }
 </style>
 <aside id="left" class="left">
