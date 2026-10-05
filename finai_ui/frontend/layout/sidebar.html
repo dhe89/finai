@@ -1,18 +1,21 @@
 <style id="finai-mobile-sidebar-logo-fix">
 @media(max-width:800px){
+  /* Expanded mobile drawer starts at the same app top as the mobile header.
+     Keep the PETA brand inside the drawer's visible top area. */
   #finai-root > .left{
     top:0!important;
+    overflow:hidden!important;
   }
   #finai-root > .left .sidebar-mobile-brand{
     display:flex!important;
     position:relative!important;
-    top:18px!important;
+    top:auto!important;
     left:auto!important;
     right:auto!important;
     width:100%!important;
     height:42px!important;
     min-height:42px!important;
-    margin:4px 2px 30px!important;
+    margin:18px 2px 24px!important;
     padding:0!important;
     z-index:50!important;
     visibility:visible!important;
@@ -29,14 +32,14 @@
     z-index:51!important;
     visibility:visible!important;
     opacity:1!important;
-    width:30px!important;
-    height:30px!important;
-    min-width:30px!important;
-    min-height:30px!important;
-    border-radius:9px!important;
+    width:42px!important;
+    height:42px!important;
+    min-width:42px!important;
+    min-height:42px!important;
+    border-radius:11px!important;
     background:#b7f51d!important;
     color:#005642!important;
-    flex:0 0 30px!important;
+    flex:0 0 42px!important;
     place-items:center!important;
     font-weight:900!important;
     line-height:1!important;
