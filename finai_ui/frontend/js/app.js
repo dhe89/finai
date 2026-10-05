@@ -13,33 +13,42 @@ export default function(component) {
 
   function updateViewportOffset() {
     const shellRect = shell.getBoundingClientRect();
+    const appRect = app.getBoundingClientRect();
+    const mobile = shellRect.width <= 800;
+    const header = qs('.mobile-head');
+
+    // The FinAI shell is the positioning context for the AI drawer. Do not
+    // use browser viewport coordinates here: the drawer must stay attached to
+    // the actual app container even when Streamlit adds surrounding chrome.
+    const shellTop = Math.max(0, appRect.top - shellRect.top);
+    const appHeight = Math.max(320, appRect.height);
+    const mobileHeaderHeight = mobile && header
+      ? Math.max(0, header.getBoundingClientRect().height)
+      : 0;
+
+    // On mobile, keep the drawer below the FinAI mobile header. On desktop
+    // there is no internal header, so the drawer starts at the top of #app.
+    const aiTop = mobile ? shellTop + mobileHeaderHeight : shellTop;
+    const aiHeight = Math.max(320, appHeight - (mobile ? mobileHeaderHeight : 0));
+
+    shell.style.setProperty('--finai-ai-top', `${aiTop}px`);
+    shell.style.setProperty('--finai-ai-height', `${aiHeight}px`);
+
+    // Preserve the existing viewport variables used by the sidebar/page
+    // layout and mobile stacking baseline.
     const nativeHeader = document.querySelector(
       'header[data-testid="stHeader"], [data-testid="stHeader"]'
     );
-    const mobile = shellRect.width <= 800;
-
-    // Mobile is kept on the established baseline: its fixed layers are
-    // anchored to the native Streamlit header bottom.
-    // Desktop instead uses the real #finai-root top. Streamlit can leave a
-    // small content spacer after stHeader, so using stHeader.bottom there
-    // makes the AI overlay start above the sidebar/page shell.
     const nativeHeaderBottom = nativeHeader
       ? Math.max(0, nativeHeader.getBoundingClientRect().bottom)
       : 0;
-    const topOffset = mobile
-      ? nativeHeaderBottom
-      : Math.max(0, shellRect.top);
-
+    const topOffset = mobile ? nativeHeaderBottom : Math.max(0, shellRect.top);
     const viewportHeight = Math.max(320, window.innerHeight - topOffset);
-
-    // Sidebar/header/AI overlay all use the same top coordinate on desktop.
     shell.style.setProperty('--finai-top-offset', `${topOffset}px`);
     shell.style.setProperty('--finai-vh', `${viewportHeight}px`);
   }
 
   function isMobile() {
-    // Components V2 can expose a width that differs from the browser viewport.
-    // Use the actual FinAI shell width instead of relying only on CSS media queries.
     if (shell && typeof shell.getBoundingClientRect === 'function') {
       return shell.getBoundingClientRect().width <= 800;
     }
@@ -50,8 +59,6 @@ export default function(component) {
     const mobile = isMobile();
     shell.classList.toggle('finai-mobile', mobile);
 
-    // Never re-parent the drawer. It is a permanent sibling of the page,
-    // header and backdrop. This is the key structural fix for mobile layers.
     if (!mobile) {
       left.classList.remove('mobile-open');
       const overlay = qs('#mobileOverlay');
@@ -74,6 +81,8 @@ export default function(component) {
   function setAI(open) {
     ai.classList.toggle('closed', !open);
     ai.setAttribute('aria-hidden', String(!open));
+    const floatingAI = qs('#floatingAI');
+    if (floatingAI) floatingAI.hidden = Boolean(open);
     if (open && chatBody) {
       requestAnimationFrame(() => {
         chatBody.scrollTop = chatBody.scrollHeight;
@@ -106,22 +115,14 @@ export default function(component) {
   }
 
   function setCollapsed(collapsed) {
-    // Desktop collapse belongs to the root because the sidebar is now a
-    // sibling of #app rather than a child of it.
     shell.classList.toggle('desktop-collapsed', collapsed);
     shell.dataset.leftCollapsed = collapsed ? '1' : '0';
 
     const toggle = qs('#leftToggle');
     if (toggle) {
       toggle.setAttribute('aria-expanded', String(!collapsed));
-      toggle.setAttribute(
-        'aria-label',
-        collapsed ? 'Expand navigation' : 'Collapse navigation'
-      );
-      toggle.setAttribute(
-        'title',
-        collapsed ? 'Expand navigation' : 'Collapse navigation'
-      );
+      toggle.setAttribute('aria-label', collapsed ? 'Expand navigation' : 'Collapse navigation');
+      toggle.setAttribute('title', collapsed ? 'Expand navigation' : 'Collapse navigation');
       if (!isMobile()) toggle.textContent = collapsed ? '›' : '☰';
     }
   }
@@ -129,13 +130,8 @@ export default function(component) {
   function bindNavigation() {
     const periodSelect = qs('#periodSelect');
     if (periodSelect) {
-      // Python is the source of truth after each rerun. Sync the visible
-      // selection without recreating the event listener.
       const serverPeriod = data && data.period ? String(data.period) : '';
-      if (serverPeriod && periodSelect.value !== serverPeriod) {
-        periodSelect.value = serverPeriod;
-      }
-
+      if (serverPeriod && periodSelect.value !== serverPeriod) periodSelect.value = serverPeriod;
       if (periodSelect.dataset.finaiPeriodBound !== '1') {
         periodSelect.dataset.finaiPeriodBound = '1';
         periodSelect.addEventListener('change', () => {
@@ -148,12 +144,10 @@ export default function(component) {
     root.querySelectorAll('.nav-item[data-page]').forEach(item => {
       if (item.dataset.finaiBound === '1') return;
       item.dataset.finaiBound = '1';
-
       const go = () => {
         closeDrawer();
         setStateValue('navigate', item.dataset.page);
       };
-
       item.addEventListener('click', go);
       item.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -166,31 +160,20 @@ export default function(component) {
 
   function appendOptimisticUser(text) {
     if (!chatBody) return;
-
     const welcome = chatBody.querySelector('.msg.welcome');
     if (welcome) welcome.remove();
-
     const user = document.createElement('div');
     user.className = 'msg user optimistic-user';
-
     const bubble = document.createElement('div');
     bubble.className = 'bubble';
     bubble.textContent = text;
     user.appendChild(bubble);
     chatBody.appendChild(user);
-
     const typing = document.createElement('div');
     typing.className = 'msg typing-msg optimistic-typing';
-    typing.innerHTML =
-      '<div class="bot">✦</div>' +
-      '<div class="typing-bubble" aria-label="AI sedang menganalisis">' +
-      '<span></span><span></span><span></span>' +
-      '</div>';
+    typing.innerHTML = '<div class="bot">✦</div><div class="typing-bubble" aria-label="AI sedang menganalisis"><span></span><span></span><span></span></div>';
     chatBody.appendChild(typing);
-
-    requestAnimationFrame(() => {
-      chatBody.scrollTop = chatBody.scrollHeight;
-    });
+    requestAnimationFrame(() => { chatBody.scrollTop = chatBody.scrollHeight; });
   }
 
   function bindButtons() {
@@ -202,12 +185,8 @@ export default function(component) {
       if (toggle && root.contains(toggle)) {
         event.preventDefault();
         event.stopPropagation();
-
-        if (isMobile()) {
-          toggleDrawer();
-        } else {
-          setCollapsed(!shell.classList.contains('desktop-collapsed'));
-        }
+        if (isMobile()) toggleDrawer();
+        else setCollapsed(!shell.classList.contains('desktop-collapsed'));
         return;
       }
 
@@ -255,24 +234,17 @@ export default function(component) {
     const chatInput = qs('#chatInput');
     const sendChat = qs('#sendChat');
     if (!chatInput || !sendChat || sendChat.dataset.finaiBound === '1') return;
-
     sendChat.dataset.finaiBound = '1';
 
     function submit() {
       const text = chatInput.value.trim();
       if (!text || sendChat.disabled) return;
-
       appendOptimisticUser(text);
-
       sendChat.disabled = true;
       chatInput.disabled = true;
       chatInput.value = '';
       chatInput.placeholder = 'AI sedang menganalisis...';
-
-      setTriggerValue('chat', {
-        text,
-        nonce: `${Date.now()}_${Math.random().toString(36).slice(2)}`
-      });
+      setTriggerValue('chat', {text, nonce: `${Date.now()}_${Math.random().toString(36).slice(2)}`});
     }
 
     sendChat.addEventListener('click', submit);
@@ -290,17 +262,13 @@ export default function(component) {
   bindChat();
   setAI(Boolean(data && data.ai_open));
 
-  if (shell.dataset.leftCollapsed === undefined) {
-    shell.dataset.leftCollapsed = '0';
-  }
+  if (shell.dataset.leftCollapsed === undefined) shell.dataset.leftCollapsed = '0';
   setCollapsed(shell.dataset.leftCollapsed === '1');
-
   updateViewportOffset();
   applyResponsiveMode();
 
   if (shell.dataset.finaiResizeBound !== '1') {
     shell.dataset.finaiResizeBound = '1';
-
     window.addEventListener('resize', () => {
       updateViewportOffset();
       applyResponsiveMode();
