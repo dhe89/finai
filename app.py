@@ -29,6 +29,9 @@ LLM_PROVIDER_LABELS = {
     "LLM Router": "LLM Router",
 }
 
+# ------------------------------------------------------------------
+# SERVER STATE
+# ------------------------------------------------------------------
 ensure_data_fresh()
 latest_period = get_latest_period() or LATEST_PERIOD
 available = available_periods()
@@ -40,19 +43,28 @@ st.session_state.setdefault("page", "kinerja")
 if st.session_state.get("period") not in available:
     st.session_state["period"] = latest_period
 
+# ------------------------------------------------------------------
+# CUSTOM COMPONENT V2
+# ------------------------------------------------------------------
 try:
     import streamlit.components.v2 as components_v2
-except ImportError:
+except ImportError as exc:
     st.error("Streamlit Components V2 tidak tersedia. Gunakan Streamlit >= 1.51.")
     raise
 
 
 def mark_active(source_html: str, active_page: str) -> str:
+    """Mark exactly one navigation item as active for the current page."""
     def repl(match):
         attrs = match.group(1)
         active = f'data-page="{active_page}"' in attrs
         return '<div class="nav-item' + (" active" if active else "") + '"' + attrs + ">"
-    return re.sub(r'<div class="nav-item(?: active)?"(\s+data-page="[^"]+"\s+tabindex="0")>', repl, source_html)
+
+    return re.sub(
+        r'<div class="nav-item(?: active)?"(\s+data-page="[^"]+"\s+tabindex="0")>',
+        repl,
+        source_html,
+    )
 
 
 def render_chat_messages() -> str:
@@ -80,6 +92,7 @@ def render_chat_messages() -> str:
             latency_ms = meta.get("latency_ms")
             attempt = meta.get("attempt")
             fallback = bool(meta.get("fallback"))
+
             meta_parts = []
             if provider and model:
                 meta_parts.append(f"{provider} · {model}")
@@ -89,11 +102,22 @@ def render_chat_messages() -> str:
                 meta_parts.append(f"{latency_ms / 1000:.1f}s")
             if fallback and isinstance(attempt, int):
                 meta_parts.append(f"Fallback #{attempt}")
-            metadata_html = f'<div class="ai-meta">{" · ".join(meta_parts)}</div>' if meta_parts else ""
+
+            metadata_html = (
+                f'<div class="ai-meta">{" · ".join(meta_parts)}</div>'
+                if meta_parts else ""
+            )
+
             attempts = meta.get("attempts") or []
             attempt_history = list(attempts)
             if provider_raw and provider_raw != "LLM Router":
-                attempt_history.append({"provider": provider_raw, "model": model, "status": "success", "latency_ms": latency_ms, "reason": "Provider berhasil menghasilkan jawaban."})
+                attempt_history.append({
+                    "provider": provider_raw,
+                    "model": model,
+                    "status": "success",
+                    "latency_ms": latency_ms,
+                    "reason": "Provider berhasil menghasilkan jawaban.",
+                })
             diagnostic_html = ""
             if attempt_history:
                 rows = []
@@ -111,10 +135,20 @@ def render_chat_messages() -> str:
                         icon, status_label, status_class = "⏭️", "Tidak dicoba", ""
                     else:
                         icon, status_label, status_class = "❌", status_raw, ""
-                    rows.append(f'<div class="ai-attempt"><b>#{idx} {p_label}</b> · {m_label}<br><span class="ai-attempt-status {status_class}">{icon} {html.escape(status_label)} · {elapsed_text}</span><br><span class="ai-attempt-reason">{reason}</span></div>')
-                diagnostic_html = '<details class="ai-diagnostics"><summary>🔎 Riwayat percobaan LLM</summary>' + "".join(rows) + '</details>'
+                    rows.append(
+                        f'<div class="ai-attempt"><b>#{idx} {p_label}</b> · {m_label}'
+                        f'<br><span class="ai-attempt-status {status_class}">{icon} {html.escape(status_label)} · {elapsed_text}</span>'
+                        f'<br><span class="ai-attempt-reason">{reason}</span></div>'
+                    )
+                diagnostic_html = (
+                    '<details class="ai-diagnostics"><summary>🔎 Riwayat percobaan LLM</summary>'
+                    + "".join(rows) + '</details>'
+                )
             content = render_markdown(str(message.get("content", "")))
-            blocks.append(f'<div class="msg"><div class="bot">✦</div><div class="msgtext"><div class="ai-answer">{content}</div>{metadata_html}{diagnostic_html}</div></div>')
+            blocks.append(
+                f'<div class="msg"><div class="bot">✦</div>'
+                f'<div class="msgtext"><div class="ai-answer">{content}</div>{metadata_html}{diagnostic_html}</div></div>'
+            )
     return "".join(blocks)
 
 
@@ -123,19 +157,24 @@ header = (FRONTEND / "layout" / "header.html").read_text(encoding="utf-8")
 ai_chat = (FRONTEND / "layout" / "ai_chat.html").read_text(encoding="utf-8")
 css = (FRONTEND / "css" / "main.css").read_text(encoding="utf-8")
 css += "\n" + (FRONTEND / "css" / "ui_overrides.css").read_text(encoding="utf-8")
-# Only neutralize artificial canvas bounds. Keep the existing shell geometry intact.
+# Components V2 wraps isolated content in a Shadow DOM. Keep the host itself
+# full-width so the FinAI canvas cannot shrink to an intrinsic content width.
 css += """
 
-/* CANVAS BOUNDS ONLY — keep sidebar geometry, remove empty root height. */
-#finai-root{width:100%!important;max-width:100%!important;min-width:0!important;min-height:0!important}
-#finai-root>.app{width:100%!important;max-width:100%!important;min-width:0!important;min-height:0!important;height:auto!important}
-#finai-root>.app .main{width:100%!important;max-width:none!important;min-width:0!important;min-height:0!important;height:auto!important}
-@media(min-width:801px){
-  #finai-root>.left{height:var(--finai-vh,100dvh)!important;min-height:0!important}
+/* STREAMLIT COMPONENT HOST — canvas width only */
+:host{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:0!important;
+  box-sizing:border-box!important;
 }
-@media(max-width:800px){
-  #finai-root>.app{height:auto!important;min-height:0!important}
-  #finai-root>.app .main{height:auto!important;min-height:0!important}
+#finai-root{
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
 }
 """
 js = (FRONTEND / "js" / "app.js").read_text(encoding="utf-8")
@@ -145,6 +184,9 @@ sidebar = mark_active(sidebar, page)
 page_content = render_page(page, st.session_state.period)
 ai_chat = ai_chat.replace("{{CHAT_MESSAGES}}", render_chat_messages())
 
+# Keep the shell hierarchy deliberately flat.
+# Desktop: root grid = sidebar + page content.
+# Mobile: sidebar/backdrop/header become fixed siblings.
 html_content = f"""<div id="finai-root">
   {header}
   {sidebar}
@@ -154,6 +196,8 @@ html_content = f"""<div id="finai-root">
   <div id="mobileOverlay" class="mobile-overlay" aria-hidden="true"></div>
   {ai_chat}
 </div>"""
+
+messages = st.session_state.chat_messages[-30:]
 
 finai_component = components_v2.component(
     "finai_ui.finai_shell",
@@ -169,53 +213,109 @@ except Exception:
     _log_download_enabled = False
 if _log_download_enabled:
     with st.expander("Testing · LLM Log", expanded=False):
-        st.download_button("Download finai_llm_test.jsonl", data=read_log_bytes(), file_name="finai_llm_test.jsonl", mime="application/json", disabled=not bool(read_log_bytes()), key="download_finai_llm_test_log")
+        st.download_button(
+            "Download finai_llm_test.jsonl",
+            data=read_log_bytes(),
+            file_name="finai_llm_test.jsonl",
+            mime="application/json",
+            disabled=not bool(read_log_bytes()),
+            key="download_finai_llm_test_log",
+        )
+
+# ------------------------------------------------------------------
+# COMPONENT STATE CALLBACKS
+# ------------------------------------------------------------------
+def _on_period_change():
+    component_state = st.session_state.get("finai_shell")
+    selected = getattr(component_state, "period", None) if component_state else None
+    if selected is not None and str(selected) in available:
+        st.session_state.period = str(selected)
+        st.session_state.ai_open = False
 
 
-def _handle_period_change():
-    value = getattr(finai_component, "period", None)
-    if value and value in available:
-        st.session_state["period"] = value
+def _on_navigate_change():
+    component_state = st.session_state.get("finai_shell")
+    target = getattr(component_state, "navigate", None) if component_state else None
+    if target is not None and str(target) in PAGE_MAP:
+        st.session_state.page = str(target)
+        st.session_state.ai_open = False
 
 
-def _handle_navigation_change():
-    value = getattr(finai_component, "navigate", None)
-    if value in PAGE_MAP:
-        st.session_state["page"] = value
-
-
-def _handle_ai_open_change():
-    value = getattr(finai_component, "ai_open", None)
-    if value is not None:
-        st.session_state["ai_open"] = bool(value)
-
-
-def _handle_chat_submit():
-    trigger = getattr(finai_component, "chat_submit", None)
-    if not trigger or trigger == st.session_state.get("last_chat_trigger"):
-        return
-    st.session_state["last_chat_trigger"] = trigger
-    payload = trigger if isinstance(trigger, dict) else {"message": str(trigger)}
-    message = str(payload.get("message", "")).strip()
-    if not message:
-        return
-    try:
-        with st.spinner("PETA sedang menganalisis..."):
-            answer, meta = llm_chat(message, context=payload.get("context"))
-    except Exception as exc:
-        answer = f"Maaf, analisis belum dapat diproses. Detail: {exc}"
-        meta = {"provider": "LLM Router", "model": "", "latency_ms": None, "fallback": False}
-    st.session_state.chat_messages.append({"role": "user", "content": message, "meta": {}})
-    st.session_state.chat_messages.append({"role": "assistant", "content": answer, "meta": meta or {}})
-    st.session_state["ai_open"] = True
-
-
-finai_component(
+result = finai_component(
     key="finai_shell",
+    data={
+        "page": page,
+        "period": st.session_state.period,
+        "ai_open": bool(st.session_state.ai_open),
+        "messages": messages,
+        "mobile": False,
+    },
+    default={
+        "period": st.session_state.period,
+        "navigate": st.session_state.page,
+    },
     width="stretch",
     height="content",
-    on_period_change=_handle_period_change,
-    on_navigate_change=_handle_navigation_change,
-    on_ai_open_change=_handle_ai_open_change,
-    on_chat_submit_change=_handle_chat_submit,
+    on_period_change=_on_period_change,
+    on_navigate_change=_on_navigate_change,
+    on_ai_change=lambda: None,
+    on_chat_change=lambda: None,
 )
+
+# AI/chat remain one-shot actions.
+ai_event = getattr(result, "ai", None)
+chat_event = getattr(result, "chat", None)
+
+if ai_event:
+    value = ai_event
+    if isinstance(value, dict):
+        action = value.get("action")
+    else:
+        action = str(value)
+    if action == "open":
+        st.session_state.ai_open = True
+        st.rerun()
+    elif action == "close":
+        st.session_state.ai_open = False
+        st.rerun()
+
+if chat_event:
+    if isinstance(chat_event, dict):
+        text = str(chat_event.get("text", "")).strip()
+        nonce = str(chat_event.get("nonce", ""))
+    else:
+        text = str(chat_event).strip()
+        nonce = ""
+
+    if text and nonce != st.session_state.last_chat_trigger:
+        st.session_state.last_chat_trigger = nonce
+        st.session_state.ai_open = True
+        st.session_state.chat_messages.append({"role": "user", "content": text})
+
+        response = llm_chat(st.session_state.chat_messages, selected_period=st.session_state.period)
+        if response.get("ok"):
+            answer = response.get("content", "").strip()
+            st.session_state.chat_messages.append({
+                "role": "assistant",
+                "content": answer,
+                "meta": {
+                    "provider": response.get("provider"),
+                    "model": response.get("model"),
+                    "latency_ms": response.get("latency_ms"),
+                    "attempt": response.get("attempt"),
+                    "fallback": response.get("fallback", False),
+                    "attempts": response.get("attempts", []),
+                },
+            })
+        else:
+            answer = "⚠️ " + response.get("error", "LLM belum dapat merespons saat ini.")
+            st.session_state.chat_messages.append({
+                "role": "assistant",
+                "content": answer,
+                "meta": {
+                    "provider": "LLM Router",
+                    "model": "Tidak ada provider yang berhasil",
+                    "attempts": response.get("attempts", []),
+                },
+            })
+        st.rerun()

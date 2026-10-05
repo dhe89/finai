@@ -104,77 +104,53 @@
 
 /* MOBILE SIDEBAR BRAND VISIBILITY FIX */
 @media(max-width:800px){
-  #finai-root > .left .sidebar-mobile-brand{display:flex!important;position:relative!important;z-index:5!important;visibility:visible!important;opacity:1!important;align-items:center!important;justify-content:flex-start!important;gap:10px!important;width:100%!important;height:42px!important;min-height:42px!important;margin:4px 2px 30px!important;padding:0!important;overflow:visible!important;transform:none!important}
-  #finai-root > .left .sidebar-mobile-brand .sidebar-logo-mark{display:grid!important;position:relative!important;z-index:6!important;visibility:visible!important;opacity:1!important;flex:0 0 30px!important;width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important;max-width:30px!important;max-height:30px!important;margin:0!important;padding:0!important;border-radius:9px!important;background:#b7f51d!important;color:#005642!important;place-items:center!important;line-height:1!important;font-size:16px!important;overflow:visible!important}
-  #finai-root > .left .sidebar-mobile-brand > span:last-child{display:block!important;visibility:visible!important;opacity:1!important;color:#fff!important;font-size:20px!important;font-weight:800!important;line-height:1!important}
-}
-
-/* DESKTOP CANVAS FIT — height only; never force viewport width inside the component. */
-@media(min-width:801px){
-  #finai-root{width:100%!important;max-width:100%!important;min-width:0!important}
-  #finai-root > .app{width:100%!important;max-width:100%!important;height:auto!important;min-height:0!important}
-  #finai-root > .app .main{width:auto!important;max-width:none!important;min-height:0!important}
-  #finai-root > .left{height:auto!important;min-height:0!important}
-}
-
-/* FINAL DESKTOP SHELL FIX
-   The component DOM is flat: header, sidebar and app are siblings.
-   The old root grid was treating them as grid cells and, together with the
-   app margin, doubled the desktop sidebar offset. Keep mobile untouched. */
-@media(min-width:801px){
-  #finai-root{
-    display:block!important;
+  #finai-root > .left .sidebar-mobile-brand{
+    display:flex!important;
     position:relative!important;
+    z-index:5!important;
+    visibility:visible!important;
+    opacity:1!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    gap:10px!important;
     width:100%!important;
-    max-width:100%!important;
-    min-width:0!important;
-    min-height:var(--finai-vh,100dvh)!important;
+    height:42px!important;
+    min-height:42px!important;
+    margin:4px 2px 30px!important;
+    padding:0!important;
+    overflow:visible!important;
+    transform:none!important;
+  }
+  #finai-root > .left .sidebar-mobile-brand .sidebar-logo-mark{
+    display:grid!important;
+    position:relative!important;
+    z-index:6!important;
+    visibility:visible!important;
+    opacity:1!important;
+    flex:0 0 30px!important;
+    width:30px!important;
+    height:30px!important;
+    min-width:30px!important;
+    min-height:30px!important;
+    max-width:30px!important;
+    max-height:30px!important;
     margin:0!important;
     padding:0!important;
-  }
-  #finai-root > .left{
-    position:absolute!important;
-    top:0!important;
-    left:0!important;
-    right:auto!important;
-    width:250px!important;
-    min-width:250px!important;
-    max-width:250px!important;
-    height:var(--finai-vh,100dvh)!important;
-    min-height:0!important;
-    margin:0!important;
-    z-index:1900!important;
-  }
-  #finai-root > .app{
-    display:block!important;
-    position:relative!important;
-    width:calc(100% - 250px)!important;
-    max-width:none!important;
-    min-width:0!important;
-    height:auto!important;
-    min-height:var(--finai-vh,100dvh)!important;
-    margin:0 0 0 250px!important;
+    border-radius:9px!important;
+    background:#b7f51d!important;
+    color:#005642!important;
+    place-items:center!important;
+    line-height:1!important;
+    font-size:16px!important;
     overflow:visible!important;
   }
-  #finai-root > .app .main{
-    width:100%!important;
-    max-width:none!important;
-    min-width:0!important;
-    min-height:var(--finai-vh,100dvh)!important;
+  #finai-root > .left .sidebar-mobile-brand > span:last-child{
+    display:block!important;
+    visibility:visible!important;
+    opacity:1!important;
+    color:#fff!important;
+    font-size:20px!important;
+    font-weight:800!important;
+    line-height:1!important;
   }
-  #finai-root.desktop-collapsed > .left{
-    width:72px!important;
-    min-width:72px!important;
-    max-width:72px!important;
-  }
-  #finai-root.desktop-collapsed > .app{
-    width:calc(100% - 72px)!important;
-    margin-left:72px!important;
-  }
-  #finai-root > .desktop-topnav{
-    left:250px!important;
-    right:0!important;
-    width:auto!important;
-  }
-  #finai-root.desktop-collapsed > .desktop-topnav{left:72px!important}
 }
