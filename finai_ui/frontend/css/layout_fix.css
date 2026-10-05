@@ -1,0 +1,186 @@
+/*
+   FinAI shell geometry correction.
+
+   Reference principle: use one shell grid for SIDEBAR + CONTENT and keep AI
+   as an overlay. Do not reserve a grid column for the AI panel.
+
+   This file intentionally contains layout/geometry only. Existing visual
+   styles remain owned by main.css and ui_overrides.css.
+*/
+
+/* ================================================================
+   DESKTOP: prototype-style shell geometry
+   ================================================================ */
+@media (min-width: 801px) {
+  #finai-root {
+    position: relative !important;
+    display: grid !important;
+    grid-template-columns: 250px minmax(0, 1fr) !important;
+    grid-template-rows: 1fr !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: var(--finai-vh, 100dvh) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  #finai-root.desktop-collapsed {
+    grid-template-columns: 72px minmax(0, 1fr) !important;
+  }
+
+  /* Sidebar participates in the shell grid. It must NOT be absolute here. */
+  #finai-root > .left {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: var(--finai-vh, 100dvh) !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  /* #app is the second grid track and contains the actual page content. */
+  #finai-root > .app {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    display: block !important;
+    position: relative !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: var(--finai-vh, 100dvh) !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: var(--bg) !important;
+  }
+
+  #finai-root > .app > .main {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Header owns the full content track, immediately beside the sidebar. */
+  #finai-root > .desktop-topnav {
+    left: 250px !important;
+    right: 0 !important;
+    width: auto !important;
+    margin: 0 !important;
+  }
+
+  #finai-root.desktop-collapsed > .desktop-topnav {
+    left: 72px !important;
+  }
+
+  /* AI is an overlay, never a grid track and never part of content width. */
+  #finai-root > .ai {
+    position: absolute !important;
+    right: 0 !important;
+    left: auto !important;
+    bottom: auto !important;
+    z-index: 5000 !important;
+    pointer-events: auto !important;
+  }
+}
+
+/* ================================================================
+   MOBILE: content remains full-width; sidebar and AI overlay it
+   ================================================================ */
+@media (max-width: 800px) {
+  #finai-root,
+  #finai-root.desktop-collapsed {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: var(--finai-vh, 100dvh) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  #finai-root > .app {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: var(--finai-vh, 100dvh) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  #finai-root > .app > .main {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    padding: 96px 18px 38px !important;
+  }
+
+  /* Drawer: overlays the page instead of pushing/shrinking it. */
+  #finai-root > .left {
+    position: fixed !important;
+    top: var(--finai-top-offset, 0px) !important;
+    left: 0 !important;
+    right: auto !important;
+    bottom: 0 !important;
+    width: min(82vw, 320px) !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+    transform: translateX(-105%) !important;
+    transition: transform .25s ease !important;
+    z-index: 5000 !important;
+    pointer-events: none !important;
+  }
+
+  #finai-root > .left.mobile-open {
+    transform: translateX(0) !important;
+    pointer-events: auto !important;
+  }
+
+  /* Mobile header spans the complete component canvas. */
+  #finai-root > .mobile-head {
+    position: fixed !important;
+    top: var(--finai-top-offset, 0px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    z-index: 4500 !important;
+  }
+
+  /* AI is a true full-screen overlay on mobile. */
+  #finai-root > .ai {
+    position: fixed !important;
+    top: var(--finai-top-offset, 0px) !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    z-index: 6000 !important;
+  }
+
+  #finai-root > #floatingAI {
+    z-index: 5500 !important;
+  }
+}
