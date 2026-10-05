@@ -35,6 +35,19 @@
   #finai-root > .app{margin-left:0!important;width:100%!important}
   #finai-root > .app .main{width:100%!important}
 }
+
+/* CANVAS ALIGNMENT OVERRIDE
+   app.py intentionally keeps only neutral canvas bounds. These selectors are
+   more specific than the neutral width rule and preserve the shell geometry
+   above, so the FinAI canvas follows the same left/top container as the PETA
+   header instead of creating a detached blank column. */
+@media(min-width:801px){
+  #finai-root > #app.app{margin-left:250px!important;width:calc(100% - 250px)!important}
+  #finai-root.desktop-collapsed > #app.app{margin-left:72px!important;width:calc(100% - 72px)!important}
+}
+@media(max-width:800px){
+  #finai-root > #app.app{margin-left:0!important;width:100%!important}
+}
 </style>
 
 <div class="desktop-topnav" aria-label="Application top navigation">
