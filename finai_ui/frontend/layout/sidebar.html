@@ -1,7 +1,5 @@
 <style id="finai-mobile-sidebar-logo-fix">
 @media(max-width:800px){
-  /* Expanded mobile drawer starts at the same app top as the mobile header.
-     Keep the PETA brand inside the drawer's visible top area. */
   #finai-root > .left{
     top:0!important;
     overflow:hidden!important;
@@ -53,16 +51,23 @@
     font-weight:800!important;
     line-height:1!important;
   }
-  #finai-root > .left .nav{
-    padding-top:0!important;
-  }
+  #finai-root > .left .nav{padding-top:0!important;}
 
-  /* Final mobile drawer positioning: align the sidebar's top edge with
-     the bottom of Streamlit's native header so the brand is not hidden behind it. */
+  /* Sidebar begins exactly where Streamlit's native header ends. */
   #finai-root#finai-root > .left{
     top:var(--finai-top-offset,0px)!important;
     height:var(--finai-vh,calc(100dvh - var(--finai-top-offset,0px)))!important;
     max-height:var(--finai-vh,calc(100dvh - var(--finai-top-offset,0px)))!important;
+  }
+
+  /* Expanded drawer is the top layer; nothing can cover its brand. */
+  #finai-root#finai-root > .left.mobile-open{
+    z-index:5000!important;
+  }
+  #finai-root#finai-root > .left.mobile-open .sidebar-mobile-brand,
+  #finai-root#finai-root > .left.mobile-open .sidebar-mobile-brand .sidebar-logo-mark{
+    visibility:visible!important;
+    opacity:1!important;
   }
 }
 </style>
