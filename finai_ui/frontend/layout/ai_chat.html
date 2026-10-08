@@ -113,6 +113,7 @@
       z-index: 1 !important;
     }
   }
+.ai-head-actions{display:flex;align-items:center;gap:4px}.ai-enlarge{width:32px;height:32px;border:0;border-radius:9px;background:transparent;color:#53605b;cursor:pointer;font-size:18px;line-height:1;display:grid;place-items:center}.ai-enlarge:hover{background:#f4f7f5;color:#005642}
 </style>
 
 <aside id="ai" class="ai closed" aria-hidden="true">
@@ -121,7 +122,10 @@
       <div class="ai-title">Tanya PETA - AI Assistant</div>
       <div class="ai-status"><span class="dot"></span>Ready to assist</div>
     </div>
-    <button id="aiClose" class="ai-close" aria-label="Close AI Assistant">×</button>
+    <div class="ai-head-actions">
+      <button id="aiEnlarge" class="ai-enlarge" aria-label="Open full AI Assistant" title="Open full AI Assistant" type="button" onclick="window.top.location.href = window.top.location.pathname + '?page=ai_chat'">⛶</button>
+      <button id="aiClose" class="ai-close" aria-label="Close AI Assistant">×</button>
+    </div>
   </div>
   <div id="chatBody" class="ai-body">
     {{CHAT_MESSAGES}}
