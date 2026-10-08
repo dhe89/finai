@@ -46,6 +46,15 @@
     left: 72px !important;
   }
 
+  /* Responsive content width when the AI panel is enlarged.
+     Normal AI chat keeps its existing compact width. */
+  #finai-root > .ai.ai-enlarged .msgtext {
+    max-width: calc(100% - 34px) !important;
+  }
+  #finai-root > .ai.ai-enlarged .bubble {
+    max-width: min(72%, 900px) !important;
+  }
+
   @media (max-width: 800px) {
     #finai-root > .ai.ai-enlarged {
       left: 0 !important;
