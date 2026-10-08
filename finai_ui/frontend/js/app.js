@@ -165,6 +165,16 @@ export default function(component) {
       if (overlay && root.contains(overlay)) { closeDrawer(); closeHeaderDropdowns(); return; }
       const desktopAI = event.target.closest('#desktopAI'), mobileAI = event.target.closest('#mobileAI'), floatingAI = event.target.closest('#floatingAI');
       if ((desktopAI || mobileAI || floatingAI) && root.contains(desktopAI || mobileAI || floatingAI)) { event.preventDefault(); closeHeaderDropdowns(); setTriggerValue('ai', {action:'open'}); return; }
+      const aiEnlarge = event.target.closest('#aiEnlarge');
+      if (aiEnlarge && root.contains(aiEnlarge)) {
+        event.preventDefault();
+        closeHeaderDropdowns();
+        const enlarged = ai.classList.toggle('ai-enlarged');
+        aiEnlarge.setAttribute('aria-expanded', String(enlarged));
+        aiEnlarge.setAttribute('aria-label', enlarged ? 'Restore AI Assistant' : 'Enlarge AI Assistant');
+        aiEnlarge.setAttribute('title', enlarged ? 'Restore AI Assistant' : 'Enlarge AI Assistant');
+        return;
+      }
       const aiClose = event.target.closest('#aiClose');
       if (aiClose && root.contains(aiClose)) { event.preventDefault(); closeHeaderDropdowns(); setTriggerValue('ai', {action:'close'}); return; }
     });
