@@ -46,6 +46,13 @@
     left: 72px !important;
   }
 
+  @media (max-width: 800px) {
+    #finai-root > .ai.ai-enlarged {
+      left: 0 !important;
+      width: 100vw !important;
+    }
+  }
+
   /* Floating launcher is available only while the assistant is closed. */
   #finai-root > .ai:not(.closed) ~ #floatingAI {
     display: none !important;
