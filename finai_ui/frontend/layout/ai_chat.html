@@ -36,6 +36,16 @@
     color: currentColor !important;
   }
 
+  /* Enlarge AI chat on desktop: expand left until the active sidebar edge. */
+  #finai-root > .ai.ai-enlarged {
+    left: 250px !important;
+    right: 0 !important;
+    width: auto !important;
+  }
+  #finai-root.desktop-collapsed > .ai.ai-enlarged {
+    left: 72px !important;
+  }
+
   /* Floating launcher is available only while the assistant is closed. */
   #finai-root > .ai:not(.closed) ~ #floatingAI {
     display: none !important;
@@ -123,7 +133,7 @@
       <div class="ai-status"><span class="dot"></span>Ready to assist</div>
     </div>
     <div class="ai-head-actions">
-      <button id="aiEnlarge" class="ai-enlarge" aria-label="Open full AI Assistant" title="Open full AI Assistant" type="button" onclick="window.top.location.href = window.top.location.pathname + '?page=ai_chat'">⛶</button>
+      <button id="aiEnlarge" class="ai-enlarge" aria-label="Enlarge AI Assistant" title="Enlarge AI Assistant" type="button">⛶</button>
       <button id="aiClose" class="ai-close" aria-label="Close AI Assistant">×</button>
     </div>
   </div>
