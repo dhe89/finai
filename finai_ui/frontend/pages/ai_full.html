@@ -1,0 +1,132 @@
+<!--
+  PETA — Full AI Chat Page
+  Standalone page fragment for the existing .main wrapper.
+  IMPORTANT: This file intentionally does not modify navigation, routing, JS, or CSS.
+  It reuses the same visual language/classes as the existing PETA AI Assistant.
+-->
+
+<section class="main ai-full-page" aria-label="PETA AI Assistant">
+  <div class="topbar">
+    <div>
+      <div class="eyebrow">FINANCIAL INTELLIGENCE</div>
+      <div class="title">AI Assistant</div>
+      <div class="subtitle">Tanyakan apa saja tentang kinerja keuangan, profitabilitas, dan data lainnya.</div>
+    </div>
+    <div class="period">2026 (Jan – Sep)</div>
+  </div>
+
+  <div class="card ai-full-card">
+    <div class="ai-full-head">
+      <div class="ai-full-identity">
+        <div class="bot">✦</div>
+        <div>
+          <div class="ai-title">Tanya PETA - AI Assistant</div>
+          <div class="ai-status"><span class="dot"></span>Ready to assist</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-body ai-full-body">
+      <div class="msg user">
+        <div class="bubble">Coba lakukan rekonsiliasi apakah total kredit pada rincian data kredit sudah sama dengan total kredit pada neraca untuk bulan september 2026?</div>
+      </div>
+
+      <div class="msg">
+        <div class="bot">✦</div>
+        <div class="msgtext">
+          <div class="ai-answer">
+            <p><b>Berikut adalah hasil rekonsiliasi</b> antara total kredit pada rincian data produk kredit dengan total kredit yang tercatat pada neraca untuk posisi <b>September 2026</b>:</p>
+
+            <p><b>FAKTA</b></p>
+            <ol>
+              <li>Total kredit pada rincian data produk kredit dibandingkan dengan total kredit pada neraca.</li>
+              <li>Kedua sumber data menunjukkan nilai yang sama.</li>
+            </ol>
+
+            <p><b>PERHITUNGAN</b></p>
+            <ul>
+              <li>Total rincian kredit dibandingkan dengan nilai kredit pada neraca.</li>
+              <li>Selisih hasil rekonsiliasi: <b>Rp0,00 miliar</b>.</li>
+            </ul>
+
+            <p><b>INTERPRETASI &amp; KESIMPULAN</b></p>
+            <p>Hasil rekonsiliasi menunjukkan bahwa <b>total kredit pada rincian data kredit telah sesuai dengan total kredit pada neraca</b> untuk bulan September 2026.</p>
+            <p><b>Tidak terdapat selisih (zero variance).</b></p>
+          </div>
+          <div class="ai-meta">Evidence: Neraca + loan products · Periode: September 2026</div>
+        </div>
+      </div>
+
+      <div class="msg user">
+        <div class="bubble">Produk kredit apa yang memiliki return terbesar dan penopan laba selama tahun 2026?</div>
+      </div>
+
+      <div class="msg">
+        <div class="bot">✦</div>
+        <div class="msgtext">
+          <div class="ai-answer">
+            <p>Berdasarkan data tahun 2026, <b>produk kredit dengan return terbesar sekaligus menjadi penopang utama laba</b> adalah:</p>
+            <ol>
+              <li><b>KPR Subsidi</b>
+                <ul>
+                  <li>NIM 4,8% (tertinggi di antara produk kredit)</li>
+                  <li>Kontribusi laba 42,7%</li>
+                  <li>Outstanding Rp378,5 triliun (dominan)</li>
+                </ul>
+              </li>
+              <li><b>KPR Non-Subsidi</b>
+                <ul>
+                  <li>NIM 5,2% (tinggi)</li>
+                  <li>Kontribusi laba 28,9%</li>
+                </ul>
+              </li>
+              <li><b>Kredit Konsumer</b>
+                <ul>
+                  <li>NIM 5,0%</li>
+                  <li>Kontribusi laba 17,4%</li>
+                </ul>
+              </li>
+            </ol>
+            <p><b>Kesimpulan:</b> KPR Subsidi menjadi produk kredit dengan return terbesar dan penopang utama laba bank selama tahun 2026.</p>
+          </div>
+          <div class="ai-meta">Evidence: Financial data + loan products · Periode: 2026 (Jan – Sep)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-foot">
+      <div class="ai-foot-row">
+        <input class="chat-input" type="text" placeholder="Tanyakan pertanyaan analisis keuangan Anda di sini..." aria-label="Tanyakan pertanyaan analisis keuangan">
+        <button class="send" type="button" aria-label="Send message">➤</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* Only page-local geometry; colors, typography and chat components follow main.css. */
+.ai-full-page{height:100%;overflow:hidden;padding-bottom:24px}
+.ai-full-card{height:calc(100% - 82px);min-height:520px;display:flex;flex-direction:column;overflow:hidden}
+.ai-full-head{padding:18px 20px;border-bottom:1px solid #edf0ef;background:#fff;flex:none}
+.ai-full-identity{display:flex;align-items:center;gap:10px}
+.ai-full-identity .bot{width:32px;height:32px}
+.ai-full-body{padding:24px 26px;min-height:0;overflow:auto;flex:1}
+.ai-full-body .msg{max-width:920px}
+.ai-full-body .msg.user{margin-left:auto}
+.ai-full-body .msgtext{max-width:780px;font-size:11px}
+.ai-full-body .bubble{max-width:700px;font-size:11px}
+.ai-full-body .ai-answer p{margin:0 0 10px}
+.ai-full-body .ai-answer ol,
+.ai-full-body .ai-answer ul{margin:6px 0 12px;padding-left:22px}
+.ai-full-body .ai-answer li{margin:4px 0}
+.ai-full-body .ai-answer b{color:#26332f}
+.ai-full-body .ai-meta{margin-top:8px}
+.ai-full-page .ai-foot{border-top:1px solid #edf0ef;flex:none}
+@media(max-width:800px){
+  .ai-full-page{height:auto;min-height:100dvh;overflow:visible;padding:96px 18px 24px}
+  .ai-full-card{height:calc(100dvh - 120px);min-height:560px}
+  .ai-full-body{padding:18px 16px}
+  .ai-full-body .msgtext{max-width:calc(100vw - 90px)}
+  .ai-full-body .bubble{max-width:calc(100vw - 90px)}
+}
+</style>
