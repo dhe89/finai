@@ -20,7 +20,7 @@ st.set_page_config(page_title="FinAI", layout="wide", initial_sidebar_state="col
 BASE_DIR = Path(__file__).resolve().parent
 FRONTEND = BASE_DIR / "finai_ui" / "frontend"
 
-PAGE_MAP = {"kinerja", "financial_report", "data_detail", "setting", "ai_chat"}
+PAGE_MAP = {"kinerja", "financial_report", "data_detail", "setting"}
 
 LLM_PROVIDER_LABELS = {
     "gemini": "Google Gemini",
@@ -37,10 +37,6 @@ st.session_state.setdefault("ai_open", False)
 st.session_state.setdefault("last_chat_trigger", None)
 st.session_state.setdefault("page", "kinerja")
 
-# Optional browser route for the standalone full AI page.
-requested_page = str(st.query_params.get("page", "")).strip()
-if requested_page in PAGE_MAP:
-    st.session_state["page"] = requested_page
 
 if st.session_state.get("period") not in available:
     st.session_state["period"] = latest_period
@@ -179,10 +175,7 @@ js = (FRONTEND / "js" / "app.js").read_text(encoding="utf-8")
 
 page = st.session_state.page
 sidebar = mark_active(sidebar, page)
-if page == "ai_chat":
-    page_content = (FRONTEND / "pages" / "ai_full.html").read_text(encoding="utf-8")
-else:
-    page_content = render_page(page, st.session_state.period)
+page_content = render_page(page, st.session_state.period)
 ai_chat = ai_chat.replace("{{CHAT_MESSAGES}}", render_chat_messages())
 
 html_content = f"""<div id="finai-root">
@@ -235,10 +228,6 @@ def _on_navigate_change():
     if target is not None and str(target) in PAGE_MAP:
         st.session_state.page = str(target)
         st.session_state.ai_open = False
-        if str(target) == "ai_chat":
-            st.query_params["page"] = "ai_chat"
-        elif st.query_params.get("page") == "ai_chat":
-            del st.query_params["page"]
 
 
 result = finai_component(
